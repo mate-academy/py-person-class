@@ -7,7 +7,6 @@ class Person:
         self.people[self.name] = self
 
 
-
 def create_person_list(people: list) -> list:
     result = []
 
@@ -24,4 +23,3 @@ def create_person_list(people: list) -> list:
             result[i].husband = Person.people[people[i]['husband']]
 
     return result
-
