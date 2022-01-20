@@ -96,3 +96,13 @@ def test_person_class_attribute_people(people_data, created_person_list):
     assert len(Person.people) == len(people_data), (
         "Length of Person class attribute people should be equal to length of initial list"
     )
+
+
+def test_create_person_list_returns_only_entering_people(people_data, created_person_list):
+    assert len(people_data) == len(created_person_list), (
+        "Length of passed list should equal to length of returned list"
+    )
+    assert [person['name'] for person in people_data] == [person.name for person in created_person_list], (
+        "People, that are passed to the function should equal to people, "
+        "that are returned"
+    )
