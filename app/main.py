@@ -10,13 +10,13 @@ class Person:
 def create_person_list(people: list) -> list:
     pupil_array = [Person(person["name"], person["age"]) for person in people]
 
-    for persons in people:
-        if persons.get("wife"):
-            Person.people[persons["name"]].wife = \
-                Person.people[persons["wife"]]
+    for person in people:
+        if person.get("wife"):
+            Person.people[person["name"]].wife = \
+                Person.people[person["wife"]]
 
-        elif persons.get("husband"):
-            Person.people[persons["name"]].husband = \
-                Person.people[persons["husband"]]
+        elif person.get("husband"):
+            Person.people[person["name"]].husband = \
+                Person.people[person["husband"]]
 
     return pupil_array
