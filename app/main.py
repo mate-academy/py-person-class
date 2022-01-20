@@ -7,9 +7,6 @@ class Person:
         self.age = age
         self.people[self.name] = self
 
-    def __repr__(self):
-        print(f"name is {self.name} age is {self.age}")
-
 
 def create_person_list(people: list) -> list:
 
