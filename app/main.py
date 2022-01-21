@@ -8,13 +8,13 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    ppl_list = [Person(pers["name"], pers["age"]) for pers in people]
+    people_list = [Person(person["name"], person["age"]) for person in people]
 
-    for pers in people:
-        if "wife" in pers and pers["wife"] is not None:
-            Person.people[pers["name"]].wife = Person.people[pers["wife"]]
-        elif "husband" in pers and pers["husband"] is not None:
-            Person.people[pers["name"]].husband = Person.people[pers[
+    for person in people:
+        if "wife" in person and person["wife"] is not None:
+            Person.people[person["name"]].wife = Person.people[person["wife"]]
+        elif "husband" in person and person["husband"] is not None:
+            Person.people[person["name"]].husband = Person.people[person[
                 "husband"]]
 
-    return ppl_list
+    return people_list
