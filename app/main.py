@@ -11,8 +11,8 @@ class Person:
 def create_person_list(income_people_list: list) -> list:
     created_person_list = []
 
-    for each in income_people_list:
-        person = Person(each["name"], each["age"])
+    for person_dict in income_people_list:
+        person = Person(person_dict["name"], person_dict["age"])
         created_person_list.append(person)
 
     for i in range(len(income_people_list)):
