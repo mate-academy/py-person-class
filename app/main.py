@@ -8,18 +8,23 @@ class Person:
         self.people[self.name] = self
 
 
-def create_person_list(people: list) -> list:
+def create_person_list(income_people_list: list) -> list:
+    created_person_list = []
 
-    people_list = []
-
-    for each in people:
+    for each in income_people_list:
         person = Person(each["name"], each["age"])
-        people_list.append(person)
+        created_person_list.append(person)
 
-    for i in range(len(people)):
-        if "wife" in people[i] and people[i]["wife"] is not None:
-            people_list[i].wife = Person.people[people[i]["wife"]]
-        if "husband" in people[i] and people[i]["husband"] is not None:
-            people_list[i].husband = Person.people[people[i]["husband"]]
+    for i in range(len(income_people_list)):
+        if "wife" in income_people_list[i] and\
+                income_people_list[i]["wife"] is not None:
+            created_person_list[i].wife = Person.people[
+                income_people_list[i]["wife"]
+            ]
+        if "husband" in income_people_list[i] and\
+                income_people_list[i]["husband"] is not None:
+            created_person_list[i].husband = Person.people[
+                income_people_list[i]["husband"]
+            ]
 
-    return people_list
+    return created_person_list
