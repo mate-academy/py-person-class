@@ -4,6 +4,7 @@ class Person:
     def __init__(self, name, age):
         self.name = name
         self.age = age
+        Person.people[name] = self
 
 
 def create_person_list(people: list) -> list:
@@ -11,7 +12,6 @@ def create_person_list(people: list) -> list:
 
     for i, person in enumerate(people):
         person_list.append(Person(name=person['name'], age=person['age']))
-        Person.people[f'{person_list[i].name}'] = person_list[i]
 
     for i, person in enumerate(people):
         if 'wife' in person and person['wife']:
