@@ -21,11 +21,11 @@ def create_person_list(people: list) -> list:
     for person in people:
         our_object = Person.people[person["name"]]
 
-        if "wife" in person and person["wife"] is not None:
+        if "wife" in person and person["wife"]:
             our_object.wife = Person.people[person["wife"]]
             result.append(our_object)
 
-        elif "husband" in person and person["husband"] is not None:
+        elif "husband" in person and person["husband"]:
             our_object.husband = Person.people[person["husband"]]
             result.append(our_object)
 
