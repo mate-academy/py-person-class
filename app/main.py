@@ -23,13 +23,10 @@ def create_person_list(people: list) -> list:
 
         if "wife" in person and person["wife"]:
             our_object.wife = Person.people[person["wife"]]
-            result.append(our_object)
 
-        elif "husband" in person and person["husband"]:
+        if "husband" in person and person["husband"]:
             our_object.husband = Person.people[person["husband"]]
-            result.append(our_object)
 
-        else:
-            result.append(our_object)
+        result.append(our_object)
 
     return result
