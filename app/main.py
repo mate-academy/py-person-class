@@ -8,11 +8,8 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    result = []
 
-    for obj in people:
-        new_object = Person(obj["name"], obj["age"])
-        result.append(new_object)
+    result = [Person(person["name"], person["age"]) for person in people]
 
     for person in people:
         obj_to_change = Person.people[person["name"]]
