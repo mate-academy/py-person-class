@@ -20,9 +20,3 @@ def create_person_list(people: list) -> list:
             Person.people[human["name"]].husband = \
                 Person.people[human["husband"]]
     return result
-
-
-
-
-
-
