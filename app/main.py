@@ -7,17 +7,15 @@ class Person:
         self.people[self.name] = self
 
 
-def create_person_list(people: list) -> list:
-    res = [
-        Person(person['name'], person['age'])
-        for person in people
-    ]
+def create_person_list(peoples: list) -> list:
+    resultList = [Person(person['name'], person['age']) for person in peoples]
+    for person in peoples:
+        if 'husband' in person and person['husband']:
+            husband = Person.people[person['husband']]
+            Person.people[person['name']].husband = husband
 
-    for i in range(len(res)):
-        if 'husband' in people[i] and people[i]['husband'] is not None:
-            res[i].husband = Person.people[people[i]['husband']]
+        if 'wife' in person and person['wife']:
+            wife = Person.people[person['wife']]
+            Person.people[person['name']].wife = wife
 
-        if 'wife' in people[i] and people[i]['wife'] is not None:
-            res[i].wife = Person.people[people[i]['wife']]
-
-    return res
+    return resultList
