@@ -9,7 +9,7 @@ class Person:
 
 def create_person_list(people: list) -> list:
     list_of_people = [
-        Person(person['name'], person['age'])
+        Person(person["name"], person["age"])
         for person in people
     ]
 
