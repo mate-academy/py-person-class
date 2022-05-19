@@ -9,8 +9,8 @@ class Person:
 
 def create_person_list(people: list) -> list:
     friends = []
-    for hu_man in people:
-        friend = Person(hu_man["name"], hu_man["age"])
+    for human in people:
+        friend = Person(human["name"], human["age"])
         friends.append(friend)
     for pos, human in enumerate(people):
         if "wife" in human and human["wife"] is not None:
