@@ -4,7 +4,7 @@ class Person:
     def __init__(self, name: str, age: int):
         self.name = name
         self.age = age
-        self.people[self.name] = self
+        Person.people[self.name] = self
 
     def __repr__(self):
         return f"{self.name, self.age}"
