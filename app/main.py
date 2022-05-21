@@ -8,28 +8,21 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    new_people_list = []
-    people_with_partner = []
+    new_people = []
     for person_dict in people:
         person = Person(person_dict['name'], person_dict['age'])
+        new_people.append(person)
 
-        if 'wife' in person_dict.keys():
-            if person_dict['wife']:
-                person.partner = person_dict['wife']
-                person.wife = person.partner
-                people_with_partner.append(person)
+    for index in range(len(new_people)):
+        if 'wife' in people[index].keys():
+            if people[index]['wife']:
+                name_wife = people[index]['wife']
+                new_people[index].wife = new_people[index].people[name_wife]
 
-        elif 'husband' in person_dict.keys():
-            if person_dict['husband']:
-                person.partner = person_dict['husband']
-                person.husband = person.partner
-                people_with_partner.append(person)
-        new_people_list.append(person)
+        elif 'husband' in people[index].keys():
+            if people[index]['husband']:
+                name_husband = people[index]['husband']
+                new_people[index].husband = \
+                    new_people[index].people[name_husband]
 
-    for person1 in people_with_partner:
-        person2 = person1.people[person1.partner]
-        if 'wife' in person1.__dict__:
-            person1.wife = person2
-        elif 'husband' in person1.__dict__:
-            person1.husband = person2
-    return new_people_list
+    return new_people
