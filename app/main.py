@@ -8,7 +8,8 @@ class Person:
 
 
 def create_person_list(peoples: list) -> list:
-    list_with_person = [Person(pers["name"], pers["age"]) for pers in peoples]
+    list_with_person = [Person(person["name"], person["age"])
+                        for person in peoples]
 
     for person in peoples:
         if "wife" in person and person["wife"] is not None:
