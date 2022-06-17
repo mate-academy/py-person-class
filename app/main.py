@@ -17,11 +17,11 @@ def create_person_list(people: list) -> list:
 
 
 def add_partner(person, new_person):
-    if person.get("wife") is not None:
+    if person.get("wife"):
         wife = Person(person.get("wife"))
         new_person.wife = wife
         wife.husband = new_person
-    elif person.get("husband") is not None:
+    elif person.get("husband"):
         husband = Person(person.get("husband"))
         new_person.husband = husband
         husband.wife = new_person
