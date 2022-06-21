@@ -3,6 +3,8 @@ import pytest
 from app.main import create_person_list
 from app.main import Person
 
+import ast
+
 
 @pytest.fixture()
 def people_data():
@@ -48,7 +50,6 @@ def test_person_class_name_age(name, age):
 
 
 def test_create_person_list_all_persons(people_data, created_person_list):
-
     assert all(isinstance(person, Person) for person in created_person_list), (
         "All elements in result of 'create_person_list' should be instance "
         "of Person class"
@@ -59,9 +60,9 @@ def test_create_person_list_all_persons(people_data, created_person_list):
 
 
 def test_create_person_list_order(people_data, created_person_list):
-   assert [person_dict['name'] for person_dict in people_data] == [
-       person.name for person in created_person_list
-   ], (
+    assert [person_dict['name'] for person_dict in people_data] == [
+        person.name for person in created_person_list
+    ], (
         "Order in function result should be the same"
     )
 
@@ -105,4 +106,13 @@ def test_create_person_list_returns_only_entering_people(people_data, created_pe
     assert [person['name'] for person in people_data] == [person.name for person in created_person_list], (
         "People, that are passed to the function should equal to people, "
         "that are returned"
+    )
+
+
+def test_person_instance_attribute_wife_and_husband_doesnt_exists():
+    with open("app/main.py") as file:
+        tree = ast.parse(file.read())
+
+    assert len(tree.__dict__["body"][0].__dict__["body"][1].__dict__["args"].__dict__["args"]) == 3, (
+        "'__init__' should takes only two arguments 'name' and 'age'!"
     )
