@@ -4,8 +4,6 @@ from app.main import create_person_list
 from app.main import Person
 
 import ast
-import io
-from contextlib import redirect_stdout
 
 
 @pytest.fixture()
