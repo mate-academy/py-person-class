@@ -14,22 +14,24 @@ def create_person_list(people: list) -> list:
         age = people_one["age"]
         peoples_dict[f"{name}"] = Person(name, age)
 
-        if "wife" in list(people_one.keys()):
+        try:
             wife = people_one["wife"]
             peoples_dict[f"{name}"].wife = wife
-        else:
+        except Exception:
             husband = people_one["husband"]
             peoples_dict[f"{name}"].husband = husband
 
     for key in list(peoples_dict.keys()):
-        if hasattr(peoples_dict[key], "wife"):
-            if peoples_dict[key].wife in peoples_dict.keys():
-                peoples_dict[key].wife = peoples_dict[peoples_dict[key].wife]
+        try:
+            peoples_dict[key].wife = peoples_dict[peoples_dict[key].wife]
+        except Exception:
+            pass
 
-        if hasattr(peoples_dict[key], "husband"):
-            if peoples_dict[key].husband in peoples_dict.keys():
-                peoples_dict[key].husband = \
-                    peoples_dict[peoples_dict[key].husband]
+        try:
+            peoples_dict[key].husband = \
+                peoples_dict[peoples_dict[key].husband]
+        except Exception:
+            pass
 
     res_list = list(peoples_dict.values())
     for people in res_list:
