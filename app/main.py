@@ -22,16 +22,16 @@ def create_person_list(people: list) -> list:
             peoples_dict[f"{name}"].husband = husband
 
     for key in list(peoples_dict.keys()):
-        try:
-            peoples_dict[key].wife = peoples_dict[peoples_dict[key].wife]
-        except Exception:
-            pass
+        if hasattr(peoples_dict[key], "wife"):
+            if peoples_dict[key].wife in peoples_dict.keys() \
+                    and peoples_dict[key].wife is not None:
+                peoples_dict[key].wife = peoples_dict[peoples_dict[key].wife]
 
-        try:
-            peoples_dict[key].husband = \
-                peoples_dict[peoples_dict[key].husband]
-        except Exception:
-            pass
+        if hasattr(peoples_dict[key], "husband"):
+            if peoples_dict[key].husband in peoples_dict.keys() \
+                    and peoples_dict[key].husband is not None:
+                peoples_dict[key].husband = \
+                    peoples_dict[peoples_dict[key].husband]
 
     res_list = list(peoples_dict.values())
     for people in res_list:
