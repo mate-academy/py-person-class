@@ -15,14 +15,10 @@ def create_person_list(people: list) -> list:
         peoples_dict[name] = Person(name, age)
 
     for people_one in people:
-        print(people_one)
-
         if "wife" in people_one.keys() and people_one["wife"] is not None:
             if people_one["wife"] in peoples_dict.keys():
                 peoples_dict[people_one["name"]].wife = \
                     peoples_dict[people_one["wife"]]
-            else:
-                peoples_dict[people_one["name"]].wife = people_one["wife"]
 
         if "husband" in people_one.keys() and \
                 people_one["husband"] is not None:
@@ -30,8 +26,5 @@ def create_person_list(people: list) -> list:
             if people_one["husband"] in peoples_dict.keys():
                 peoples_dict[people_one["name"]].husband = \
                     peoples_dict[people_one["husband"]]
-            else:
-                peoples_dict[people_one["name"]].husband = \
-                    people_one["husband"]
 
     return [res_people for res_people in peoples_dict.values()]
