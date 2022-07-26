@@ -1,5 +1,6 @@
 class Person:
     people = {}
+
     def __int__(self, name: str, age: int):
         self.name = name
         self.age = age
@@ -9,7 +10,6 @@ class Person:
 def create_person_list(people: list) -> list:
     list_of_people = [Person(name=name["name"],
                              age=name["age"]) for name in people]
-
 
     for person in people:
         if "wife" in person:
