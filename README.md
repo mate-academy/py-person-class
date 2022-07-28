@@ -3,32 +3,15 @@
 - Read [the guideline](https://github.com/mate-academy/py-task-guideline/blob/main/README.md) before start
 
 
-У вас есть список диктов "люди", каждый дикт означает
-**человек**, у него есть ключи: `имя`, `возраст`,
-`жена`/`муж` - зависит от того, мужчина это или
-женский. Все "имена" разные. Ключ
-`жена`/`муж` может быть либо `Нет`, либо
-имя другого человека.
+You have a list of dicts people, every dict means a person, it has keys: name, age, wife/husband - depends on person is male or female. All names are different. Key wife/husband can be either None or name of another person.
 
-Создайте класс «Человек». Его конструктор принимает
-и хранить `имя`, `возраст` человека.
-Этот класс также должен иметь атрибут class
-`люди`, это дикт, который хранит `человек`
-экземпляры по их `имени`. Конструктор должен
-добавить элементы к этому атрибуту.
+Create class Person. It's constructor takes and store name, age of a person. This class also should have a class attribute people, it is a dict that stores Person instances by their name. Constructor should add elements to this attribute.
 
-Напишите функцию `create_person_list`, эта функция
-принимает список `люди` и возвращает список с
-Экземпляры Person вместо dicts.
+Write function create_person_list, this function takes list people and return list with Person instances instead of dicts.
 
-**Примечание:**
+Note:
 
-Если ключ **человека** `жена`/`муж` не
-`Нет` - следует добавить `create_person_list`
-атрибут `жена`/`муж` соответственно
-своему экземпляру. Этот атрибут должен
-быть ссылкой на экземпляр `Person` с `name`
-то же, что и ключ `жена`/`муж` в словаре человека.
+If person's key wife/husband is not None - create_person_list should add attribute wife/husband respectively to its instance. This attribute should be a link to a Person instance with name the same as wife/husband key in person's dict.
 
 
 Example:

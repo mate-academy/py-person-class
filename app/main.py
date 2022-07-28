@@ -9,13 +9,15 @@ class Person:
 
 def create_person_list(people: list) -> list:
     new_list = list()
-    for x in people:
-        obj = Person(x['name'], x['age'])
-        new_list.append(obj)
+    for human in people:
+        person = Person(human["name"], human["age"])
+        new_list.append(person)
 
-    for n, i in enumerate(people):
-        if 'wife' in i.keys() and i['wife'] is not None:
-            setattr(new_list[n], 'wife', Person.people[i['wife']])
-        elif 'husband' in i.keys() and i['husband'] is not None:
-            setattr(new_list[n], 'husband', Person.people[i['husband']])
+    for number, individ in enumerate(people):
+        if 'wife' in individ.keys() and individ["wife"] is not None:
+            setattr(new_list[number], "wife", Person.people[individ["wife"]])
+        elif "husband" in individ.keys() and individ["husband"] is not None:
+            setattr(
+                new_list[number], "husband", Person.people[individ["husband"]]
+            )
     return new_list
