@@ -10,7 +10,7 @@ class Person:
 def create_person_list(people: list) -> list:
     person_list = []
     for elements in people:
-        person_list.append(Person(elements['name'], elements['age']))
+        person_list.append(Person(elements["name"], elements["age"]))
     for elements in people:
         if "wife" in elements and elements["wife"] is not None:
             Person.people[elements["name"]].wife = \
