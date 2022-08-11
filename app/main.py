@@ -25,5 +25,4 @@ def create_person_list(people: list) -> list:
                     person.husband = spouse
                     spouse.wife = person
         out_person_list.append(person)
-    print(out_person_list)
     return out_person_list
