@@ -75,6 +75,7 @@ def test_create_person_list_has_wife(people_data, created_person_list):
 
 
 def test_create_person_list_has_wife_and_wife_have_husband(people_data, created_person_list):
+
     assert hasattr(created_person_list[0], 'wife') and \
            created_person_list[0].wife.husband == created_person_list[0], (
         f"Person with 'name' {created_person_list[0].name} should have "
