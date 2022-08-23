@@ -8,8 +8,8 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    for d_people in people:
-        Person(d_people["name"], d_people["age"])
+    for human in people:
+        Person(human["name"], human["age"])
     for human in people:
         if "wife" in human and human["wife"] is not None:
             setattr(Person.people[human["name"]], "wife",
