@@ -8,13 +8,13 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    for body in people:
-        Person(body["name"], body["age"])
-    for body in people:
-        if "wife" in body and body["wife"]:
-            Person.people[body["name"]].wife = \
-                Person.people[body["wife"]]
-        elif "husband" in body and body["husband"]:
-            Person.people[body["name"]].husband = \
-                Person.people[body["husband"]]
-    return [value for value in Person.people.values()]
+    for person in people:
+        Person(person["name"], person["age"])
+    for person in people:
+        if "wife" in person and person["wife"]:
+            Person.people[person["name"]].wife = \
+                Person.people[person["wife"]]
+        elif "husband" in person and person["husband"]:
+            Person.people[person["name"]].husband = \
+                Person.people[person["husband"]]
+    return [person for person in Person.people.values()]
