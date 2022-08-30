@@ -19,4 +19,3 @@ def create_person_list(people: list) -> list:
             Person.people[dict_people2.get("name")].husband = \
                 Person.people[dict_people2.get("husband")]
     return result
-
