@@ -14,7 +14,9 @@ def create_person_list(people: list) -> list:
 
     for one_friend in people:
         if one_friend.get('wife') is not None:
-            Person.people[one_friend['name']].wife = Person.people[one_friend['wife']]
+            Person.people[one_friend['name']].wife = \
+                Person.people[one_friend['wife']]
         if one_friend.get('husband') is not None:
-            Person.people[one_friend['name']].husband = Person.people[one_friend['husband']]
+            Person.people[one_friend['name']].husband = \
+                Person.people[one_friend['husband']]
     return friends
