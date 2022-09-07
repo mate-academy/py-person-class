@@ -13,10 +13,11 @@ def create_person_list(people: list) -> list:
         new_person = Person(person["name"], person["age"])
         person_list.append(new_person)
 
-    for ind in people:
-        if ind.get("wife"):
-            Person.people[ind["name"]].wife = Person.people[ind["wife"]]
-        elif ind.get("husband"):
-            Person.people[ind["name"]].husband = Person.people[ind["husband"]]
+    for person in people:
+        if person.get("wife"):
+            Person.people[person["name"]].wife = Person.people[person["wife"]]
+        if person.get("husband"):
+            Person.people[person["name"]].husband \
+                = Person.people[person["husband"]]
 
     return person_list
