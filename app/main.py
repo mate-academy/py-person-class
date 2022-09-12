@@ -11,7 +11,7 @@ def create_person_list(people: list) -> list:
     person_list = [Person(person['name'], person['age']) for person in people]
 
     for person in people:
-        if 'wife' in person.keys() and person['wife']:
+        if 'wife' in person and person['wife']:
             husband = Person.people[person['name']]
             husband.wife = Person.people[person['wife']]
         elif 'husband' in person.keys() and person['husband']:
