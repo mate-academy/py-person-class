@@ -9,14 +9,15 @@ class Person:
 
 def create_person_list(people: list) -> list:
     person = []
-    for key in people:
+    for data in people:
         person.append(Person(
-            name=key["name"],
-            age=key["age"],
+            name=data["name"],
+            age=data["age"],
         ))
-    for key in people:
-        if "wife" in key and key["wife"] is not None:
-            Person.people[key["name"]].wife = Person.people[key["wife"]]
-        elif "husband" in key and key["husband"] is not None:
-            Person.people[key["name"]].husband = Person.people[key["husband"]]
+    for data in people:
+        if "wife" in data and data["wife"] is not None:
+            Person.people[data["name"]].wife = Person.people[data["wife"]]
+        elif "husband" in data and data["husband"] is not None:
+            Person.people[data["name"]].husband = \
+                Person.people[data["husband"]]
     return person
