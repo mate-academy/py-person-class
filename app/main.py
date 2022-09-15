@@ -21,12 +21,15 @@ def create_person_list(people: list) -> list:
                 person_object.husband = human["husband"]
 
         person_list.append(person_object)
-    for pers in Person.people:
-        if "wife" in dir(Person.people[pers]):
-            p_p_link = Person.people[pers]
-            p_p_link.wife = Person.people[Person.people[pers].wife]
-        elif "husband" in dir(Person.people[pers]):
-            p_p_link = Person.people[pers]
-            p_p_link.husband = Person.people[Person.people[pers].husband]
+
+    for person in Person.people:
+        person_object = Person.people[person]
+
+        if "wife" in dir(Person.people[person]):
+            wife_name = Person.people[person].wife
+            person_object.wife = Person.people[wife_name]
+        elif "husband" in dir(Person.people[person]):
+            husband_name = Person.people[person].husband
+            person_object.husband = Person.people[husband_name]
 
     return person_list
