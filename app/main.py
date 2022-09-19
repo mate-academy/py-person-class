@@ -6,11 +6,11 @@ class Person:
         self.age = age
         Person.people[self.name] = self
 
-    def wife_add(self, id: Person) -> None:
-        self.wife = id
+    def wife_add(self, wife) -> None:
+        self.wife = wife
 
-    def husband_add(self, id: Person) -> None:
-        self.husband = id
+    def husband_add(self, husband) -> None:
+        self.husband = husband
 
 
 def create_person_list(people_list: list) -> list:
