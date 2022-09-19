@@ -1,7 +1,7 @@
-import pytest
-
 import ast
 import os
+
+import pytest
 
 from app.main import create_person_list
 from app.main import Person
