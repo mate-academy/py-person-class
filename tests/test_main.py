@@ -8,9 +8,9 @@ from app.main import Person
 
 
 def path_to_main():
-    if os.path.exists(os.path.join(os.pardir, "app", "main.py")):
-        return os.path.join(os.pardir, "app", "main.py")
-    return os.path.join("app", "main.py")
+    base_path = os.path.join("app", "main.py")
+    return base_path if os.path.exists(base_path) else os.path.join(os.pardir,
+                                                                    base_path)
 
 
 @pytest.fixture()
