@@ -1,12 +1,16 @@
-import re
-
 import pytest
+
+import ast
+import os
 
 from app.main import create_person_list
 from app.main import Person
-import app.main
 
-import ast
+
+def path_to_main():
+    if os.path.exists(os.path.join(os.pardir, "app", "main.py")):
+        return os.path.join(os.pardir, "app", "main.py")
+    return os.path.join("app", "main.py")
 
 
 @pytest.fixture()
@@ -113,7 +117,7 @@ def test_create_person_list_returns_only_entering_people(people_data, created_pe
 
 
 def test_person_instance_attribute_wife_and_husband_doesnt_exists():
-    with open("app/main.py") as file:
+    with open(path_to_main()) as file:
         tree = ast.parse(file.read())
 
     assert len(tree.__dict__["body"][0].__dict__["body"][1].__dict__["args"].__dict__["args"]) == 3, (
@@ -122,7 +126,7 @@ def test_person_instance_attribute_wife_and_husband_doesnt_exists():
 
 
 def test_removed_comment():
-    with open(app.main.__file__, "r") as file:
+    with open(path_to_main(), "r") as file:
         main_content = file.read()
 
         assert (
@@ -131,7 +135,7 @@ def test_removed_comment():
 
 
 def test_double_quotes_instead_of_single():
-    with open(app.main.__file__, "r") as file:
+    with open(path_to_main(), "r") as file:
         main_content = file.read()
 
         assert (
