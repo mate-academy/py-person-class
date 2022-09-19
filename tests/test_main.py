@@ -1,3 +1,5 @@
+import re
+
 import pytest
 
 from app.main import create_person_list
@@ -116,3 +118,23 @@ def test_person_instance_attribute_wife_and_husband_doesnt_exists():
     assert len(tree.__dict__["body"][0].__dict__["body"][1].__dict__["args"].__dict__["args"]) == 3, (
         "'__init__' should takes only two arguments 'name' and 'age'!"
     )
+
+
+def test_removed_comment():
+    import app
+    with open(app.main.__file__, "r") as f:
+        file_content = f.read()
+        comment = re.compile("# write your code here")
+        assert not comment.search(
+            file_content
+        ), "You have to remove the unnecessary comment '# write your code here'"
+
+
+def test_double_quotes_instead_of_single():
+    import app
+    with open(app.main.__file__, "r") as f:
+        file_content = f.read()
+        comment = re.compile("\'")
+        assert not comment.search(
+            file_content
+        ), "You have to use a double quotes \"\" instead of single \'\'"
