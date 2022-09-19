@@ -11,7 +11,7 @@ class Person:
         cls.people[person.name] = person
 
     @classmethod
-    def get_person(cls, name: str) -> "Person":
+    def get_person(cls, name: str):
         return cls.people[name]
 
 
