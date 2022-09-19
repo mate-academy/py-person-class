@@ -1,15 +1,15 @@
 class Person:
     people = {}
 
-    def __init__(self, name, age):
+    def __init__(self, name: str, age: int):
         self.name = name
         self.age = age
         Person.people[self.name] = self
 
-    def wife_add(self, id):
+    def wife_add(self, id: Person) -> None:
         self.wife = id
 
-    def husband_add(self, id):
+    def husband_add(self, id: Person) -> None:
         self.husband = id
 
 
