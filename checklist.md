@@ -17,28 +17,7 @@ def get_full_name(x: str, y: str) -> str:
     return f"{x} {y}"
 ```
 
-2. You can avoid `else` when have `return` statement.
-
-Good example:
-
-```python
-def is_adult(age: int) -> str:
-    if age >= 18:
-        return "adult"
-    return "not an adult"
-```
-
-Bad example:
-
-```python
-def is_adult(age: int) -> str:
-    if age >= 18:
-        return "adult"
-    else:
-        return "not an adult"
-```
-
-3. Avoid nested `if` by using `and`, `or` logical operators.
+2. Avoid nested `if` by using `and`, `or` logical operators.
 
 ## Clean Code
 
