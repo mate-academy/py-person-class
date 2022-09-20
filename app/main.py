@@ -4,11 +4,7 @@ class Person:
     def __init__(self, name: str, age: int):
         self.name = name
         self.age = age
-        self.add_person(self)
-
-    @classmethod
-    def add_person(cls, person: "Person"):
-        cls.people[person.name] = person
+        Person.people[self.name] = self
 
     @classmethod
     def get_person(cls, name: str):
