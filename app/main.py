@@ -14,21 +14,20 @@ class Person:
 
 
 def create_person_list(people_list: list) -> list:
-    people = []
-    people.extend(people_list)
+    people = [person for person in people_list]
     for index in range(len(people)):
-        people[index] = Person(people[index]['name'], people[index]['age'])
+        people[index] = Person(people[index]["name"], people[index]["age"])
 
-    for person in range(len(people_list)):
-        married_gender = 'wife' if 'wife' in people_list[person] else 'husband'
+    for index in range(len(people_list)):
+        married_gender = "wife" if "wife" in people_list[index] else "husband"
         for married_with in range(len(people_list)):
-            if people_list[person][married_gender] == \
-                    people_list[married_with]['name'] \
-                    and married_gender == 'wife':
-                people[person].wife_add(people[married_with])
-            if people_list[person][married_gender] == \
-                    people_list[married_with]['name'] \
-                    and married_gender == 'husband':
-                people[person].husband_add(people[married_with])
+            if people_list[index][married_gender] == \
+                    people_list[married_with]["name"] \
+                    and married_gender == "wife":
+                people[index].wife_add(people[married_with])
+            if people_list[index][married_gender] == \
+                    people_list[married_with]["name"] \
+                    and married_gender == "husband":
+                people[index].husband_add(people[married_with])
 
     return people
