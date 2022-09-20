@@ -21,14 +21,8 @@ def create_person_list(people: list) -> list:
         person = Person(person_data["name"], person_data["age"])
         res.append(person)
     for i, person_data in enumerate(people):
-        try:
-            if person_data["wife"] is not None:
-                res[i].wife = res[i].get_person(person_data["wife"])
-        except KeyError:
-            pass
-        try:
-            if person_data["husband"] is not None:
-                res[i].husband = res[i].get_person(person_data["husband"])
-        except KeyError:
-            pass
+        if person_data.get("wife") is not None:
+            res[i].wife = res[i].get_person(person_data["wife"])
+        if person_data.get("husband") is not None:
+            res[i].husband = res[i].get_person(person_data["husband"])
     return res
