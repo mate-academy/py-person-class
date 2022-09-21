@@ -12,9 +12,11 @@ def create_person_list(people: list) -> list:
         Person(person["name"], person["age"])
         for person in people
     ]
-    for man in people:
-        if man.get("wife"):
-            Person.people[man["name"]].wife = Person.people[man["wife"]]
-        elif man.get("husband"):
-            Person.people[man["name"]].husband = Person.people[man["husband"]]
+    for human in people:
+        if human.get("wife"):
+            wife = Person.people[human["wife"]]
+            Person.people[human["name"]].wife = wife
+        elif human.get("husband"):
+            husband = Person.people[human["husband"]]
+            Person.people[human["name"]].husband = husband
     return classes_people
