@@ -13,12 +13,8 @@ def create_person_list(people: list) -> list:
     for person in people:
         person_list.append(Person(person["name"], person["age"]))
     for index, person in enumerate(people):
-        if "wife" in person:
-            if person["wife"] is None:
-                continue
+        if "wife" in person and person["wife"] is not None:
             person_list[index].wife = Person.people[person["wife"]]
-        else:
-            if person["husband"] is None:
-                continue
+        elif "husband" in person and person["husband"] is not None:
             person_list[index].husband = Person.people[person["husband"]]
     return person_list
