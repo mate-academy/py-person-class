@@ -10,22 +10,16 @@ class Person:
 def create_person_list(people: list) -> list:
     people_list = []
     for human in people:
-        people_list.append(Person(human["name"], human["age"]))
-
-    for man in people:
-        for key in man.keys():
-            if key == "wife":
-                for i in range(len(people_list)):
-                    if people_list[i].name == man["wife"]:
-                        for j in range(len(people_list)):
-                            if people_list[j].name == man["name"]:
-                                people_list[j].wife = people_list[i]
-
-            elif key == "husband":
-                for i in range(len(people_list)):
-                    if people_list[i].name == man["husband"]:
-                        for j in range(len(people_list)):
-                            if people_list[j].name == man["name"]:
-                                people_list[j].husband = people_list[i]
+        new_member = Person(human["name"], human["age"])
+        if "wife" in human and human["wife"] is not None:
+            new_member.wife = human["wife"]
+        elif "husband" in human and human["husband"] is not None:
+            new_member.husband = human["husband"]
+        people_list.append(new_member)
+    for human in people_list:
+        if hasattr(human, "wife"):
+            human.wife = Person.people[human.wife]
+        elif hasattr(human, "husband"):
+            human.husband = Person.people[human.husband]
 
     return people_list
