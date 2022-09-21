@@ -11,7 +11,6 @@ class Person:
 
 def create_person_list(people: list) -> list:
     list_people = [Person(person["name"], person["age"]) for person in people]
-    husband_name = Person.people[person["name"]].husband
     for person in people:
         person_name = Person.people[person["name"]]
         if person.get("wife"):
