@@ -17,5 +17,4 @@ def create_person_list(people: list) -> list:
         if "husband" in people[i].keys():
             if people[i]["husband"]:
                 person_list[i].husband = Person.people[people[i]["husband"]]
-
     return person_list
