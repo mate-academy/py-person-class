@@ -15,10 +15,11 @@ def create_person_list(people: list[dict]) -> list[dict]:
 
     for person in people:
         if "wife" in person and person["wife"]:
-            Person.people[person["name"]].wife =\
-                Person.people[person["wife"]]
+            wife = Person.people[person["wife"]]
+            Person.people[person["name"]].wife = wife
+
         if "husband" in person and person["husband"]:
-            Person.people[person["name"]].husband = \
-                Person.people[person["husband"]]
+            husband = Person.people[person["husband"]]
+            Person.people[person["name"]].husband = husband
 
     return list(Person.people.values())
