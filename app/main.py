@@ -10,9 +10,9 @@ class Person:
 
 def create_person_list(people: list) -> list:
 
-    person_list = []
+    persons_list = []
     for person in people:
-        person_list.append(Person(person['name'], person['age']))
+        persons_list.append(Person(person['name'], person['age']))
 
     for peopl in people:
         if 'wife' in peopl:
@@ -25,4 +25,4 @@ def create_person_list(people: list) -> list:
                 Person.people[peopl['name']].husband = \
                     Person.people[peopl['husband']]
 
-    return person_list
+    return persons_list
