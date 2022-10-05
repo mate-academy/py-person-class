@@ -17,7 +17,4 @@ def create_person_list(people_dict: list) -> list:
             Person.people[par["name"]].wife = Person.people[par["wife"]]
         elif par.get("husband") is not None:
             Person.people[par["name"]].husband = Person.people[par["husband"]]
-        else:
-            continue
-
     return result
