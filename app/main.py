@@ -1,6 +1,6 @@
 class Person:
-    # write your code here
-    pass
+    def __init__(self, test):
+        self.test = test
 
 
 def create_person_list(people: list) -> list:
