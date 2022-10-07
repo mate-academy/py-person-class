@@ -1,8 +1,4 @@
 class Person:
-    """
-    Class for defining a person object
-
-    """
     people = {}
 
     def __init__(self, name: str, age: int) -> None:
