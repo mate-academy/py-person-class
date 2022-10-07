@@ -21,11 +21,11 @@ def create_person_list(list_of_dict: list) -> list:
         if person.get("husband") is not None:
             new_person.husband = person["husband"]
         list_of_people.append(new_person)
-    for temp in list_of_people:
-        if hasattr(temp, "wife"):
-            if temp.wife in Person.people:
-                temp.wife = Person.people[temp.wife]
-        if hasattr(temp, "husband"):
-            if temp.husband in Person.people:
-                temp.husband = Person.people[temp.husband]
+    for married in list_of_people:  # changed variable 'temp' to 'married'
+        if hasattr(married, "wife"):
+            if married.wife in Person.people:
+                married.wife = Person.people[married.wife]
+        if hasattr(married, "husband"):
+            if married.husband in Person.people:
+                married.husband = Person.people[married.husband]
     return list_of_people
