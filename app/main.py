@@ -9,28 +9,15 @@ class Person:
 
 def create_person_list(people: list) -> list:
     person_list = []
-    for item in people:
-        person = Person(item["name"], item["age"])
-        for key in item.keys():
-            if key == "wife":
-                person.wife = item["wife"]
-                person.husband = None
-            if key == "husband":
-                person.husband = item["husband"]
-                person.wife = None
+    for human in people:
+        person = Person(human["name"], human["age"])
         person_list.append(person)
 
-    for person in person_list:
-        if person.wife is not None:
-            for i in range(len(person_list)):
-                if person.wife == person_list[i].name:
-                    person.wife = person_list[i]
-        if person.husband is not None:
-            for i in range(len(person_list)):
-                if person.husband == person_list[i].name:
-                    person.husband = person_list[i]
-        if person.wife is None:
-            del person.wife
-        if person.husband is None:
-            del person.husband
+    for human in people:
+        if "wife" in human and human["wife"] is not None:
+            Person.people[human["name"]].wife\
+                = Person.people[human["wife"]]
+        if "husband" in human and human["husband"] is not None:
+            Person.people[human["name"]].husband\
+                = Person.people[human["husband"]]
     return person_list
