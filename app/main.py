@@ -12,11 +12,11 @@ def create_person_list(people: list) -> list:
     person_list = []
     for person in people:
         inst = Person(name=person["name"], age=person["age"])
-        for key, value in person.items():
-            if key == "husband" and value is not None:
-                inst.husband = value
-            if key == "wife" and value is not None:
-                inst.wife = value
+        for credentials, person_info in person.items():
+            if credentials == "husband" and person_info is not None:
+                inst.husband = person_info
+            if credentials == "wife" and person_info is not None:
+                inst.wife = person_info
         person_list.append(inst)
     wife_husband(person_list)
     return person_list
@@ -24,8 +24,8 @@ def create_person_list(people: list) -> list:
 
 def wife_husband(person_list: list) -> None:
     for person in person_list:
-        for key, value in person.__dict__.items():
-            if key == "husband":
-                person.husband = Person.people[value]
-            if key == "wife":
-                person.wife = Person.people[value]
+        for credentials, person_info in person.__dict__.items():
+            if credentials == "husband":
+                person.husband = Person.people[person_info]
+            if credentials == "wife":
+                person.wife = Person.people[person_info]
