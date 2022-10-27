@@ -1,20 +1,13 @@
-from __future__ import annotations
-
-
 class Person:
     people = {}
 
     def __init__(self, name: str, age: int) -> None:
         self.name = name
         self.age = age
-        Person.add_people(self)
-
-    @classmethod
-    def add_people(cls, person: Person) -> None:
-        cls.people[person.name] = person
+        Person.people[self.name] = self
 
 
-def create_person_list(people: list) -> list[Person]:
+def create_person_list(people: list) -> list:
     persons = [Person(person["name"], person["age"]) for person in people]
     for person in people:
         wife = person.get("wife")
