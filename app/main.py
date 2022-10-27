@@ -1,5 +1,4 @@
 from __future__ import annotations
-from typing import List
 
 
 class Person:
@@ -15,7 +14,7 @@ class Person:
         cls.people[person.name] = person
 
 
-def create_person_list(people: list) -> List[Person]:
+def create_person_list(people: list) -> list[Person]:
     persons = [Person(person["name"], person["age"]) for person in people]
     for person in people:
         wife = person.get("wife")
