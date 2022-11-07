@@ -1,6 +1,7 @@
 class Person:
     people = {}
-    def __init__(self, age, name):
+
+    def __init__(self, name, age):
         self.name = name
         self.age = age
         Person.people[name] = self
