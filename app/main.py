@@ -8,21 +8,15 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    if len(people) == 0:
-        return []
     list_of_object = []
     for dictionary in people:
         person_new = Person(name=dictionary["name"], age=dictionary["age"])
         list_of_object.append(person_new)
-    for dictionary in people:
-        if "wife" in dictionary.keys():
-            for i in range(len(list_of_object)):
-                if dictionary["wife"] == list_of_object[i].name:
-                    index = people.index(dictionary)
-                    list_of_object[index].wife = list_of_object[i]
-        if "husband" in dictionary.keys():
-            for i in range(len(list_of_object)):
-                if dictionary["husband"] == list_of_object[i].name:
-                    index = people.index(dictionary)
-                    list_of_object[index].husband = list_of_object[i]
+    for i in range(len(people)):
+        if "wife" in people[i].keys():
+            if people[i]["wife"] in Person.people:
+                list_of_object[i].wife = Person.people[people[i]["wife"]]
+        if "husband" in people[i].keys():
+            if people[i]["husband"] in Person.people:
+                list_of_object[i].husband = Person.people[people[i]["husband"]]
     return list_of_object
