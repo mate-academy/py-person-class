@@ -12,28 +12,20 @@ def create_person_list(people: list) -> list:
 
     for human in people:
 
+        person = Person(
+            human["name"],
+            human["age"]
+        )
+
         if "wife" in human and human["wife"] is not None:
             value_of_marriage = human["wife"]
-            person = Person(
-                human["name"],
-                human["age"]
-            )
+
             setattr(person, "wife", value_of_marriage)
 
         if "husband" in human and human["husband"] is not None:
-            value_of_marriage = human["husband"]
-            person = Person(
-                human["name"],
-                human["age"]
-            )
-            setattr(person, "husband", value_of_marriage)
 
-        if "wife" in human and human["wife"] is None\
-                or "husband" in human and human["husband"] is None:
-            person = Person(
-                human["name"],
-                human["age"]
-            )
+            value_of_marriage = human["husband"]
+            setattr(person, "husband", value_of_marriage)
 
         person_list.append(person)
 
