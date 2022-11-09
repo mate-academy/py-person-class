@@ -12,10 +12,9 @@ def create_person_list(people: list) -> list:
     for dct in people:
         person_list.append(Person(dct["name"], int(dct["age"])))
     for dct in people:
-        for key in dct.keys():
-            if key == "husband" and dct["husband"] is not None:
-                Person.people[dct["name"]].husband \
-                    = Person.people[dct["husband"]]
-            if key == "wife" and dct["wife"] is not None:
-                Person.people[dct["name"]].wife = Person.people[dct["wife"]]
+        if "husband" in dct and dct["husband"] is not None:
+            Person.people[dct["name"]].husband \
+                = Person.people[dct["husband"]]
+        if "wife" in dct and dct["wife"] is not None:
+            Person.people[dct["name"]].wife = Person.people[dct["wife"]]
     return person_list
