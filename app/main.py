@@ -9,11 +9,13 @@ class Person:
 
 def create_person_list(people: list) -> list:
     person_list = []
-    for i in people:
-        person_list.append(Person(i["name"], i["age"]))
-    for i in people:
-        if "wife" in i and i["wife"] is not None:
-            Person.people[i["name"]].wife = Person.people[i["wife"]]
-        if "husband" in i and i["husband"] is not None:
-            Person.people[i["name"]].husband = Person.people[i["husband"]]
+    for dict_person in people:
+        person_list.append(Person(dict_person["name"], dict_person["age"]))
+    for dict_person in people:
+        if "wife" in dict_person and dict_person["wife"] is not None:
+            Person.people[dict_person["name"]].wife \
+                = Person.people[dict_person["wife"]]
+        if "husband" in dict_person and dict_person["husband"] is not None:
+            Person.people[dict_person["name"]].husband \
+                = Person.people[dict_person["husband"]]
     return person_list
