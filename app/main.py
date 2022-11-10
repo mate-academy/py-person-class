@@ -9,16 +9,13 @@ class Person:
 
 def create_person_list(people: list) -> list:
 
-    arr = []
+    person_list = []
     for line in people:
-        arr.append(Person(line["name"], line["age"]))
+        person_list.append(Person(line["name"], line["age"]))
 
     for obj in people:
-        for human in arr:
-            if obj["name"] == human.name:
-                for human_family in arr:
-                    if obj.get("wife") == human_family.name:
-                        human.wife = human_family
-                    if obj.get("husband") == human_family.name:
-                        human.husband = human_family
-    return arr
+        if obj.get("wife") is not None:
+            Person.people[obj["name"]].wife = Person.people[obj["wife"]]
+        if obj.get("husband") is not None:
+            Person.people[obj["name"]].husband = Person.people[obj["husband"]]
+    return person_list
