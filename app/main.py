@@ -10,14 +10,16 @@ class Person:
 def create_person_list(people: list) -> list:
     person_list = list(
         map(
-            lambda pers: Person(pers["name"], pers["age"]), people
+            lambda person: Person(person["name"], person["age"]), people
         )
     )
 
-    for prs in people:
-        if "wife" in prs and prs["wife"] is not None:
-            Person.people[prs["name"]].wife = Person.people[prs["wife"]]
-        if "husband" in prs and prs["husband"] is not None:
-            Person.people[prs["name"]].husband = Person.people[prs["husband"]]
+    for person in people:
+        if "wife" in person and person["wife"] is not None:
+            Person.people[person["name"]].wife = \
+                Person.people[person["wife"]]
+        if "husband" in person and person["husband"] is not None:
+            Person.people[person["name"]].husband = \
+                Person.people[person["husband"]]
 
     return person_list
