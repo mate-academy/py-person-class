@@ -8,7 +8,6 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-
     person_list = []
     for line in people:
         person_list.append(Person(line["name"], line["age"]))
