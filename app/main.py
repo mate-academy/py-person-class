@@ -12,9 +12,10 @@ def create_person_list(people: list) -> list:
     for line in people:
         person_list.append(Person(line["name"], line["age"]))
 
-    for obj in people:
-        if obj.get("wife") is not None:
-            Person.people[obj["name"]].wife = Person.people[obj["wife"]]
-        if obj.get("husband") is not None:
-            Person.people[obj["name"]].husband = Person.people[obj["husband"]]
+    for person in people:
+        if person.get("wife") is not None:
+            Person.people[person["name"]].wife = Person.people[person["wife"]]
+        if person.get("husband") is not None:
+            Person.people[person["name"]].husband = \
+                Person.people[person["husband"]]
     return person_list
