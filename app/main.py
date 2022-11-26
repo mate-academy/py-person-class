@@ -1,6 +1,6 @@
 class Person:
     people = {}
-
+    
     def __init__(self, name: str, age: str) -> None:
         self.name = name
         self.age = age
