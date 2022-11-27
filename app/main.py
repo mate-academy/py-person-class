@@ -8,10 +8,7 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    list_person = []
-    for person in people:
-        human = Person(person["name"], person["age"])
-        list_person.append(human)
+    list_person = [Person(person["name"], person["age"]) for person in people]
     for ind in range(len(list_person)):
         if "wife" in people[ind] and people[ind]["wife"] is not None:
             list_person[ind].wife = Person.people[people[ind]["wife"]]
