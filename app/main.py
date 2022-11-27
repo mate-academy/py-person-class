@@ -12,11 +12,10 @@ def create_person_list(people: list) -> list:
     for human in people:
         person_list.append(Person(human["name"], human["age"]))
     for human in people:
-        for key in human:
-            if key == "wife" and human["wife"] is not None:
-                Person.people[human["name"]].wife = \
-                    Person.people[human["wife"]]
-            if key == "husband" and human["husband"] is not None:
-                Person.people[human["name"]].husband = \
-                    Person.people[human["husband"]]
+        if "wife" in human and human["wife"] is not None:
+            Person.people[human["name"]].wife = \
+                Person.people[human["wife"]]
+        if "husband" in human and human["husband"] is not None:
+            Person.people[human["name"]].husband = \
+                Person.people[human["husband"]]
     return person_list
