@@ -13,7 +13,9 @@ def create_person_list(people: list) -> list:
         person_list.append(Person(human["name"], human["age"]))
     for human in people:
         if "wife" in human and human["wife"] is not None:
-            Person.people[human["name"]].wife = Person.people[human["wife"]]
+            Person.people[human["name"]].wife = \
+                Person.people[human["wife"]]
         if "husband" in human and human["husband"] is not None:
-            Person.people[human["name"]].husband = Person.people[human["husband"]]
+            Person.people[human["name"]].husband = \
+                Person.people[human["husband"]]
     return person_list
