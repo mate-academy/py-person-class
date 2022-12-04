@@ -14,16 +14,14 @@ def create_person_list(people: list) -> list:
     ]
     len_list_people = len(people)
     for i in range(len_list_people):
-        if "wife" in people[i]:
-            for num in range(len_list_people):
-                if person_list[num].name == people[i]["wife"]:
-                    Person.people[people[i]["name"]].wife = person_list[num]
-                    Person.people[people[i]["name"]].wife.husband =\
-                        Person.people[people[i]["name"]]
-        elif "husband" in people[i]:
-            for num in range(len_list_people):
-                if person_list[num].name == people[i]["husband"]:
-                    Person.people[people[i]["name"]].wife = person_list[num]
-                    Person.people[people[i]["name"]].wife.husband =\
-                        Person.people[people[i]["name"]]
+        if "wife" in people[i] and people[i]["wife"] is not None:
+            Person.people[people[i]["name"]].wife =\
+                Person.people[people[i]["wife"]]
+            Person.people[people[i]["name"]].wife.husband =\
+                Person.people[people[i]["name"]]
+        elif "husband" in people[i] and people[i]["husband"] is not None:
+            Person.people[people[i]["name"]].husband =\
+                Person.people[people[i]["husband"]]
+            Person.people[people[i]["name"]].husband.wife =\
+                Person.people[people[i]["name"]]
     return person_list
