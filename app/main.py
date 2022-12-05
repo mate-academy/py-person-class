@@ -8,9 +8,9 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    person_list = []
+    person_data = []
     for line in people:
-        person_list.append(Person(line["name"], line["age"]))
+        person_data.append(Person(line["name"], line["age"]))
 
     for human in people:
         if human.get("wife") is not None:
@@ -18,4 +18,4 @@ def create_person_list(people: list) -> list:
         if human.get("husband") is not None:
             Person.people[human["name"]].husband = \
                 Person.people[human["husband"]]
-    return person_list
+    return person_data
