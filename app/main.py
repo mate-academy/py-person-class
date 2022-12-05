@@ -8,9 +8,7 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    instances_list = []
-    for person in people:
-        instances_list.append(Person(person["name"], person["age"]))
+    instances_list = [(Person(person["name"], person["age"]) for person in people)]
 
     for person in people:
         if "wife" in person and person["wife"] is not None:
