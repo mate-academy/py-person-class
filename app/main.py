@@ -8,10 +8,10 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    final = []
+    list_of_person_instances = []
 
     for person in people:
-        final.append(Person(person["name"], person["age"]))
+        list_of_person_instances.append(Person(person["name"], person["age"]))
 
     for person in people:
         if person.get("wife") is not None:
@@ -20,4 +20,4 @@ def create_person_list(people: list) -> list:
         if person.get("husband") is not None:
             Person.people[person["name"]].husband = \
                 Person.people[person["husband"]]
-    return final
+    return list_of_person_instances
