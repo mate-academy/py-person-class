@@ -6,16 +6,12 @@ class Person:
         self.age = age
 
     def add_wife(self, wife: str) -> None:
-        for person_name in Person.people:
-            if person_name == wife:
-                self.wife = Person.people[person_name]
-                Person.people[person_name].husband = self
+        self.wife = Person.people[wife]
+        Person.people[wife].husband = self
 
     def add_husband(self, husband: str) -> None:
-        for person_name in Person.people:
-            if person_name == husband:
-                self.husband = Person.people[person_name]
-                Person.people[person_name].wife = self
+        self.husband = Person.people[husband]
+        Person.people[husband].wife = self
 
 
 def create_person_list(people: list) -> list:
@@ -23,10 +19,12 @@ def create_person_list(people: list) -> list:
     for pl in people:
         if "wife" in pl:
             Person.people[pl["name"]] = Person(name=pl["name"], age=pl["age"])
-            Person.people[pl["name"]].add_wife(pl["wife"])
+            if pl["wife"] in Person.people:
+                Person.people[pl["name"]].add_wife(pl["wife"])
         else:
             Person.people[pl["name"]] = Person(name=pl["name"], age=pl["age"])
-            Person.people[pl["name"]].add_husband(pl["husband"])
+            if pl["husband"] in Person.people:
+                Person.people[pl["name"]].add_husband(pl["husband"])
 
         person_list.append(Person.people[pl["name"]])
 
