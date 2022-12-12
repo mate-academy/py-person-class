@@ -14,13 +14,10 @@ def create_person_list(people: list) -> list:
         person_list.append(Person(name=person.get("name"),
                                   age=person.get("age")))
     for person in people:
-        if person.get("husband") is None and person.get("wife") is None:
-            continue
-        else:
-            if "wife" in person:
-                Person.people[person.get("name")].wife\
-                    = Person.people[person.get("wife")]
-            elif "husband" in person:
-                Person.people[person.get("name")].husband\
-                    = Person.people[person.get("husband")]
+        if person.get("wife"):
+            Person.people[person.get("name")].wife\
+                = Person.people[person.get("wife")]
+        elif person.get("husband"):
+            Person.people[person.get("name")].husband\
+                = Person.people[person.get("husband")]
     return person_list
