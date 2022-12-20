@@ -10,13 +10,13 @@ class Person:
 
 def create_person_list(persons: list[dict]) -> list[Person]:
 
-    create_instance = [Person(p["name"], p["age"]) for p in persons]
+    persons_instances = [Person(person["name"], person["age"]) for person in persons]
 
-    for i in range(len(create_instance)):
+    for i in range(len(persons_instances)):
         if "wife" in persons[i] and persons[i]["wife"] is not None:
-            create_instance[i].wife = Person.people[persons[i]["wife"]]
+            persons_instances[i].wife = Person.people[persons[i]["wife"]]
 
         elif "husband" in persons[i] and persons[i]["husband"] is not None:
-            create_instance[i].husband = Person.people[persons[i]["husband"]]
+            persons_instances[i].husband = Person.people[persons[i]["husband"]]
 
-    return create_instance
+    return persons_instances
