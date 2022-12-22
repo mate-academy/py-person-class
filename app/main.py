@@ -9,7 +9,8 @@ class Person:
 
 
 def create_person_list(data: list) -> list:
-    persons_instances = [Person(element["name"], element["age"]) for element in data]
+    persons_instances = [Person(element["name"], element["age"])
+                         for element in data]
     for human in data:
         if "wife" in human and human["wife"] is not None:
             Person.people[human["name"]].wife =\
