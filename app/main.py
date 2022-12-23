@@ -12,10 +12,9 @@ def create_person_list(people: list) -> list:
     for person in people:
         person_list.append(Person(person["name"], person["age"]))
 
-    for i in range(len(people)):
-        if "husband" in people[i].keys() and people[i]["husband"]:
-            person_list[i].husband = Person.people[people[i]["husband"]]
-        elif "wife" in people[i].keys() and people[i]["wife"]:
-            person_list[i].wife = Person.people[people[i]["wife"]]
-
+    for index, person in enumerate(people):
+        if "husband" in person.keys() and person["husband"]:
+            person_list[index].husband = Person.people[person["husband"]]
+        elif "wife" in person.keys() and person["wife"]:
+            person_list[index].wife = Person.people[person["wife"]]
     return person_list
