@@ -15,10 +15,12 @@ def create_person_list(people: list) -> list:
         list_of_persons.append(person)
 
     for item in range(len(people)):
-        if "wife" in people[item].keys() and people[item]["wife"] is not None:
-            x = people[item]["wife"]
-            list_of_persons[item].wife = Person.people[x]
-        if "husband" in people[item].keys() and people[item]["husband"] is not None:
-            x = people[item]["husband"]
-            list_of_persons[item].husband = Person.people[x]
+        if "wife" in people[item].keys() \
+                and people[item]["wife"] is not None:
+            list_of_persons[item].wife = \
+                Person.people[people[item]["wife"]]
+        if "husband" in people[item].keys() \
+                and people[item]["husband"] is not None:
+            list_of_persons[item].husband = \
+                Person.people[people[item]["husband"]]
     return list_of_persons
