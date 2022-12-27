@@ -11,9 +11,9 @@ def create_person_list(people: list) -> list:
     person_list = []
     for person in people:
         pers = Person(person["name"], person["age"])
-        if "wife" in person.keys() and person["wife"]:
+        if "wife" in person and person["wife"]:
             pers.wife = person["wife"]
-        if "husband" in person.keys() and person["husband"]:
+        if "husband" in person and person["husband"]:
             pers.husband = person["husband"]
         person_list.append(pers)
     for person in person_list:
