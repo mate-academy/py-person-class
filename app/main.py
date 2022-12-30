@@ -15,13 +15,21 @@ def create_person_list(people: list) -> list:
 
     for human in people:
         for person in person_list:
-            if (person.name == human["name"]) \
-                    and ("wife" in human) \
-                    and (human["wife"] is not None):
+            if (
+                    person.name == human["name"]
+            ) and (
+                    "wife" in human
+            ) and (
+                    human["wife"] is not None
+            ):
                 person.wife = person.__class__.people[human["wife"]]
-            elif (person.name == human["name"]) \
-                    and ("husband" in human) \
-                    and (human["husband"] is not None):
+            elif (
+                    person.name == human["name"]
+            ) and (
+                    "husband" in human
+            ) and (
+                    human["husband"] is not None
+            ):
                 person.husband = person.__class__.people[human["husband"]]
             else:
                 pass
