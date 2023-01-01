@@ -23,6 +23,6 @@ def create_person_list(people: list) -> list:
             elif human_is_person and has_husband:
                 person.husband = person.__class__.people[human["husband"]]
             else:
-                pass
+                continue
 
     return person_list
