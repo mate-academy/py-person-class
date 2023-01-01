@@ -22,7 +22,5 @@ def create_person_list(people: list) -> list:
                 person.wife = person.__class__.people[human["wife"]]
             elif human_is_person and has_husband:
                 person.husband = person.__class__.people[human["husband"]]
-            else:
-                continue
 
     return person_list
