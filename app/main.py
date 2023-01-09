@@ -1,5 +1,4 @@
 class Person:
-
     people = {}
 
     def __init__(self, name: str, age: int) -> None:
@@ -11,7 +10,7 @@ class Person:
 def create_person_list(people: list) -> list:
     for raw_person in people:
         person = Person(raw_person["name"], raw_person["age"])
-        partner = list(raw_person.keys())[2]
+        partner = list(raw_person)[2]
         if raw_person[partner]:
             setattr(person, partner, raw_person[partner])
             setattr(person, "partner", partner)
