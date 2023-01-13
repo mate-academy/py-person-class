@@ -9,8 +9,8 @@ class Person:
 
 def create_person_list(people: list) -> list:
     new_list = [
-        Person(single_prs["name"], single_prs["age"])
-        for single_prs in people
+        Person(person["name"], person["age"])
+        for person in people
     ]
     for person in people:
         if "wife" in person and person["wife"] is not None:
@@ -19,6 +19,5 @@ def create_person_list(people: list) -> list:
         elif "husband" in person and person["husband"] is not None:
             husband = Person.people[person["husband"]]
             Person.people[person["name"]].husband = husband
-        continue
 
     return new_list
