@@ -1,4 +1,4 @@
-from __future__ import annotations
+# from __future__ import annotations
 
 
 class Person:
@@ -11,29 +11,25 @@ class Person:
         self.people[self.name] = self
 
     @property
-    def wife(self) -> Person:
-        if self._wife is None:
-            return None
-        return self.people[self._wife]
+    def wife(self) -> people:
+        return self.people.get(self._wife)
 
     @wife.setter
     def wife(self, name: str) -> None:
         self._wife = name
 
     @property
-    def husband(self) -> Person:
-        if self._husband is None:
-            return None
-        return self.people[self._husband]
+    def husband(self) -> people:
+        return self.people.get(self._husband)
 
     @husband.setter
     def husband(self, name: str) -> None:
         self._husband = name
 
 
-def create_person_list(people: list) -> list:
+def create_person_list(persons: list) -> list:
     humans = []
-    for dictionary in people:
+    for dictionary in persons:
         name = dictionary["name"]
         age = dictionary["age"]
         human = Person(name, age)
