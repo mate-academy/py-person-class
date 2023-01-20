@@ -8,23 +8,7 @@ class Person:
     def __init__(self, name: str, age: int) -> None:
         self.name = name
         self.age = age
-        self.people[self.name] = self
-
-    @property
-    def wife(self) -> people:
-        return self.people.get(self._wife)
-
-    @wife.setter
-    def wife(self, name: str) -> None:
-        self._wife = name
-
-    @property
-    def husband(self) -> people:
-        return self.people.get(self._husband)
-
-    @husband.setter
-    def husband(self, name: str) -> None:
-        self._husband = name
+        Person.people[self.name] = self
 
 
 def create_person_list(persons: list) -> list:
@@ -33,19 +17,12 @@ def create_person_list(persons: list) -> list:
         name = dictionary["name"]
         age = dictionary["age"]
         human = Person(name, age)
+        humans.append(human)
+    for dictionary, human in zip(persons, humans):
         if "wife" in dictionary:
             if dictionary["wife"] is not None:
-                human.wife = dictionary["wife"]
+                human.wife = Person.people[dictionary["wife"]]
         else:
             if dictionary["husband"] is not None:
-                human.husband = dictionary["husband"]
-
-        humans.append(human)
+                human.husband = Person.people[dictionary["husband"]]
     return humans
-
-
-people = [
-    {"name": "Ross", "age": 30, "wife": "Rachel"},
-    {"name": "Joey", "age": 29, "wife": None},
-    {"name": "Rachel", "age": 28, "husband": "Ross"}
-]
