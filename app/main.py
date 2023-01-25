@@ -1,10 +1,10 @@
 class Person:
-    people = {}
+    people: dict = {}
 
     def __init__(self, name: str, age: int) -> None:
         self.name = name
         self.age = age
-        self.__class__.people[name] = self
+        self.people[self.name] = self
 
 
 def create_person_list(people: list) -> list:
@@ -14,9 +14,9 @@ def create_person_list(people: list) -> list:
     ]
     for person in people:
         if person.get("wife"):
-            Person.people[person["name"]].wife =\
-                Person.people[person["wife"]]
+            wife = Person.people[person["wife"]]
+            Person.people[person["name"]].wife = wife
         if person.get("husband"):
-            Person.people[person["name"]].husband =\
-                Person.people[person["husband"]]
+            husband = Person.people[person["husband"]]
+            Person.people[person["name"]].husband = husband
     return personal_list
