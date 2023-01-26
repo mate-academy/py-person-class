@@ -1,5 +1,3 @@
-
-
 class Person:
 
     people: dict[str] = {}
@@ -8,14 +6,6 @@ class Person:
         self.name = name
         self.age = age
         self.people[name] = self
-
-    def add_wife(self, wife: [str]) -> None:
-        if wife is not None:
-            self.wife = self.people[wife]
-
-    def add_husband(self, husband: [str]) -> None:
-        if husband is not None:
-            self.husband = self.people[husband]
 
 
 def create_person_list(
@@ -28,8 +18,8 @@ def create_person_list(
 
     for person, properties in zip(person_list, people):
         if properties.get("wife") is not None:
-            person.add_wife(properties["wife"])
+            person.wife = Person.people[properties["wife"]]
         elif properties.get("husband") is not None:
-            person.add_husband(properties["husband"])
+            person.husband = Person.people[properties["husband"]]
 
     return person_list
