@@ -1,21 +1,19 @@
-from __future__ import annotations
-from typing import Optional
 
 
 class Person:
 
-    people: dict[str, Person] = {}
+    people: dict[str] = {}
 
     def __init__(self, name: str, age: int) -> None:
         self.name = name
         self.age = age
         self.people[name] = self
 
-    def add_wife(self, wife: Optional[str]) -> None:
+    def add_wife(self, wife: [str]) -> None:
         if wife is not None:
             self.wife = self.people[wife]
 
-    def add_husband(self, husband: Optional[str]) -> None:
+    def add_husband(self, husband: [str]) -> None:
         if husband is not None:
             self.husband = self.people[husband]
 
