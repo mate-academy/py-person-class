@@ -13,7 +13,8 @@ def create_person_list(people: list) -> list:
             name=person["name"],
             age=person["age"]
         )
-        for person in people]
+        for person in people
+    ]
 
     for person in people:
         per_obj = Person.people[person["name"]]
