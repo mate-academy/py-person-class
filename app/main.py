@@ -1,6 +1,6 @@
 class Person:
 
-    people = {}
+    people: [dict[str]] = {}
 
     def __init__(self, name: str, age: str) -> None:
         self.name = name
@@ -9,16 +9,18 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    result_list = [Person(name=each_one["name"], age=each_one["age"])
-                   for each_one in people]
+    result_list = [
+        Person(name=person["name"], age=person["age"])
+        for person in people
+    ]
 
-    for each_one in people:
-        if "wife" in each_one and each_one["wife"] is not None:
-            Person.people[each_one["name"]].wife = \
-                Person.people[each_one["wife"]]
+    for person in people:
+        if "wife" in person and person["wife"] is not None:
+            Person.people[person["name"]].wife = \
+                Person.people[person["wife"]]
 
-        if "husband" in each_one and each_one["husband"] is not None:
-            Person.people[each_one["name"]].husband = \
-                Person.people[each_one["husband"]]
+        if "husband" in person and person["husband"] is not None:
+            Person.people[person["name"]].husband = \
+                Person.people[person["husband"]]
 
     return result_list
