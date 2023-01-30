@@ -15,20 +15,13 @@ def create_person_list(people: list) -> list:
     for one_person in people:
         persons.append(Person(one_person["name"], one_person["age"]))
 
-    def find_partner(partner: str, person_list: list) -> Person:
-        for someone in person_list:
-            if someone.name == partner:
-                return someone
-
     for person in persons:
         for one_person in people:
             if person.name == \
                     one_person.get("name") and one_person.get("wife"):
-                person.wife = \
-                    find_partner(one_person.get("wife"), persons)
+                person.wife = Person.people.get(one_person.get("wife"))
             if person.name == \
                     one_person.get("name") and one_person.get("husband"):
-                person.husband = \
-                    find_partner(one_person.get("husband"), persons)
+                person.husband = Person.people.get(one_person.get("husband"))
 
     return persons
