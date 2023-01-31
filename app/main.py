@@ -11,7 +11,7 @@ class Person:
 def create_person_list(people: list) -> list:
 
     person_list = [
-        Person(one_person["name"], one_person["age"]) for one_person in people
+        Person(person["name"], person["age"]) for person in people
     ]
 
     for person in people:
