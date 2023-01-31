@@ -14,12 +14,12 @@ def create_person_list(people: list) -> list:
         Person(one_person["name"], one_person["age"]) for one_person in people
     ]
 
-    for one_person in people:
-        if one_person.get("wife"):
-            Person.people[one_person["name"]].wife = \
-                Person.people[one_person["wife"]]
-        if one_person.get("husband"):
-            Person.people[one_person["name"]].husband = \
-                Person.people[one_person["husband"]]
+    for person in people:
+        if person.get("wife"):
+            Person.people[person["name"]].wife = \
+                Person.people[person["wife"]]
+        if person.get("husband"):
+            Person.people[person["name"]].husband = \
+                Person.people[person["husband"]]
 
     return person_list
