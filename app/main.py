@@ -1,6 +1,3 @@
-from typing import Any
-
-
 class Person:
     people: dict = {}
 
@@ -10,7 +7,7 @@ class Person:
         self.add_people(self)
 
     @classmethod
-    def add_people(cls, person: Any) -> None:
+    def add_people(cls, person: object) -> None:
         cls.people[person.name] = person
 
     def __repr__(self,) -> str:
@@ -36,10 +33,3 @@ def create_person_list(people: list) -> list:
             person.husband = partner
 
     return person_list
-
-
-people = [
-    {"name": "Ross", "age": 30, "wife": "Rachel"},
-    {"name": "Joey", "age": 29, "wife": None},
-    {"name": "Rachel", "age": 28, "husband": "Ross"}
-]
