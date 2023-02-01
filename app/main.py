@@ -1,7 +1,7 @@
 class Person:
     people: dict = {}
 
-    def __init__(self, name, age):
+    def __init__(self, name: str, age: int) -> None:
         self.name = name
         self.age = age
         self.add_people(self)
@@ -10,7 +10,7 @@ class Person:
     def add_people(cls, person) -> None:
         cls.people[person.name] = person
 
-    def __repr__(self,):
+    def __repr__(self,) -> str:
         return f"<Person = name : {self.name}, age : {self.age}>"
 
 
@@ -20,9 +20,10 @@ def create_person_list(people: list) -> list:
         person = Person(i.get("name"), i.get("age"))
         person_list.append(person)
 
-    for j in people:
-        name = j.get("name", "")
-        wife, husband = j.get("wife", None), j.get("husband", None)
+    for person_obj in people:
+        name: str = person_obj.get("name", "")
+        wife: str = person_obj.get("wife", None)
+        husband: str = person_obj.get("husband", None)
         person = list(filter(lambda x: x.name == name, person_list))[0]
         if wife:
             partner = list(filter(lambda x: x.name == wife, person_list))[0]
