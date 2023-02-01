@@ -1,3 +1,6 @@
+from typing import Any
+
+
 class Person:
     people: dict = {}
 
@@ -7,7 +10,7 @@ class Person:
         self.add_people(self)
 
     @classmethod
-    def add_people(cls, person) -> None:
+    def add_people(cls, person: Any) -> None:
         cls.people[person.name] = person
 
     def __repr__(self,) -> str:
