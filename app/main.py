@@ -7,16 +7,12 @@ class Person:
         self.people[name] = self
 
     @classmethod
-    def add_wife(cls, people: list) -> None:
+    def add_partner(cls, people: list) -> None:
         for person in people:
             wife = person.get("wife")
+            husband = person.get("husband")
             if wife:
                 cls.people[person.get("name")].wife = cls.people[wife]
-
-    @classmethod
-    def add_husband(cls, people: list) -> None:
-        for person in people:
-            husband = person.get("husband")
             if husband:
                 cls.people[person.get("name")].husband = cls.people[husband]
 
@@ -27,6 +23,5 @@ def create_person_list(people: list) -> list:
         person_instance = Person(person["name"], person["age"])
         list_person.append(person_instance)
 
-    Person.add_wife(people)
-    Person.add_husband(people)
+    Person.add_partner(people)
     return list_person
