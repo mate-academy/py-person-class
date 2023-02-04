@@ -11,14 +11,14 @@ class Person:
         for person in people:
             wife = person.get("wife")
             if wife:
-                cls.people[person.get("name")].wife = Person.people[wife]
+                cls.people[person.get("name")].wife = cls.people[wife]
 
     @classmethod
     def add_husband(cls, people: list) -> None:
         for person in people:
             husband = person.get("husband")
             if husband:
-                cls.people[person.get("name")].husband = Person.people[husband]
+                cls.people[person.get("name")].husband = cls.people[husband]
 
 
 def create_person_list(people: list) -> list:
