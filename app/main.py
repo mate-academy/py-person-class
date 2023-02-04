@@ -36,7 +36,7 @@ def add_husband(people: list, list_person: list) -> None:
             for wife in list_person:
                 for husband in list_person:
                     if (
-                            person["husband"] == husband.name
-                            and person["name"] == wife.name
+                        person["husband"] == husband.name
+                        and person["name"] == wife.name
                     ):
                         wife.husband = husband
