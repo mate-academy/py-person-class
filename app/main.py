@@ -27,5 +27,7 @@ def check_gender(person: dict) -> str:
 
 
 def check_marital_status(person: dict) -> str:
-    return "married" if person.get("husband") is not None \
-        or person.get("wife") is not None else "unmarried"
+    husband = person.get("husband")
+    wife = person.get("wife")
+
+    return "married" if wife or husband is not None else "unmarried"
