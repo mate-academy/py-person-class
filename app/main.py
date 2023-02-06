@@ -23,12 +23,9 @@ def create_person_list(people: list) -> list:
 
 
 def check_gender(person: dict) -> str:
-    if "wife" in person:
-        return "man"
-    return "woman"
+    return "man" if "wife" in person else "woman"
 
 
 def check_marital_status(person: dict) -> str:
-    if person.get("husband") is not None or person.get("wife") is not None:
-        return "married"
-    return "unmarried"
+    return "married" if person.get("husband") is not None \
+        or person.get("wife") is not None else "unmarried"
