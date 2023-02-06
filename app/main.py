@@ -8,7 +8,8 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    list_of_instances = [Person(p["name"], p["age"]) for p in people]
+    list_of_instances = [Person(person["name"], person["age"])
+                         for person in people]
 
     for person in people:
         instance = Person.people[person["name"]]
