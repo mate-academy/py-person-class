@@ -16,4 +16,3 @@ def create_person_list(people: list) -> list:
             if name == person_info["name"] and person_info.get("husband"):
                 person.husband = Person.people[person_info["husband"]]
     return person_list
-
