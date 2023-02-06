@@ -9,11 +9,9 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    people_instances = []
 
     for person in people:
-        person_instance = Person(person["name"], person["age"])
-        people_instances.append(person_instance)
+        Person(person["name"], person["age"])
 
     for person in people:
         class_people_person_name = Person.people[person["name"]]
@@ -22,4 +20,4 @@ def create_person_list(people: list) -> list:
         elif "husband" in person and person["husband"] is not None:
             class_people_person_name.husband = Person.people[person["husband"]]
 
-    return people_instances
+    return list(Person.people.values())
