@@ -20,10 +20,12 @@ def create_person_list(people: list) -> list:
         getting_husband = human_being.get("husband")
 
         if getting_wife is not None:
-            Person.people[human_being["name"]].wife = \
-                Person.people[human_being["wife"]]
+            Person.people[human_being["name"]].wife = Person.people[
+                human_being["wife"]
+            ]
         if getting_husband is not None:
-            Person.people[human_being["name"]].husband = \
-                Person.people[human_being["husband"]]
+            Person.people[human_being["name"]].husband = Person.people[
+                human_being["husband"]
+            ]
 
     return result_list
