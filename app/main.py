@@ -16,13 +16,11 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    person_objects = []
-    for raw_person in people:
-        person = Person(raw_person["name"], raw_person["age"])
-        person_objects.append(person)
+    person_objects = [Person(raw_person["name"], raw_person["age"])
+                      for raw_person in people]
 
     for raw_person in people:
-        person = Person.people.get(raw_person["name"])
+        person = Person.get_people_by_name(raw_person["name"])
         if not person:
             continue
         elif raw_person.get("wife"):
