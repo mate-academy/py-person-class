@@ -21,11 +21,11 @@ def create_person_list(people: list) -> list:
 
         if getting_wife is not None:
             Person.people[human_being["name"]].wife = Person.people[
-                human_being["wife"]
-            ]
+                                                            human_being["wife"]
+                                                      ]
         if getting_husband is not None:
             Person.people[human_being["name"]].husband = Person.people[
-                human_being["husband"]
-            ]
+                                                                human_being["husband"]
+                                                        ]
 
     return result_list
