@@ -21,9 +21,7 @@ def create_person_list(people: list) -> list:
 
     for raw_person in people:
         person = Person.get_people_by_name(raw_person["name"])
-        if not person:
-            continue
-        elif raw_person.get("wife"):
+        if raw_person.get("wife"):
             person.wife = Person.get_people_by_name(raw_person["wife"])
         elif raw_person.get("husband"):
             person.husband = Person.get_people_by_name(raw_person["husband"])
