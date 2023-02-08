@@ -4,26 +4,31 @@ class Person:
     def __init__(self, name: str, age: int) -> None:
         self.name = name
         self.age = age
-        Person.people.setdefault(self.name, self)
+
+        Person.people[self.name] = self
 
 
 def create_person_list(people: list) -> list:
-    links_of_instances = [
-        Person(people[person]["name"], people[person]["age"])
-        for person in range(len(people))]
+    links_of_instances = []
+    for person in people:
+        person_obj = Person(
+            person["name"],
+            person["age"],
+        )
 
-    for waifu in range(len(people)):
-        if "wife" in people[waifu].keys():
-            for crash in range(len(people)):
-                if people[waifu]["wife"] == \
-                        people[crash]["name"]:
-                    links_of_instances[waifu].wife = \
-                        links_of_instances[crash]
-        if "husband" in people[waifu].keys():
-            for crash in range(len(people)):
-                if people[waifu]["husband"] == \
-                        people[crash]["name"]:
-                    links_of_instances[waifu].husband = \
-                        links_of_instances[crash]
+        if person.get("wife"):
+            wife = Person.people.get(person.get("wife"))
+
+            if wife:
+                person_obj.wife = wife
+                wife.husband = person_obj
+        elif person.get("husband"):
+            husband = Person.people.get(person.get("husband"))
+
+            if husband:
+                person_obj.husband = husband
+                husband.wife = person_obj
+
+        links_of_instances.append(person_obj)
 
     return links_of_instances
