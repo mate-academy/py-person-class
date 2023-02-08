@@ -1,5 +1,4 @@
 class Person:
-
     people = {}
 
     def __init__(self, name: str, age: int) -> None:
@@ -11,10 +10,9 @@ class Person:
 def create_person_list(people: list) -> list:
     instances_ls = [Person(person["name"], person["age"]) for person in people]
     for person in people:
-        pair = person.get("wife") or person.get("husband")
         name = person["name"]
-        if pair and "wife" in person:
-            Person.people[name].wife = Person.people[pair]
-        elif pair and "husband" in person:
-            Person.people[name].husband = Person.people[pair]
+        if person.get("wife"):
+            Person.people[name].wife = Person.people[person["wife"]]
+        elif person.get("husband"):
+            Person.people[name].husband = Person.people[person["husband"]]
     return instances_ls
