@@ -14,8 +14,10 @@ def create_person_list(people: list) -> list:
     for person in people:
         instance = Person(person["name"], person["age"])
         for person_info in person:
-            if person[person_info] is not None \
-                    and (person_info == "wife" or person_info == "husband"):
+            if (
+                person[person_info] is not None
+                and (person_info == "wife" or person_info == "husband")
+            ):
                 setattr(instance, person_info, person[person_info])
         result.append(instance)
 
