@@ -7,7 +7,7 @@ class Person:
         Person.people[self.name] = self
 
 
-def create_person_list(people: list) -> list[Person]:
+def create_person_list(people: list[Person]) -> list[Person]:
     result_list = []
     for person in people:
         result_list.append(Person(person["name"], person["age"]))
