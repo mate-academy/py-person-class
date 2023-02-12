@@ -13,10 +13,12 @@ def create_person_list(people: list) -> list:
 
     for some_human in people:
         if "wife" in some_human and some_human["wife"] is not None:
-            Person.people[some_human["name"]].wife \
-                = Person.people[some_human["wife"]]
+            Person.people[some_human["name"]].wife = Person.people[
+                some_human["wife"]
+            ]
         if "husband" in some_human and some_human["husband"] is not None:
-            Person.people[some_human["name"]].husband \
-                = Person.people[some_human["husband"]]
+            Person.people[some_human["name"]].husband = Person.people[
+                some_human["husband"]
+            ]
 
     return list(Person.people.values())
