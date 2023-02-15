@@ -9,10 +9,7 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    people_list = []
-    for person in people:
-        person = Person(name=person["name"], age=person["age"])
-        people_list.append(person)
+    people_list = [Person(person["name"], person["age"]) for person in people]
 
     for i, person in enumerate(people):
         if "wife" in person and person["wife"] is not None:
