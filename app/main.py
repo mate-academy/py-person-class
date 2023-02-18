@@ -8,16 +8,16 @@ class Person:
 
 
 def create_person_list(people: list) -> list[Person]:
-    married_people = []
+    married_people = [
+        Person(person["name"], person["age"])
+        for person in people
+    ]
     for person in people:
-        new_person = Person(person["name"], person["age"])
-        if "wife" in person.keys() and person["wife"]:
-            wife = Person(person["name"], person["age"])
-            wife.husband = new_person
-            new_person.wife = wife
-        elif "husband" in person.keys() and person["husband"]:
-            husband = Person(person["name"], person["age"])
-            husband.wife = new_person
-            new_person.husband = husband
-        married_people.append(new_person)
+        wife = person.get("wife")
+        husband = person.get("husband")
+        personal_info = Person.people[person.get("name")]
+        if wife:
+            personal_info.wife = Person.people[wife]
+        if husband:
+            personal_info.husband = Person.people[husband]
     return married_people
