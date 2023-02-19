@@ -11,12 +11,13 @@ def create_person_list(people: list[dict]) -> list[Person]:
     list_person = [
         Person(person.get("name"), person.get("age")) for person in people
     ]
+    peoples = Person.people
     for person in people:
         if person.get("wife"):
-            wife = Person.people[person["wife"]]
-            Person.people[person["name"]].wife = wife
+            wife = peoples.get(person.get("wife"))
+            peoples.get(person.get("name")).wife = wife
         elif person.get("husband"):
-            husband = Person.people[person["husband"]]
-            Person.people[person["name"]].husband = husband
+            husband = peoples.get(person.get("husband"))
+            peoples.get(person.get("name")).husband = husband
 
     return list_person
