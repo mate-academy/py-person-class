@@ -8,7 +8,7 @@ class Person:
         Person.people[name] = self
 
 
-def create_person_list(people_list: list) -> list:
+def create_person_list(people_list: list[dict[str]]) -> list:
     new_person_list = [Person(person.get("name"),
                               person.get("age")) for person in people_list]
 
