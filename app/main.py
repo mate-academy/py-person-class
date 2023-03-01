@@ -1,6 +1,3 @@
-from __future__ import annotations
-
-
 class Person:
     people = {}
 
@@ -14,7 +11,9 @@ def create_person_list(people: list) -> list:
     final_list = []
 
     for human in people:
-        person_object = Person(human["name"], human["age"]) if human["name"] not in Person.people else Person.people[human["name"]]
+        person_object = Person(human["name"], human["age"]) \
+            if human["name"] not in Person.people \
+            else Person.people[human["name"]]
         final_list.append(person_object)
 
     for human in people:
