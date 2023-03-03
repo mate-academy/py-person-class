@@ -11,9 +11,10 @@ def create_person_list(people: list) -> list:
     person_list = []
 
     for person in people:
-        personage = Person(person["name"], person["age"])\
-            if person["name"] not in Person.people\
-            else Person.people[person["name"]]
+        if person["name"] not in Person.people:
+            personage = Person(person["name"], person["age"])
+        else:
+            personage = Person.people[person["name"]]
         person_list.append(personage)
 
     for person in people:
@@ -21,7 +22,6 @@ def create_person_list(people: list) -> list:
         name_of_wife_or_husband = person[wife_or_husband]
 
         if name_of_wife_or_husband:
-            wife_husband_object = None
             if name_of_wife_or_husband not in Person.people:
                 wife_husband_object = Person(name_of_wife_or_husband, 0)
             else:
