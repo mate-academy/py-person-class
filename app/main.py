@@ -16,8 +16,10 @@ def create_person_list(people: list[dict]) -> list:
     ]
 
     for person in people:
-        wife_or_husband = "wife" if "wife" in person else "husband"
-        name_of_wife_or_husband = person[wife_or_husband]
+        if "wife" in person:
+            name_of_wife_or_husband = person["wife"]
+        else:
+            name_of_wife_or_husband = person["husband"]
 
         if name_of_wife_or_husband:
             if name_of_wife_or_husband not in Person.people:
@@ -25,9 +27,9 @@ def create_person_list(people: list[dict]) -> list:
             else:
                 wife_husband_object = Person.people[name_of_wife_or_husband]
 
-            if wife_or_husband == "wife":
+            if "wife":
                 Person.people[person["name"]].wife = wife_husband_object
-            else:
+            if "husband":
                 Person.people[person["name"]].husband = wife_husband_object
 
     return person_list
