@@ -7,14 +7,19 @@ class Person:
         Person.people[self.name] = self
 
 
-def create_person_list(persons: list) -> list:
-    person_array = []
-    for person in persons:
-        person_array.append(Person(name=person["name"], age=person["age"]))
-    for person in persons:
-        human = Person.people[person["name"]]
-        if person.get("wife") is not None:
-            human.wife = Person.people[person["wife"]]
-        elif person.get("husband") is not None:
-            human.husband = Person.people[person["husband"]]
-    return person_array
+def create_person_list(people: list[dict[str, any]]) -> list[Person]:
+    list_of_person = [
+        Person(persona["name"],
+               persona["age"])
+        for persona in people
+    ]
+    for persona in people:
+        for key in persona:
+            if key == "wife" and persona["wife"] is not None:
+                Person.people[
+                    persona["name"]].wife = Person.people[persona["wife"]]
+            elif key == "husband" and persona["husband"] is not None:
+                Person.people[
+                    persona["name"]].husband \
+                    = Person.people[persona["husband"]]
+    return list_of_person
