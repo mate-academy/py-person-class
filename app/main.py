@@ -1,58 +1,36 @@
-# import time
-#
-#
-# def timer(func):
-#     print("timer")
-#
-#     def wrapper(*args, **kwargs):
-#         print("wrapper")
-#         start_ = time.time()
-#         func(people)
-#         end_ = time.time()
-#         print(end_ - start_)
-#
-#     return wrapper
-
-
 class Person:
     people = {}
-    wife_name = None
-    husband_name = None
 
-    def __init__(self, name, age):
+    def __init__(self, name: str, age: int) -> None:
         self.name = name
         self.age = age
-
-        Person.people[name] = self
-
-        print(Person.people)
+        self.people[name] = self
 
 
-# @timer
 def create_person_list(people: list) -> list:
-    to_iterate = people
-    print(to_iterate)
-    for i in people:
-        if "wife" in i.keys():
-            print("3d woman exist")
-            if i["wife"] is not None:
-                print("wife is not None")
+    to_return = []
+    for describe in people:
+        current_person = Person(describe["name"], describe["age"])
 
-    res = [Person(current["name"], current["age"]) for current in to_iterate]
-    # res = []  # [i for i in range(100_000_000)]
-    # for i in range(100_000_000):
-    #     res.append(i)
-    # print(len(res))
-    return res
+        if "wife" in describe and describe["wife"] in Person.people:
+            create_marriage_by_wife(current_person, describe["wife"])
+
+        if "husband" in describe and describe["husband"] in Person.people:
+            create_marriage_by_husband(current_person, describe["husband"])
+
+        to_return.append(current_person)
+    return to_return
 
 
-people = [
-    {"name": "Ross", "age": 30, "wife": "Rachel"},
-    {"name": "Joey", "age": 29, "wife": None},
-    {"name": "Rachel", "age": 28, "husband": "Ross"}
-]
+def create_marriage_by_husband(
+        current_person: Person, husband_name: str
+) -> None:
+    Person.people[husband_name].wife = current_person
+    current_person.husband = Person.people[husband_name]
 
-person_list = create_person_list(people)
-print(person_list)
 
-# print(person_list[0].husband)
+def create_marriage_by_wife(
+        current_person: Person, wife_name: str
+) -> None:
+    Person.people[wife_name].husband = current_person
+    current_person.wife = Person.people[wife_name]
