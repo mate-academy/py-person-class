@@ -8,18 +8,18 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    to_return = []
-    for describe in people:
-        current_person = Person(describe["name"], describe["age"])
+    person_list = []
+    for person in people:
+        current_person = Person(person["name"], person["age"])
 
-        if "wife" in describe and describe["wife"] in Person.people:
-            create_marriage_by_wife(current_person, describe["wife"])
+        if "wife" in person and person["wife"] in Person.people:
+            create_marriage_by_wife(current_person, person["wife"])
 
-        if "husband" in describe and describe["husband"] in Person.people:
-            create_marriage_by_husband(current_person, describe["husband"])
+        if "husband" in person and person["husband"] in Person.people:
+            create_marriage_by_husband(current_person, person["husband"])
 
-        to_return.append(current_person)
-    return to_return
+        person_list.append(current_person)
+    return person_list
 
 
 def create_marriage_by_husband(
