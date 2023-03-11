@@ -13,8 +13,10 @@ def create_person_list(people: list) -> list:
         Person(name=person["name"], age=person["age"])
     for person in people:
         if person.get("husband"):
-            Person.people[person["name"]].husband = Person.people[person["husband"]]
+            Person.people[person["name"]].husband =\
+                Person.people[person["husband"]]
         elif person.get("wife"):
-            Person.people[person["name"]].wife = Person.people[person["wife"]]
+            Person.people[person["name"]].wife =\
+                Person.people[person["wife"]]
         result.append(Person.people[person["name"]])
     return result
