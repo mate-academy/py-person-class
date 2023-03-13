@@ -23,7 +23,6 @@ def create_person_list(people: list) -> list:
 
             for person_instance in people_instances:
                 if person_instance.name == person_dict["name"]:
-
                     for wife in people_instances:
                         if wife.name == wife_name:
                             person_instance.wife = wife
@@ -35,7 +34,6 @@ def create_person_list(people: list) -> list:
 
             for person_instance in people_instances:
                 if person_instance.name == person_dict["name"]:
-
                     for husband in people_instances:
                         if husband.name == husband_name:
                             person_instance.husband = husband
