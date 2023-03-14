@@ -8,7 +8,7 @@ class Person:
             self.husband = kwargs["husband"]
         elif "wife" in kwargs.keys() and kwargs["wife"] is not None:
             self.wife = kwargs["wife"]
-        Person.people[name] = self  # Add person to dictionary
+        Person.people[name] = self
 
 
 def create_person_list(people: list) -> list:
@@ -16,13 +16,11 @@ def create_person_list(people: list) -> list:
     for people_person in people:
         if "husband" in people_person and people_person["husband"] is not None:
             husband = Person(people_person["husband"], 0)
-            pers = Person(people_person["name"], people_person["age"],
-                          husband=husband)
+            pers = Person(people_person["name"], people_person["age"], husband=husband)
             husband.wife = pers
         elif "wife" in people_person and people_person["wife"] is not None:
             wife = Person(people_person["wife"], 0)
-            pers = Person(people_person["name"], people_person["age"],
-                          wife=wife)
+            pers = Person(people_person["name"], people_person["age"], wife=wife)
             wife.husband = pers
         else:
             pers = Person(people_person["name"], people_person["age"])
