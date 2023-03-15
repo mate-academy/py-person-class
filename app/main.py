@@ -5,7 +5,7 @@ class Person:
         self.name = name
         self.age = age
 
-        Person.people[self.name] = self
+        Person.people[name] = self
 
 
 def create_person_list(
