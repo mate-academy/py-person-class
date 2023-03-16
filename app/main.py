@@ -11,15 +11,15 @@ def create_person_list(people: list) -> list:
     person_list = []
     # Створюємо всіх людей, зберігаючи їх у списку person_list
     for person in people:
-        p = Person(person["name"], person["age"])
-        person_list.append(p)
+        person_to_list = Person(person["name"], person["age"])
+        person_list.append(person_to_list)
 
     # Установлюємо партнерів для кожної людини
     for person in people:
-        p = Person.people[person["name"]]
+        person_to_spouses = Person.people[person["name"]]
         if "wife" in person and person["wife"] is not None:
-            p.wife = Person.people[person["wife"]]
+            person_to_spouses.wife = Person.people[person["wife"]]
         elif "husband" in person and person["husband"] is not None:
-            p.husband = Person.people[person["husband"]]
+            person_to_spouses.husband = Person.people[person["husband"]]
 
     return person_list
