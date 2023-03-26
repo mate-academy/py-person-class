@@ -1,6 +1,3 @@
-from __future__ import annotations
-
-
 class Person:
     people = {}
 
@@ -18,8 +15,6 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    # iterate through list of people and add each to Person.people
     [Person(person["name"], person["age"]) for person in people]
-    # iterate through Person.people and find marriage connections
     [Person.connect_marriages(person) for person in people]
     return [person for person in Person.people.values()]
