@@ -6,15 +6,14 @@ class Person:
         self.age = age
         Person.people[name] = self
 
-    @classmethod
-    def connect_marriages(cls, person: dict) -> None:
-        if "wife" in person and person["wife"]:
-            cls.people[person["name"]].wife = cls.people[person["wife"]]
-        elif "husband" in person and person["husband"]:
-            cls.people[person["name"]].husband = cls.people[person["husband"]]
-
 
 def create_person_list(people: list) -> list:
     [Person(person["name"], person["age"]) for person in people]
-    [Person.connect_marriages(person) for person in people]
+    for person in people:
+        if "wife" in person and person["wife"]:
+            Person.people[person["name"]].wife = Person.people[person["wife"]]
+        elif "husband" in person and person["husband"]:
+            Person.people[person["name"]].husband = (
+                Person.people[person["husband"]]
+            )
     return [person for person in Person.people.values()]
