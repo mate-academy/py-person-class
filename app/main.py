@@ -15,15 +15,13 @@ def create_person_list(people: list) -> list:
     # add attribute wife/husband
     for man in people:
         if "wife" in man:
-            for key in Person.people.keys():
-                if man["wife"] == key:
-                    Person.people[man["name"]].wife = Person.people[key]
-                    break
+            if man["wife"] in Person.people:
+                wife = Person.people[man.get("wife")]
+                Person.people[man.get("name")].wife = wife
 
         if "husband" in man:
-            for key in Person.people.keys():
-                if man["husband"] == key:
-                    Person.people[man["name"]].husband = Person.people[key]
-                    break
+            if man["husband"] in Person.people:
+                husband = Person.people[man.get("husband")]
+                Person.people[man.get("name")].husband = husband
 
     return persons
