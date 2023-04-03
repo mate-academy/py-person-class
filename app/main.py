@@ -8,19 +8,15 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    person_list = []
+
+    person_list = [Person(entity["name"], entity["age"]) for entity in people]
+
     for entity in people:
-        person = Person(entity["name"], entity["age"])
         if entity.get("wife"):
-            wife = Person.people.get(entity["wife"])
-            if wife:
-                person.wife = wife
-                wife.husband = person
+            husband = Person.people[entity["name"]]
+            husband.wife = Person.people[entity["wife"]]
         elif entity.get("husband"):
-            husband = Person.people.get(entity["husband"])
-            if husband:
-                person.husband = husband
-                husband.wife = person
-        person_list.append(person)
+            wife = Person.people[entity["name"]]
+            wife.husband = Person.people[entity["husband"]]
 
     return person_list
