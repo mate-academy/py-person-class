@@ -25,6 +25,7 @@ def create_person_list(people: list) -> list:
                            wife=wife)
             wife.husband = human
         else:
+
             human = Person(people_person["name"], people_person["age"])
         Person.people[people_person["name"]] = human
         list_of_people.append(human)
