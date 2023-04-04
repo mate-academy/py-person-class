@@ -17,12 +17,12 @@ def create_person_list(people: list) -> list:
         if "husband" in people_person and people_person["husband"] is not None:
             husband = Person(people_person["husband"], 0)
             human = Person(people_person["name"], people_person["age"],
-                          husband=husband)
+                           husband=husband)
             husband.wife = human
         elif "wife" in people_person and people_person["wife"] is not None:
             wife = Person(people_person["wife"], 0)
             human = Person(people_person["name"], people_person["age"],
-                          wife=wife)
+                           wife=wife)
             wife.husband = human
         else:
             human = Person(people_person["name"], people_person["age"])
