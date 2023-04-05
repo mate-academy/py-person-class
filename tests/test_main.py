@@ -1,9 +1,10 @@
-import pytest
+import ast
 import os
+
+import pytest
+
 from app.main import create_person_list
 from app.main import Person
-
-import ast
 
 
 def path_to_main():
@@ -35,7 +36,7 @@ def test_person_class_attribute_people_exists():
         Person, "people"
     ), "Class Person should have class attribute 'people'"
     assert (
-            len(Person.people) == 0
+        len(Person.people) == 0
     ), "Initial length of 'Person.people' should equal to 0"
 
 
@@ -70,11 +71,11 @@ def test_create_person_list_has_wife(people_data, created_person_list):
 
 
 def test_create_person_list_has_wife_and_wife_have_husband(
-        people_data, created_person_list
+    people_data, created_person_list
 ):
     assert (
-            hasattr(created_person_list[0], "wife")
-            and created_person_list[0].wife.husband == created_person_list[0]
+        hasattr(created_person_list[0], "wife")
+        and created_person_list[0].wife.husband == created_person_list[0]
     ), (
         f"Person with 'name' {created_person_list[0].name} should have "
         f"attribute 'wife' with name {created_person_list[0].wife.name} and "
@@ -99,7 +100,7 @@ def test_person_class_attribute_people(people_data, created_person_list):
 
 
 def test_create_person_list_returns_only_entering_people(
-        people_data, created_person_list
+    people_data, created_person_list
 ):
     assert len(people_data) == len(
         created_person_list
@@ -113,17 +114,17 @@ def test_create_person_list_returns_only_entering_people(
 
 
 def test_person_instance_attribute_wife_and_husband_doesnt_exists():
-    with open("app/main.py") as file:
+    with open(path_to_main()) as file:
         tree = ast.parse(file.read())
 
     assert (
-            len(
-                tree.__dict__["body"][0]
-                .__dict__["body"][1]
-                .__dict__["args"]
-                .__dict__["args"]
-            )
-            == 3
+        len(
+            tree.__dict__["body"][0]
+            .__dict__["body"][1]
+            .__dict__["args"]
+            .__dict__["args"]
+        )
+        == 3
     ), "'__init__' should takes only two arguments 'name' and 'age'!"
 
 
@@ -132,7 +133,7 @@ def test_removed_comment():
         main_content = file.read()
 
         assert (
-                "# write your code here" not in main_content
+            "# write your code here" not in main_content
         ), "You have to remove the unnecessary comment '# write your code here'"
 
 
@@ -141,5 +142,5 @@ def test_double_quotes_instead_of_single():
         main_content = file.read()
 
         assert (
-                "'" not in main_content
+            "'" not in main_content
         ), "You have to use a double quotes \"\" instead of single ''"
