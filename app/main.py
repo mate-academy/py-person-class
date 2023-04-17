@@ -1,7 +1,7 @@
 class Person:
     people = {}
 
-    def __init__(self, name, age) -> None:
+    def __init__(self, name: str, age: int) -> None:
         self.name = name
         self.age = age
         Person.people[name] = self
@@ -10,26 +10,19 @@ class Person:
 def create_person_list(people: list) -> list:
     result_list = []
     for persons in people:
-        names = Person(persons.get("name"), persons.get("age"))
-        for relation in persons:
-            if relation == "wife":
-                names.wife = persons.get("husband")
-                # Person.people[persons.get("wife")]
-            if relation == "husband":
-                names.husband = persons.get("husband")
-        print(names.__dict__)
-        result_list.append(names)
-
+        result_list.append(Person(persons.get("name"), persons.get("age")))
+    for new_persons in Person.people:
+        for add_person in people:
+            if new_persons == add_person.get("name"):
+                if "wife" in add_person and add_person.get("wife") is not None:
+                    Person.people[new_persons].wife = Person.people[
+                        add_person.get("wife")
+                    ]
+                if (
+                    "husband" in add_person
+                    and add_person.get("husband") is not None
+                ):
+                    Person.people[new_persons].husband = Person.people[
+                        add_person.get("husband")
+                    ]
     return result_list
-
-
-people = [
-        {"name": "Ross", "age": 30, "wife": "Rachel"},
-        {"name": "Joey", "age": 29, "wife": None},
-        {"name": "Phoebe", "age": 31, "husband": None},
-        {"name": "Chandler", "age": 30, "wife": "Monica"},
-        {"name": "Monica", "age": 32, "husband": "Chandler"},
-        {"name": "Rachel", "age": 28, "husband": "Ross"},
-    ]
-
-create_person_list(people)
