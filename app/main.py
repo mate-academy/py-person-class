@@ -7,7 +7,7 @@ class Person:
         Person.people[name] = self
 
 
-def create_person_list(people: "Person") -> "Person":
+def create_person_list(people: list) -> list:
     person_list = []
     for smb in people:
         name, age = smb["name"], smb["age"]
