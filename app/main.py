@@ -13,10 +13,10 @@ def create_person_list(people: list) -> list:
         tmp = Person(person["name"], person["age"])
         person_list.append(tmp)
     for person in people:
-        if "wife" in person and person["wife"] is not None:
+        if person.get("wife"):
             link_to_wife = Person.people[person["wife"]]
             Person.people[person["name"]].wife = link_to_wife
-        elif "husband" in person and person["husband"] is not None:
+        elif person.get("husband"):
             link_to_husband = Person.people[person["husband"]]
             Person.people[person["name"]].husband = link_to_husband
     return person_list
