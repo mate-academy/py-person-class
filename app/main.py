@@ -8,24 +8,20 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    person_list = []
-    for smb in people:
-        name, age = smb["name"], smb["age"]
-        person = Person(name, age)
-        person_list.append(person)
+    person_list = [Person(someone["name"], someone["age"])
+                   for someone in people]
 
-    for smb in people:
-        if smb.get("wife") is not None:
-            wife_name = smb["wife"]
+    for someone in people:
+        person = Person.people[someone["name"]]
+        if someone.get("wife") is not None:
+            wife_name = someone["wife"]
             wife = Person.people[wife_name]
-            person = Person.people[smb["name"]]
             if wife is not None:
                 person.wife = wife
                 wife.husband = person
-        elif smb.get("husband") is not None:
-            husband_name = smb["husband"]
+        elif someone.get("husband") is not None:
+            husband_name = someone["husband"]
             husband = Person.people[husband_name]
-            person = Person.people[smb["name"]]
             if husband is not None:
                 person.husband = husband
                 husband.wife = person
