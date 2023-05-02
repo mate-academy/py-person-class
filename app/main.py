@@ -8,12 +8,10 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    person_list = []
-    for human in people:
-        person_list.append(Person(human.get("name"), human.get("age")))
+    person_list = [Person(hum.get("name"), hum.get("age")) for hum in people]
     for i, human in enumerate(people):
-        if "wife" in human and human.get("wife") is not None:
+        if human.get("wife"):
             person_list[i].wife = Person.people.get(human["wife"])
-        if "husband" in human and human.get("husband") is not None:
+        if human.get("husband"):
             person_list[i].husband = Person.people.get(human["husband"])
     return person_list
