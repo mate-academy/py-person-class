@@ -8,14 +8,8 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    people_objects = []
-    for person in people:
-        people_objects.append(
-            Person(
-                name=person["name"],
-                age=person["age"]
-            )
-        )
+    people_objects = [Person(name=person["name"], age=person["age"])
+                      for person in people]
 
     for dictionary_person in people:
         twosome = "wife" if "wife" in dictionary_person else "husband"
