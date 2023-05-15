@@ -13,16 +13,13 @@ def create_person_list(people: list) -> list:
     person_list = []
     for person in people:
         new_person = Person(person["name"], person["age"])
-        if ("wife" in person) and (person["wife"] is not None):
-            new_person.wife = person["wife"]
-        elif ("husband" in person) and (person["husband"] is not None):
-            new_person.husband = person["husband"]
-        else:
-            pass
         person_list.append(new_person)
+
     for person in person_list:
-        if hasattr(person, "wife"):
-            person.wife = Person.people[person.wife]
-        elif hasattr(person, "husband"):
-            person.husband = Person.people[person.husband]
+        for human in people:
+            if person.name == human["name"]:
+                if ("wife" in human) and (human["wife"] is not None):
+                    person.wife = Person.people[human["wife"]]
+                elif ("husband" in human) and (human["husband"] is not None):
+                    person.husband = Person.people[human["husband"]]
     return person_list
