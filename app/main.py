@@ -16,6 +16,3 @@ def create_person_list(people: list) -> list:
             wife.husband = husband
             husband.wife = wife
     return [person for name, person in Person.people.items()]
-
-
-
