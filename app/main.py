@@ -1,8 +1,4 @@
-from __future__ import annotations
-
-
 class Person:
-    people: dict
     people = {}
 
     def __init__(self, name: str, age: int) -> None:
