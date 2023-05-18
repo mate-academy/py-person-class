@@ -113,6 +113,21 @@ def test_create_person_list_returns_only_entering_people(
     )
 
 
+def test_person_instance_attribute_wife_and_husband_doesnt_exists():
+    with open(path_to_main()) as file:
+        tree = ast.parse(file.read())
+
+    assert (
+        len(
+            tree.__dict__["body"][1]
+            .__dict__["body"][1]
+            .__dict__["args"]
+            .__dict__["args"]
+        )
+        == 3
+    ), "'__init__' should takes only two arguments 'name' and 'age'!"
+
+
 def test_removed_comment():
     with open(path_to_main(), "r") as file:
         main_content = file.read()
