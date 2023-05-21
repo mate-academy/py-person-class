@@ -119,7 +119,7 @@ def test_person_instance_attribute_wife_and_husband_doesnt_exists():
 
     assert (
         len(
-            tree.__dict__["body"][1]
+            tree.__dict__["body"][0]
             .__dict__["body"][1]
             .__dict__["args"]
             .__dict__["args"]

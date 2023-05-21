@@ -1,17 +1,10 @@
-from __future__ import annotations
-
-
 class Person:
-    people: dict[str, Person] = {}
+    people = {}
 
     def __init__(self, name: str, age: int) -> None:
         self.name = name
         self.age = age
-        self.add_new_person(self)
-
-    @classmethod
-    def add_new_person(cls, person: Person) -> None:
-        cls.people.update({person.name: person})
+        Person.people.update({self.name: self})
 
     def add_partner(self, partner_type: str, partner_name: str) -> None:
         if partner_name not in self.people.keys():
