@@ -22,11 +22,10 @@ def create_person_list(people: list[dict]) -> list[Person]:
 
 
 def add_basic_info(people: list[dict]) -> list[Person]:
-    person_list = []
-
-    for person_dict in people:
-        person_list.append(Person(person_dict["name"], person_dict["age"]))
-    return person_list
+    return [
+        Person(person_dict["name"], person_dict["age"])
+        for person_dict in people
+    ]
 
 
 def add_partner(people: list[dict]) -> None:
