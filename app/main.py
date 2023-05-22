@@ -20,8 +20,6 @@ def create_person_list(people: list) -> list:
         name_of_wife_husband = person[wife_husband]
 
         if name_of_wife_husband:
-            wife_husband_object = None
-
             if name_of_wife_husband not in Person.people:
                 wife_husband_object = Person(name_of_wife_husband, 0)
             else:
