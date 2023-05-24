@@ -8,7 +8,10 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    list_of_completed_people = [Person(i["name"], i["age"]) for i in people]
+    list_of_completed_people = [
+        Person(person["name"], person["age"])
+        for person in people
+    ]
 
     for index, person in enumerate(people):
         if person.get("wife"):
