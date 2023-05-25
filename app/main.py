@@ -10,11 +10,10 @@ class Person:
 
 def create_person_list(people: list[dict]) -> list[Person]:
 
-    person_list = []
-
-    for current_person in people:
-        person_list.append(Person(current_person["name"],
-                                  current_person["age"]))
+    person_list = [
+        Person(current_person["name"], current_person["age"])
+        for current_person in people
+    ]
 
     for current_person in people:
         name = current_person.get("name")
