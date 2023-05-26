@@ -10,7 +10,7 @@ class Person:
         return f"<Person name={self.name}>"
 
 
-def create_person_list(people_data: list) -> list:
+def create_person_list(people_data: list) -> list[Person]:
     person_list = []
     for person_dict in people_data:
         name = person_dict["name"]
