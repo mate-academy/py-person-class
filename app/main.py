@@ -7,7 +7,7 @@ class Person:
         Person.people[name] = self
 
     @classmethod
-    def get_person(cls, name: str) -> str:
+    def get_person(cls, name: str) -> "Person":
         return cls.people.get(name)
 
 
@@ -16,7 +16,7 @@ def create_person_list(people: list) -> list:
     for person in people:
         name = person["name"]
         age = person["age"]
-        new_person = Person(name, age)
+        Person(name, age)
     for person in people:
         new_person = Person.get_person(person["name"])
         if "wife" in person and person["wife"] is not None:
