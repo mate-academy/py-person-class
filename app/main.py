@@ -8,7 +8,7 @@ class Person:
         self.__class__.people[name] = self
 
     def __repr__(self) -> str:
-        return f"Person(name=\"{self.name}\", age={self.age})"
+        return f"Person(name={self.name}, age={self.age})"
 
 
 def create_person_list(people: list) -> list:
