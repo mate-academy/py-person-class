@@ -11,7 +11,7 @@ class Person:
         return f"Person(name={self.name}, age={self.age})"
 
 
-def create_person_list(people: list[dict[str, object]]) -> list[Person]:
+def create_person_list(people: list[dict]) -> list[Person]:
     person_list = []
     for pers in people:
         name = pers["name"]
