@@ -8,10 +8,15 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    person_list = [Person(person.get("name"), person.get("age")) for person in people]
+    person_list = [Person(person.get("name"), person.get("age"))
+                   for person in people]
     for person in people:
         if person.get("wife"):
-            Person.people.get(person.get("name")).wife = Person.people[person.get("wife")]
+            Person.people.get(person.get("name")).wife = Person.people[
+                person.get("wife")
+            ]
         if person.get("husband"):
-            Person.people.get(person.get("name")).husband = Person.people[person.get("husband")]
+            Person.people.get(person.get("name")).husband = Person.people[
+                person.get("husband")
+            ]
     return person_list
