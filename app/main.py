@@ -14,12 +14,12 @@ def create_person_list(people: list) -> list:
         list_of_people.append(Person(individ["name"], individ["age"]))
 
     for individ in people:
-        if "wife" in individ and individ["wife"] is not None:
-            Person.people[individ["name"]].wife\
-                = Person.people[individ["wife"]]
+        if individ.get("wife"):
+            wife_reference = Person.people[individ["wife"]]
+            Person.people[individ["name"]].wife = wife_reference
 
-        if "husband" in individ and individ["husband"] is not None:
-            Person.people[individ["name"]].husband\
-                = Person.people[individ["husband"]]
+        if individ.get("husband"):
+            husband_reference = Person.people[individ["husband"]]
+            Person.people[individ["name"]].husband = husband_reference
 
     return list_of_people
