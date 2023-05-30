@@ -12,10 +12,12 @@ def create_person_list(people: list) -> list:
         Person(human["name"], human["age"])
 
     for human in people:
+        person = Person.people[human["name"]]
         if human.get("wife"):
-            wife = Person.people[human["wife"]]
-            Person.people[human["name"]].wife = wife
+            person.wife = Person.people[human["wife"]]
         elif human.get("husband"):
-            husband = Person.people[human["husband"]]
-            Person.people[human["name"]].husband = husband
+            person.husband = Person.people[human["husband"]]
     return [instance for instance in Person.people.values()]
+
+
+
