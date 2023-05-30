@@ -15,6 +15,6 @@ def create_person_list(people: list) -> list:
         if human.get("wife"):
             Person.people[human["name"]].wife = Person.people[human["wife"]]
         elif human.get("husband"):
-            Person.people[human["name"]].husband = \
-                Person.people[human["husband"]]
+            Person.people[human["name"]].husband = Person.people[
+                human["husband"]]
     return [instance for instance in Person.people.values()]
