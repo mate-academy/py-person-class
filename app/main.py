@@ -18,6 +18,3 @@ def create_person_list(people: list) -> list:
         elif human.get("husband"):
             person.husband = Person.people[human["husband"]]
     return [instance for instance in Person.people.values()]
-
-
-
