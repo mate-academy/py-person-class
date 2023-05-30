@@ -4,7 +4,7 @@ class Person:
     def __init__(self, name: str, age: int, **kwargs) -> None:
         self.name = name
         self.age = age
-        self.people[self.name] = self
+        Person.people[self.name] = self
 
 
 def create_person_list(people: list) -> list:
@@ -20,10 +20,10 @@ def create_person_list(people: list) -> list:
         wife = person.get("wife")
         husband = person.get("husband")
 
-        if wife is not None:
+        if wife:
             Person.people[name].wife = Person.people[wife]
 
-        if husband is not None:
+        if husband:
             Person.people[name].husband = Person.people[husband]
 
     return person_list
