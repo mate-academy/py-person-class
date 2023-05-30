@@ -5,13 +5,13 @@ class Person:
         self.name = name
         self.age = age
         self.spouse = spouse
-        self.__class__.people[name] = self
+        Person.people[name] = self
 
     def __repr__(self) -> str:
         return f"Person(name={self.name}, age={self.age})"
 
 
-def create_person_list(people: list) -> list:
+def create_person_list(people: list[dict[str, object]]) -> list[Person]:
     person_list = []
     for pers in people:
         name = pers["name"]
