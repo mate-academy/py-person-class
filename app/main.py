@@ -11,8 +11,7 @@ def create_person_list(people: list) -> list:
     person_list = []
 
     for person in people:
-        (Person(name=person["name"], age=person["age"]))
-    print(Person.people)
+        Person(name=person["name"], age=person["age"])
 
     for person in people:
 
@@ -28,5 +27,4 @@ def create_person_list(people: list) -> list:
         else:
             person_list.append(Person.people[person["name"]])
 
-    print(person_list)
     return person_list
