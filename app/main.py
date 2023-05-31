@@ -12,10 +12,8 @@ def create_person_list(people: list[dict]) -> list[Person]:
         Person(person_info["name"], person_info["age"])
     for person_info in people:
         person = Person.people[person_info["name"]]
-        if "wife" in person_info and person_info["wife"] is not None:
+        if person_info.get("wife"):
             wife = Person.people[person_info["wife"]]
-            if wife is None:
-                continue
             setattr(person, "wife", wife)
             setattr(wife, "husband", person)
     return list(Person.people.values())
