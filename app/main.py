@@ -10,19 +10,16 @@ class Person:
 def create_person_list(people: list) -> list:
     people_list = []
     for person in people:
+        people_list.append(Person(person["name"], person["age"]))
+
+    for index, person in enumerate(people):
         if "wife" in person.keys() and person["wife"] is not None:
             wife = Person(person["wife"], 0)
-            husband = Person(person["name"], person["age"])
-            husband.wife = wife
-            wife.husband = husband
-            people_list.append(husband)
+            people_list[index].wife = wife
+            wife.husband = people_list[index]
         elif "husband" in person.keys() and person["husband"] is not None:
             husband = Person(person["husband"], 0)
-            wife = Person(person["name"], person["age"])
-            wife.husband = husband
-            husband.wife = wife
-            people_list.append(wife)
-        else:
-            people_list.append(Person(person["name"], person["age"]))
+            people_list[index].husband = husband
+            husband.wife = people_list[index]
 
     return people_list
