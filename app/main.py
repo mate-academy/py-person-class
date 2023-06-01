@@ -11,9 +11,9 @@ def create_person_list(people: list) -> list:
     people_list = [Person(person["name"], person["age"]) for person in people]
 
     for index, person in enumerate(people):
-        if "wife" in person and person.get("wife") is not None:
+        if person.get("wife") is not None:
             people_list[index].wife = Person.people[person["wife"]]
-        elif "husband" in person and person.get("husband") is not None:
+        elif person.get("husband") is not None:
             people_list[index].husband = Person.people[person["husband"]]
 
     return people_list
