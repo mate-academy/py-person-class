@@ -9,19 +9,19 @@ class Person:
 
 def create_person_list(people: list) -> list:
     spouse = ("wife", "husband")
-    result = []
+    persons = []
 
     for person in people:
         new_person = Person(person["name"], person["age"])
-        result.append(new_person)
+        persons.append(new_person)
 
     for person in people:
         for partner in spouse:
-            if partner in person and person[partner]:
+            if person.get(partner):
                 setattr(
                     Person.people[person["name"]],
                     partner,
                     Person.people[person[partner]],
                 )
 
-    return result
+    return persons
