@@ -8,7 +8,6 @@ class Person:
         Person.people[name] = self
 
 
-@staticmethod
 def create_person_list(people: list) -> list:
     result = []
     for person in people:
