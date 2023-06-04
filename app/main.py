@@ -8,7 +8,7 @@ class Person:
         Person.people[name] = self
 
 
-# what method should it be? static or class?
+@staticmethod
 def create_person_list(people: list) -> list:
     result = []
     for person in people:
