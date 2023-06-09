@@ -9,9 +9,9 @@ class Person:
 
 def create_person_list(people: list) -> list:
     person_list = []
-    for pers in people:
-        name = pers.get("name")
-        age = pers.get("age")
+    for person in people:
+        name = person.get("name")
+        age = person.get("age")
         person = Person(name, age)
         person_list.append(person)
     for person in people:
