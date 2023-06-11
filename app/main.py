@@ -11,7 +11,7 @@ class Person:
         self.change_people(self)
 
     @classmethod
-    def change_people(cls, self: object) -> None:
+    def change_people(cls, self) -> None:
         cls.people[self.name] = self
 
     @classmethod
