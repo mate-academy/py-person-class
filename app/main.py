@@ -8,24 +8,20 @@ class Person:
     ) -> None:
         self.name = name
         self.age = age
-        self.change_people(self)
-
-    @classmethod
-    def change_people(cls, self) -> None:
-        cls.people[self.name] = self
+        self.people[self.name] = self
 
     @classmethod
     def finding_a_spouse(cls, registry_office_list: list[dict]) -> None:
         for one_of_people in registry_office_list:
-            if "wife" in one_of_people.keys()\
-                    and one_of_people["wife"] is not None:
+            if ("wife" in one_of_people.keys()
+                    and one_of_people["wife"] is not None):
                 if one_of_people["name"] in Person.people.keys():
                     Person.people[
                         one_of_people["name"]
                     ].wife = Person.people[one_of_people["wife"]]
 
-            if "husband" in one_of_people.keys()\
-                    and one_of_people["husband"] is not None:
+            if ("husband" in one_of_people.keys()
+                    and one_of_people["husband"] is not None):
                 if one_of_people["name"] in Person.people.keys():
                     Person.people[
                         one_of_people["name"]
