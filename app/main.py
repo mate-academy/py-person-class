@@ -9,13 +9,13 @@ class Person:
 
 def create_person_list(people: list) -> list:
     person_list = []
-    for data in people:
-        person_list.append(Person(data["name"], data["age"]))
+    for person in people:
+        person_list.append(Person(person["name"], person["age"]))
 
-    for data in people:
-        name = data.get("name")
-        wife = data.get("wife")
-        husband = data.get("husband")
+    for person in people:
+        name = person.get("name")
+        wife = person.get("wife")
+        husband = person.get("husband")
         if wife:
             Person.people.get(name).wife = Person.people.get(wife)
         if husband:
