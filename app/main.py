@@ -13,16 +13,16 @@ class Person:
     @classmethod
     def finding_a_spouse(cls, registry_office_list: list[dict]) -> None:
         for one_of_people in registry_office_list:
-            if ("wife" in one_of_people.keys()
+            if ("wife" in one_of_people
                     and one_of_people["wife"] is not None):
-                if one_of_people["name"] in Person.people.keys():
+                if one_of_people["name"] in Person.people:
                     Person.people[
                         one_of_people["name"]
                     ].wife = Person.people[one_of_people["wife"]]
 
-            if ("husband" in one_of_people.keys()
+            if ("husband" in one_of_people
                     and one_of_people["husband"] is not None):
-                if one_of_people["name"] in Person.people.keys():
+                if one_of_people["name"] in Person.people:
                     Person.people[
                         one_of_people["name"]
                     ].husband = Person.people[one_of_people["husband"]]
