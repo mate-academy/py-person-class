@@ -8,17 +8,17 @@ class Person:
         Person.people[str(self.name)] = self
 
 
-def create_person_list(people: list) -> list:
+def create_person_list(people: list[dict]) -> list:
     result = []
-    for person in people:
-        result.append(Person(person["name"], person["age"]))
+    for member in people:
+        result.append(Person(member["name"], member["age"]))
 
-    for person in people:
-        if "wife" in person.keys():
-            for partner in result:
-                if partner.name == person["name"]:
-                    for spouse in result:
-                        if spouse.name == person["wife"]:
-                            partner.wife = spouse
-                            spouse.husband = partner
+    for member in people:
+        if member.get("wife"):
+            wife_name = Person.people[member["wife"]]
+            Person.people[member["name"]].wife = wife_name
+        elif member.get("husband"):
+            husband_name = Person.people[member["husband"]]
+            Person.people[member["name"]].husband = husband_name
+
     return result
