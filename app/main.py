@@ -10,9 +10,10 @@ class Person:
 
 def create_person_list(people: list) -> list:
 
-    result = []
-    for elem in people:
-        result.append(Person(elem["name"], elem["age"]))
+    result = [
+        Person(elem["name"], elem["age"])
+        for elem in people
+    ]
 
     for elem in people:
         name = elem.get("name")
