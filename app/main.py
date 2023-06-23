@@ -9,19 +9,18 @@ class Person:
 
 def create_person_list(people_list: list[dict]) -> list[Person]:
 
-    person_list = []
-    for pers in people_list:
-        name = pers["name"]
-        age = pers["age"]
-        new_person = Person(name, age)
-        person_list.append(new_person)
+    person_list = [
+        Person(person["name"], person["age"])
+        for person in people_list
+    ]
     for pers in people_list:
         wife_name, husband_name = pers.get("wife"), pers.get("husband")
+        current_person = Person.people.get(pers["name"])
         if wife_name:
-            Person.people.get(pers["name"]).wife = Person.people.get(wife_name)
+            current_person.wife = Person.people.get(wife_name)
 
         if husband_name:
-            Person.people.get(pers["name"]).husband = \
+            current_person.husband = \
                 Person.people.get(husband_name)
 
     return person_list
