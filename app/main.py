@@ -8,15 +8,16 @@ class Person:
         Person.people[self.name] = self
 
 
-def create_person_list(people: list) -> list:
+def create_person_list(people: list) -> list:  # List[dict] -> List[Person]
     for person in people:
         love_key = "husband" if "husband" in person else "wife"
+        name = person["name"]
+        age = person["age"]
 
-        if person[love_key] is not None:
-            Person(person["name"], person["age"])\
-                .__dict__[love_key] = person[love_key]
+        if person[love_key]:
+            Person(name, age).__dict__[love_key] = person[love_key]
         else:
-            Person(person["name"], person["age"])
+            Person(name, age)
 
     for person in Person.people.values():
         love_key = "husband" if "husband" in person.__dict__ else "wife"
