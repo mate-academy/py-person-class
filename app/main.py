@@ -23,4 +23,3 @@ def create_person_list(people: list) -> list:
                 = Person.people[person["husband"]]
 
     return return_list
-venv\Scripts\activ
