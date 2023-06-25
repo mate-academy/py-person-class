@@ -8,18 +8,11 @@ class Person:
 
 
 def create_person_list(people_data: list[dict]) -> list[Person]:
-    people = []
+    people = [Person(person_dict.get("name"),
+                     person_dict.get("age"))
+              for person_dict in people_data]
 
-    for person_dict in people_data:
-        name = person_dict.get("name")
-        age = person_dict.get("age")
-
-        person = Person(name, age)
-        people.append(person)
-
-    for person_dict in people_data:
-        person = people[people_data.index(person_dict)]
-
+    for person_dict, person in zip(people_data, people):
         if person_dict.get("wife") is not None:
             wife_name = person_dict.get("wife")
 
