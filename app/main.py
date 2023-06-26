@@ -10,14 +10,11 @@ class Person:
 def create_person_list(people: list) -> list:
     person_list = list()
     for person in people:
-        temp_person = Person(person["name"], person["age"])
+        _ = Person(person["name"], person["age"])
+    
+    for person in people:
         if person.get("wife"):
-            temp_person.wife = Person.people.get(person["wife"])
-            if temp_person.wife:
-                temp_person.wife.husband = temp_person
+            Person.people.get(person["name"]).wife = Person.people.get(person["wife"])
         if person.get("husband"):
-            temp_person.husband = Person.people.get(person["husband"])
-            if temp_person.husband:
-                temp_person.husband.wife = temp_person
-        person_list.append(temp_person)
-    return person_list
+            Person.people.get(person["name"]).husband = Person.people.get(person["husband"])
+    return list(Person.people.values())
