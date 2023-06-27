@@ -9,21 +9,21 @@ class Person:
 
 
 def create_person_list(people: list) -> list:  # List[dict] -> List[Person]
-    for person in people:
-        love_key = "husband" if "husband" in person else "wife"
-        name = person["name"]
-        age = person["age"]
+    for person_dict in people:
+        love_key = "husband" if "husband" in person_dict else "wife"
+        name = person_dict["name"]
+        age = person_dict["age"]
 
-        if person[love_key]:
-            Person(name, age).__dict__[love_key] = person[love_key]
-        else:
-            Person(name, age)
+        person = Person(name, age)
+
+        if person_dict[love_key]:
+            setattr(person, love_key, person_dict[love_key])
 
     for person in Person.people.values():
-        love_key = "husband" if "husband" in person.__dict__ else "wife"
+        love_key = "husband" if hasattr(person, "husband") else "wife"
 
-        if love_key in person.__dict__:
-            love = Person.people[person.__dict__[love_key]]
-            person.__dict__[love_key] = love
+        if hasattr(person, love_key):
+            value = getattr(person, love_key)
+            setattr(person, love_key, Person.people[value])
 
     return list(Person.people.values())
