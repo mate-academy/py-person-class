@@ -7,15 +7,15 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    answer = {}
-    for i in people:
-        answer[i["name"]] = Person(list(i.items())[0][1],
-                                   list(i.items())[1][1])
-    for ob in people:
-        if ob.get("husband") is not None:
-            answer[ob["name"]].husband = answer[ob.get("husband")]
-        elif ob.get("wife") is not None:
-            answer[ob["name"]].wife = answer[ob.get("wife")]
+    result = {}
+    for person in people:
+        result[person["name"]] = Person(list(person.items())[0][1],
+                                        list(person.items())[1][1])
+    for human in people:
+        if human.get("husband") is not None:
+            result[human["name"]].husband = result[human.get("husband")]
+        elif human.get("wife") is not None:
+            result[human["name"]].wife = result[human.get("wife")]
 
-    Person.people = answer
-    return list(answer.values())
+    Person.people = result
+    return list(result.values())
