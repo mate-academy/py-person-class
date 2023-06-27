@@ -12,10 +12,10 @@ def create_person_list(people: list) -> list:
     for person in people:
         one_per = Person(person["name"], person["age"])
         if "wife" in person.keys():
-            if person["wife"] is not None:
+            if person["wife"]:
                 one_per.wife = person["wife"]
         elif "husband" in person.keys():
-            if person["husband"] is not None:
+            if person["husband"]:
                 one_per.husband = person["husband"]
         list_of_persons.append(one_per)
 
