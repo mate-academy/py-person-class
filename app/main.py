@@ -7,28 +7,21 @@ class Person:
         self.people[self.name] = self
 
 
-def get_differ(variable_one: str, variable_two: str,
-               comparative: list | dict
-               ) -> str:
-    return variable_one if variable_one in comparative \
-        else variable_two if variable_two in comparative else ""
+def set_family_link(status: str, person: dict) -> None:
+    if status in person.keys() \
+            and person[status] in Person.people.keys():
+        setattr(Person.people[person["name"]],
+                status, Person.people[person[status]])
 
 
 def create_person_list(people: list[dict]) -> list[Person]:
-    variable_one, variable_two = "wife", "husband"
+    wife, husband = "wife", "husband"
     persons = []
-    for person in people:
-        appended_person = Person(person["name"], person["age"])
-        differ = get_differ(variable_one, variable_two,
-                            list(person.keys()))
-        if differ and person[differ] is not None:
-            setattr(appended_person, differ, person[differ])
+    for person_info in people:
+        appended_person = Person(person_info["name"], person_info["age"])
         persons.append(appended_person)
 
-    for cls_person in persons:
-        cls_differ = get_differ(variable_one, variable_two,
-                                cls_person.__dict__)
-        if cls_differ:
-            setattr(cls_person, cls_differ,
-                    Person.people.get(cls_person.__dict__[cls_differ]))
+    for person in people:
+        set_family_link(wife, person)
+        set_family_link(husband, person)
     return persons
