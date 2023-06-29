@@ -4,14 +4,7 @@ class Person:
     def __init__(self, name: str, age: int) -> None:
         self.name = name
         self.age = age
-        self.add_person_in_the_dict(self)
-
-    @classmethod
-    # В даному випадку, я написав анотацію any до person,
-    # тому що не проходив тест -
-    # test_person_instance_attribute_wife_and_husband_doesnt_exists
-    def add_person_in_the_dict(cls, person: any) -> None:
-        cls.people[person.name] = person
+        self.people[name] = self
 
 
 def create_person_list(persons: list) -> list:
