@@ -7,10 +7,9 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    result = {}
-    for person in people:
-        result[person["name"]] = Person(list(person.items())[0][1],
-                                        list(person.items())[1][1])
+    result = {person["name"] : Person(
+        list(person.items())[0][1],
+        list(person.items())[1][1]) for person in people}
     for human in people:
         if human.get("husband") is not None:
             result[human["name"]].husband = result[human.get("husband")]
