@@ -11,13 +11,16 @@ class Person:
 def create_person_list(people: list) -> list:
     persons = []
     for human in people:
-        person = Person(human["name"], human["age"])
-        if "wife" in human and human["wife"] is not None:
+        persons.append(Person(persons["name"], persons["age"]))
+        if human.get("wife"):
             for human1 in people:
-                if human["wife"] == human1["name"]:
-                    person_wife = Person(human1["name"], human1["age"])
-                    person_wife.husband = person
-                    person.wife = person_wife
-        persons.append(person)
+                name = persons.get("name")
+                wife = persons.get("wife")
+                husband = persons.get("husband")
+                if wife:
+                    Person.people.get(name).wife = Person.people.get(wife)
+                if husband:
+                    Person.people.get(name).husband = Person.people.get(husband)
+            return persons
 
     return persons
