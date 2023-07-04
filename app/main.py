@@ -10,9 +10,9 @@ class Person:
 
 def create_person_list(people: list) -> list:
     person_list = []
-    for person_c in people:
-        name = person_c.get("name")
-        age = person_c.get("age")
+    for person_dict in people:
+        name = person_dict.get("name")
+        age = person_dict.get("age")
         if name is not None and age is not None:
             person = Person(name, age)
             person_list.append(person)
