@@ -18,8 +18,8 @@ def create_person_list(people: list) -> list:
                 setattr(new_person, key, value)
         list_of_people.append(new_person)
 
-    for i in range(len(list_of_people)):
-        person = list_of_people[i]
+    for item in range(len(list_of_people)):
+        person = list_of_people[item]
         if hasattr(person, "wife"):
             wife_name = person.wife
             if wife_name in Person.people:
