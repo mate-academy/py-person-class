@@ -8,25 +8,13 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    list_of_people = []
     for person in people:
-        new_person = Person(person["name"], person["age"])
-        for key, value in person.items():
-            if key == "wife" and value is not None:
-                setattr(new_person, key, value)
-            elif key == "husband" and value is not None:
-                setattr(new_person, key, value)
-        list_of_people.append(new_person)
-
-    for item in range(len(list_of_people)):
-        person = list_of_people[item]
-        if hasattr(person, "wife"):
-            wife_name = person.wife
-            if wife_name in Person.people:
-                person.wife = Person.people[wife_name]
-        if hasattr(person, "husband"):
-            husband_name = person.husband
-            if husband_name in Person.people:
-                person.husband = Person.people[husband_name]
-
-    return list_of_people
+        Person(person["name"], person["age"])
+    for person in people:
+        if "wife" in person and person["wife"] is not None:
+            wife = Person.people[person["wife"]]
+            Person.people[person["name"]].wife = wife
+        if "husband" in person and person["husband"] is not None:
+            husband = Person.people[person["husband"]]
+            Person.people[person["name"]].husband = husband
+    return [person for person in Person.people.values()]
