@@ -1,19 +1,14 @@
 class Person:
     people = {}
 
-    def __init__(
-        self,
-        name: str,
-        age: int,
-    ) -> None:
+    def __init__(self, name: str, age: int) -> None:
         self.name = name
         self.age = age
-        new_instance = {name: self}
-        self.people.update(new_instance)
+        self.people[name] = self
 
 
 def create_person_list(people: list) -> list:
-    new_objects = []
+    list_of_people = []
     for person in people:
         new_person = Person(person["name"], person["age"])
         for key, value in person.items():
@@ -21,16 +16,17 @@ def create_person_list(people: list) -> list:
                 setattr(new_person, key, value)
             elif key == "husband" and value is not None:
                 setattr(new_person, key, value)
-        new_objects.append(new_person)
+        list_of_people.append(new_person)
 
-    for obj_i in range(len(new_objects)):
-        person_dict = new_objects[obj_i].__dict__
-        for obj_j in range(len(new_objects)):
-            if "wife" in person_dict:
-                if new_objects[obj_i].wife == new_objects[obj_j].name:
-                    new_objects[obj_i].wife = new_objects[obj_j]
-            if "husband" in person_dict:
-                if new_objects[obj_i].husband == new_objects[obj_j].name:
-                    new_objects[obj_i].husband = new_objects[obj_j]
+    for i in range(len(list_of_people)):
+        person = list_of_people[i]
+        if hasattr(person, "wife"):
+            wife_name = person.wife
+            if wife_name in Person.people:
+                person.wife = Person.people[wife_name]
+        if hasattr(person, "husband"):
+            husband_name = person.husband
+            if husband_name in Person.people:
+                person.husband = Person.people[husband_name]
 
-    return new_objects
+    return list_of_people
