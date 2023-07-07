@@ -4,13 +4,12 @@ class Person:
     def __init__(self, name: str, age: int) -> None:
         self.name = name
         self.age = age
-        self.people.update({self.name: self})
+        self.people[name] = self
 
 
 def create_person_list(people: list[dict]) -> list:
-    people_list = []
-    for person in people:
-        people_list.append(Person(person["name"], person["age"]))
+
+    people_list = [Person(person["name"], person["age"]) for person in people]
 
     for person in people:
 
