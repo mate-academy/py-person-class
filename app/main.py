@@ -8,7 +8,8 @@ class Person:
         self.husband = None
         self.people[name] = self
 
-    def create_person_list(people: list) -> list:
+    @staticmethod
+    def create_person_list(people: list) -> list["Person"]:
         persons = []
         for person in people:
             name = person["name"]
