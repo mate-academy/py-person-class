@@ -15,11 +15,15 @@ def create_person_list(people: list[dict]) -> list:
     for person in people:
 
         if "wife" in person and person["wife"] is not None:
-            Person.people.get(person["name"]).wife = \
-                Person.people.get(person["wife"])
+            Person.people.get(
+                person["name"]
+            ).wife = Person.people.get(
+                person["wife"])
 
         elif "husband" in person and person["husband"] is not None:
-            Person.people.get(person["name"]).husband = \
-                Person.people.get(person["husband"])
+            Person.people.get(
+                person["name"]
+            ).husband = Person.people.get(
+                person["husband"])
 
     return people_list
