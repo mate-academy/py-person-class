@@ -1,8 +1,28 @@
 class Person:
-    # write your code here
-    pass
+    people = {}
+    def __init__ (self, name : str, age : int) -> None:
+        self.name = name
+        self.age = age
+        Person.people[name] = self
 
 
 def create_person_list(people: list) -> list:
-    # write your code here
-    pass
+    result = [
+        Person(human["name"], human["age"]) for human in people
+    ]
+
+    for human in people:
+        new_person = Person(human["name"], human["age"])
+        wife, husband = human.get("wife"), human.get("husband")
+        if wife:
+            new_person.wife = wife
+        elif husband:
+            new_person.husband = husband
+        result.append(new_person)
+
+    for person in result:
+        if hasattr(person, "wife"):
+            person.wife = Person.people[person.wife]
+        elif hasattr(person, "husband"):
+            person.husband = Person.people[person.husband]
+    return result
