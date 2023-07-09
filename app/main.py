@@ -10,18 +10,11 @@ def create_person_list(people: list) -> list:
     result = []
 
     for human in people:
-        new_person = Person(human["name"], human["age"])
-        wife, husband = human.get("wife"), human.get("husband")
-        if wife:
-            new_person.wife = wife
-        if husband:
-            new_person.husband = husband
-        result.append(new_person)
-
-    for person in result:
-        if hasattr(person, "wife"):
-            person.wife = Person.people[person.wife]
-        if hasattr(person, "husband"):
-            person.husband = Person.people[person.husband]
+        result.append(Person(human["name"], human["age"]))
+    for i in range(len(people)):
+        if people[i].get("wife") is not None:
+            result[i].wife = Person.people[people[i].get("wife")]
+        if people[i].get("husband") is not None:
+            result[i].husband = Person.people[people[i].get("husband")]
 
     return result
