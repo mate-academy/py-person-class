@@ -12,10 +12,10 @@ def create_person_list(people: list) -> list:
 
     for human in people:
         result.append(Person(human["name"], human["age"]))
-    for i in range(len(people)):
-        if people[i].get("wife") is not None:
-            result[i].wife = Person.people[people[i].get("wife")]
-        if people[i].get("husband") is not None:
-            result[i].husband = Person.people[people[i].get("husband")]
+    for person_index in range(len(people)):
+        if people[person_index].get("wife") is not None:
+            result[person_index].wife = Person.people[people[person_index].get("wife")]
+        if people[person_index].get("husband") is not None:
+            result[person_index].husband = Person.people[people[person_index].get("husband")]
 
     return result
