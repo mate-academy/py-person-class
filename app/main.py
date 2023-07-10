@@ -7,24 +7,24 @@ class Person:
         self.people[self.name] = self
 
 
-def create_person_list(people: list) -> list:
-    peoples = []
-    for i in range(len(people)):
-        human = Person(people[i]["name"], people[i]["age"])
-        if "wife" in people[i].keys() \
-                and people[i]["wife"] is not None:
-            human.wife = people[i]["wife"]
-        elif "husband" in people[i].keys() \
-                and people[i]["husband"] is not None:
-            human.husband = people[i]["husband"]
-        peoples.append(human)
+def create_person_list(people_list: list) -> list:
+    person_list = []
+    for i in range(len(people_list)):
+        human = Person(people_list[i]["name"], people_list[i]["age"])
+        if "wife" in people_list[i].keys() \
+                and people_list[i]["wife"] is not None:
+            human.wife = people_list[i]["wife"]
+        elif "husband" in people_list[i].keys() \
+                and people_list[i]["husband"] is not None:
+            human.husband = people_list[i]["husband"]
+        person_list.append(human)
 
-    for i in peoples:
-        if "wife" in i.__dict__.keys():
-            if i.wife in Person.people.keys():
-                i.wife = Person.people[i.wife]
-        if "husband" in i.__dict__.keys():
-            if i.husband in Person.people.keys():
-                i.husband = Person.people[i.husband]
+    for person in person_list:
+        if "wife" in person.__dict__.keys():
+            if person.wife in Person.people.keys():
+                person.wife = Person.people[person.wife]
+        if "husband" in person.__dict__.keys():
+            if person.husband in Person.people.keys():
+                person.husband = Person.people[person.husband]
 
-    return peoples
+    return person_list
