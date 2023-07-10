@@ -9,7 +9,6 @@ class Person:
 
 def create_person_list(people: list) -> list:
     result = []
-    
     for human in people:
         result.append(Person(human["name"], human["age"]))
     for person_index in range(len(people)):
