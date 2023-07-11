@@ -21,9 +21,6 @@ def create_person_list(people: list) -> list:
                 if "wife" in person:
                     new_person.wife = spouse
                     spouse.husband = new_person
-                elif "husband" in person:
-                    new_person.husband = spouse
-                    spouse.wife = new_person
 
         persons.append(new_person)
 
