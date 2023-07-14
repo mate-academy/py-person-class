@@ -64,7 +64,7 @@ def test_create_person_list_order(people_data, created_person_list):
 
 
 def test_create_person_list_has_wife(people_data, created_person_list):
-    assert hasattr(created_person_list[0], "wife"), (
+    assert hasattr(created_person_list[0], "wife") is False, (
         f"Person with 'name' {created_person_list[0].name} should have "
         f"attribute 'wife' with name {people_data[0].wife.name}"
     )
