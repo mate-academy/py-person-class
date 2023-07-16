@@ -5,6 +5,9 @@ class Person:
         self.name = name
         self.age = age
         self.people[name] = self
+        self.wife = wife
+        self.husband = husband
+        
 
 
 def create_person_list(people: list) -> list:
