@@ -21,3 +21,4 @@ def create_person_list(people: list) -> list:
                 pers.wife.husband = pers
         person_list.append(pers)
     return person_list
+ 
