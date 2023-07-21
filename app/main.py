@@ -11,8 +11,6 @@ class Person:
     def add_instance(self) -> None:
         Person.people[self.name] = self
 
-    pass
-
 
 def create_person_list(people: list) -> list:
     people_inst = [Person(person["name"], person["age"]) for person in people]
