@@ -1,5 +1,4 @@
 class Person:
-
     people = {}
 
     def __init__(self, name: str, age: int) -> None:
@@ -8,22 +7,17 @@ class Person:
         Person.people[name] = self
 
     def get_wife(self) -> None:
-
         return self.wife
 
     def get_husband(self) -> None:
-
         return self.husband
 
 
-def create_person_list(people: [dict]) -> None:
-    person_list = []
-
-    for person_data in people:
-        name = person_data["name"]
-        age = person_data["age"]
-        person = Person(name, age)
-        person_list.append(person)
+def create_person_list(people: list[dict]) -> list[Person]:
+    person_list = [
+        Person(person_data["name"], person_data["age"])
+        for person_data in people
+    ]
 
     for person in person_list:
         for person_data in people:
