@@ -6,10 +6,10 @@ class Person:
         self.age: int = age
         Person.people[name] = self
 
-    def get_wife(self) -> None:
+    def get_wife(self) -> str:
         return self.wife
 
-    def get_husband(self) -> None:
+    def get_husband(self) -> str:
         return self.husband
 
 
