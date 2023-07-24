@@ -11,19 +11,19 @@ class Person:
 
     @classmethod
     def find_by_name(cls, name: str) -> Person | None:
-        return cls.people[name]
+        return cls.people.get(name)
 
 
 def create_person_list(people: list) -> list[Person]:
-    for p in people:
-        Person(p["name"], p["age"])
+    for person in people:
+        Person(person["name"], person["age"])
 
-    for p in people:
-        if "wife" in p and p["wife"]:
-            person = Person.find_by_name(p["name"])
-            person.wife = Person.find_by_name(p["wife"])
-        elif "husband" in p and p["husband"]:
-            person = Person.find_by_name(p["name"])
-            person.husband = Person.find_by_name(p["husband"])
+    for person in people:
+        if "wife" in person and person["wife"]:
+            person_obj = Person.find_by_name(person["name"])
+            person_obj.wife = Person.find_by_name(person["wife"])
+        elif "husband" in person and person["husband"]:
+            person_obj = Person.find_by_name(person["name"])
+            person_obj.husband = Person.find_by_name(person["husband"])
 
     return list(Person.people.values())
