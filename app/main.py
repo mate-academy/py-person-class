@@ -16,10 +16,8 @@ def create_person_list(people: list) -> list:
     for person_data in people:
         person = Person.people[person_data["name"]]
 
-        if "wife" in person_data and person_data["wife"] in Person.people:
+        if Person.people.get(person_data.get("wife")):
             person.wife = Person.people[person_data["wife"]]
-        elif "wife" in person_data and person_data["wife"] is not None:
-            person.wife = None
 
         if "husband" in person_data\
                 and person_data["husband"] in Person.people:
