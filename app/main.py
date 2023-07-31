@@ -7,10 +7,8 @@ class Person:
         Person.people[name] = self
 
 
-def create_person_list(people: list) -> list:
-    instances = []
-    for person in people:
-        instances.append(Person(person["name"], person["age"]))
+def create_person_list(people: list) -> list[Person]:
+    instances = [Person(person["name"], person["age"]) for person in people]
 
     for index, person in enumerate(people):
         if person.get("wife"):
