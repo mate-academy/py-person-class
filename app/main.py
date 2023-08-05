@@ -18,10 +18,10 @@ def create_person_list(people: list[dict]) -> list:
     ]
 
     for person in people:
-        for key, value in person.items():
-            if key == "wife" and value is not None:
-                Person.people[person["name"]].wife = Person.people[value]
-            elif key == "husband" and value is not None:
-                Person.people[person["name"]].husband = Person.people[value]
+        if person.get("wife") is not None:
+            Person.people[person["name"]].wife = Person.people[person["wife"]]
+        elif person.get("husband") is not None:
+            Person.people[person["name"]].husband = \
+                Person.people[person["husband"]]
 
     return res_person_instances
