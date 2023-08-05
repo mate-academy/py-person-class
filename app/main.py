@@ -8,9 +8,10 @@ class Person:
 
 
 def create_person_list(people: list[dict]) -> list:
-    res_person_instances = []
-    for person in people:
-        res_person_instances.append(Person(person["name"], person["age"]))
+    res_person_instances = [
+        Person(person["name"], person["age"])
+        for person in people
+    ]
 
     for person in people:
         for key, value in person.items():
