@@ -1,6 +1,3 @@
-from __future__ import annotations
-
-
 class Person:
     people = {}
 
@@ -10,7 +7,7 @@ class Person:
         self.add_object(self)
 
     @classmethod
-    def add_object(cls, obj: Person) -> None:
+    def add_object(cls, obj: object) -> None:
         cls.people[obj.name] = obj
 
 
