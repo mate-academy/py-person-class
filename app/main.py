@@ -16,15 +16,21 @@ def create_person_list(people: list[dict]) -> list[Person]:
 
     for pers in people:
         person = Person(name=pers["name"], age=pers["age"])
-        if "wife" in pers and pers["wife"] is not None:
-            for i in Person.people.values():
-                if i.name == pers["wife"]:
-                    person.wife = i
-                    i.husband = person
-        elif "husband" in pers and pers["husband"] is not None:
-            for i in Person.people.values():
-                if i.name == pers["husband"]:
-                    person.husband = i
-                    i.wife = person
         result.append(person)
+
+    for pers in people:
+        person = Person.people[pers["name"]]
+        if "wife" in pers and pers["wife"] is not None:
+            wife_name = pers["wife"]
+            wife = Person.people.get(wife_name)
+            if wife:
+                person.wife = wife
+                wife.husband = person
+        elif "husband" in pers and pers["husband"] is not None:
+            husband_name = pers["husband"]
+            husband = Person.people.get(husband_name)
+            if husband:
+                person.husband = husband
+                husband.wife = person
+
     return result
