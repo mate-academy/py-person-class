@@ -8,6 +8,13 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
+    """
+    :param people: a list of dicts people, every dict means a person,
+    it has keys: name, age, wife/husband - depends on person is male or female.
+    All names are different.
+    Key wife/husband can be either None or name of another person.
+    :return: list with Person instances instead of dicts.
+    """
     person_instances = []
 
     for person in people:
