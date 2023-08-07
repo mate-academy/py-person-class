@@ -14,12 +14,12 @@ class Person:
 def create_person_list(people: list) -> list:
     persons_list = []
     for i in people:
-        name_instance = Person(i["name"], i["age"])  # The layout of each instance
+        name_instance = Person(i["name"], i["age"])
         persons_list.append(name_instance)
-    for x in people:
-        if x.get("wife"):
-            Person.people[x["name"]].wife = Person.people[x["wife"]]
-        if x.get("husband"):
-            Person.people[x["name"]].husband = Person.people[x["husband"]]
+    for character in people:
+        if character.get("wife"):
+            Person.people[character["name"]].wife = Person.people[character["wife"]]
+        if character.get("husband"):
+            Person.people[character["name"]].husband = Person.people[character["husband"]]
 
     return persons_list
