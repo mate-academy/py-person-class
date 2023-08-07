@@ -13,8 +13,8 @@ class Person:
 
 def create_person_list(people: list) -> list:
     persons_list = []
-    for i in people:
-        name_instance = Person(i["name"], i["age"])
+    for friend in people:
+        name_instance = Person(friend["name"], friend["age"])
         persons_list.append(name_instance)
     for character in people:
         if character.get("wife"):
