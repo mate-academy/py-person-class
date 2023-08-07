@@ -4,25 +4,22 @@ class Person:
     def __init__(self, name: str, age: int) -> None:
         self.name = name
         self.age = age
-        self.wife = None
-        self.husband = None
         self.add_instance()
+        self.people[name] = self
 
     def add_instance(self) -> None:
         Person.people[self.name] = self
 
 
 def create_person_list(people: list) -> list:
-    people_inst = [Person(person["name"], person["age"]) for person in people]
-    for person in people_inst:
-        if person.name == "Joey" or person.name == "Phoebe":
-            delattr(person, "wife" if person.name == "Joey" else "husband")
-        if person.name == "Ross":
-            person.wife = person.people["Rachel"]
-        if person.name == "Chandler":
-            person.wife = person.people["Monica"]
-        if person.name == "Monica":
-            person.husband = person.people["Chandler"]
-        if person.name == "Rachel":
-            person.husband = person.people["Ross"]
-    return people_inst
+    persons_list = []
+    for i in people:
+        name_instance = Person(i["name"], i["age"])  # The layout of each instance
+        persons_list.append(name_instance)
+    for x in people:
+        if x.get("wife"):
+            Person.people[x["name"]].wife = Person.people[x["wife"]]
+        if x.get("husband"):
+            Person.people[x["name"]].husband = Person.people[x["husband"]]
+
+    return persons_list
