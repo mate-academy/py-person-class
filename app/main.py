@@ -17,7 +17,9 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    peoples = [(person, Person(person.get("name"), person.get("age"))) for person in people]
+    peoples = [
+        (person, Person(person.get("name"), person.get("age"))) for person in people
+    ]
     for info, person in peoples:
         if wife := info.get("wife"):
             person.set_wife(wife)
