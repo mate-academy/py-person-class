@@ -14,28 +14,27 @@ class Person:
 
 
 def create_person_list(people_list: list) -> list:
-    person_instances = {}
     result = []
 
-    for person in people_list:
-        name = person["name"]
-        age = person["age"]
-        person_instance = Person(name, age)
-        person_instances[name] = person_instance
-        result.append(person_instance)
+    for person_dict in people_list:
+        name = person_dict["name"]
+        age = person_dict["age"]
+        person_object = Person(name, age)
+        result.append(person_object)
 
-    for person_data in people_list:
-        person_name = person_data["name"]
-        person_instance = person_instances[person_name]
+    for person_object in result:
+        for person_dict in people_list:
+            if person_dict["name"] == person_object.name:
+                wife_name = person_dict.get("wife")
+                if wife_name:
+                    for wife_instance in result:
+                        if wife_instance.name == wife_name:
+                            person_object.set_wife(wife_instance)
 
-        wife_name = person_data.get("wife")
-        if wife_name:
-            wife_instance = person_instances[wife_name]
-            person_instance.set_wife(wife_instance)
-
-        husband_name = person_data.get("husband")
-        if husband_name:
-            husband_instance = person_instances[husband_name]
-            person_instance.set_husband(husband_instance)
+                husband_name = person_dict.get("husband")
+                if husband_name:
+                    for husband_instance in result:
+                        if husband_instance.name == husband_name:
+                            person_object.set_husband(husband_instance)
 
     return result
