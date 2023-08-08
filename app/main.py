@@ -8,21 +8,14 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    person_list = []
+    people_list = []
     for person in people:
-        person_name = person["name"]
-        person_age = person["age"]
-        person_list.append(Person(person_name, person_age))
-
-    for index, person in enumerate(person_list):
-        if people[index].get("wife") is not None:
-            wife = [item
-                    for item in person_list
-                    if item.name == people[index].get("wife")][0]
-            person.wife = wife
-        elif people[index].get("husband") is not None:
-            husband = [item
-                       for item in person_list
-                       if item.name == people[index].get("husband")][0]
-            person.husband = husband
-    return person_list
+        human = Person(person["name"], person["age"])
+        if "wife" in person and person["wife"]:
+            for human2 in people:
+                if person["wife"] == human2["name"]:
+                    person_wife = Person(human2["name"], human2["age"])
+                    person_wife.husband = human
+                    human.wife = person_wife
+        people_list.append(human)
+    return people_list
