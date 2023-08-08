@@ -17,10 +17,10 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    peoples = [(i, Person(i.get("name"), i.get("age"))) for i in people]
+    peoples = [(person, Person(person.get("name"), person.get("age"))) for person in people]
     for info, person in peoples:
         if wife := info.get("wife"):
             person.set_wife(wife)
         elif husband := info.get("husband"):
             person.set_husband(husband)
-    return [i[1] for i in peoples]
+    return [person[1] for person in peoples]
