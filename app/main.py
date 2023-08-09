@@ -27,8 +27,6 @@ def create_person_list(people: list) -> list:
 
             if person_instance and spouse_instance:
                 person_instance.wife = spouse_instance
-                # Add the "wife" attribute for the husband
                 spouse_instance.husband = person_instance
-                # Add the "husband" attribute for the wife
 
     return result_list
