@@ -9,12 +9,11 @@ class Person:
 
 def create_person_list(people: list[dict]) -> list[Person]:
     person_lst: list[Person] = [
-        Person(person["name"], person["age"])
-        for person in people
+        Person(person["name"], person["age"]) for person in people
     ]
     for person in people:
         person_obj: Person = Person.people[person["name"]]
-        attr_name: str = ["wife", "husband"]["husband" in person]
+        attr_name: str = "wife" if "wife" in person else "husband"
         if person.get(attr_name) is not None:
             setattr(person_obj, attr_name,
                     Person.people.get(person[attr_name]))
