@@ -1,49 +1,24 @@
 class Person:
-    class Car:
-        def __init__(self, comfort_class: int, clean_mark: int,
-                     brand: str) -> None:
-            self.comfort_class = comfort_class
-            self.clean_mark = clean_mark
-            self.brand = brand
+    people = {}
+    def __init__(self, name: str, age: int) -> None:
+        self.name = name
+        self.age = age
+        self.people[self.name] = self
 
-    class CarWashStation:
-        def __init__(self,
-                     distance_from_city_center: int,
-                     clean_power: int,
-                     average_rating: int,
-                     count_of_ratings: int) -> None:
-            self.distance_from_city_center = distance_from_city_center
-            self.clean_power = clean_power
-            self.average_rating = average_rating
-            self.count_of_ratings = count_of_ratings
+    people_list = []
+    for person in people:
+        person_temp = Person(person["name"], person["age"])
+        if "wife" in person.keys() and person["wife"] is not None:
+            wife = Person.people.get(person["wife"])
+            if wife:
+                person_temp.wife = wife
+                wife.husband = person_temp
+        elif "husband" in person.keys() and person["husband"] is not None:
+            husband = Person.people.get(person["husband"])
+            if husband:
+                person_temp.husband = husband
+                husband.wife = person_temp
 
-        def serve_cars(self, cars: list) -> float:
-            income = 0
-            for car in cars:
-                if self.clean_power > car.clean_mark:
-                    income += self.calculate_washing_price(car)
-                    self.wash_single_car(car)
+        people_list.append(person_temp)
 
-            return round(income, 1)
-
-    def calculate_washing_price(self, car: Car) -> float:
-        power_mark_difference = self.clean_power - car.clean_mark
-        washing_price = (car.comfort_class
-                         * power_mark_difference
-                         * self.average_rating
-                         / self.distance_from_city_center)
-        return round(washing_price, 1)
-
-def wash_single_car(self, car: Car) -> None:
-    if self.clean_power > car.clean_mark:
-        car.clean_mark = self.clean_power
-
-
-def rate_service(self, rating: int) -> None:
-    new_average = round(
-        (self.count_of_ratings * self.average_rating + rating)
-        / (self.count_of_ratings + 1),
-        1)
-    self.count_of_ratings += 1
-    self.average_rating = new_average
-
+    return people_list
