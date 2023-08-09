@@ -8,9 +8,7 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    persons_list = []
-    name_instance = [persons_list.append(Person(friend["name"], friend["age"])) for friend in people]
-
+    persons_list = [Person(friend["name"], friend["age"]) for friend in people]
     for character in people:
         if character.get("wife"):
             Person.people[character["name"]].wife = Person.people[character["wife"]]
