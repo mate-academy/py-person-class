@@ -18,17 +18,16 @@ def create_person_list(people: list) -> list:
     Key wife/husband can be either None or name of another person.
     :return: list with Person instances instead of dicts.
     """
-    person_instances = []
 
-    for person in people:
-        name = person["name"]
-        age = person["age"]
-        person_instances.append(Person(name, age))
+    person_instances = [
+        Person(person["name"], person["age"])
+        for person in people
+    ]
 
     husbands = [
         person for person in people
         if "wife" in person.keys()
-        and person["wife"] is not None
+           and person["wife"] is not None
     ]
 
     for husband in husbands:
