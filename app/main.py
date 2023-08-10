@@ -1,5 +1,5 @@
 class Person:
-    people = {} 
+    people = {}
     # dictionary for saving links to class attributes
 
     def __init__(self, name: str, age: int) -> None:
@@ -9,7 +9,7 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    dict_info_by_name = {} 
+    dict_info_by_name = {}
     # dictionary for saving full people information: name, age, marriage
     for person in people:
         dict_info_by_name[person["name"]] = person
