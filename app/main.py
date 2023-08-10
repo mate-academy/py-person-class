@@ -12,14 +12,13 @@ def create_person_list(people: list[dict]) -> list[Person]:
 
     for man in people:
         person = Person(man["name"], man["age"])
-
-        if "wife" in man and man["wife"] is not None:
-            for man2 in people:
-                if man["wife"] == man2["name"]:
-                    wife = Person(man2["name"], man2["age"])
-                    person.wife = wife
-                    wife.husband = person
-
         person_list.append(person)
+
+    for man in people:
+        if "wife" in man and man["wife"] is not None:
+            husband = Person.people[man["name"]]
+            wife = Person.people[man["wife"]]
+            husband.wife = wife
+            wife.husband = husband
 
     return person_list
