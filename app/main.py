@@ -1,5 +1,6 @@
 class Person:
-    people = {} # dictionary for saving links to class attributes
+    people = {} 
+    # dictionary for saving links to class attributes
 
     def __init__(self, name: str, age: int) -> None:
         self.name = name
@@ -8,14 +9,14 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    dict_info_by_name = {} # dictionary for saving full people information: name, age, marriage
+    dict_info_by_name = {} 
+    # dictionary for saving full people information: name, age, marriage
     for person in people:
         dict_info_by_name[person["name"]] = person
         Person(
             person["name"],
             person["age"]
         )
-        
 
     for person_name in Person.people.keys():
         if dict_info_by_name[person_name].get("wife") is not None:
