@@ -1,6 +1,3 @@
-from __future__ import annotations
-
-
 class Person:
     people = dict()
 
@@ -13,8 +10,8 @@ class Person:
 def create_person_list(people: list) -> list:
     person_list = [Person(person["name"], person["age"]) for person in people]
 
-    for person in people:
-        partner = Person.people[person["name"]]
+    for index, person in enumerate(people):
+        partner = person_list[index]
 
         if "wife" in person and person["wife"] is not None:
             wife = Person.people[person["wife"]]
