@@ -13,10 +13,10 @@ def create_person_list(people: list) -> list:
     for index, person in enumerate(people):
         partner = person_list[index]
 
-        if "wife" in person and person["wife"] is not None:
+        if person.get("wife"):
             wife = Person.people[person["wife"]]
             partner.wife = wife
-        elif "husband" in person and person["husband"] is not None:
+        if person.get("husband"):
             husband = Person.people[person["husband"]]
             partner.husband = husband
 
