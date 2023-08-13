@@ -13,9 +13,13 @@ def create_person_list(people: list[dict]) -> list[Person]:
         for person in people
     ]
     for person in people:
-        person_obj: Person = Person.people[person["name"]]
-        attr_name: str = ["wife", "husband"]["husband" in person]
-        if person.get(attr_name) is not None:
-            setattr(person_obj, attr_name,
-                    Person.people.get(person[attr_name]))
+        if person.get("wife"):
+            main_person = Person.people[person["name"]]
+            person_wife = Person.people[person["wife"]]
+            main_person.wife = person_wife
+        elif person.get("husband"):
+            main_person = Person.people[person["name"]]
+            person_husband = Person.people[person["husband"]]
+            main_person.husband = person_husband
+
     return person_lst
