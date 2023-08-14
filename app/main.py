@@ -1,32 +1,30 @@
 class Person:
     people = {}
 
-    def __init__(self, name, age):
+    def __init__(self, name: str, age: int) -> None:
         self.name = name
         self.age = age
         Person.people[self.name] = self
 
 
-def create_person_list(people):
-    person_list = []
-
-    name_to_instance = {}
-
-    for person_info in people:
-        name = person_info["name"]
-        age = person_info["age"]
-
-        person_list.append(Person(name, age))
-        name_to_instance[name] = Person(name, age)
+def create_person_list(people: dict) -> list:
+    person_list = [Person(person_info["name"], person_info["age"])
+                   for person_info in people]
+    Person.people = {person.name: person for person in person_list}
 
     for person_info in people:
         name = person_info["name"]
-        spouse_name = person_info.get("wife") or person_info.get("husband")
-
-        if spouse_name:
-            person_instance = name_to_instance[name]
-            spouse_instance = name_to_instance[spouse_name]
-            person_instance.spouse = spouse_instance
-            spouse_instance.spouse = person_instance
+        if person_info.get("wife"):
+            wife_name = person_info.get("wife")
+            person_instance = Person.people[name]
+            spouse_instance = Person.people[wife_name]
+            person_instance.wife = spouse_instance
+            spouse_instance.husband = person_instance
+        elif person_info.get("husband"):
+            husband_name = person_info.get("husband")
+            person_instance = Person.people[name]
+            spouse_instance = Person.people[husband_name]
+            person_instance.husband = spouse_instance
+            spouse_instance.wife = person_instance
 
     return person_list
