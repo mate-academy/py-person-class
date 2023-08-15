@@ -12,7 +12,6 @@ def create_person_list(people: dict) -> list:
         Person(person_info["name"], person_info["age"])
         for person_info in people
     ]
-    Person.people = {person.name: person for person in person_list}
 
     for person_info in people:
         name = person_info["name"]
