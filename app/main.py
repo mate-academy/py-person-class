@@ -7,21 +7,19 @@ class Person:
         Person.people[self.name] = self
 
 
-def create_person_list(people: list) -> list:
+def create_person_list(people: list[dict]) -> list:
     for person in people:
         person_info = list(person.values())
-        person_inst = Person(person_info[0], person_info[1])
-        if person_info[2] and list(person.keys())[2] == "wife":
-            person_inst.wife = person_info[2]
-        elif person_info[2] and list(person.keys())[2] == "husband":
-            person_inst.husband = person_info[2]
-    for name in Person.people:
-        for person in Person.people.values():
-            if Person.people[name] != person:
-                if hasattr(person, "husband"):
-                    if person.husband == name:
-                        person.husband = Person.people[name]
-                if hasattr(person, "wife"):
-                    if person.wife == name:
-                        person.wife = Person.people[name]
-    return [person for person in Person.people.values()]
+        Person(person_info[0], person_info[1])
+    for person in people:
+        if "wife" in person:
+            if person["wife"] is not None:
+                person_link = list(person.values())[0]
+                husband = Person.people[person_link]
+                husband.wife = Person.people[person["wife"]]
+        if "husband" in person:
+            if person["husband"] is not None:
+                person_link = list(person.values())[0]
+                wife = Person.people[person_link]
+                wife.husband = Person.people[person["husband"]]
+    return list(Person.people.values())
