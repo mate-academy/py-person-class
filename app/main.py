@@ -11,7 +11,7 @@ def create_person_list(people: list) -> list:
     person_list = []
 
     for person_data in people:
-        exemplar = Person(
+        person = Person(
             person_data["name"],
             person_data["age"]
         )
@@ -19,13 +19,13 @@ def create_person_list(people: list) -> list:
         husband = person_data.get("husband")
 
         if wife and wife in Person.people:
-            exemplar.wife = Person.people[wife]
-            Person.people[wife].husband = exemplar
+            person.wife = Person.people[wife]
+            Person.people[wife].husband = person
 
         elif husband and husband in Person.people:
-            exemplar.husband = Person.people[husband]
-            Person.people[husband].wife = exemplar
+            person.husband = Person.people[husband]
+            Person.people[husband].wife = person
 
-        person_list.append(exemplar)
+        person_list.append(person)
 
     return person_list
