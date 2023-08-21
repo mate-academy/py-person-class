@@ -18,5 +18,5 @@ def create_person_list(people: list) -> list:
                 = Person.people[person_data["wife"]]
         if person_data.get("husband") is not None:
             Person.people[person_data["name"]].husband \
-                = Person.people[person_data["husband"]]
+            = Person.people[person_data["husband"]]
     return people_list
