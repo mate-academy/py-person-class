@@ -8,18 +8,26 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
+    name_to_person = {}
     persone_list = []
+
     for person in people:
-        persone_list.append(Person(name=person["name"], age=person["age"]))
+        new_person = Person(name=person["name"], age=person["age"])
+        name_to_person[new_person.name] = new_person
+        persone_list.append(new_person)
 
     for persone in people:
-        for pers in persone_list:
-            if persone.get("name") == pers.name and persone.get("wife") is not None:
-                for wife_name in persone_list:
-                    if wife_name.name == persone.get("wife"):
-                        pers.wife = wife_name
-            if persone.get("name") == pers.name and persone.get("husband") is not None:
-                for husband_name in persone_list:
-                    if husband_name.name == persone.get("husband"):
-                        pers.husband = husband_name
+        person_name = persone["name"]
+        person = name_to_person.get(person_name)
+
+        if person:
+            wife_name = persone.get("wife")
+            husband_name = persone.get("husband")
+
+            if wife_name and wife_name in name_to_person:
+                person.wife = name_to_person[wife_name]
+
+            if husband_name and husband_name in name_to_person:
+                person.husband = name_to_person[husband_name]
+
     return persone_list
