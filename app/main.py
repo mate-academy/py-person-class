@@ -6,8 +6,6 @@ class Person:
                  age: int) -> None:
         self.name = name
         self.age = age
-        self.wife = None
-        self.husband = None
         Person.people[self.name] = self
 
 
@@ -24,9 +22,5 @@ def create_person_list(people: list) -> list:
             spouse = Person.people[citizen["wife"]]
             person.wife = spouse
             spouse.husband = person
-
-    for person in persons:
-        if person.wife is None:
-            del person.wife  # Remove the wife attribute if it is None
 
     return persons
