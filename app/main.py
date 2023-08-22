@@ -18,7 +18,8 @@ def create_person_list(people: list) -> list:
         persons.append(person)
 
     for citizen in people:
-        if "wife" in citizen and citizen["wife"] is not None:
+        spouse_name = citizen.get("wife")
+        if spouse_name is not None:
             person = Person.people[citizen["name"]]
             spouse = Person.people[citizen["wife"]]
             person.wife = spouse
@@ -26,6 +27,6 @@ def create_person_list(people: list) -> list:
 
     for person in persons:
         if person.wife is None:
-            del person.wife
+            del person.wife  # Remove the wife attribute if it is None
 
     return persons
