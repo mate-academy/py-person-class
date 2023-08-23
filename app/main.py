@@ -8,18 +8,19 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-
-    list_of_people = []
+    people_objs = []
 
     for data in people:
         person_inst = Person(data["name"], data["age"])
-        list_of_people.append(person_inst)
+        people_objs.append(person_inst)
 
     for data in people:
-        for names in Person.people.keys():
-            if "wife" in data and data["wife"] == names:
-                Person.people[data["name"]].wife = Person.people[names]
-            elif "husband" in data and data["husband"] == names:
-                Person.people[data["name"]].husband = Person.people[names]
+        if data.get("wife") in Person.people:
+            Person.people[data["name"]].wife \
+                = Person.people[data["wife"]]
 
-    return list_of_people
+        elif data.get("husband") in Person.people:
+            Person.people[data["name"]].husband \
+                = Person.people[data["husband"]]
+
+    return people_objs
