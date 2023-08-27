@@ -15,6 +15,7 @@ def create_person_list(people: list) -> list:
         name = human["name"]
         age = human["age"]
         pers = Person(name, age)
+
         if "wife" in human:
             wife_name = human["wife"]
             wife = Person.people.get(wife_name)
@@ -29,4 +30,5 @@ def create_person_list(people: list) -> list:
                 pers.husband = husband
                 husband.wife = pers
         persons.append(pers)
+
     return persons
