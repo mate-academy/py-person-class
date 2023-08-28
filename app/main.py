@@ -14,21 +14,21 @@ def create_person_list(people: list) -> list:
     for human in people:
         name = human["name"]
         age = human["age"]
-        pers = Person(name, age)
+        person = Person(name, age)
 
-        if "wife" in human:
+        if human.get("wife"):
             wife_name = human["wife"]
             wife = Person.people.get(wife_name)
             if wife:
-                pers.wife = wife
-                wife.husband = pers
+                person.wife = wife
+                wife.husband = person
 
-        if "husband" in human:
+        if human.get("husband"):
             husband_name = human["husband"]
             husband = Person.people.get(husband_name)
             if husband:
-                pers.husband = husband
-                husband.wife = pers
-        persons.append(pers)
+                person.husband = husband
+                husband.wife = person
+        persons.append(person)
 
     return persons
