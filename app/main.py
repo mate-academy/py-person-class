@@ -29,4 +29,3 @@ def create_person_list(peoples: list) -> list:
                     person.husband = husband
 
     return main_list
-
