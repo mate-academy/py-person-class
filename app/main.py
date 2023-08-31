@@ -8,24 +8,23 @@ class Person:
         Person.people.update({name: self})
 
 
-def create_person_list(peoples: list) -> list:
+def create_person_list(people: list) -> list:
     main_list = []
 
-    for people in peoples:
-        person = Person(people["name"], people["age"])
-        main_list.append(person)
+    for person in people:
+        main_list.append(Person(person["name"], person["age"]))
 
-    for people in peoples:
-        person = [p for p in main_list if p.name == people["name"]][0]
+    for person in people:
+        person_now = [p for p in main_list if p.name == person["name"]][0]
 
-        if "wife" in people:
+        if "wife" in person:
             for wife in main_list:
-                if people["wife"] == wife.name:
-                    person.wife = wife
+                if person["wife"] == wife.name:
+                    person_now.wife = wife
 
-        elif "husband" in people:
+        elif "husband" in person:
             for husband in main_list:
-                if people["husband"] == husband.name:
-                    person.husband = husband
+                if person["husband"] == husband.name:
+                    person_now.husband = husband
 
     return main_list
