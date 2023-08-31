@@ -9,18 +9,13 @@ class Person:
 
 def create_person_list(people: list) -> list:
     update_list = [Person(person["name"], person["age"]) for person in people]
-    for person in range(len(people)):
-        for data in range(len(people)):
-
-            if "wife" in people[person] and people[person]["wife"] is not None:
-                if people[person]["wife"] == people[data]["name"]:
-                    update_list[person].wife = \
-                        Person.people[people[data]["name"]]
-
-            if "husband" in people[person] \
-                    and people[person]["husband"] is not None:
-
-                if people[person]["husband"] == people[data]["name"]:
-                    update_list[person].husband = \
-                        Person.people[people[data]["name"]]
+    for person in people:
+        if "wife" in person and person["wife"] is not None:
+            if person["wife"] in Person.people:
+                update_list[people.index(person)].wife = \
+                    Person.people[person["wife"]]
+        if "husband" in person and person["husband"] is not None:
+            if person["husband"] in Person.people:
+                update_list[people.index(person)].husband = \
+                    Person.people[person["husband"]]
     return update_list
