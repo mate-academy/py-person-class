@@ -15,7 +15,7 @@ def create_person_list(people: list) -> list:
         main_list.append(Person(person["name"], person["age"]))
 
     for person in people:
-        person_now = [p for p in main_list if p.name == person["name"]][0]
+        current_person = Person.people[person["name"]]
 
         if "wife" in person:
             for wife in main_list:
