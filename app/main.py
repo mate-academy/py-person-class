@@ -20,11 +20,11 @@ def create_person_list(people: list) -> list:
         if "wife" in person:
             for wife in main_list:
                 if person["wife"] == wife.name:
-                    person_now.wife = wife
+                    current_person.wife = wife
 
         elif "husband" in person:
             for husband in main_list:
                 if person["husband"] == husband.name:
-                    person_now.husband = husband
+                    current_person.husband = husband
 
     return main_list
