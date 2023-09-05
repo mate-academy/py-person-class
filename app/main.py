@@ -7,6 +7,7 @@ class Person:
         Person.people[self.name] = self
 
 
+# list that contains objects of class Person has typehint list[Person]
 def create_person_list(people: list) -> list[Person]:
     person_list = [
         Person(person["name"], person["age"]) for person in people
