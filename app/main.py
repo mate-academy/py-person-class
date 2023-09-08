@@ -1,8 +1,29 @@
 class Person:
-    # write your code here
-    pass
+    people = {}
+
+    def __init__(self, name: str, age: int) -> None:
+        self.name = name
+        self.age = age
+        Person.people[self.name] = self
 
 
 def create_person_list(people: list) -> list:
-    # write your code here
-    pass
+    result = []
+    for person in people:
+        Person(person["name"], person["age"])
+
+    for person in people:
+        partner_key = list(person.keys())[2]
+        if person[partner_key] is not None:
+            partner = Person.people[person[partner_key]]
+            if partner_key == "wife":
+                Person.people[person["name"]].wife = partner
+            else:
+                Person.people[person["name"]].husband = partner
+            # setattr(
+            #     Person.people[person["name"]],
+            #     partner,
+            #     Person.people[person[partner]]
+            # )
+        result.append(Person.people[person["name"]])
+    return result
