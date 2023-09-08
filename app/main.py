@@ -4,7 +4,7 @@ class Person:
     def __init__(self, name: str, age: int) -> None:
         self.name = name
         self.age = age
-        Person.people[self.name] = self
+        Person.people[name] = self
 
 
 def create_person_list(people: list) -> list:
@@ -20,10 +20,5 @@ def create_person_list(people: list) -> list:
                 Person.people[person["name"]].wife = partner
             else:
                 Person.people[person["name"]].husband = partner
-            # setattr(
-            #     Person.people[person["name"]],
-            #     partner,
-            #     Person.people[person[partner]]
-            # )
         result.append(Person.people[person["name"]])
     return result
