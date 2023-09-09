@@ -4,17 +4,17 @@
 
 
 You have a list of dicts `people`, every dict means
-a **person**, it has keys: `name`, `age`, 
-`wife`/`husband` - depends on person is male or 
-female. All `names` are different. Key 
-`wife`/`husband` can be either `None` or 
+a **person**, it has keys: `name`, `age`,
+`wife`/`husband` - depends on person is male or
+female. All `names` are different. Key
+`wife`/`husband` can be either `None` or
 name of another person.
 
 Create class `Person`. It's `__init__` method takes
 and store `name`, `age` of a person.
 This class also should have a class attribute
-`people`, it is a dict that stores `Person` 
-instances by their `name`. The `__init__` method should 
+`people`, it is a dict that stores `Person`
+instances by their `name`. The `__init__` method should
 add elements to this attribute.
 
 Write function `create_person_list`, this function
