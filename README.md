@@ -23,7 +23,7 @@ takes list `people` and return list with
 
 **Note:**
 
-If **person's** key `wife`/`husband` is not 
+If **person's** key `wife`/`husband` is not
 `None` - `create_person_list` should add 
 attribute `wife`/`husband` respectively
 to its instance. This attribute should
@@ -39,7 +39,7 @@ people = [
     {"name": "Rachel", "age": 28, "husband": "Ross"}
 ]
 
-person_list = create_person_list(people) 
+person_list = create_person_list(people)
 isinstance(person_list[0], Person) # True
 person_list[0].name == "Ross"
 person_list[0].wife is person_list[2] # True
