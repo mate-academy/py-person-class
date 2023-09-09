@@ -8,9 +8,7 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    result = []
-    for person in people:
-        Person(person["name"], person["age"])
+    result = [Person(person["name"], person["age"]) for person in people]
 
     for person in people:
         partner_key = list(person.keys())[2]
@@ -20,5 +18,4 @@ def create_person_list(people: list) -> list:
                 Person.people[person["name"]].wife = partner
             else:
                 Person.people[person["name"]].husband = partner
-        result.append(Person.people[person["name"]])
     return result
