@@ -28,7 +28,7 @@ def people_data():
 
 @pytest.fixture()
 def created_person_list(people_data):
-    return create_person_list()
+    return create_person_list(people_data)
 
 
 def test_person_class_attribute_people_exists():
