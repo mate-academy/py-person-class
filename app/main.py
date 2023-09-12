@@ -13,12 +13,12 @@ def create_person_list(people: list) -> list:
     for person in people:
         human = Person.people[person["name"]]
 
-        if "wife" in person and person["wife"]:
-            wife_to_add = Person.people[person["wife"]]
-            setattr(human, "wife", wife_to_add)
+        if "husband" in person and person["husband"]:
+            add_husband = Person.people[person["husband"]]
+            setattr(human, "husband", add_husband)
 
-        elif "husband" in person and person["husband"]:
-            husband_to_add = Person.people[person["husband"]]
-            setattr(human, "husband", husband_to_add)
+        elif "wife" in person and person["wife"]:
+            add_wife = Person.people[person["wife"]]
+            setattr(human, "wife", add_wife)
 
     return result
