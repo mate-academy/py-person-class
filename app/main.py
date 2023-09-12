@@ -10,8 +10,8 @@ def create_person_list(people_list: list[dict]) -> list[Person]:
     person_list = []
 
     for person_dict in people_list:
-        name = person_dict["name"]
-        age = person_dict["age"]
+        name = person_dict.get("name")
+        age = person_dict.get("age")
         person = Person(name, age)
 
         wife_name = person_dict.get("wife")
