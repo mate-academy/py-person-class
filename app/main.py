@@ -14,11 +14,10 @@ def create_person_list(people: list) -> list:
     ]
 
     for person_dict in people:
+        person = Person.people[person_dict["name"]]
         if person_dict.get("wife"):
-            Person.people[person_dict["name"]].wife = \
-                Person.people[person_dict["wife"]]
+            person.wife = Person.people[person_dict["wife"]]
         if person_dict.get("husband"):
-            Person.people[person_dict["name"]].husband = \
-                Person.people[person_dict["husband"]]
+            person.husband = Person.people[person_dict["husband"]]
 
     return people_instances
