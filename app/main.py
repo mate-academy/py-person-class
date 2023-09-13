@@ -7,12 +7,22 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
+    new_arr = []
     for person in people:
+        new_arr.append(Person(person.get("name"),person.get("age")))
         if person.get('wife') != None:
-            person["wife"] = Person.person_list.get(person["name"])
+             person["wife"] = Person.person_list.get(person["name"])
         if person.get('husband') != None:
-            person["husband"] = Person.person_list.get(person["name"])
-    print(people)
+             person["husband"] = Person.person_list.get(person["name"])
+    print(new_arr)
+
+
+    # for person in people:
+    #     if person.get('wife') != None:
+    #         person["wife"] = Person.person_list.get(person["name"])
+    #     if person.get('husband') != None:
+    #         person["husband"] = Person.person_list.get(person["name"])
+    # print(people)
 
     # print(Person.person_list)
     # new_arr = []
