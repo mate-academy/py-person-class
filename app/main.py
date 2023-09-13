@@ -8,10 +8,10 @@ class Person:
 
 
 def create_person_list(people: list[dict]) -> list:
-    les = []
+    les1 = []
 
     for obj in people:
-        les.append(Person(obj["name"], obj["age"]))
+        les1.append(Person(obj["name"], obj["age"]))
 
     for obj in people:
         if "husband" in obj:
@@ -24,7 +24,7 @@ def create_person_list(people: list[dict]) -> list:
             if isinstance(obj["wife"], str):
                 Person.people[obj["name"]].wife = Person.people[obj["wife"]]
 
-    return les
+    return les1
 
 
 # people = [
@@ -38,7 +38,7 @@ def create_person_list(people: list[dict]) -> list:
 # # print(isinstance(person_list[0], Person))  # True
 # # print(person_list[0].name)
 # # print(person_list[0].wife is person_list[2])  # True
-# # print(person_list[0].wife.name)  # 'Rachel'
+# # print(person_list[0].wife.name # 'Rachel'
 # # #
 # # print(person_list[1].name)  # == 'Joey'
 # print(person_list[1].wife)
