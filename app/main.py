@@ -15,6 +15,7 @@ def create_person_list(people: list) -> list:
         if person.get('husband') != None:
              person["husband"] = Person.person_list.get(person["name"])
     print(new_arr)
+    return new_arr
 
 
     # for person in people:
