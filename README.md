@@ -33,7 +33,7 @@ same as `wife`/`husband` key in person's dict.
 
 Example:
 ```python
-  people = [
+people = [
     {'name': 'Ross', 'age': 30, 'wife': 'Rachel'},
     {'name': 'Joey', 'age': 29, 'wife': None},
     {'name': 'Rachel', 'age': 28, 'husband': 'Ross'}
