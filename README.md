@@ -60,6 +60,7 @@ Person.people == {
     'Ross': <__main__.Person object at 0x10c20ca60>,
     'Joey': <__main__.Person object at 0x10c180a00>,
     'Rachel': <__main__.Person object at 0x10c1804f0>
+
 }
 ```
 `Hint` - use `pytest` for testing
