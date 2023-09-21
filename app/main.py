@@ -1,7 +1,11 @@
 class Person:
     people = {}
 
-    def __init__(self, name: str, age: int) -> None:
+    def __init__(
+            self,
+            name: str,
+            age: int = None
+    ) -> None:
         self.name = name
         self.age = age
         Person.people[name] = self
@@ -9,25 +13,22 @@ class Person:
 
 def create_person_list(people: list) -> list:
     person_list = []
-    people_mapping = {}
 
     for person_data in people:
         name = person_data["name"]
-        age = person_data.get("age", None)
-        person = Person(name, age)
-        people_mapping[name] = person
-        person_list.append(person)
+        age = person_data.get("age")
+        person_list.append(Person(name, age))
 
     for person_data in people:
         name = person_data["name"]
-        person = people_mapping[name]
+        person = Person.people[name]
 
-        wife_name = person_data.get("wife", None)
+        wife_name = person_data.get("wife")
         if wife_name:
-            person.wife = people_mapping.get(wife_name, None)
+            person.wife = Person.people.get(wife_name)
 
-        husband_name = person_data.get("husband", None)
+        husband_name = person_data.get("husband")
         if husband_name:
-            person.husband = people_mapping.get(husband_name, None)
+            person.husband = Person.people.get(husband_name)
 
     return person_list
