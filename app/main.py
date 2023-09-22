@@ -14,10 +14,6 @@ def create_person_list(people: list[dict]) -> list[Person]:
             for key in Person.people:
                 if key == elem["wife"]:
                     Person.people[elem["name"]].wife = Person.people[key]
-                    break
-        elif "husband" in elem.keys() and elem["husband"] is not None:
-            for key in Person.people:
-                if key == elem["husband"]:
-                    Person.people[elem["name"]].husband = Person.people[key]
+                    Person.people[key].husband = Person.people[elem["name"]]
                     break
     return res_list
