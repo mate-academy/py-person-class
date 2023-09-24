@@ -8,6 +8,7 @@ class Person:
         self.husband = None
         self.__class__.people[name] = self
 
+
 def create_person_list(people: list) -> list:
     person_instances = []
     for person_list in people:
