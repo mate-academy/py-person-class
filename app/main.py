@@ -8,23 +8,14 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    result = []
-    for person_info in people:
-        name = person_info["name"]
-        age = person_info["age"]
-        person = Person(name, age)
-
-        if "wife" in person_info and person_info["wife"] is not None:
-            person.wife = person_info["wife"]
-        elif "husband" in person_info and person_info["husband"] is not None:
-            person.husband = person_info["husband"]
-
-        result.append(person)
-
-    for person in result:
-        if hasattr(person, "wife") and person.wife in Person.people:
-            person.wife = Person.people[person.wife]
-        if hasattr(person, "husband") and person.husband in Person.people:
-            person.husband = Person.people[person.husband]
-
-    return result
+    all_people = [
+        Person(details["name"], details["age"]) for details in people
+    ]
+    for i, person_info in enumerate(people):
+        if person_info.get("wife"):
+            all_people[i].wife = person_info["wife"]
+            all_people[i].wife = Person.people[person_info["wife"]]
+        elif person_info.get("husband"):
+            all_people[i].husband = person_info["husband"]
+            all_people[i].husband = Person.people[person_info["husband"]]
+    return all_people
