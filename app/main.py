@@ -15,14 +15,15 @@ def create_person_list(people: list) -> list:
 
     for result_index, human in enumerate(people):
 
-        if "wife" in human and human["wife"] is not None:
-            wife_name = human["wife"]
-            if wife_name in Person.people:
-                result[result_index].wife = Person.people[wife_name]
+    for result_index, human in enumerate(people):
+    
+        wife_name = human.get("wife")
+        if wife_name is not None:
+            result[result_index].wife = Person.people.get(wife_name)
+    
+        husband_name = human.get("husband")
+        if husband_name is not None:
+            result[result_index].husband = Person.people.get(husband_name)
 
-        if "husband" in human and human["husband"] is not None:
-            husband_name = human["husband"]
-            if husband_name in Person.people:
-                result[result_index].husband = Person.people[husband_name]
 
     return result
