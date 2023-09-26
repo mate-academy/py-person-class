@@ -23,5 +23,4 @@ def create_person_list(people: list) -> list:
         if husband_name is not None:
             result[result_index].husband = Person.people.get(husband_name)
 
-
     return result
