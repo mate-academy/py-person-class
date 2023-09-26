@@ -13,9 +13,9 @@ def create_person_list(people: list) -> list:
     ]
     for i, person_info in enumerate(people):
         if person_info.get("wife"):
-            all_people[i].wife = person_info["wife"]
-            all_people[i].wife = Person.people[person_info["wife"]]
+            wife = person_info["wife"]
+            all_people[i].wife = Person.people[wife]
         elif person_info.get("husband"):
-            all_people[i].husband = person_info["husband"]
-            all_people[i].husband = Person.people[person_info["husband"]]
+            husband = person_info["husband"]
+            all_people[i].husband = Person.people[husband]
     return all_people
