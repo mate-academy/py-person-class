@@ -11,11 +11,7 @@ class Person:
 
 def create_person_list(people: list) -> list:
 
-    result = []
-
-    for human in people:
-        person = Person(human["name"], human["age"])
-        result.append(person)
+    result = [Person(human["name"], human["age"]) for human in people]
 
     for result_index, human in enumerate(people):
 
