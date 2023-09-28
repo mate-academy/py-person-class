@@ -17,7 +17,7 @@ def create_person_list(people: list) -> list:
         person = Person(name, age)
         person_list.append(person)
 
-        if wife is not None and wife in Person.people:
+        if wife and wife in Person.people:
             person.wife = Person.people[wife]
             Person.people[wife].husband = person
 
