@@ -9,15 +9,18 @@ class Person:
 
 def create_person_list(people_list: list) -> list:
 
-    persons = [Person(per["name"], per["age"]) for per in people_list]
+    persons = [Person(temp_person["name"],
+                      temp_person["age"])
+               for temp_person in people_list
+               ]
 
-    for people, value in zip(persons, people_list):
-        if "wife" in value and value["wife"]:
-            for count in Person.people:
-                if count == value["wife"]:
-                    people.wife = Person.people[count]
-        if "husband" in value and value["husband"]:
-            for count in Person.people:
-                if count == value["husband"]:
-                    people.husband = Person.people[count]
+    for person, value in zip(persons, people_list):
+        if value.get("wife"):
+            wife = Person.people.get(value["wife"])
+            if wife:
+                person.wife = wife
+        if value.get("husband"):
+            husband = Person.people.get(value["husband"])
+            if husband:
+                person.husband = husband
     return persons
