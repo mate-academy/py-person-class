@@ -8,21 +8,16 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    list_persons = []
-    mari_list = ["wife", "husband"]
-    for humain in people:
-        person = Person(humain["name"], humain["age"])
-        for mari in mari_list:
-            if humain.get(mari) and humain[mari]:
-                setattr(person, mari, humain[mari])
-        list_persons.append(person)
+    for human in people:
+        Person(human["name"], human["age"])
 
-    for person in list_persons:
-        for mari in mari_list:
-            if getattr(person, mari, None):
-                for person_2 in list_persons:
-                    if person_2.name == getattr(person, mari):
-                        setattr(person, mari, person_2)
-                        break
+    for human in people:
+        husband_name = human.get("husband", None)
+        wife_name = human.get("wife", None)
+        person = Person.people[human["name"]]
+        if wife_name:
+            person.wife = Person.people[wife_name]
+        if husband_name:
+            person.husband = Person.people[husband_name]
 
-    return list_persons
+    return list(Person.people.values())
