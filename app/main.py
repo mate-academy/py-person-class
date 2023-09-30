@@ -7,10 +7,9 @@ class Person:
         Person.people[name] = self
 
 
-def create_person_list(people_list: list) -> list:
+def create_person_list(people_list: list) -> list[Person]:
 
-    persons = [Person(temp_person["name"],
-                      temp_person["age"])
+    persons = [Person(temp_person["name"], temp_person["age"])
                for temp_person in people_list
                ]
 
