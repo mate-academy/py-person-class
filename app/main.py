@@ -8,10 +8,10 @@ class Person:
         Person.people[name] = self
 
     def add_husband_wife_if_merried(self, person: dict) -> None:
-        if person.get("wife") is not None:
+        if person.get("wife"):
             self.wife = Person.people.get(person.get("wife"))
 
-        if person.get("husband") is not None:
+        if person.get("husband"):
             self.husband = Person.people.get(person.get("husband"))
 
 
