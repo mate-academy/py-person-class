@@ -20,9 +20,13 @@ def create_person_list(people: list) -> list:
 
         if wife:
             person.wife = Person.people.get(wife)
+            if person.wife:
+                person.wife.husband = person
 
         if husband:
             person.husband = Person.people.get(husband)
+            if person.husband:
+                person.husband.wife = person
 
         instances_list.append(person)
     return instances_list
