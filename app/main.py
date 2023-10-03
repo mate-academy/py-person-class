@@ -1,8 +1,26 @@
 class Person:
-    # write your code here
-    pass
+    people = {}
+
+    def __init__(self, name: str, age: int):
+        self.name = name
+        self.age = age
+        self.__class__.people[name] = self
+
+    @classmethod
+    def couple_create(cls, name: str, couple_name: str, is_male: bool) -> None:
+        if couple_name in cls.people and is_male:
+            cls.people[name].wife = cls.people[couple_name]
+        else:
+            cls.people[name].husband = cls.people[couple_name]
 
 
 def create_person_list(people: list) -> list:
-    # write your code here
-    pass
+    list_of_people = [Person(person["name"], person["age"])
+                      for person in people]
+    for person in people:
+        if None not in person.values():
+            if "wife" in person:
+                Person.couple_create(person["name"], person["wife"], True)
+            else:
+                Person.couple_create(person["name"], person["husband"], False)
+    return list_of_people
