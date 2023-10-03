@@ -8,11 +8,7 @@ class Person:
 
 
 def create_person_list(people: list[dict]) -> list:
-    people_list = []
-    for person in people:
-        name = person["name"]
-        age = person["age"]
-        people_list.append(Person(name, age))
+    people_list = [Person(person["name"], person["age"]) for person in people]
 
     for index, person in enumerate(people):
         if person.get("wife"):
