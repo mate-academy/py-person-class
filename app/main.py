@@ -10,23 +10,19 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    instances_list = []
+    instances_list = [
+        Person(person["name"], person["age"])
+        for person in people
+    ]
 
-    for person_info in people:
-        person = Person(person_info["name"], person_info["age"])
-
+    for index, person_info in enumerate(people):
         husband = person_info.get("husband")
         wife = person_info.get("wife")
 
         if wife:
-            person.wife = Person.people.get(wife)
-            if person.wife:
-                person.wife.husband = person
+            instances_list[index].wife = Person.people.get(wife)
 
-        if husband:
-            person.husband = Person.people.get(husband)
-            if person.husband:
-                person.husband.wife = person
+        if husband is not None:
+            instances_list[index].husband = Person.people.get(husband)
 
-        instances_list.append(person)
     return instances_list
