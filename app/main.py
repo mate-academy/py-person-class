@@ -9,15 +9,16 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    person_list = []
-
-    for person in people:
-        person_list.append(Person(person["name"], person["age"]))
+    person_list = [Person(person["name"], person["age"]) for person in people]
 
     for index, person in enumerate(people):
-        if "wife" in person and person["wife"]:
-            person_list[index].wife = Person.people[person["wife"]]
-        if "husband" in person and person["husband"]:
-            person_list[index].husband = Person.people[person["husband"]]
+        if "wife" in person:
+            wife = Person.people.get(person["wife"])
+            if wife:
+                person_list[index].wife = wife
+        if "husband" in person:
+            husband = Person.people.get(person["husband"])
+            if husband:
+                person_list[index].husband = husband
 
     return person_list
