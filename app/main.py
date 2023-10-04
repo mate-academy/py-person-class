@@ -17,6 +17,3 @@ def create_person_list(people: list) -> list:
         if husband:
             person_list[index].husband = Person.people.get(husband)
     return person_list
-
-
-
