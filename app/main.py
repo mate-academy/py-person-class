@@ -9,7 +9,8 @@ class Person:
 
 def create_person_list(people_data: dict) -> list[Person]:
 
-    person_list = [Person(person_item["name"], person_item["age"]) for person_item in people_data]
+    person_list = [Person(person_item["name"], person_item["age"])
+                   for person_item in people_data]
 
     for index, person in enumerate(people_data):
         wife = person.get("wife")
