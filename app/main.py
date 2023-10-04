@@ -22,7 +22,7 @@ def create_person_list(people: list) -> list:
         if wife:
             instances_list[index].wife = Person.people.get(wife)
 
-        if husband is not None:
+        if husband:
             instances_list[index].husband = Person.people.get(husband)
 
     return instances_list
