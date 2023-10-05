@@ -8,12 +8,9 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    person_instances = []
-
-    for person in people:
-        name = person["name"]
-        age = person["age"]
-        person_instances.append(Person(name, age))
+    person_instances = [
+        Person(person["name"], person["age"]) for person in people
+    ]
 
     for ind in people:
         """ind -> individual ;P; in other case the line"s too long"""
