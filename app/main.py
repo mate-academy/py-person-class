@@ -13,10 +13,10 @@ def create_person_list(people: list) -> list:
     ]
 
     for ind in people:
-        """ind -> individual ;P; in other case the line"s too long"""
+        person_name = Person.people[ind["name"]]
         if ind.get("wife"):
-            Person.people[ind["name"]].wife = Person.people[ind["wife"]]
+            person_name.wife = Person.people[ind["wife"]]
         elif ind.get("husband"):
-            Person.people[ind["name"]].husband = Person.people[ind["husband"]]
+            person_name.husband = Person.people[ind["husband"]]
 
     return person_instances
