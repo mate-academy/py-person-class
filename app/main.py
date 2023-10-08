@@ -16,5 +16,3 @@ def create_person_list(people: list) -> list:
         elif person.get("husband"):
             get_person.husband = Person.people[person["husband"]]
     return people_list
-
-
