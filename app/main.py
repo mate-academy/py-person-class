@@ -9,35 +9,27 @@ class Person:
 
 def create_person_list(people: list) -> list:
     result = []
-    for pers in range(len(people)):
-        obj = people[pers]
-        the_name = obj["name"][:]
-        the_name = Person(obj["name"], obj["age"])
-        Person.people[obj["name"][:]] = the_name
-        if "wife" in obj:
-            setattr(the_name, "wife", obj["wife"])
-        if "husband" in obj:
-            setattr(the_name, "husband", obj["husband"])
+    for pers in people:
+        # obj = pers["name"][:]
+        obj = Person(pers["name"], pers["age"])
+        Person.people[pers["name"]] = obj
+        result.append(obj)
 
-        result.append(the_name)
+    for el in people:
+        person_name = el["name"]
+        if "wife" in el and el["wife"] is not None:
+            (setattr
+             (Person.people[person_name],
+              "wife",
+              Person.people[el["wife"]]))
+        if "husband" in el and el["husband"] is not None:
+            (setattr
+             (Person.people[person_name],
+              "husband",
+              Person.people[el["husband"]]))
 
-    for el in result:
-        if hasattr(el, "wife"):
-            if el.wife is not None:
-                for obj_el in result:
-                    if obj_el.name == el.wife:
-                        el.wife = obj_el
-            else:
-                delattr(el, "wife")
-        if hasattr(el, "husband"):
-            print(el.husband)
-            if el.husband is not None:
-                for obj_el in result:
-                    if obj_el.name == el.husband:
-                        el.husband = obj_el
-            else:
-                delattr(el, "husband")
     return result
+
 
 # people = [
 #     {"name": "Ross", "age": 30, "wife": "Rachel"},
@@ -46,9 +38,13 @@ def create_person_list(people: list) -> list:
 # ]
 #
 # person_list = create_person_list(people)
-# print(Person.people)
+# print(f"people: {people}")
+# print(f"Person(objects): {Person.people}")
+# print(person_list)
+#
 # print(person_list[2].name)
 # print(person_list[2].husband.name)
 # print(person_list[2].husband.wife is person_list[2])
 # print(isinstance(person_list[2], Person))
 # print(person_list[1].name)
+# print(Person.people)
