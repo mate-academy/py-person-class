@@ -7,11 +7,14 @@ class Person:
         Person.people[name] = self
 
     @classmethod
-    def couple_create(cls, name: str, couple_name: str, is_male: bool) -> None:
-        if couple_name in cls.people and is_male:
-            cls.people[name].wife = cls.people[couple_name]
+    def couple_create(cls,
+                      name: str,
+                      partner_name: str,
+                      is_male: bool) -> None:
+        if partner_name in cls.people and is_male:
+            cls.people[name].wife = cls.people[partner_name]
         else:
-            cls.people[name].husband = cls.people[couple_name]
+            cls.people[name].husband = cls.people[partner_name]
 
 
 def create_person_list(people: list) -> list:
