@@ -18,13 +18,11 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    list_of_people = [
-        Person(person["name"], person["age"])
-        for person in people
-    ]
-    for person in people:
-        if person.get("wife"):
-            Person.couple_create(person["name"], person["wife"], True)
-        elif person.get("husband"):
-            Person.couple_create(person["name"], person["husband"], False)
-    return list_of_people
+     people_list = [Person(person["name"], person["age"]) for person in people]
+     for person in people:
+         person_instance = Person.people[person["name"]]
+         if person.get("wife"):
+             person_instance.wife = Person.people[person["wife"]]
+         elif person.get("husband"):
+             person_instance.husband = Person.people[person["husband"]]
+     return people_list
