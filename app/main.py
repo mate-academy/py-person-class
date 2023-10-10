@@ -8,13 +8,15 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    person_list = [Person(person["name"],
-                          person.get("age"))
-                   for person in people]
+    person_list = [
+        Person(person["name"], person.get("age"))
+        for person in people
+    ]
 
-    relationship = [(person["name"],
-                     person.get("wife"), person.get("husband"))
-                    for person in people]
+    relationship = [
+        (person["name"], person.get("wife"), person.get("husband"))
+        for person in people
+    ]
 
     for name, wife_name, husband_name in relationship:
         person = Person.people[name]
