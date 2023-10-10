@@ -6,23 +6,22 @@ class Person:
         self.age = age
         Person.people[name] = self
 
-    @classmethod
-    def couple_create(cls,
-                      name: str,
-                      partner_name: str,
-                      is_male: bool) -> None:
-        if partner_name in cls.people and is_male:
-            cls.people[name].wife = cls.people[partner_name]
-        else:
-            cls.people[name].husband = cls.people[partner_name]
-
 
 def create_person_list(people: list) -> list:
-    people_list = [Person(person["name"], person["age"]) for person in people]
-    for person in people:
-        person_instance = Person.people[person["name"]]
-        if person.get("wife"):
-            person_instance.wife = Person.people[person["wife"]]
-        elif person.get("husband"):
-            person_instance.husband = Person.people[person["husband"]]
-    return people_list
+    list_of_people = []
+
+    for person_data in people:
+        name = person_data["name"]
+        age = person_data["age"]
+        new_person = Person(name, age)
+        list_of_people.append(new_person)
+
+        if "wife" in person_data and person_data["wife"] in Person.people:
+            new_person.wife = Person.people[person_data["wife"]]
+            Person.people[person_data["wife"]].husband = new_person
+        elif "husband" in person_data and \
+             person_data["husband"] in Person.people:
+            new_person.husband = Person.people[person_data["husband"]]
+            Person.people[person_data["husband"]].wife = new_person
+
+    return list_of_people
