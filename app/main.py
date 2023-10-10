@@ -8,8 +8,6 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    persons_ls = []
-
     persons_ls = [Person(body["name"], body["age"]) for body in people]
 
     for person_data in people:
