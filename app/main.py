@@ -16,14 +16,10 @@ def create_person_list(people: list) -> list:
     for person_data in people:
         person = Person.people[person_data["name"]]
 
-        wife = Person.people.get(person_data.get("wife"))
-        if wife is not None:
-            person.wife = wife
-            wife.husband = person
+        if person_data.get("wife"):
+            person.wife = Person.people[person_data["wife"]]
 
-        husband = Person.people.get(person_data.get("husband"))
-        if husband is not None:
-            person.husband = husband
-            husband.wife = person
+        elif person_data.get("husband"):
+            person.husband = Person.people[person_data["husband"]]
 
     return list_of_people
