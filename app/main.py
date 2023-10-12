@@ -9,14 +9,14 @@ class Person:
 
 
 def create_person_list(people: list[dict]) -> list[Person]:
-    persons_ls = []
     persons_ls = [Person(body["name"], body["age"]) for body in people]
 
-    for cha in range(len(people)):
+    for man in range(len(people)):
 
-        if "wife" in people[cha] and people[cha]["wife"] is not None:
-            persons_ls[cha].wife = Person.people.get(people[cha]["wife"])
-        if "husband" in people[cha] and people[cha]["husband"] is not None:
-            persons_ls[cha].husband = Person.people.get(people[cha]["husband"])
+        # if "wife" in people[person] and people[person]["wife"] is not None:
+        if people[man].get("whife") is not None:
+            persons_ls[man].wife = Person.people.get(people[man]["wife"])
+        if people[man].get("husband") is not None:
+            persons_ls[man].husband = Person.people.get(people[man]["husband"])
 
     return persons_ls
