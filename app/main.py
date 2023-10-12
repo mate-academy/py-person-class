@@ -5,18 +5,31 @@ class Person:
     def __init__(self, name: str, age: int) -> None:
         self.name = name
         self.age = age
-        Person.people[name] = self
+        self.wife = None
+        self.husband = None
+        Person.people[self.name] = self
 
 
 def create_person_list(people: list[dict]) -> list[Person]:
-    persons_ls = [Person(body["name"], body["age"]) for body in people]
+    people_answer = []
+    for person in people:
+        new_person = Person(name=person["name"], age=person["age"])
+        wife_name = person.get("wife")
+        husband_name = person.get("husband")
 
-    for man in range(len(people)):
+        if wife_name is not None:
+            new_person.wife = wife_name
+        if husband_name is not None:
+            new_person.husband = husband_name
+        people_answer.append(new_person)
 
-        # if "wife" in people[person] and people[person]["wife"] is not None:
-        if people[man].get("whife") is not None:
-            persons_ls[man].wife = Person.people.get(people[man]["wife"])
-        if people[man].get("husband") is not None:
-            persons_ls[man].husband = Person.people.get(people[man]["husband"])
-
-    return persons_ls
+    for person in people_answer:
+        if person.wife is not None:
+            person.wife = Person.people[person.wife]
+        else:
+            del person.wife
+        if person.husband is not None:
+            person.husband = Person.people[person.husband]
+        else:
+            del person.husband
+    return people_answer
