@@ -9,12 +9,12 @@ class Person:
 
 def create_person_list(people: list) -> list:
     pep = [Person(p["name"], p["age"]) for p in people]
-    for i, p in enumerate(people):
+    for i, pop in enumerate(people):
         try:
-            if p["wife"] is not None:
-                pep[i].wife = Person.people[p["wife"]]
+            if pop["wife"] is not None:
+                pep[i].wife = Person.people[pop["wife"]]
         except KeyError:
-            if p["husband"] is not None:
-                pep[i].husband = Person.people[p["husband"]]
+            if pop["husband"] is not None:
+                pep[i].husband = Person.people[pop["husband"]]
 
     return pep
