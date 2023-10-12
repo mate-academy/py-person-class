@@ -7,14 +7,15 @@ class Person:
         Person.people[name] = self
 
 
-def create_person_list(people: list) -> list:
-    pep = [Person(p["name"], p["age"]) for p in people]
-    for i, pop in enumerate(people):
-        try:
-            if pop["wife"] is not None:
-                pep[i].wife = Person.people[pop["wife"]]
-        except KeyError:
-            if pop["husband"] is not None:
-                pep[i].husband = Person.people[pop["husband"]]
+def create_person_list(people_to_create: list) -> list:
+    person_list = [Person(name=person["name"], age=person["age"])
+                   for person in people_to_create]
 
-    return pep
+    for person in people_to_create:
+        current_person = Person.people[person["name"]]
+        if person.get("wife"):
+            current_person.wife = Person.people[person["wife"]]
+        elif person.get("husband"):
+            current_person.husband = Person.people[person["husband"]]
+
+    return person_list
