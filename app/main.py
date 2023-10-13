@@ -28,3 +28,4 @@ def create_person_list(people: list) -> list:
         spouse_name = obj.__dict__[spouse[0]]
         setattr(people_dict[person], spouse[0], people_dict[spouse_name])
 
+    return [person_obj for person_obj in people_dict.values()]
