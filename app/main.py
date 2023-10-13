@@ -20,3 +20,11 @@ def create_person_list(people: list) -> list:
 
         if spouse_name:
             setattr(people_dict[person_name], spouse, spouse_name)
+
+    for person, obj in people_dict.items():
+        spouse = [s for s in obj.__dict__ if s in ["wife", "husband"]]
+        if not spouse:
+            continue
+        spouse_name = obj.__dict__[spouse[0]]
+        setattr(people_dict[person], spouse[0], people_dict[spouse_name])
+
