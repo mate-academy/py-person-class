@@ -8,24 +8,18 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    people_dict = Person.people
+    couples = []  # List of tuples (husband name, wife name)
+
     for person in people:
         person_name = person["name"]
-        person_age = person["age"]
-        spouse = "wife" if "wife" in list(person.keys()) else "husband"
-        spouse_name = person[spouse]
+        Person(person_name, person["age"])
 
-        if person_name not in people_dict:
-            Person(person_name, person_age)
+        if "wife" in person and person["wife"]:
+            couples.append((person_name, person["wife"]))
 
-        if spouse_name:
-            setattr(people_dict[person_name], spouse, spouse_name)
+    people_dict = Person.people
+    for husband, wife in couples:
+        people_dict[husband].wife = people_dict[wife]
+        people_dict[wife].husband = people_dict[husband]
 
-    for person, obj in people_dict.items():
-        spouse = [s for s in obj.__dict__ if s in ["wife", "husband"]]
-        if not spouse:
-            continue
-        spouse_name = obj.__dict__[spouse[0]]
-        setattr(people_dict[person], spouse[0], people_dict[spouse_name])
-
-    return [person_obj for person_obj in people_dict.values()]
+    return [person for person in people_dict.values()]
