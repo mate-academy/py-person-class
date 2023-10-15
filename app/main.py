@@ -13,10 +13,10 @@ def create_person_list(people: list) -> list:
     data = [Person(person["name"], person["age"]) for person in people]
 
     for human in people:
-        if bool(human.get("wife")):
+        if human.get("wife"):
             Person.people[human["name"]].wife = \
                 Person.people[human["wife"]]
-        if bool(human.get("husband")):
+        if human.get("husband"):
             Person.people[human["name"]].husband = \
                 Person.people[human["husband"]]
 
