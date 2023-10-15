@@ -14,8 +14,10 @@ def create_person_list(people: list) -> list:
 
     for human in people:
         if bool(human.get("wife")):
-            Person.people[human["name"]].wife = Person.people[human["wife"]]
+            Person.people[human["name"]].wife = \
+                Person.people[human["wife"]]
         if bool(human.get("husband")):
-            Person.people[human["name"]].husband = Person.people[human["husband"]]
+            Person.people[human["name"]].husband = \
+                Person.people[human["husband"]]
 
     return data
