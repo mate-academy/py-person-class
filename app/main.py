@@ -9,10 +9,8 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    data = []
 
-    for person in people:
-        data.append(Person(person["name"], person["age"]))
+    data = [Person(person["name"], person["age"]) for person in people]
 
     for human in people:
         if bool(human.get("wife")):
