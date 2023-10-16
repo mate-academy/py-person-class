@@ -12,8 +12,6 @@ def create_person_list(people: list) -> list:
         Person(person["name"], person["age"]) for person in people
     ]
     for person in people:
-        print(person.get("wife"))
-        print(person.get("husband"))
         if person.get("wife"):
             Person.people[person["name"]].wife = Person.people[person["wife"]]
         elif person.get("husband"):
