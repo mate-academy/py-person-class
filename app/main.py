@@ -6,12 +6,8 @@ class Person:
         self.age = age
         Person.people[name] = self
 
-    @classmethod
-    def __repr__(cls) -> str:
-        return f"{cls.people}"
 
-
-def create_person_list(people: dict) -> list:
+def create_person_list(people: list) -> list[Person]:
     list_of_instances = []
 
     for person_data in people:
