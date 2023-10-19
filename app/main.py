@@ -9,23 +9,22 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-
     person_list = []
 
-    for dc in people:
-        _ = Person(dc["name"], dc["age"])
+    _ = [Person(dc["name"], dc["age"]) for dc in people]
 
     for dc in people:
 
-        if "wife" in dc:
-            if dc["wife"] is not None:
+        if dc.get("wife"):
                 Person.people[dc["name"]].wife = Person.people[dc["wife"]]
 
-        if "husband" in dc:
-            if dc["husband"] is not None:
+        if dc.get("husband"):
                 Person.people[dc["name"]].husband = (
                     Person.people)[dc["husband"]]
 
         person_list.append(Person.people[dc["name"]])
+
+    for i in person_list:
+        print(i.name)
 
     return person_list
