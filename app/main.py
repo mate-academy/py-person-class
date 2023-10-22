@@ -24,7 +24,4 @@ def create_person_list(people: list) -> list:
 
         person_list.append(Person.people[dc["name"]])
 
-    for i in person_list:
-        print(i.name)
-
     return person_list
