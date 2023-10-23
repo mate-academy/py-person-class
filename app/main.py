@@ -11,7 +11,7 @@ class Person:
 def create_person_list(people: list) -> list:
     person_list = []
 
-    _ = [Person(dc["name"], dc["age"]) for dc in people]
+    person_list = [Person(dc["name"], dc["age"]) for dc in people]
 
     for dc in people:
 
@@ -21,7 +21,5 @@ def create_person_list(people: list) -> list:
         if dc.get("husband"):
             Person.people[dc["name"]].husband = (
                 Person.people)[dc["husband"]]
-
-        person_list.append(Person.people[dc["name"]])
 
     return person_list
