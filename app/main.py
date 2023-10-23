@@ -33,7 +33,9 @@ def create_person_list(people_data: List[dict]) -> List[Person]:
         if spouse:
             if "wife" in person_data:
                 person.wife = spouse
-            else:
+                spouse.husband = person
+            elif "husband" in person_data:
                 person.husband = spouse
+                spouse.wife = person
 
     return person_list
