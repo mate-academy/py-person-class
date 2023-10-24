@@ -7,7 +7,7 @@ class Person:
         Person.people.setdefault(name, self)
 
 
-def create_person_list(people: list) -> list:
+def create_person_list(people: list[Person]) -> list[Person]:
     person_list = []
 
     for people_dict in people:
