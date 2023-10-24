@@ -8,9 +8,10 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    for person in people:
-        if person["name"] not in Person.people.keys():
-            Person(person["name"], person["age"])
+    person_list = [
+        Person(person["name"], person["age"])
+        for person in people
+    ]
 
     for person in people:
         wife = person.get("wife")
@@ -23,4 +24,4 @@ def create_person_list(people: list) -> list:
         if husband and husband in Person.people:
             item.husband = Person.people[husband]
 
-    return list(Person.people.values())
+    return person_list
