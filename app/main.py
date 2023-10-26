@@ -14,16 +14,10 @@ def create_person_list(people: list) -> list:
         new_person = Person(dict_of_person["name"], dict_of_person["age"])
         person_list.append(new_person)
     # add attributes to each person
-    for index1 in range(len(person_list)):
-        if "wife" in people[index1]:
-            if people[index1]["wife"] is not None:
-                for index2 in range(len(people)):
-                    if people[index1]["wife"] == people[index2]["name"]:
-                        person_list[index1].wife = person_list[index2]
-
-        elif "husband" in people[index1]:
-            if people[index1]["husband"] is not None:
-                for index2 in range(len(people)):
-                    if people[index1]["husband"] == people[index2]["name"]:
-                        person_list[index1].husband = person_list[index2]
+    class_list = Person.people
+    for person in people:
+        if "wife" in person and person["wife"] is not None:
+            class_list[person["name"]].wife = class_list[person["wife"]]
+        elif "husband" in person and person["husband"] is not None:
+            class_list[person["name"]].husband = class_list[person["husband"]]
     return person_list
