@@ -9,8 +9,11 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    result_list = [Person(name=person["name"], age=person["age"])
-                   for person in people]
+    result_list = [Person(
+        name=person["name"],
+        age=person["age"]
+    )
+        for person in people]
     for index, person in enumerate(people):
         if person.get("wife") is not None:
             result_list[index].wife = Person.people[person["wife"]]
