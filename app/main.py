@@ -8,19 +8,12 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    married_dict = {}
-    result = []
-
-    for item in people:
-        person = Person(name=item["name"], age=item["age"])
-        married_dict[item["name"]] = person
-        result.append(person)
-
-    for item in people:
-        person_obj = married_dict[item["name"]]
-        if item.get("wife") is not None:
-            person_obj.wife = married_dict[item["wife"]]
-        elif item.get("husband") is not None:
-            person_obj.husband = married_dict[item["husband"]]
-
+    result = [Person(name=item["name"], age=item["age"]) for item in people]
+    for person in people:
+        if person.get("wife") is not None:
+            Person.people.get(person["name"]).wife = \
+                Person.people.get(person["wife"])
+        if person.get("husband") is not None:
+            Person.people.get(person["name"]).husband = \
+                Person.people.get(person["husband"])
     return result
