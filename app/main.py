@@ -12,16 +12,16 @@ def create_person_list(people1: list) -> list:
     output_list = []
     for pers in people1:
         pers_inst = Person(pers["name"], pers["age"])
+        output_list.append(pers_inst)
+
         if "wife" in pers and pers["wife"] is not None:
-            pers_inst.wife = pers["wife"]
+            output_list[-1].wife = pers["wife"]
         elif "husband" in pers and pers["husband"] is not None:
-            pers_inst.husband = pers["husband"]
-    for pers1 in Person.people:
-        if hasattr(Person.people[pers1], "wife"):
-            Person.people[pers1].wife =\
-                Person.people[Person.people[pers1].wife]
-        if hasattr(Person.people[pers1], "husband"):
-            Person.people[pers1].husband =\
-                Person.people[Person.people[pers1].husband]
-        output_list.append(Person.people[pers1])
+            output_list[-1].husband = pers["husband"]
+    for i in range(len(output_list)):
+        if hasattr(output_list[i], "wife"):
+            output_list[i].wife = Person.people[output_list[i].wife]
+        if hasattr(output_list[i], "husband"):
+            output_list[i].husband = Person.people[output_list[i].husband]
+
     return output_list
