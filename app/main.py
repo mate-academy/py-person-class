@@ -17,20 +17,11 @@ def create_person_list(people: list) -> list:
 
     for someone in people:
         if "wife" in someone and someone["wife"] is not None:
-            wife_name = someone["wife"]
-            for wife in person_list:
-                if wife_name == wife.name:
-                    for person in person_list:
-                        if person.name == someone["name"]:
-                            person.wife = wife
+            Person.people[(someone["name"])].wife = \
+                Person.people[someone["wife"]]
 
-    for someone in people:
-        if "husband" in someone.keys() and someone["husband"] is not None:
-            husband_name = someone["husband"]
-            for husband in person_list:
-                if husband_name == husband.name:
-                    for person in person_list:
-                        if person.name == someone["name"]:
-                            person.husband = husband
+        if "husband" in someone and someone["husband"] is not None:
+            Person.people[(someone["name"])].husband = \
+                Person.people[someone["husband"]]
 
     return person_list
