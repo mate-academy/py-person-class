@@ -9,17 +9,19 @@ class Person:
 
 def create_instances(people: list) -> None:
     for human in people:
-        globals()[human["name"]] = Person(human["name"], human["age"])
+        Person(human.get("name"), human.get("age"))
 
 
 def create_person_list(people: list) -> list:
     create_instances(people)
-    person_instances = []
+    person_instances = [
+        Person.people.get(human.get("name")) for human in people
+    ]
     for human in people:
-        person_instances.append(Person.people[human["name"]])
         for key in human:
-            if key == "wife" and human["wife"] is not None:
-                person_instances[-1].wife = Person.people[human["wife"]]
-            elif key == "husband" and human["husband"] is not None:
-                person_instances[-1].husband = Person.people[human["husband"]]
+            current_inst = Person.people.get(human.get("name"))
+            if key == "wife" and human.get("wife") is not None:
+                current_inst.wife = Person.people.get(human.get("wife"))
+            elif key == "husband" and human.get("husband") is not None:
+                current_inst.husband = Person.people.get(human.get("husband"))
     return person_instances
