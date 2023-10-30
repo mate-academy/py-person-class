@@ -16,12 +16,12 @@ def create_person_list(people: list) -> list:
         person_list.append(person)
 
     for someone in people:
-        if "wife" in someone and someone["wife"] is not None:
-            Person.people[(someone["name"])].wife = \
+        if someone.get("wife") is not None:
+            Person.people[someone["name"]].wife = \
                 Person.people[someone["wife"]]
 
-        if "husband" in someone and someone["husband"] is not None:
-            Person.people[(someone["name"])].husband = \
+        if someone.get("husband") is not None:
+            Person.people[someone["name"]].husband = \
                 Person.people[someone["husband"]]
 
     return person_list
