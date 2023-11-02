@@ -11,7 +11,7 @@ class Person:
         return cls.people.get(name)
 
 
-def create_person_list(people: dict) -> list:
+def create_person_list(people: list) -> list:
     person_list = []
     for person_data in people:
         name = person_data["name"]
