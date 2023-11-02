@@ -20,9 +20,9 @@ def create_person_list(people: dict) -> list:
         person_list.append(person)
 
     for person_data, person_inst in zip(people, person_list):
-        if "wife" in person_data and person_data["wife"]:
+        if person_data.get("wife"):
             person_inst.wife = Person.get_person(person_data["wife"])
-        if "husband" in person_data and person_data["husband"]:
+        if person_data.get("husband"):
             person_inst.husband = Person.get_person(person_data["husband"])
 
     return person_list
