@@ -10,7 +10,6 @@ class Person:
 def create_person_list(people: list) -> list:
     result = []
     for pers in people:
-        # obj = pers["name"][:]
         obj = Person(pers["name"], pers["age"])
         Person.people[pers["name"]] = obj
         result.append(obj)
@@ -29,22 +28,3 @@ def create_person_list(people: list) -> list:
               Person.people[el["husband"]]))
 
     return result
-
-
-# people = [
-#     {"name": "Ross", "age": 30, "wife": "Rachel"},
-#     {"name": "Joey", "age": 29, "wife": None},
-#     {"name": "Rachel", "age": 28, "husband": "Ross"}
-# ]
-#
-# person_list = create_person_list(people)
-# print(f"people: {people}")
-# print(f"Person(objects): {Person.people}")
-# print(person_list)
-#
-# print(person_list[2].name)
-# print(person_list[2].husband.name)
-# print(person_list[2].husband.wife is person_list[2])
-# print(isinstance(person_list[2], Person))
-# print(person_list[1].name)
-# print(Person.people)
