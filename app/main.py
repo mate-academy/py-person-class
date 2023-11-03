@@ -12,11 +12,11 @@ def create_person_list(people: list[dict]) -> list[Person]:
         Person(person["name"], person["age"]) for person in people
     ]
     for person in people:
-        if person.get("wife"):
-            Person.people[person["name"]].wife = \
-                Person.people[person["wife"]]
-        if person.get("husband"):
-            Person.people[person["name"]].husband = \
-                Person.people[person["husband"]]
+        wife_name = person.get("wife")
+        if wife_name:
+            Person.people[person["name"]].wife = Person.people[wife_name]
+        husband_name = person.get("husband")
+        if husband_name:
+            Person.people[person["name"]].husband = Person.people[husband_name]
 
     return persons_objects
