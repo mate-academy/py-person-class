@@ -8,22 +8,22 @@ class Person:
 
 def create_person_list(people: list) -> list:
     result = []
-    for pers in people:
-        obj = Person(pers["name"], pers["age"])
-        Person.people[pers["name"]] = obj
+    for person in people:
+        obj = Person(person["name"], person["age"])
+        Person.people[person["name"]] = obj
         result.append(obj)
 
-    for el in people:
-        person_name = el["name"]
-        if "wife" in el and el["wife"] is not None:
+    for person in people:
+        person_name = person["name"]
+        if "wife" in person and person["wife"] is not None:
             (setattr
              (Person.people[person_name],
               "wife",
-              Person.people[el["wife"]]))
-        if "husband" in el and el["husband"] is not None:
+              Person.people[person["wife"]]))
+        if "husband" in person and person["husband"] is not None:
             (setattr
              (Person.people[person_name],
               "husband",
-              Person.people[el["husband"]]))
+              Person.people[person["husband"]]))
 
     return result
