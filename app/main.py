@@ -4,14 +4,11 @@ class Person:
     def __init__(self, name: str, age: int) -> None:
         self.name = name
         self.age = age
+        self.people[name] = self
 
 
 def create_person_list(people: list) -> list:
-    result = []
-    for person in people:
-        obj = Person(person["name"], person["age"])
-        Person.people[person["name"]] = obj
-        result.append(obj)
+    result = [Person(person["name"], person["age"]) for person in people]
 
     for person in people:
         person_name = person["name"]
