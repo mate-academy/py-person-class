@@ -10,10 +10,17 @@ class Person:
         self.people[self.name] = self
 
 
-
-
-
-
 def create_person_list(people: list) -> list:
-    # write your code here
-    pass
+    for person in people:
+        Person.name = person["name"]
+        Person.age = person["age"]
+        Person.wife = person["wife"]
+
+
+
+
+
+
+
+
+
