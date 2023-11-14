@@ -84,6 +84,7 @@ def test_create_person_list_has_wife_and_wife_have_husband(
 
 
 def test_create_person_list_has_no_wife(people_data, created_person_list):
+
     assert hasattr(created_person_list[1], "wife") is False, (
         f"Person with 'name' {created_person_list[1].name} should not have "
         f"attribute wife"
