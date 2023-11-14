@@ -17,15 +17,14 @@ def create_person_list(people: list) -> list:
             )
         )
     for index in range(len(list_of_people)):
-        for _ in range(index + 1):
-            if "wife" in people[index]:
-                if not people[index]["wife"] is None:
-                    list_of_people[index].wife = Person.people[
-                        people[index]["wife"]
-                    ]
-            if "husband" in people[index]:
-                if not people[index]["husband"] is None:
-                    list_of_people[index].husband = Person.people[
-                        people[index]["husband"]
-                    ]
+        if "wife" in people[index]:
+            if people[index]["wife"]:
+                list_of_people[index].wife = Person.people[
+                    people[index]["wife"]
+                ]
+        if "husband" in people[index]:
+            if people[index]["husband"]:
+                list_of_people[index].husband = Person.people[
+                    people[index]["husband"]
+                ]
     return list_of_people
