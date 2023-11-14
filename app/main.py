@@ -8,13 +8,7 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    person_instances = []
-    for person_data in people:
-        name = person_data["name"]
-        age = person_data["age"]
-        person_instance = Person(name, age)
-
-        person_instances.append(person_instance)
+    person_instances = [Person(person["name"], person["age"]) for person in people]
 
     for person_instance, person_data in zip(person_instances, people):
         spouse_name = person_data.get("wife") or person_data.get("husband")
