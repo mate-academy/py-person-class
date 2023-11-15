@@ -8,23 +8,23 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    list_of_people = []
-    for character in people:
-        list_of_people.append(
-            Person(
-                name=character["name"],
-                age=character["age"]
-            )
-        )
+    list_of_people = [
+        Person(name=character["name"], age=character["age"])
+        for character in people
+    ]
     for index in range(len(list_of_people)):
-        if "wife" in people[index]:
-            if people[index]["wife"]:
-                list_of_people[index].wife = Person.people[
-                    people[index]["wife"]
-                ]
-        if "husband" in people[index]:
-            if people[index]["husband"]:
-                list_of_people[index].husband = Person.people[
-                    people[index]["husband"]
-                ]
+        wife_name = people[index].get("wife")
+
+        husband_name = people[index].get("husband")
+
+        if wife_name:
+            list_of_people[index].wife = Person.people[
+                people[index]["wife"]
+            ]
+
+        if husband_name:
+            list_of_people[index].husband = Person.people[
+                people[index]["husband"]
+            ]
+
     return list_of_people
