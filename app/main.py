@@ -23,7 +23,7 @@ def create_person_list(people: list) -> list:
 
         person_list.append(Person(name, age))
 
-    j = 0
+    super_j = 0
     for name in nameparts:
         if name is None:
             pass
@@ -31,9 +31,9 @@ def create_person_list(people: list) -> list:
             for i in range(len(person_list)):
                 if person_list[i].name == name:
                     if keylist[i] == "wife":
-                        person_list[j].husband = person_list[i]
+                        person_list[super_j].husband = person_list[i]
                     else:
-                        person_list[j].wife = person_list[i]
-        j += 1
+                        person_list[super_j].wife = person_list[i]
+        super_j += 1
 
     return person_list
