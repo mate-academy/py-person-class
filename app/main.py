@@ -29,15 +29,3 @@ def create_person_list(people: list) -> list:
         count += 1
 
     return person_list
-
-
-people = [
-    {"name": "Ross", "age": 30, "wife": "Rachel"},
-    {"name": "Joey", "age": 29, "wife": None},
-    {"name": "Rachel", "age": 28, "husband": "Ross"}
-]
-
-person_list = create_person_list(people)
-print(person_list[0].name)
-print(person_list[0].wife)
-print(person_list[2])
