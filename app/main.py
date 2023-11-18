@@ -9,31 +9,35 @@ class Person:
 
 def create_person_list(people: list) -> list:
     person_list = []
-    nameparts = []
     for person in people:
         person1 = list(person.values())
-        person2 = list(person.keys())
         name = person1[0]
         age = person1[1]
 
-        keylist = person2[2]
-        secondpart = person1[2]
-
-        nameparts.append(secondpart)
-
         person_list.append(Person(name, age))
+    count = 0
+    for person1 in people:
+        if "wife" in person1:
+            for person2 in person_list:
+                if person2.name == person1["wife"]:
+                    person_list[count].wife = person2
 
-    super_j = 0
-    for name in nameparts:
-        if name is None:
-            pass
         else:
-            for i in range(len(person_list)):
-                if person_list[i].name == name:
-                    if keylist[i] == "wife":
-                        person_list[super_j].husband = person_list[i]
-                    else:
-                        person_list[super_j].wife = person_list[i]
-        super_j += 1
+            for person2 in person_list:
+                if person2.name == person["husband"]:
+                    person_list[count].husband = person2
+        count += 1
 
     return person_list
+
+
+people = [
+    {"name": "Ross", "age": 30, "wife": "Rachel"},
+    {"name": "Joey", "age": 29, "wife": None},
+    {"name": "Rachel", "age": 28, "husband": "Ross"}
+]
+
+person_list = create_person_list(people)
+print(person_list[0].name)
+print(person_list[0].wife)
+print(person_list[2])
