@@ -4,31 +4,17 @@ class Person:
     def __init__(self, name: str, age: int) -> None:
         self.name = name
         self.age = age
-        self.wife = None
-        self.husband = None
         Person.people[self.name] = self
 
 
 def create_person_list(people: list) -> list:
-    people_answer = []
-    for person in people:
-        new_person = Person(name=person["name"], age=person["age"])
-        wife_name = person.get("wife")
-        husband_name = person.get("husband")
+    person_inst = [Person(person["name"], person["age"]) for person in people]
 
-        if wife_name is not None:
-            new_person.wife = wife_name
-        if husband_name is not None:
-            new_person.husband = husband_name
-        people_answer.append(new_person)
+    for person_instance, person_data in zip(person_inst, people):
+        spouse_name = person_data.get("wife") or person_data.get("husband")
+        if spouse_name:
+            spouse_instance = Person.people.get(spouse_name)
+            wife_or_husband = "wife" if "wife" in person_data else "husband"
+            setattr(person_instance, wife_or_husband, spouse_instance)
 
-    for person in people_answer:
-        if person.wife is not None:
-            person.wife = Person.people[person.wife]
-        else:
-            del person.wife
-        if person.husband is not None:
-            person.husband = Person.people[person.husband]
-        else:
-            del person.husband
-    return people_answer
+    return person_inst
