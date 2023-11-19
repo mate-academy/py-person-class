@@ -9,13 +9,16 @@ class Person:
         self.age = age
         Person.people[name] = self
 
-    def find_partner(self, spouse: Person, is_wife: bool) -> None:
+
+def find_partner(person: Person, spouse_name: str, is_wife: bool) -> None:
+    spouse = Person.people.get(spouse_name)
+    if spouse:
         if is_wife:
-            self.wife = spouse
-            spouse.husband = self
+            person.wife = spouse
+            spouse.husband = person
         else:
-            self.husband = spouse
-            spouse.wife = self
+            person.husband = spouse
+            spouse.wife = person
 
 
 def create_person_list(people: list) -> list:
@@ -25,22 +28,12 @@ def create_person_list(people: list) -> list:
             for persona in people
         ]
 
-    match_spouses(people)
-
-    return created_person_list
-
-
-def match_spouses(people_data: list) -> None:
-    for persona in people_data:
+    for persona in people:
         person = Person.people.get(persona["name"])
         if person:
-            if wife_name := persona.get("wife"): # noqa
-                spouse_name = persona["wife"]
-                spouse = Person.people.get(spouse_name)
-                if spouse:
-                    person.find_partner(spouse, is_wife=True)
-            if husband_name := persona.get("husband"): # noqa
-                spouse_name = persona["husband"]
-                spouse = Person.people.get(spouse_name)
-                if spouse:
-                    person.find_partner(spouse, is_wife=False)
+            if "wife" in persona and persona["wife"]:
+                find_partner(person, persona["wife"], is_wife=True)
+            if "husband" in persona and persona["husband"]:
+                find_partner(person, persona["husband"], is_wife=False)
+
+    return created_person_list
