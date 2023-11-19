@@ -8,13 +8,8 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    person_list = []
-    for person in people:
-        person1 = list(person.values())
-        name = person1[0]
-        age = person1[1]
+    person_list = [Person(person1["name"], person1["age"]) for person1 in people]
 
-        person_list.append(Person(name, age))
     count = 0
     for person1 in people:
         if "wife" in person1:
@@ -24,7 +19,7 @@ def create_person_list(people: list) -> list:
 
         else:
             for person2 in person_list:
-                if person2.name == person["husband"]:
+                if person2.name == person1["husband"]:
                     person_list[count].husband = person2
         count += 1
 
