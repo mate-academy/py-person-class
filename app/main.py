@@ -8,7 +8,7 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    person_list = [Person(person1["name"], person1["age"]) for person1 in people]
+    person_list = [Person(pers["name"], pers["age"]) for pers in people]
 
     count = 0
     for person1 in people:
