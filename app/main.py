@@ -1,13 +1,13 @@
 
 class Person:
-    people = {}  # Атрибут класса для хранения экземпляров Person по их имени
-    def __init__(self, name, age):
+    people = {}
+    def __init__(self, name: str, age: int) -> None:
         self.name = name
         self.age = age
 
         Person.people[name] = self
 
-def create_person_list(people):
+def create_person_list(people) -> list:
 
     person_list = []
 
