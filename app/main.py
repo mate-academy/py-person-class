@@ -11,17 +11,20 @@ def create_person_list(people: list) -> list:
     person_instances = []
     for person in people:
         person_list = Person(person["name"], person["age"])
-        if "wife" in person and person["wife"] is not None:
-            wife_name = person["wife"]
-            if wife_name in Person.people:
-                person_list.wife = Person.people[wife_name]
-                Person.people[wife_name].husband = person_list
-
-        elif "husband" in person and person["husband"] is not None:
-            husband_name = person["husband"]
-            if husband_name in Person.people:
-                person_list.husband = Person.people[husband_name]
-                Person.people[husband_name].wife = person_list
-
         person_instances.append(person_list)
+
+    for person in people:
+        person_list = Person.people[person["name"]]
+        right_name = person.get("wife") or person.get("husband")
+
+        if right_name is not None:
+            if right_name in Person.people:
+                spouse_instance = Person.people[right_name]
+                if "wife" in person:
+                    person_list.wife = spouse_instance
+                    spouse_instance.husband = person_list
+                elif "husband" in person:
+                    person_list.husband = spouse_instance
+                    spouse_instance.wife = person_list
+
     return person_instances
