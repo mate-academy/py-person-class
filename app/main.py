@@ -7,20 +7,20 @@ class Person:
         self.people[name] = self
 
 
-def create_person_list(people: list) -> list:
+def create_person_list(people: list[dict]) -> list:
+    objects = Person.people
+
     for person in people:
-        Person.people[person["name"]] = Person(
+        objects[person["name"]] = Person(
             name=person["name"],
             age=person["age"],
         )
 
         if person.get("wife") and person["wife"]:
-            Person.people[person["name"]].wife = person["wife"]
+            objects[person["name"]].wife = person["wife"]
 
         if person.get("husband") and person["husband"]:
-            Person.people[person["name"]].husband = person["husband"]
-
-    objects = Person.people
+            objects[person["name"]].husband = person["husband"]
 
     for person in objects:
         if hasattr(objects[person], "wife"):
