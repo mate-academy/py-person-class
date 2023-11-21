@@ -14,15 +14,14 @@ def create_person_list(people_list: list) -> list:
 
     for person in people_list:
         if "husband" in person and person["husband"]:
-            for woman in new_people_list:
-                for man in new_people_list:
-                    if (woman.name == person["name"]
-                            and man.name == person["husband"]):
-                        woman.husband = man
+            if person["name"] in Person.people:
+                husband = Person.people[person["husband"]]
+                wife = Person.people[person["name"]]
+                wife.husband = husband
+
         elif "wife" in person and person["wife"]:
-            for man in new_people_list:
-                for woman in new_people_list:
-                    if (man.name == person["name"]
-                            and woman.name == person["wife"]):
-                        man.wife = woman
+            if person["name"] in Person.people:
+                wife = Person.people[person["wife"]]
+                husband = Person.people[person["name"]]
+                husband.wife = wife
     return new_people_list
