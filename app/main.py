@@ -8,16 +8,17 @@ class Person:
     pass
 
 
-def create_person_list(people: list) -> list:
+def create_person_list(people: list) -> list[Person]:
     for person in people:
         Person(person["name"], person["age"])
     for person in people:
+        current_person = Person.people[person["name"]]
         if person.get("wife") is not None:
-            Person.people[person["name"]].wife\
-                = Person.people[person["wife"]]
+            wife = Person.people[person["wife"]]
+            current_person.wife = wife
         elif person.get("husband") is not None:
-            Person.people[person["name"]].husband\
-                = Person.people[person["husband"]]
+            husband = Person.people[person["husband"]]
+            current_person.husband = husband
 
     return list(Person.people.values())
     pass
