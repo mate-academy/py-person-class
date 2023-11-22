@@ -5,20 +5,13 @@ class Person:
         self.name = name
         self.age = age
         Person.people[name] = self
-    pass
 
 
 def create_person_list(people: list) -> list[Person]:
-    Person.people = {}
-    for person in people:
-        Person(person["name"], person["age"])
-    for person in people:
-        current_person = Person.people[person["name"]]
-        if person.get("wife") is not None:
-            current_person.wife = Person.people[person["wife"]]
-        elif person.get("husband") is not None:
-            current_person.husband = Person.people[person["husband"]]
-
-    return list(Person.people.values())
-
-    pass
+    person_list = [Person(pers["name"], pers["age"]) for pers in people]
+    for pers, person in zip(people, person_list):
+        if "wife" in pers and pers["wife"]:
+            person.wife = Person.people[pers["wife"]]
+        elif "husband" in pers and pers["husband"]:
+            person.husband = Person.people[pers["husband"]]
+    return person_list
