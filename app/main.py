@@ -11,10 +11,12 @@ def create_person_list(people: list) -> list:
     inst_list = [Person(human["name"], human["age"]) for human in people]
     for human in people:
         name = human["name"]
-        if "wife" in human.keys():
-            if human["wife"] in Person.people:
-                Person.people[name].wife = Person.people[human["wife"]]
-        if "husband" in human.keys():
-            if human["husband"] in Person.people:
-                Person.people[name].husband = Person.people[human["husband"]]
+        wife_name = human.get("wife")
+        if wife_name in Person.people:
+            Person.people[name].wife = Person.people[wife_name]
+    for human in people:
+        name = human["name"]
+        husband_name = human.get("husband")
+        if husband_name in Person.people:
+            Person.people[name].husband = Person.people[husband_name]
     return inst_list
