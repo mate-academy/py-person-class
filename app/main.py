@@ -14,19 +14,19 @@ def create_person_list(people: list) -> list:
         human = Person(pers["name"], pers["age"])
         result.append(human)
 
-    for i in range(len(result)):
+    for index, value in enumerate(result):
 
-        wife_name = people[i].get("wife")
-        husband_name = people[i].get("husband")
+        wife_name = people[index].get("wife")
+        husband_name = people[index].get("husband")
 
         if wife_name:
-            result[i].wife = Person.people[
-                people[i]["wife"]
+            result[index].wife = Person.people[
+                people[index]["wife"]
             ]
 
         if husband_name:
-            result[i].husband = Person.people[
-                people[i]["husband"]
+            result[index].husband = Person.people[
+                people[index]["husband"]
             ]
 
     return result
