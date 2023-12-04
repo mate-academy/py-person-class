@@ -9,13 +9,11 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    ls = []
     # ----------------------------listing dict -> personalization
-    for person in people:
-        name = person["name"]
-        age = person["age"]
-        person_instance = Person(name, age)
-        ls.append(person_instance)
+    ls = [
+        Person(person_data["name"], person_data["age"])
+        for person_data in people
+    ]
     # ----------------------------check for partner
     for person_data in people:
         person_data_instance = Person.people[person_data["name"]]
