@@ -8,14 +8,14 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    for specimen in people:
-        Person(specimen["name"], specimen["age"])
-    for specimen_2 in people:
-        if "wife" in specimen_2 and specimen_2["wife"] in Person.people:
-            Person.people[specimen_2["name"]].wife =\
-                Person.people[specimen_2["wife"]]
-        elif ("husband" in specimen_2
-              and specimen_2["husband"] in Person.people):
-            Person.people[specimen_2["name"]].husband = (
-                Person.people)[specimen_2["husband"]]
+    for person in people:
+        Person(person["name"], person["age"])
+    for person in people:
+        if "wife" in person and person["wife"] in Person.people:
+            Person.people[person["name"]].wife =\
+                Person.people.get(person.get("wife"))
+        elif ("husband" in person
+              and person["husband"] in Person.people):
+            Person.people[person["name"]].husband = (
+                Person.people)[person["husband"]]
     return list(Person.people.values())
