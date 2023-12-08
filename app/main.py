@@ -20,13 +20,12 @@ def create_person_list(people: list) -> list:
         person_instance = Person(name, age)
         person_list.append(person_instance)
 
-    for dct in people:
-        obj = Person.people[dct.get("name")]
-        if "wife" in dct:
-            if dct["wife"]:
-                obj.wife = Person.people[dct.get("wife")]
-        else:
-            if dct["husband"]:
-                obj.husband = Person.people[dct.get("husband")]
+    for person_data in people:
+        obj = Person.people.get(person_data.get("name"))
+        if obj:
+            if person_data.get("wife"):
+                obj.wife = Person.people.get(person_data.get("wife"))
+            elif person_data.get("husband"):
+                obj.husband = Person.people.get(person_data.get("husband"))
 
     return person_list
