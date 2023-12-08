@@ -11,14 +11,7 @@ class Person:
 
 def create_person_list(people: list) -> list:
 
-    person_list = []
-
-    for person_info in people:
-
-        name = person_info["name"]
-        age = person_info["age"]
-        person_instance = Person(name, age)
-        person_list.append(person_instance)
+    person_list = [Person(person_info["name"], person_info["age"]) for person_info in people]
 
     for person_data in people:
         obj = Person.people.get(person_data.get("name"))
