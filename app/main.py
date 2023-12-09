@@ -11,17 +11,15 @@ class Person:
 
 def create_person_list(people: list) -> list:
 
-    person_list = [
-        Person(person_info["name"],
-               person_info["age"]) for person_info in people
-    ]
+    person_list = [Person(person_info["name"], person_info["age"])
+                   for person_info in people]
 
     for person_data in people:
-        obj = Person.people.get(person_data.get("name"))
-        if obj:
+        person = Person.people.get(person_data.get("name"))
+        if person:
             if person_data.get("wife"):
-                obj.wife = Person.people.get(person_data.get("wife"))
+                person.wife = Person.people.get(person_data.get("wife"))
             elif person_data.get("husband"):
-                obj.husband = Person.people.get(person_data.get("husband"))
+                person.husband = Person.people.get(person_data.get("husband"))
 
     return person_list
