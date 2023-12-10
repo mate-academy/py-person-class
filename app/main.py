@@ -4,7 +4,7 @@ class Person:
     def __init__(self, name: str, age: int) -> None:
         self.name = name
         self.age = age
-        Person.people.update({self.name: self})
+        Person.people[name] = self
 
 
 def create_person_list(people: list) -> list:
@@ -12,11 +12,11 @@ def create_person_list(people: list) -> list:
     for element in people:
         result.append(Person(element["name"], element["age"]))
 
-    for num in range(len(people)):
-        k_val = list(people[num].keys())
-        if k_val[2] == "wife" and people[num]["wife"] is not None:
-            result[num].wife = Person.people[people[num]["wife"]]
-        else:
-            if k_val[2] == "husband" and people[num]["husband"] is not None:
-                result[num].husband = Person.people[people[num]["husband"]]
+    for number in range(len(people)):
+        keys_of_people = list(people[number].keys())
+        if keys_of_people[2] == "wife" and people[number]["wife"] is not None:
+            result[number].wife = Person.people[people[number]["wife"]]
+        if (keys_of_people[2] == "husband"
+                and people[number]["husband"] is not None):
+            result[number].husband = Person.people[people[number]["husband"]]
     return result
