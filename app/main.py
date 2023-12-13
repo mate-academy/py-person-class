@@ -12,9 +12,9 @@ def create_person_list(people: list) -> list:
                        for person in people
                        ]
     for value, person in enumerate(people):
-        if "wife" in person and person.get("wife") is not None:
+        if person.get("wife") is not None:
             people_instance[value].wife = Person.people[person["wife"]]
-        if "husband" in person and person.get("husband") is not None:
+        if person.get("husband") is not None:
             people_instance[value].husband \
                 = Person.people[person["husband"]]
     return people_instance
