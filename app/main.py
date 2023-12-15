@@ -8,13 +8,8 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    add_family = {}
-    result = []
-
-    for man in people:
-        name, age = man["name"], man["age"]
-        result.append(Person(name, age))
-        add_family[name] = man.popitem()
+    add_family = {man["name"]: man.popitem() for man in people}
+    result = [Person(man["name"], man["age"]) for man in people]
 
     for man in people:
         name = man["name"]
