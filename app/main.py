@@ -8,7 +8,7 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    people_list = [Person(name=person["name"], age=person["age"])
+    people_instances = [Person(name=person["name"], age=person["age"])
                    for person in people]
 
     for person in people:
@@ -21,4 +21,4 @@ def create_person_list(people: list) -> list:
             person_husband = Person.people[person["husband"]]
             main_person.husband = person_husband
 
-    return people_list
+    return people_instances
