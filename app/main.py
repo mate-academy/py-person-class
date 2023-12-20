@@ -7,12 +7,12 @@ class Person:
         self.people.update({self.name: self})
 
 
-def create_person_list(people: list) -> dict:
+def create_person_list(people: list) -> list:
     for person in people:
         Person(person["name"], person["age"])
     for person in people:
         if person.get("wife") is not None:
-            husband = Person.people[person["name"]]
+            husband = Person.people[person.get("name")]
             husband.wife = Person.people[person.get("wife")]
         if person.get("husband") is not None:
             wife = Person.people[person.get("name")]
