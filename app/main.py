@@ -8,24 +8,19 @@ class Person:
         Person.people[name] = self
 
 
-def create_person_list(people_data: list) -> list:
-    person_list = []
-    for person_data in people_data:
-        name = person_data["name"]
-        age = person_data["age"]
-        person = Person(name, age)
-        person_list.append(person)
-    for person_data in people_data:
-        name = person_data["name"]
-        wife_name = person_data.get("wife")
-        husband_name = person_data.get("husband")
-        if wife_name:
-            person = Person.people[name]
-            wife = Person.people.get(wife_name)
-            person.wife = wife
-        elif husband_name:
-            person = Person.people[name]
-            husband = Person.people.get(husband_name)
-            person.husband = husband
+def create_person_list(people: list[dict]) -> list[Person]:
+    new_person_list = [
+        Person(person["name"], person["age"]) for person in people
+    ]
 
-    return person_list
+    for person in people:
+        if person.get("wife"):
+            main_person = Person.people[person["name"]]
+            person_wife = Person.people[person["wife"]]
+            main_person.wife = person_wife
+        elif person.get("husband"):
+            main_person = Person.people[person["name"]]
+            person_husband = Person.people[person["husband"]]
+            main_person.husband = person_husband
+
+    return new_person_list
