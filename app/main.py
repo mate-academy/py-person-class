@@ -9,7 +9,7 @@ class Person:
 
 def create_person_list(people_data: list) -> list:
     people = [Person(person["name"], person["age"])
-                    for person in people_data]
+              for person in people_data]
 
     for index, part_of_list in enumerate(people_data):
         if part_of_list.get("wife"):
