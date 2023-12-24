@@ -7,17 +7,17 @@ class Person:
         Person.people[name] = self
 
 
-def create_person_list(incoming_list: list) -> list:
-    persons_list = [Person(part_of_list["name"], part_of_list["age"])
-                    for part_of_list in incoming_list]
+def create_person_list(people_data: list) -> list:
+    people = [Person(person["name"], person["age"])
+                    for person in people_data]
 
-    for index, part_of_list in enumerate(incoming_list):
+    for index, part_of_list in enumerate(people_data):
         if part_of_list.get("wife"):
-            persons_list[index].wife = Person.people[
+            people[index].wife = Person.people[
                 part_of_list.get("wife")]
 
         if part_of_list.get("husband"):
-            persons_list[index].husband = Person.people[
+            people[index].husband = Person.people[
                 part_of_list.get("husband")]
 
-    return persons_list
+    return people
