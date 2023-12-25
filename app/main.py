@@ -8,10 +8,10 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    return [
-        Person(person["name"],
-               person["age"])
-               # person["wife"] if "wife" in person else person["husband"],
-               # person["spouse_name"])
-        for person in people
-    ]
+    result = [Person(person["name"], person["age"]) for person in people]
+    for i, person in enumerate(people):
+        if "wife" in person and person["wife"] is not None:
+            result[i].wife = Person.people[person["wife"]]
+        elif "husband" in person and person["husband"] is not None:
+            result[i].husband = Person.people[person["husband"]]
+    return result
