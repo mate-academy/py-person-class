@@ -6,7 +6,7 @@ class Person:
         self.age = age
         self.wife = None
         self.husband = None
-        self.people[self.name] = self
+        Person.people[name] = self
 
 
 def create_person_list(people: list) -> list:
@@ -20,15 +20,14 @@ def create_person_list(people: list) -> list:
             wife_name = person_data["wife"]
             if wife_name in person.people:
                 person.wife = person.people[wife_name]
-                if person.wife.husband is None:
-                    person.wife.husband = person
+                person.wife.husband = person
 
         elif "husband" in person_data and person_data["husband"] is not None:
             husband_name = person_data["husband"]
             if husband_name in person.people:
                 person.husband = person.people[husband_name]
-                if person.husband.wife is None:
-                    person.husband.wife = person
+                if person.wife is None:
+                    delattr(person, "wife")
 
         person_list.append(person)
     return person_list
