@@ -14,7 +14,7 @@ def create_person_list(people: list) -> list:
         age = person_data["age"]
         person = Person(name, age)
 
-        if person_data.get("wife") and person_data["wife"] is not None:
+        if person_data.get("wife"):
             wife_name = person_data["wife"]
             if wife_name in Person.people:
                 person.wife = Person.people[wife_name]
