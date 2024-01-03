@@ -117,7 +117,6 @@ def test_person_instance_attribute_wife_and_husband_doesnt_exists():
     with open(path_to_main()) as file:
         tree = ast.parse(file.read())
 
-    print(ast.dump(tree))
     assert (
         len(
             tree.__dict__["body"][0]
