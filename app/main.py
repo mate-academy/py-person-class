@@ -10,16 +10,14 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    person_list = list()
-
+    person_list = []
     for person_data in people:
-        person_instance = Person(person_data["name"], person_data["age"])
-        person_list.append(person_instance)
-
-    for person_instance, person_data in zip(person_list, people):
-        if "wife" in person_data and person_data["wife"]:
-            person_instance.wife = Person.people[person_data["wife"]]
-        elif "husband" in person_data and person_data["husband"]:
-            person_instance.husband = Person.people[person_data["husband"]]
-
+        person = Person(person_data["name"], person_data["age"])
+        if "wife" in person_data and person_data["wife"] is not None:
+            person.wife = Person.people[person_data["wife"]]
+            person.wife.husband = person
+        elif "husband" in person_data and person_data["husband"] is not None:
+            person.husband = Person.people[person_data["husband"]]
+            person.husband.wife = person
+        person_list.append(person)
     return person_list
