@@ -14,7 +14,7 @@ def create_person_list(people: list) -> list:
 
     # Create Person instances and populate the people dictionary
     for person_data in people:
-        person = Person(person_data["name"], person_data["age"])
+        person_data = Person(person_data["name"], person_data["age"])
 
     # Assign wife/husband relationships
     for person_data in people:
