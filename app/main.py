@@ -4,8 +4,6 @@ class Person:
     def __init__(self, name: str, age: int) -> None:
         self.name = name
         self.age = age
-        self.wife = None
-        self.husband = None
         self.people[self.name] = self
 
 
@@ -19,7 +17,6 @@ def create_person_list(people: list) -> list:
     # Assign wife/husband relationships
     for person in people:
         current_person = Person.people[person["name"]]
-
         if "wife" in person:
             if person["wife"]:
                 current_person.wife = Person.people[person["wife"]]
