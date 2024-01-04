@@ -10,7 +10,7 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    person_list = []
+    person_list = list()
 
     # Create Person instances and populate the people dictionary
     for person_data in people:
