@@ -13,13 +13,13 @@ def create_person_list(people: list) -> list:
     for person_data in people:
         name = person_data["name"]
         age = person_data["age"]
-        Person.people[name] = Person(name, age)
+        Person(name, age)
 
     for person_data in people:
         name = person_data["name"]
         person = Person.people[name]
         spouse_name = person_data.get("wife") or person_data.get("husband")
-        if spouse_name is not None:
+        if spouse_name is not None and spouse_name in Person.people:
             spouse = Person.people[spouse_name]
             setattr(
                 person, "wife" if "wife" in person_data else "husband", spouse
