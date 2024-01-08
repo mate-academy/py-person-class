@@ -7,10 +7,9 @@ class Person:
         Person.people[name] = self
 
 
-def create_person_list(people) -> list:
-    person_instances = [
-        Person(person["name"], person["age"]) for person in people
-        ]
+def create_person_list(people: dict) -> list:
+    person_instances = [Person(person["name"], person["age"])
+                        for person in people]
 
     for i in range(len(person_instances)):
         person = people[i]
