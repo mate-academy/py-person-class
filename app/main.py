@@ -1,6 +1,3 @@
-from __future__ import annotations
-
-
 class Person:
     people = {}
 
@@ -11,27 +8,14 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    person_list = []
-    for person_date in people:
-        person = Person(
-            name=person_date["name"],
-            age=person_date["age"]
-        )
-        partner_status = list(person_date.keys())[2]
-        if person_date[partner_status]:
-            if partner_status == "wife":
-                person.wife = person_date[partner_status]
-            else:
-                person.husband = person_date[partner_status]
-        person_list.append(person)
-    if len(person_list) > 1:
-        for person in person_list:
-            if len(list(person.__dict__.items())) > 2:
-                partner_name = list(person.__dict__.items())[2][1]
-                if partner_name:
-                    partner_status = list(person.__dict__.items())[2][0]
-                    if partner_status == "wife":
-                        person.wife = Person.people[partner_name]
-                    else:
-                        person.husband = Person.people[partner_name]
+    person_list = [
+        Person(name=person_data["name"], age=person_data["age"])
+        for person_data in people
+    ]
+    for person_data in people:
+        person = Person.people[person_data["name"]]
+        if person_data.get("wife"):
+            person.wife = Person.people[person_data["wife"]]
+        elif person_data.get("husband"):
+            person.husband = Person.people[person_data["husband"]]
     return person_list
