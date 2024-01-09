@@ -4,13 +4,10 @@ from __future__ import annotations
 class Person:
     people = {}
 
-    def __init__(
-            self,
-            name: str,
-            age: int,
-    ) -> None:
+    def __init__(self, name: str, age: int) -> None:
         self.name = name
         self.age = age
+        Person.people[name] = self
 
 
 def create_person_list(people: list) -> list:
@@ -20,7 +17,6 @@ def create_person_list(people: list) -> list:
             name=person_date["name"],
             age=person_date["age"]
         )
-        Person.people[person_date["name"]] = person
         partner_status = list(person_date.keys())[2]
         if person_date[partner_status]:
             if partner_status == "wife":
