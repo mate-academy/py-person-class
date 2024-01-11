@@ -24,9 +24,9 @@ def create_person_list(people: list) -> list:
     # check & create relations <wife/husband> for instances
     for person in people:
         name = person["name"]
-        if "wife" in person and person["wife"] is not None :
+        if person.get("wife"):
             Person.people[name].wife = Person.people[person["wife"]]
-        elif "husband" in person and person["husband"] is not None :
+        if person.get("husband"):
             Person.people[name].husband = Person.people[person["husband"]]
 
     return person_list
