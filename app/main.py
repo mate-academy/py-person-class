@@ -14,11 +14,13 @@ def create_person_list(people: list[dict]) -> list:
     ]
 
     for person in people:
-        if "husband" in person and person["husband"] is not None:
-            Person.people[person["name"]].husband = \
+        if "husband" in person and person["husband"]:
+            Person.people[person["name"]].husband = (
                 Person.people[person["husband"]]
-        elif "wife" in person and person["wife"] is not None:
-            Person.people[person["name"]].wife = \
+            )
+        elif "wife" in person and person["wife"]:
+            Person.people[person["name"]].wife = (
                 Person.people[person["wife"]]
+            )
 
     return list_of_person_instances
