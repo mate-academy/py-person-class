@@ -4,20 +4,15 @@ class Person:
     def __init__(self, name: str, age: int) -> None:
         self.name = name
         self.age = age
-        self.people.update({name: self})
+        Person.people[name] = self
 
 
-def create_person_list(people: list) -> list:
-    persons_of_people = [
-        Person(name=person["name"],
-               age=person["age"])
-        for person in people
-    ]
-    for i in range(len(persons_of_people)):
-        person = persons_of_people[i]
-        person_dict = people[i]
-        if "wife" in person_dict and person_dict["wife"] is not None:
+def create_person_list(people: list[dict]) -> list[Person]:
+    result = [Person(person["name"], person["age"]) for person in people]
+    for person_dict in people:
+        person = Person.people[person_dict["name"]]
+        if person_dict.get("wife"):
             person.wife = Person.people[person_dict["wife"]]
-        if "husband" in person_dict and person_dict["husband"] is not None:
+        elif person_dict.get("husband"):
             person.husband = Person.people[person_dict["husband"]]
-    return persons_of_people
+    return result
