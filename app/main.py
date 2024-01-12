@@ -11,8 +11,7 @@ def create_person_list(people: list) -> list:
     persons_of_people = [
         Person(name=person["name"],
                age=person["age"])
-        for person in people
-        ]
+        for person in people]
     for person, person_dict in zip(persons_of_people, people):
         wife_name = person_dict.get("wife")
         husband_name = person_dict.get("husband")
