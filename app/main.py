@@ -16,11 +16,8 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    person_list = []
     # filling list of <People> instances
-    for person in people:
-        human = Person(person["name"], person["age"])
-        person_list.append(human)
+    person_list = [Person(person["name"], person["age"]) for person in people]
     # check & create relations <wife/husband> for instances
     for person in people:
         name = person["name"]
