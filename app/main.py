@@ -17,11 +17,9 @@ def create_person_list(people_list: list) -> list:
         persons.append(person)
 
     for person in people_list:
-        if "wife" in person:
-            if person["wife"] is not None:
-
-                way_to_person = Person.people[person["name"]]
-                way_to_person.wife = Person.people[person["wife"]]
+        if person.get("wife") is not None:
+            way_to_person = Person.people[person["name"]]
+            way_to_person.wife = Person.people[person["wife"]]
         if "husband" in person:
             if person["husband"] is not None:
 
