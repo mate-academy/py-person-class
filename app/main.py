@@ -18,6 +18,6 @@ def create_person_list(people: list) -> list:
         if wife_name is not None:
             Person.people[person["name"]].wife = Person.people.get(wife_name)
     Person.people[person["name"]].husband = (
-        (Person.people)[person["husband"]]
+        Person.people[person["husband"]]
     )
     return result_list
