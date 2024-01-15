@@ -1,9 +1,5 @@
-from __future__ import annotations  # for enabling user classes in annotations
-from typing import Dict
-
-
 class Person:
-    people: Dict[str, Person] = {}
+    people: dict = {}
 
     def __init__(self, name: str, age: int) -> None:
         self.name: str = name
@@ -21,8 +17,8 @@ def create_person_list(people_data: list) -> list:
             Person.people[pers["wife"]].husband = Person.people[pers["name"]]
 
         elif pers.get("husband"):
-            Person.people[pers["name"]].husband = \
-                Person.people[pers["husband"]]
+            Person.people[pers["name"]].husband = (
+                Person.people[pers["husband"]])
             Person.people[pers["husband"]].wife = Person.people[pers["name"]]
 
     return people_list
