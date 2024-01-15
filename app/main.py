@@ -16,12 +16,13 @@ def create_person_list(people_data: list) -> list:
     people_list = [Person(pers["name"], pers["age"]) for pers in people_data]
 
     for pers in people_data:
-        if "wife" in pers and pers["wife"]:
+        if pers.get("wife"):
             Person.people[pers["name"]].wife = Person.people[pers["wife"]]
             Person.people[pers["wife"]].husband = Person.people[pers["name"]]
 
-        elif "husband" in pers and pers["husband"]:
-            Person.people[pers["name"]].husband = Person.people[pers["husband"]]
+        elif pers.get("husband"):
+            Person.people[pers["name"]].husband = \
+                Person.people[pers["husband"]]
             Person.people[pers["husband"]].wife = Person.people[pers["name"]]
 
     return people_list
