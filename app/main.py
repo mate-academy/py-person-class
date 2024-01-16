@@ -13,11 +13,13 @@ def create_person_list(people: list) -> list:
 
     for person in people:
         human = Person.people[person["name"]]
-        if "wife" in person:
-            if person["wife"]:
-                human.wife = Person.people.get(person.get("wife"))
-        elif "husband" in person:
-            if person["husband"]:
-                human.husband = Person.people.get(person.get("husband"))
+
+        wife_name = person.get("wife")
+        if wife_name:
+            human.wife = Person.people.get(wife_name)
+
+        husband_name = person.get("husband")
+        if husband_name:
+            human.husband = Person.people.get(husband_name)
 
     return person_list
