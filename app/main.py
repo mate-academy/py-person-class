@@ -13,10 +13,9 @@ def create_person_list(people: list) -> list:
         for new_person in people
     ]
     for person in people:
+        current_person = Person.people[person["name"]]
         if person.get("wife"):
-            person_list[people.index(person)].wife \
-                = Person.people[person["wife"]]
+            current_person.wife = Person.people[person["wife"]]
         elif person.get("husband"):
-            person_list[people.index(person)].husband \
-                = Person.people[person["husband"]]
+            current_person.husband = Person.people[person["husband"]]
     return person_list
