@@ -6,7 +6,7 @@ class Person:
         self.age = age
         self.__class__.people[name] = self
 
-    def set_spouse(self, spouse: list) -> None:
+    def set_spouse(self, spouse: str) -> None:
         if spouse:
             if isinstance(spouse, Person):
                 self.husband = spouse
