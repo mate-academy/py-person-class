@@ -20,9 +20,7 @@ def create_person_list(people_list: list) -> list:
         if person.get("wife"):
             way_to_person = Person.people[person["name"]]
             way_to_person.wife = Person.people[person["wife"]]
-        if "husband" in person:
-            if person["husband"] is not None:
-
-                way_to_person = Person.people[person["name"]]
-                way_to_person.husband = Person.people[person["husband"]]
+        if person.get("husband"):
+            way_to_person = Person.people[person["name"]]
+            way_to_person.husband = Person.people[person["husband"]]
     return persons
