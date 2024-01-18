@@ -12,8 +12,8 @@ def create_person_list(people: list) -> list:
     for person in people:
         name = person["name"]
         age = person["age"]
-        person_list = Person(name, age)
-        instances.append(person_list)
+        instance = Person(name, age)
+        instances.append(instance)
 
     for person in people:
         if person.get("wife"):
