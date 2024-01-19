@@ -11,11 +11,13 @@ def create_person_list(people: list) -> list:
     new_people_list = [Person(person_dict["name"], person_dict["age"])
                        for person_dict in people]
 
-    for i in range(len(new_people_list)):
-        if new_people_list[i].name == people[i]["name"]:
-            if people[i].get("wife"):
-                new_people_list[i].wife = Person.people[people[i]["wife"]]
-            if people[i].get("husband"):
-                new_people_list[i].husband \
-                    = Person.people[people[i]["husband"]]
+    for current_person in range(len(new_people_list)):
+        if (new_people_list[current_person].name
+                == people[current_person]["name"]):
+            if people[current_person].get("wife"):
+                new_people_list[current_person].wife = Person.people[
+                    people[current_person]["wife"]]
+            if people[current_person].get("husband"):
+                new_people_list[current_person].husband = Person.people[
+                    people[current_person]["husband"]]
     return new_people_list
