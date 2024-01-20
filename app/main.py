@@ -22,4 +22,5 @@ def create_person_list(people: list) -> list:
         if people[current_person].get("husband"):
             people_list[current_person].husband = Person.people[
                 people[current_person]["husband"]]
+
     return people_list
