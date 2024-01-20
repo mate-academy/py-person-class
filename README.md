@@ -18,7 +18,7 @@ instances by their `name`. The `__init__` method should
 add elements to this attribute.
 
 Write function `create_person_list`, this function
-takes list `people` and return list with
+takes list `people` and return list with    
 `Person` instances instead of dicts.
 
 **Note:**
