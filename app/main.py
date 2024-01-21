@@ -7,19 +7,21 @@ class Person:
         Person.people[name] = self
 
 
-def create_person_list(people_data: list) -> list:
+def create_person_list(people: list) -> list:
     Person.people = {}
 
-    for person_data in people_data:
-        Person(person_data["name"], person_data["age"])
+    for person in people:
+        Person(person["name"], person["age"])
 
-    for person_data in people_data:
-        person = Person.people[person_data["name"]]
-        if "wife" in person_data and person_data["wife"]:
-            person.wife = Person.people[person_data["wife"]]
-            person.wife.husband = person  # Linking back to the husband
-        elif "husband" in person_data and person_data["husband"]:
-            person.husband = Person.people[person_data["husband"]]
-            person.husband.wife = person  # Linking back to the wife
+    for person in people:
+        main_person = Person.people[person["name"]]
+        if "wife" in person and person["wife"]:
+            # Setting wife and linking back to husband
+            main_person.wife = Person.people[person["wife"]]
+            main_person.wife.husband = main_person
+        elif "husband" in person and person["husband"]:
+            # Setting husband and linking back to wife
+            main_person.husband = Person.people[person["husband"]]
+            main_person.husband.wife = main_person
 
-    return [Person.people[person_data["name"]] for person_data in people_data]
+    return [Person.people[person["name"]] for person in people]
