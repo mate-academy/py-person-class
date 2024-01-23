@@ -14,10 +14,14 @@ def create_person_list(people: str) -> None:
     ]
 
     for person_data in people:
-        person = Person.people[person_data["name"]]
-        if "wife" in person_data and person_data["wife"] is not None:
-            person.wife = Person.people.get(person_data["wife"], None)
-        if "husband" in person_data and person_data["husband"] is not None:
-            person.husband = Person.people.get(person_data["husband"], None)
+        person = Person.people.get(person_data["name"])
+        wife_name = person_data.get("wife")
+        husband_name = person_data.get("husband")
+
+        if wife_name is not None:
+            person.wife = Person.people.get(wife_name)
+
+        if husband_name is not None:
+            person.husband = Person.people.get(husband_name)
 
     return person_list
