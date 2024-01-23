@@ -8,11 +8,8 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    for human in people:
-        Person(human.get("name"), human.get("age"))
-
     person_instances = [
-        Person.people.get(human.get("name")) for human in people
+       Person(human.get("name"), human.get("age")) for human in people
     ]
 
     for human in people:
