@@ -1,27 +1,32 @@
 class Person:
-    people: dict = {}
+    people = {}
 
     def __init__(self, name: str, age: int) -> None:
         self.name = name
         self.age = age
+        # Атрибути wife і husband не створюються за замовчуванням
         Person.people[name] = self
 
 
-def create_person_list(people: list) -> list:
+def create_person_list(people_list: list) -> list:
     Person.people = {}
 
-    for person in people:
-        Person(person["name"], person["age"])
+    for person_info in people_list:
+        Person(person_info["name"], person_info["age"])
 
-    for person in people:
-        main_person = Person.people[person["name"]]
-        if "wife" in person and person["wife"]:
-            # Setting wife and linking back to husband
-            main_person.wife = Person.people[person["wife"]]
-            main_person.wife.husband = main_person
-        elif "husband" in person and person["husband"]:
-            # Setting husband and linking back to wife
-            main_person.husband = Person.people[person["husband"]]
-            main_person.husband.wife = main_person
+    for person_info in people_list:
+        person = Person.people[person_info["name"]]
 
-    return [Person.people[person["name"]] for person in people]
+        if "wife" in person_info:
+            wife_name = person_info["wife"]
+            if wife_name in Person.people:
+                person.wife = Person.people[wife_name]
+                person.wife.husband = person
+
+        elif "husband" in person_info:
+            husband_name = person_info["husband"]
+            if husband_name in Person.people:
+                person.husband = Person.people[husband_name]
+                person.husband.wife = person
+
+    return list(Person.people.values())
