@@ -11,7 +11,7 @@ class Person:
 
 def create_person_list(people: list) -> list:
 
-    list_of_people = [
+    list_of_people1 = [
         Person(person["name"], person["age"])
         for person in people
     ]
@@ -24,4 +24,4 @@ def create_person_list(people: list) -> list:
             current_person = Person.people[person["name"]]
             current_person.husband = Person.people[person["husband"]]
 
-    return list_of_people
+    return list_of_people1
