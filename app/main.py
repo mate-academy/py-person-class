@@ -6,7 +6,7 @@ class Person:
         self.age = age
         Person.people[name] = self
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return f"Person(name={self.name}, age={self.age})"
 
 
