@@ -34,4 +34,3 @@ def create_person_list(people: [dict]) -> [Person]:
                                                human_data["husband"])
 
     return list(Person.people.values())
-
