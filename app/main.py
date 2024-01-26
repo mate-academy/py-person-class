@@ -14,9 +14,9 @@ def find_partner(obj: Person,
                  ) -> Person | str | None:
     if person_to_find and person_to_find in obj.people.keys():
         partner = obj.people[person_to_find]
-        if hasattr(partner, "wife") and partner.wife == obj.name:
+        if hasattr(partner, "wife"):
             partner.wife = obj
-        elif hasattr(partner, "husband") and partner.husband == obj.name:
+        elif hasattr(partner, "husband"):
             partner.husband = obj
         return obj.people[person_to_find]
     else:
@@ -35,17 +35,17 @@ def create_person_list(people: [dict]) -> [Person]:
 
     return list(Person.people.values())
 
-# tmp = [
-#         {"name": "Ross", "age": 30, "wife": "Rachel"},
-#         {"name": "Joey", "age": 29, "wife": None},
-#         {"name": "Phoebe", "age": 31, "husband": None},
-#         {"name": "Chandler", "age": 30, "wife": "Monica"},
-#         {"name": "Monica", "age": 32, "husband": "Chandler"},
-#         {"name": "Rachel", "age": 28, "husband": "Ross"},
-#     ]
-#
-# created_person_list = create_person_list(tmp)
-#
-# print(hasattr(created_person_list[0], "wife"))
-# print(created_person_list[0].wife.husband == created_person_list[0])
-# print(hasattr(created_person_list[1], "wife") is False)
+tmp = [
+        {"name": "Ross", "age": 30, "wife": "Rachel"},
+        {"name": "Joey", "age": 29, "wife": None},
+        {"name": "Phoebe", "age": 31, "husband": None},
+        {"name": "Chandler", "age": 30, "wife": "Monica"},
+        {"name": "Monica", "age": 32, "husband": "Chandler"},
+        {"name": "Rachel", "age": 28, "husband": "Ross"},
+    ]
+
+created_person_list = create_person_list(tmp)
+
+print(hasattr(created_person_list[0], "wife"))
+print(created_person_list[0].wife.husband == created_person_list[0])
+print(hasattr(created_person_list[1], "wife") is False)
