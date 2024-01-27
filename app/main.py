@@ -1,5 +1,9 @@
+from typing import List
+
+
 class Person:
     people = {}
+    people_list = []
 
     def __init__(self, name: str, age: int) -> None:
 
@@ -7,6 +11,7 @@ class Person:
         self.age = age
 
         Person.people[self.name] = self
+        Person.people_list.append(self)
 
 
 def find_partner(person_obj: Person,
@@ -16,19 +21,22 @@ def find_partner(person_obj: Person,
         partner = person_obj.people[person_to_find]
         if hasattr(partner, "wife"):
             partner.wife = person_obj
-        elif hasattr(partner, "husband"):
+        else:  # hasattr(partner, "husband"):
             partner.husband = person_obj
         return Person.people[person_to_find]
 
 
-def create_person_list(people: [dict]) -> [Person]:
+def create_person_list(people: List[dict]) -> List[Person]:
 
     for human_data in people:
         curr_person = Person(human_data["name"], human_data["age"])
-        if human_data.get("wife"):
-            curr_person.wife = find_partner(curr_person, human_data["wife"])
-        elif human_data.get("husband"):
-            curr_person.husband = find_partner(curr_person,
-                                               human_data["husband"])
+        set_partner(curr_person, human_data)
+    return Person.people_list
 
-    return list(Person.people.values())
+
+def set_partner(person, person_data):
+    if person_data.get("wife"):
+        person.wife = find_partner(person, person_data["wife"])
+    elif person_data.get("husband"):
+        person.husband = find_partner(person,
+                                      person_data["husband"])
