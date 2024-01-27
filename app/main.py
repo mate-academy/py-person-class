@@ -34,7 +34,7 @@ def create_person_list(people: List[dict]) -> List[Person]:
     return Person.people_list
 
 
-def set_partner(person, person_data):
+def set_partner(person: Person, person_data: dict):
     if person_data.get("wife"):
         person.wife = find_partner(person, person_data["wife"])
     elif person_data.get("husband"):
