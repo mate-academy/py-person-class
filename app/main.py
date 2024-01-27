@@ -6,7 +6,7 @@ class Person:
         self.name = name
         self.age = age
 
-        Person.people[self.name] = self
+        self.people[self.name] = self
 
 
 def find_partner(person_obj: Person,
