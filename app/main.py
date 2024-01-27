@@ -9,16 +9,16 @@ class Person:
         self.people[self.name] = self
 
 
-def find_partner(obj: Person,
+def find_partner(person_obj: Person,
                  person_to_find: str | None
                  ) -> Person | str | None:
-    if person_to_find and person_to_find in obj.people.keys():
-        partner = obj.people[person_to_find]
+    if person_to_find and person_to_find in person_obj.people.keys():
+        partner = person_obj.people[person_to_find]
         if hasattr(partner, "wife"):
-            partner.wife = obj
+            partner.wife = person_obj
         elif hasattr(partner, "husband"):
-            partner.husband = obj
-        return obj.people[person_to_find]
+            partner.husband = person_obj
+        return person_obj.people[person_to_find]
     else:
         return person_to_find
 
