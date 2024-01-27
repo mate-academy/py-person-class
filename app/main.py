@@ -1,9 +1,5 @@
-from typing import List
-
-
 class Person:
     people = {}
-    people_list = []
 
     def __init__(self, name: str, age: int) -> None:
 
@@ -11,7 +7,6 @@ class Person:
         self.age = age
 
         Person.people[self.name] = self
-        Person.people_list.append(self)
 
 
 def find_partner(person_obj: Person,
@@ -26,12 +21,12 @@ def find_partner(person_obj: Person,
         return Person.people[person_to_find]
 
 
-def create_person_list(people: List[dict]) -> List[Person]:
+def create_person_list(people: list[dict]) -> list[Person]:
 
     for human_data in people:
         curr_person = Person(human_data["name"], human_data["age"])
         set_partner(curr_person, human_data)
-    return Person.people_list
+    return list(Person.people.values())
 
 
 def set_partner(person: Person, person_data: dict) -> None:
