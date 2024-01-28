@@ -9,7 +9,7 @@ class Person:
         Person.people[self.name] = self
 
 
-def find_partner_and_set_his_partner(
+def get_and_update_partner(
     person_obj: Person,
     person_to_find: str | None
 ) -> Person | None:
@@ -33,12 +33,12 @@ def create_person_list(people: list[dict]) -> list[Person]:
 
 def set_partner(person: Person, person_data: dict) -> None:
     if person_data.get("wife"):
-        person.wife = find_partner_and_set_his_partner(
+        person.wife = get_and_update_partner(
             person,
             person_data["wife"]
         )
     elif person_data.get("husband"):
-        person.husband = find_partner_and_set_his_partner(
+        person.husband = get_and_update_partner(
             person,
             person_data["husband"]
         )
