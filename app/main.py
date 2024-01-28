@@ -21,9 +21,9 @@ def create_person_list(people: list) -> list:
     person_list = [Person(person["name"], person["age"]) for person in people]
 
     for person_dict, person in zip(people, person_list):
-        if "wife" in person_dict and person_dict["wife"]:
+        if person_dict.get("wife"):
             person.set_spouse(person_dict["wife"], is_husband=True)
-        elif "husband" in person_dict and person_dict["husband"]:
+        elif person_dict.get("husband"):
             person.set_spouse(person_dict["husband"], is_husband=False)
 
     return person_list
