@@ -39,15 +39,3 @@ def set_partner(person: Person, person_data: dict) -> None:
     elif person_data.get("husband"):
         person.husband = find_partner(person,
                                       person_data["husband"])
-
-
-tmp = [
-        {"name": "Ross", "age": 30, "wife": "Rachel"},
-        {"name": "Joey", "age": 29, "wife": None},
-        {"name": "Phoebe", "age": 31, "husband": None},
-        {"name": "Chandler", "age": 30, "wife": "Monica"},
-        {"name": "Monica", "age": 32, "husband": "Chandler"},
-        {"name": "Rachel", "age": 28, "husband": "Ross"},
-    ]
-
-tmp2 = create_person_list(tmp)
