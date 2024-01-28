@@ -19,7 +19,7 @@ def find_partner_and_set_his_partner(
             partner.wife = person_obj
         elif hasattr(partner, "husband"):
             partner.husband = person_obj
-        return Person.people[person_to_find]
+        return partner
 
 
 def create_person_list(people: list[dict]) -> list[Person]:
