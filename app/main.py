@@ -22,15 +22,12 @@ def find_partner(person_obj: Person,
 
 
 def create_person_list(people: list[dict]) -> list[Person]:
-
+    created_items = []
     for human_data in people:
         curr_person = Person(human_data["name"], human_data["age"])
+        created_items.append(curr_person)
         set_partner(curr_person, human_data)
-    return get_person_list()
-
-
-def get_person_list() -> list:
-    return list(Person.people.values())
+    return created_items
 
 
 def set_partner(person: Person, person_data: dict) -> None:
