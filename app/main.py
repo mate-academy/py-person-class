@@ -7,16 +7,18 @@ class Person:
         Person.people[name] = self
 
 
+def set_partner(person_dict: dict) -> None:
+    person = Person.people[person_dict["name"]]
+    if "wife" in person_dict:
+        if person_dict["wife"]:
+            person.wife = Person.people[person_dict["wife"]]
+    elif "husband" in person_dict:
+        if person_dict["husband"]:
+            person.husband = Person.people[person_dict["husband"]]
+
+
 def create_person_list(people: list) -> list[Person]:
-    persons_list: list[Person] = \
-        [Person(person["name"], person["age"]) for person in people]
-
+    persons_list: list[Person] = [Person(person["name"], person["age"]) for person in people]
     for person in people:
-        if "wife" in person and person["wife"] is not None:
-            wife = Person.people[person["wife"]]
-            Person.people[person["name"]].wife = wife
-        if "husband" in person and person["husband"] is not None:
-            husband = Person.people[person["husband"]]
-            Person.people[person["name"]].husband = husband
-
+        set_partner(person)
     return persons_list
