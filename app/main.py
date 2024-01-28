@@ -9,14 +9,15 @@ class Person:
         Person.people[self.name] = self
 
 
-def find_partner(person_obj: Person,
-                 person_to_find: str | None
-                 ) -> Person | str | None:
+def find_and_set_partner(
+    person_obj: Person,
+    person_to_find: str | None
+) -> Person | None:
     if person_to_find in Person.people:
-        partner = person_obj.people[person_to_find]
+        partner = Person.people[person_to_find]
         if hasattr(partner, "wife"):
             partner.wife = person_obj
-        else:  # hasattr(partner, "husband"):
+        elif hasattr(partner, "husband"):
             partner.husband = person_obj
         return Person.people[person_to_find]
 
@@ -32,7 +33,7 @@ def create_person_list(people: list[dict]) -> list[Person]:
 
 def set_partner(person: Person, person_data: dict) -> None:
     if person_data.get("wife"):
-        person.wife = find_partner(person, person_data["wife"])
+        person.wife = find_and_set_partner(person, person_data["wife"])
     elif person_data.get("husband"):
-        person.husband = find_partner(person,
-                                      person_data["husband"])
+        person.husband = find_and_set_partner(person,
+                                              person_data["husband"])
