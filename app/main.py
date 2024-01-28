@@ -18,7 +18,8 @@ def set_partner(person_dict: dict) -> None:
 
 
 def create_person_list(people: list) -> list[Person]:
-    persons_list: list[Person] = [Person(person["name"], person["age"]) for person in people]
+    persons_list: list[Person] = \
+        [Person(person["name"], person["age"]) for person in people]
     for person in people:
         set_partner(person)
     return persons_list
