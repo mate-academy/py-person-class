@@ -14,7 +14,7 @@ def create_person_list(people_list: list) -> list :
     ]
 
     for person_instance, person_data in zip(person_instances, people_list):
-        if person_data.get("wife") is not None:
+        if person_data.get("wife"):
             partner_name = person_data.get("wife")
             person_instance.wife = Person.people.get(partner_name)
 
