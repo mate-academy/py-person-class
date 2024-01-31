@@ -18,7 +18,7 @@ def create_person_list(people_list: list) -> list :
             partner_name = person_data.get("wife")
             person_instance.wife = Person.people.get(partner_name)
 
-        if person_data.get("husband") is not None:
+        if person_data.get("husband"):
             partner_name = person_data.get("husband")
             person_instance.husband = Person.people.get(partner_name)
 
