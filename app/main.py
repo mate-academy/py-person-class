@@ -28,4 +28,3 @@ def create_person_list(people: list) -> list:
             spouse.spouse = person
 
     return person_list
-    pass
