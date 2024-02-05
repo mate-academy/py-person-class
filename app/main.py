@@ -8,12 +8,12 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    ls = []
+    person_list = []
     for human in people:
         person = Person(human["name"], human["age"])
-        ls.append(person)
+        person_list.append(person)
     for human in people:
-        for person in ls:
+        for person in person_list:
             if "wife" in human:
                 if human["wife"] is not None:
                     if human["name"] == person.name:
@@ -22,4 +22,4 @@ def create_person_list(people: list) -> list:
                 if human["husband"] is not None:
                     if human["name"] == person.name:
                         person.husband = Person.people[human["husband"]]
-    return ls
+    return person_list
