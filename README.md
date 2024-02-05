@@ -14,7 +14,7 @@ Create class `Person`. It's `__init__` method takes
 and store `name`, `age` of a person.
 This class also should have a class attribute
 `people`, it is a dict that stores `Person` 
-instances by their `name`. The `__init__` method should 
+
 add elements to this attribute.
 
 Write function `create_person_list`, this function
