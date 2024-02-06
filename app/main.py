@@ -14,7 +14,7 @@ def create_person_list(people: dict) -> list:
 
     for person_info in people:
         person = Person.people[person_info["name"]]
-        if "wife" in person_info and person_info["wife"] is not None:
+        if person_info.get("wife"):
             wife_name = person_info["wife"]
             person.wife = Person.people[wife_name]
             Person.people[wife_name].husband = person
