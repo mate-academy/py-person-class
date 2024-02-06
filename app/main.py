@@ -4,13 +4,25 @@ class Person:
     def __init__(self, name: str, age: int) -> None:
         self.name = name
         self.age = age
-        self.wife = None
-        self.husband = None
         self.__class__.people[name] = self
 
     @classmethod
     def get_person(cls, name: str) -> str:
         return cls.people.get(name)
+
+    def set_wife(self, spouse: "Person") -> None:
+        if isinstance(spouse, Person):
+            self.wife = spouse
+
+    def set_husband(self, spouse: "Person") -> None:
+        if isinstance(spouse, Person):
+            self.husband = spouse
+
+    def remove_spouse(self) -> None:
+        if hasattr(self, "wife"):
+            del self.wife
+        if hasattr(self, "husband"):
+            del self.husband
 
 
 def create_person_list(people: list) -> list:
@@ -29,14 +41,8 @@ def create_person_list(people: list) -> list:
             spouse = Person.get_person(spouse_name)
             if spouse:
                 if "wife" in person_data:
-                    person.wife = spouse
-                elif "husband" in person_data:
-                    person.husband = spouse
-
-        else:
-            if hasattr(person, "wife"):
-                delattr(person, "wife")
-            if hasattr(person, "husband"):
-                delattr(person, "husband")
+                    person.set_wife(spouse)
+                else:
+                    person.set_husband(spouse)
 
     return person_list
