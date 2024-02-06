@@ -10,20 +10,16 @@ class Person:
 def create_person_list(people: list) -> list:
     person_list = []
 
-    for per in people:
-        person_list.append(Person(per["name"], per["age"]))
+    for person in people:
+        person_list.append(Person(person["name"], person["age"]))
 
-    for per in people:
-        name_person = Person.people.get(per["name"])
+    for person in people:
+        person_instance = Person.people.get(person.get("name"))
 
-        if "wife" in per and per["wife"] is not None:
-            # name_wife = Person.people.get(per["wife"])
-            # name_person.wife = name_wife
-            name_person.wife = Person.people.get(per["wife"])
+        if person.get("wife") is not None:
+            person_instance.wife = Person.people.get(person["wife"])
 
-        if "husband" in per and per["husband"] is not None:
-            # name_husband = Person.people.get(per["husband"])
-            # name_person.husband = name_husband
-            name_person.husband = Person.people.get(per["husband"])
+        if person.get("husband") is not None:
+            person_instance.husband = Person.people.get(person["husband"])
 
     return person_list
