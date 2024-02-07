@@ -18,7 +18,7 @@ def create_person_list(people: list) -> list:
         person_instances.append(person_instance)
 
     for person in people:
-        if not person.get("wife") is None is person.get("husband"):
+        if person.get("wife") or person.get("husband"):
             instance_spouse_link = Person.people[list(person.values())[2]]
             if list(person.keys())[2] != "wife":
                 Person.people[person["name"]].husband = instance_spouse_link
