@@ -1,5 +1,4 @@
 class Person:
-
     people = dict()
 
     def __init__(self, name: str, age: int) -> None:
@@ -9,14 +8,12 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    person_instances = []
-    for person in people:
-        person_instance = Person(
-            name=person["name"],
-            age=person["age"]
-        )
-        person_instances.append(person_instance)
-
+    person_instances = [
+        Person(name=person["name"],
+               age=person["age"]
+               )
+        for person in people
+    ]
     for person in people:
         if person.get("wife") or person.get("husband"):
             instance_spouse_link = Person.people[list(person.values())[2]]
