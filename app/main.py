@@ -15,10 +15,8 @@ def create_person_list(people: list) -> list:
         for person in people
     ]
     for person in people:
-        if person.get("wife") or person.get("husband"):
-            instance_spouse_link = Person.people[list(person.values())[2]]
-            if list(person.keys())[2] != "wife":
-                Person.people[person["name"]].husband = instance_spouse_link
-            else:
-                Person.people[person["name"]].wife = instance_spouse_link
+        if spouse := person.get("wife"):
+            Person.people[spouse].husband = Person.people[person["name"]]
+        elif spouse := person.get("husband"):
+            Person.people[spouse].wife = Person.people[person["name"]]
     return person_instances
