@@ -12,12 +12,9 @@ def create_person_list(people_list: list) -> list:
 
     for person in people_list:
         person_instance = Person.people[person["name"]]
-        spouse_name = person.get("wife") or person.get("husband")
-
-        if spouse_name is not None:
-            if "wife" in person:
-                person_instance.wife = Person.people[spouse_name]
-            else:
-                person_instance.husband = Person.people[spouse_name]
+        if person.get("wife"):
+            person_instance.wife = Person.people[person["wife"]]
+        if person.get("husband"):
+            person_instance.husband = Person.people[person["husband"]]
 
     return people
