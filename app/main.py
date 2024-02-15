@@ -12,9 +12,9 @@ def create_person_list(people: list) -> list:
                           age=person["age"])
                    for person in people]
     for person in people:
-        person_instance = person["name"]
+        person_instance = Person.people.get(person["name"])
         if wife_name := person.get("wife"):
-            Person.people[person_instance].wife = Person.people.get(wife_name)
+            person_instance.wife = Person.people.get(wife_name)
         if husband_name := person.get("husband"):
-            Person.people[person_instance].husband = Person.people.get(husband_name)
+            person_instance.husband = Person.people.get(husband_name)
     return people_list
