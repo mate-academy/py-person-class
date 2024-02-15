@@ -4,6 +4,7 @@ class Person:
     def __init__(self, name: str, age: int) -> None:
         self.name = name
         self.age = age
+        Person.people[name] = self
 
 
 def create_person_list(people: list) -> list:
@@ -11,11 +12,6 @@ def create_person_list(people: list) -> list:
         Person(person["name"], person["age"])
         for person in people
     ]
-
-    Person.people = {
-        person.name: person
-        for person in person_list
-    }
 
     for person in people:
         current_person = Person.people[person["name"]]
