@@ -18,3 +18,4 @@ def create_person_list(people: list) -> list:
                 Person.people[person["husband"]]
 
     return person_list
+# я просто забув поставити девелоп бранч
