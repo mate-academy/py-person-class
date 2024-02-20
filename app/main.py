@@ -1,14 +1,14 @@
 class Person:
     people = {}
 
-    def __init__(self, name, age):
+    def __init__(self, name: str, age: int) -> None:
         self.name = name
         self.age = age
         self.wife = None
         self.husband = None
         Person.people[name] = self
 
-    def remove_spouse_attribute(self):
+    def remove_spouse_attribute(self) -> None:
         if self.wife is None:
             del self.wife
         if self.husband is None:
@@ -28,7 +28,8 @@ def create_person_list(people: list) -> list:
             person.wife = Person.people.get(wife_name)
             if person.wife:
                 person.wife.husband = person
-        elif "husband" in person_data and person_data["husband"] in Person.people:
+        elif ("husband" in person_data
+              and person_data["husband"] in Person.people):
             husband_name = person_data["husband"]
             person.husband = Person.people.get(husband_name)
             if person.husband:
