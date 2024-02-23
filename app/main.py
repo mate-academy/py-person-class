@@ -7,21 +7,20 @@ class Person:
         Person.people[name] = self
 
 
+def not_none(person: dict, partner: str = "wife") -> bool:
+    return person.get(partner) is not None
+
+
 def create_person_list(people: list) -> list:
-    res = []
-    for people_data in people:
-        person = Person(people_data["name"], people_data["age"])
-        if people_data.get("wife") in Person.people:
-            person.wife = Person.people[people_data["wife"]]
-            person.wife.husband = person
-        # it"s bad code, I know, wht cond.should I add to get rid of this code
-        # I don"t fully understand it, ChatGPT helped me to refactor my code
-        else:
-            pass
-        if people_data.get("husband") in Person.people:
-            person.husband = Person.people[people_data["husband"]]
-            person.husband.wife = person
-        else:
-            pass
-        res.append(person)
-    return res
+    people_instance = [
+        Person(name=person["name"], age=person["age"])
+        for person in people
+    ]
+
+    for index, person in enumerate(people):
+        if not_none(person):
+            people_instance[index].wife = Person.people[person["wife"]]
+
+        if not_none(person, partner="husband"):
+            people_instance[index].husband = Person.people[person["husband"]]
+    return people_instance
