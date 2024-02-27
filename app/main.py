@@ -15,10 +15,6 @@ def create_person_list(people: list[dict]) -> list[Person]:
     Person.people = {person_info["name"]: Person(person_info["name"],
                                                  person_info["age"])
                      for person_info in people}
-    """
-        the realisation below is the onliest way when ':=' worked
-        on my pc, it just doesnt work other way :(
-    """
     for person_info in people:
         person_instance = Person.people[person_info["name"]]
         if "wife" in person_info and \
@@ -29,3 +25,4 @@ def create_person_list(people: list[dict]) -> list[Person]:
             person_instance.husband = Person.people[husband_name]
 
     return list(Person.people.values())
+
