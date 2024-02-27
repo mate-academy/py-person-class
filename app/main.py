@@ -8,23 +8,24 @@ class Person:
     ) -> None:
         self.name = name
         self.age = age
-        self.__class__.people[self.name] = self
+        Person.people[self.name] = self
 
 
 def create_person_list(people: list[dict]) -> list[Person]:
-    person_instances = {}
+    Person.people = {person_info["name"]: Person(person_info["name"],
+                                                 person_info["age"])
+                     for person_info in people}
+    """
+        the realisation below is the onliest way when ':=' worked
+        on my pc, it just doesnt work other way :(
+    """
     for person_info in people:
-        person_name = person_info["name"]
-        person = Person(person_name, person_info["age"])
-        person_instances[person_name] = person
+        person_instance = Person.people[person_info["name"]]
+        if "wife" in person_info and \
+                (wife_name := person_info["wife"]):
+            person_instance.wife = Person.people[wife_name]
+        if "husband" in person_info and \
+                (husband_name := person_info["husband"]):
+            person_instance.husband = Person.people[husband_name]
 
-    for person_info in people:
-        person_name = person_info["name"]
-        if "wife" in person_info and person_info["wife"] is not None:
-            person_instances[person_name].wife \
-                = person_instances[person_info["wife"]]
-        if "husband" in person_info and person_info["husband"] is not None:
-            person_instances[person_name].husband \
-                = person_instances[person_info["husband"]]
-
-    return list(person_instances.values())
+    return list(Person.people.values())
