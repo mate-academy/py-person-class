@@ -25,4 +25,3 @@ def create_person_list(people: list[dict]) -> list[Person]:
             person_instance.husband = Person.people[husband_name]
 
     return list(Person.people.values())
-
