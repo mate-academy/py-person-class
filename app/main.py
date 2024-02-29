@@ -15,9 +15,9 @@ def create_person_list(people: list[dict]) -> list[Person]:
 
     for person_dict in people:
         person = Person.people[person_dict["name"]]
-        if person_dict.get("wife") is not None:
+        if person_dict.get("wife"):
             person.wife = Person.people[person_dict["wife"]]
-        elif person_dict.get("husband") is not None:
+        elif person_dict.get("husband"):
             person.husband = Person.people[person_dict["husband"]]
 
     return person_list
