@@ -24,8 +24,8 @@ def create_person_list(people: list) -> list:
         wife = Person.people.get(wife_name)
         husband = Person.people.get(husband_name)
 
-        if "wife" in person_data and wife:
-            setattr(person_instance, "wife", wife)
+        if wife:
+            person_instance.wife = wife
 
         if "husband" in person_data and husband:
             setattr(person_instance, "husband", husband)
