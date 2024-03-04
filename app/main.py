@@ -4,23 +4,19 @@ class Person:
     def __init__(self, name: str, age: int) -> None:
         self.name = name
         self.age = age
-        self.people[name] = self
+        Person.people[name] = self
 
 
 def create_person_list(people: list) -> list:
     for person in people:
         Person(person["name"], person["age"])
 
-    for i in range(len(people)):
-        current_person = people[i]
-        wife_name = current_person.get("wife")
-        husband_name = current_person.get("husband")
+    for person in people:
+        target_person = Person.people[person.get("name")]
 
-        target_person = Person.people[current_person.get("name")]
-
-        if wife_name is not None:
+        if wife_name := person.get("wife"):
             target_person.wife = Person.people[wife_name]
-        elif husband_name is not None:
+        elif husband_name := person.get("husband"):
             target_person.husband = Person.people[husband_name]
 
     return list(Person.people.values())
