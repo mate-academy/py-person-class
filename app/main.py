@@ -27,7 +27,7 @@ def create_person_list(people: list) -> list:
         if wife:
             person_instance.wife = wife
 
-        if "husband" in person_data and husband:
-            setattr(person_instance, "husband", husband)
+        if husband:
+            person_instance.husband = husband
 
     return person_list
