@@ -1,42 +1,50 @@
-import ctypes
-
 class Person:
     people = {}
-    def __init__(self, p_ple: list) -> None:
-        if len(p_ple) == 0:
-            return
-        for human in p_ple:
-            self.name = ""
-            self.age = ""
-            partner = list(human)[2]
-            exec(f"self.{partner}=''")
-            self.add_val(human)
 
-
-    def add_val(self, human: dict) -> None:
-        exec(f"{human['name']}=Person([])")
-        exec(f"{human['name']}.name=human['name']")
-        exec(f"{human['name']}.age=human['age']")
-        # self.name = human["name"]
-        # self.age = human["age"]
-        partner = list(human)[2]
-        exec(f"part_name = human['{partner}']")
-
-        if locals()["part_name"] is not None:
-            if locals()["part_name"] in Person.people:
-                exec(f"{human['name']}.{partner}=Person.people[human['{partner}']]")
-                for anti_partner in self.__dict__.keys():
-                    if hasattr(Person.people[locals()["part_name"]],anti_partner):
-                        exec(f"sec_part_name = Person.people[locals()['part_name']].{anti_partner}")
-                        if locals()["sec_part_name"] == human['name']:
-                            exec(f"Person.people[locals()['part_name']].{anti_partner} = locals()[human['name']]")
-            else:
-                exec(f"{human['name']}.{partner}=human['{partner}']")
-
-        Person.people[human["name"]] = locals()[human["name"]]
+    def __init__(self, name: str, age: int) -> None:
+        self.name = name
+        self.age = age
+        Person.people[name] = self
 
 
 def create_person_list(people: list) -> list:
+    for human in people:
+        first_hum = Person(human["name"], human["age"])
+        if human.get("wife"):
+            partner_type = "wife"
+            other_part = "husband"
+        else:
+            partner_type = "husband"
+            other_part = "wife"
+        if human.get(partner_type):
+            if human[partner_type] in Person.people:
+                setattr(first_hum, partner_type,
+                        Person.people[human[partner_type]])
+                setattr(Person.people[human[partner_type]],
+                        other_part, first_hum)
+            else:
+                setattr(first_hum, partner_type, human[partner_type])
     return [val for val in Person.people.values()]
 
-
+# people = [
+#     {"name": "Ross", "age": 30, "wife": "Rachel"},
+#     {"name": "Joey", "age": 29, "wife": None},
+#     {"name": "Rachel", "age": 28, "husband": "Ross"}
+# ]
+#
+# person_list = create_person_list(people)
+# isinstance(person_list[0], Person) # True
+# person_list[0].name == "Ross"
+# person_list[0].wife is person_list[2] # True
+# person_list[0].wife.name == "Rachel"
+#
+# person_list[1].name == "Joey"
+# # person_list[1].wife
+# # # AttributeError
+#
+# isinstance(person_list[2], Person) # True
+# person_list[2].name == "Rachel"
+# person_list[2].husband is person_list[0] # True
+# # The same as person_list[0]
+# person_list[2].husband.name == "Ross"
+# person_list[2].husband.wife is person_list[2]  # True
