@@ -25,4 +25,4 @@ def create_person_list(people: list) -> list:
             else:
                 setattr(first_hum, partner_type, human[partner_type])
     return [val for val in Person.people.values()]
-
+    
