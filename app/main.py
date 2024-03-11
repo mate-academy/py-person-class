@@ -9,7 +9,7 @@ class Person:
 
 def create_person_list(people: list) -> list:
     for human in people:
-        first_hum = Person(human["name"], human["age"])
+        first_human = Person(human["name"], human["age"])
         if human.get("wife"):
             partner_type = "wife"
             other_part = "husband"
@@ -18,11 +18,10 @@ def create_person_list(people: list) -> list:
             other_part = "wife"
         if human.get(partner_type):
             if human[partner_type] in Person.people:
-                setattr(first_hum, partner_type,
+                setattr(first_human, partner_type,
                         Person.people[human[partner_type]])
                 setattr(Person.people[human[partner_type]],
-                        other_part, first_hum)
+                        other_part, first_human)
             else:
-                setattr(first_hum, partner_type, human[partner_type])
+                setattr(first_human, partner_type, human[partner_type])
     return [val for val in Person.people.values()]
-    
