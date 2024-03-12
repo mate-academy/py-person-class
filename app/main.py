@@ -5,23 +5,20 @@ class Person:
     def __init__(self, name: str, age: int) -> None:
         self.name = name
         self.age = age
-        self.people[self.name] = self
+        __class__.people[self.name] = self
 
 
-def create_person_list(people: list) -> list:
-    list_result = []
+def create_person_list(peoples: list) -> list:
+    list_result = [Person(member["name"], member["age"]) for member in peoples]
 
-    for peopl in people:
-        list_result.append(Person(peopl["name"], peopl["age"]))
-
-    for i, peopl in enumerate(people):
-        if "wife" in peopl:
-            for pos in range(len(people)):
-                if list_result[pos].name == peopl["wife"]:
-                    list_result[i].wife = list_result[pos]
-        if "husband" in peopl:
-            for pos in range(len(people)):
-                if list_result[pos].name == peopl["husband"]:
-                    list_result[i].husband = list_result[pos]
+    for index, member in enumerate(peoples):
+        if "wife" in member:
+            for pos in range(len(peoples)):
+                if list_result[pos].name == member["wife"]:
+                    list_result[index].wife = list_result[pos]
+        if "husband" in member:
+            for pos in range(len(peoples)):
+                if list_result[pos].name == member["husband"]:
+                    list_result[index].husband = list_result[pos]
 
     return list_result
