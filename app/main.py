@@ -18,7 +18,9 @@ def create_person_list(people: list) -> list:
     return persons
 
 
-def add_satellites(person: "Person", satellite: str, satellite_name: str) -> None:
+def add_satellites(person: "Person",
+                   satellite: str,
+                   satellite_name: str) -> None:
     opposite = "husband" if satellite == "wife" else "wife"
     if satellite_name in Person.people:
         setattr(person, satellite, Person.people[satellite_name])
