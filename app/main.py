@@ -11,7 +11,10 @@ def create_person_list(people: list) -> list:
     list_of_created_people = []
     for person in people:
         inst_person = Person(person["name"], person["age"])
-        key = list({"wife", "husband"}.intersection(set(person.keys())))[0]
+        if "wife" in person.keys():
+            key = "wife"
+        else:
+            key = "husband"
         list_of_created_people.append(inst_person)
         if person[key] in Person.people.keys():
             name = person[key]
