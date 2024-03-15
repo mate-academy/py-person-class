@@ -12,13 +12,13 @@ def create_person_list(people: list) -> list:
     for person in people:
         inst_person = Person(person["name"], person["age"])
         if "wife" in person.keys():
-            key = "wife"
+            partner = "wife"
         else:
-            key = "husband"
+            partner = "husband"
         list_of_created_people.append(inst_person)
-        if person[key] in Person.people.keys():
-            name = person[key]
-            if key == "wife":
+        if person[partner] in Person.people.keys():
+            name = person[partner]
+            if partner == "wife":
                 inst_person.wife = Person.people[name]
                 Person.people[name].husband = inst_person
             else:
