@@ -22,8 +22,3 @@ def create_person_list(people: list[dict]) -> list[Person]:
                 human.husband.wife = human
 
     return list(Person.people.values())
-
-
-
-
-
