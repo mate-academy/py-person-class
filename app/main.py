@@ -1,3 +1,4 @@
+# Person class 2024
 class Person:
     people = {}
 
