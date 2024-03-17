@@ -9,7 +9,7 @@ class Person:
         Person.people[name] = self
 
 
-def create_person_list(people: list) -> list[Person]:
+def create_person_list(people: list[dict]) -> list[Person]:
     person_list = []
     for man in people:
         person_list.append(Person(man["name"], man["age"]))
@@ -26,12 +26,3 @@ def create_person_list(people: list) -> list[Person]:
     return person_list
 
 
-people = [
-    {"name": "Ross", "age": 30, "wife": "Rachel"},
-    {"name": "Joey", "age": 29, "wife": None},
-    {"name": "Rachel", "age": 28, "husband": "Ross"}
-]
-""""
-person_list = create_person_list(people)"""
-person_list = Person.people
-print(person_list)
