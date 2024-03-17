@@ -7,21 +7,22 @@ class Person:
         Person.people[name] = self
 
 
-def create_person_list(people: list[dict]) -> list[Person]:```
+def take_person_from_list(name: str, people_list: list[Person]) -> Person:
+    for person in people_list:
+        if name == person.name:
+            return person
+
+
+def create_person_list(people: list[dict]) -> list[Person]:
     people_list = [
         Person(person["name"], person["age"])
         for person in people
     ]
 
-    def take_person_from_list(name: str) -> Person:
-        for person in people_list:
-            if name == person.name:
-                return person
-
     for person in people:
         if person.get("wife") and person["wife"]:
-            wife = take_person_from_list(person["wife"])
-            husband = take_person_from_list(person["name"])
+            wife = take_person_from_list(person["wife"], people_list)
+            husband = take_person_from_list(person["name"], people_list)
 
             wife.husband, husband.wife = husband, wife
 
