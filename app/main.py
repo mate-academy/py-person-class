@@ -7,7 +7,7 @@ class Person:
         Person.people[name] = self
 
 
-def create_person_list(people: list[dict]) -> list:
+def create_person_list(people: list[dict]) -> list[Person]:```
     people_list = [
         Person(person["name"], person["age"])
         for person in people
