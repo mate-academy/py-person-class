@@ -4,26 +4,21 @@ class Person:
     def __init__(self, name, age):
         self.name = name
         self.age = age
-        Person.people[self] = self
+        Person.people[name] = self
+        #Person.people[self] = self
 
 
 def create_person_list(people: list) -> list:
     people_by_name = []
     for person in people:
         person_by_name = Person(person["name"], person["age"])
-        if person.get("wife"):
-            person_by_name.wife = person["wife"]
-        if person.get("husband"):
-            person_by_name.husband = person["husband"]
-
         people_by_name.append(person_by_name)
 
-    for person in people_by_name:
-        for partner in people_by_name:
-            if ("wife" in dir(person)) and person.wife == partner.name:
-                person.wife = partner
-            if ("husband" in dir(person)) and person.husband == partner.name:
-                person.husband = partner
+    for person in people:
+        if person.get("wife"):
+            Person.people[person["name"]].wife = Person.people[person["wife"]]
+        if person.get("husband"):
+            Person.people[person["name"]].husband = Person.people[person["husband"]]
 
     return people_by_name
 
@@ -36,3 +31,6 @@ def create_person_list(people: list) -> list:
 #
 #
 # person_list = create_person_list(people)
+# print(isinstance(person_list[0], Person))
+# print(person_list[0].name == "Ross")
+# print(person_list[0].wife is person_list[2])
