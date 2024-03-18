@@ -7,7 +7,7 @@ class Person:
         Person.people[name] = self
 
 
-def create_person_objects(person_data_list: list) -> list:
+def create_person_list(person_data_list: list) -> list:
     person_objects = []
 
     for person_data in person_data_list:
