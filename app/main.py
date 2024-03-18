@@ -1,7 +1,7 @@
 class Person:
     people = {}
 
-    def __init__(self, name: str, age: str, *args, **kwargs) -> None:
+    def __init__(self, name: str, age: int, *args, **kwargs) -> None:
         self.name = name
         self.age = age
         Person.people.update({self.name: self})
