@@ -19,7 +19,7 @@ class Person:
 
 def create_person_list(people_list: list) -> list:
     person_list = []
-    for person_data in people_lis
+    for person_data in people_list:
         name = person_data["name"]
         age = person_data["age"]
         spouse_name = person_data.get("wife") or person_data.get("husband")
