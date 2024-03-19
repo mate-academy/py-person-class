@@ -16,10 +16,10 @@ def create_person_list(people: list) -> list:
 
     for person in people:
         if person.get("wife"):
-            Person.people[person["name"]].wife = (
-                Person.people)[person["wife"]]
+            man = Person.people[person["name"]]
+            man.wife = Person.people[person["wife"]]
         if person.get("husband"):
-            Person.people[person["name"]].husband = (
-                Person.people)[person["husband"]]
+            woman = Person.people[person["name"]]
+            woman.husband = Person.people[person["husband"]]
 
     return people_by_name
