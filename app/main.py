@@ -11,16 +11,15 @@ def create_person_list(people: list) -> list:
     person_list = []
     for person_info in people:
         person = Person(person_info["name"], person_info["age"])
-        if "wife" in person_info and person_info["wife"] is not None:
-            wife_person = Person.people.get(person_info["wife"])
-            if wife_person:
-                person.wife = wife_person
-                wife_person.husband = person
-
-        elif "husband" in person_info and person_info["husband"] is not None:
-            husband_person = Person.people.get(person_info["husband"])
-            if husband_person:
-                person.husband = husband_person
-                husband_person.wife = person
+        relationship_keys = ["wife", "husband"]
+        for relationship in relationship_keys:
+            if (relationship in person_info
+                    and person_info[relationship] is not None):
+                related_person = Person.people.get(person_info[relationship])
+                if related_person:
+                    setattr(person, relationship, related_person)
+                    setattr(related_person,
+                            "husband" if relationship == "wife" else "wife"
+                            , person)
         person_list.append(person)
     return person_list
