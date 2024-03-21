@@ -7,19 +7,19 @@ class Person:
         self.__class__.people[name] = self
 
 
-def create_person_list(person_data_list: list) -> list:
-    person_objects = [
+def create_person_list(people: list) -> list:
+    person_instances = [
         Person(person_data["name"], person_data["age"])
-        for person_data in person_data_list
+        for person_data in people
     ]
 
-    for person_data in person_data_list:
-        person_name = person_data["name"]
-        if person_data.get("wife"):
-            spouse_name = person_data["wife"]
+    for person in people:
+        person_name = person["name"]
+        if person.get("wife"):
+            spouse_name = person["wife"]
             Person.people[person_name].wife = Person.people[spouse_name]
-        if person_data.get("husband"):
-            spouse_name = person_data["husband"]
+        if person.get("husband"):
+            spouse_name = person["husband"]
             Person.people[person_name].husband = Person.people[spouse_name]
 
-    return person_objects
+    return person_instances
