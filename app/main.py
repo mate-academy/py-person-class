@@ -8,8 +8,8 @@ class Person:
 
 
 def create_person_list(list_of_people: list) -> list:
-    our_list = [Person(person["name"], person["age"])
-                for person in list_of_people]
+    people_list = [Person(person["name"], person["age"])
+                   for person in list_of_people]
 
     for person_dict in list_of_people:
         person = Person.people[person_dict["name"]]
@@ -20,4 +20,4 @@ def create_person_list(list_of_people: list) -> list:
             husband = Person.people[person_dict["husband"]]
             person.husband = husband
 
-    return our_list
+    return people_list
