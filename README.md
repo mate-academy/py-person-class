@@ -55,7 +55,7 @@ person_list[2].husband is person_list[0] # True
 # The same as person_list[0]
 person_list[2].husband.name == "Ross"
 person_list[2].husband.wife is person_list[2]  # True
-
+ 
 Person.people == {
     "Ross": <__main__.Person object at 0x10c20ca60>,
     "Joey": <__main__.Person object at 0x10c180a00>,
