@@ -21,4 +21,4 @@ def create_person_list(people_list: list) -> list:
             husband_exemplar = Person.people[human["husband"]]
             husband_exemplar.wife = Person.people[human["name"]]
 
-    return [person for person in Person.people.values()]
+    return list(Person.people.values())
