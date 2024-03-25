@@ -6,25 +6,16 @@ class Person:
         self.age = age
         self.__class__.people[name] = self
 
-    def set_spouse(self, spouse_name: str) -> None:
-        spouse = self.__class__.people.get(spouse_name)
-        if spouse:
-            if "wife" in self.__dict__:
-                self.wife = spouse
-                spouse.husband = self
-            else:
-                self.husband = spouse
-                spouse.wife = self
 
-
-def create_person_list(people_list: list) -> list:
+def create_person_list(people: list) -> list:
     person_list = []
-    for person_data in people_list:
-        name = person_data["name"]
-        age = person_data["age"]
-        spouse_name = person_data.get("wife") or person_data.get("husband")
-        person_instance = Person(name, age)
-        person_list.append(person_instance)
-        if spouse_name:
-            person_instance.set_spouse(spouse_name)
+    for person_data in people:
+        person = Person(person_data["name"], person_data["age"])
+        if "wife" in person_data and person_data["wife"]:
+            person.wife = Person.people.get(person_data["wife"])
+        elif "husband" in person_data and person_data["husband"]:
+            person.husband = Person.people.get(person_data["husband"])
+            if person.husband:
+                person.husband.wife = person
+        person_list.append(person)
     return person_list
