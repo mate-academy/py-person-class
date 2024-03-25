@@ -8,16 +8,16 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    person_list = []
-    for person in people:
-        new_person = Person(person["name"], person["age"])
-        person_list.append(new_person)
+    person_list = [Person(person["name"], person["age"]) for person in people]
 
-    for person in person_list:
-        for second_half in people:
-            if second_half.get("wife") and second_half["wife"] == person.name:
-                for pers in person_list:
-                    if pers.name == second_half["name"]:
-                        pers.wife = person
-                        pers.wife.husband = pers
+    for person in people:
+        wife_name = person.get("wife")
+        husband_name = person.get("husband")
+        current_person = Person.people[person["name"]]
+
+        if wife_name:
+            current_person.wife = Person.people[wife_name]
+        if husband_name:
+            current_person.husband = Person.people[husband_name]
+
     return person_list
