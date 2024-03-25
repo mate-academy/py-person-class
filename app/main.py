@@ -11,7 +11,8 @@ def create_person_list(people_list: list) -> list:
     person_list = [
         Person(
             person["name"], person["age"]
-        ) for person in people_list]
+        ) for person in people_list
+    ]
 
     for index, person in enumerate(people_list):
         if person.get("wife"):
