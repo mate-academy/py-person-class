@@ -1,5 +1,3 @@
-# main.py content
-
 class Person:
     people = {}
 
@@ -9,17 +7,18 @@ class Person:
         Person.people[name] = self
 
 
-def create_person_list(people: list) -> list:
+def create_person_list(people: list["Person"]) -> list:
+    result = []
 
-    for pers in people:
-        Person(pers["name"], pers["age"])
+    for person in people:
+        person_info = Person(person["name"], person["age"])
+        result.append(person_info)
 
-    for pers in people:
-        person = Person.people[pers["name"]]
-        if "wife" in pers and pers["wife"]:
-            wife_name = pers["wife"]
-            wife = Person.people[wife_name]
-            setattr(person, "wife", wife)
-            setattr(wife, "husband", person)
+        if "wife" in person and person["wife"]:
+            wife_name = person["wife"]
+            wife = Person.people.get(wife_name)
+            if wife:
+                setattr(person_info, "wife", wife)
+                setattr(wife, "husband", person_info)
 
-    return list(Person.people.values())
+    return result
