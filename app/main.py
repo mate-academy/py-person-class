@@ -36,4 +36,8 @@ def create_person_list(people: list) -> list:
                 person.wife = spouse
             elif "husband" in person_data:
                 person.husband = spouse
+        else:
+            person = person_dict[name]
+            if hasattr(person, "wife"):
+                delattr(person, "wife")
     return person_list
