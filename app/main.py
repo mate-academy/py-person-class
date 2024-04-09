@@ -14,8 +14,7 @@ def create_person_list(people: list) -> list:
         person_instance = Person.people[person["name"]]
         if wife_name := person.get("wife"):
             person_instance.wife = Person.people[wife_name]
-        elif "husband" in person and person["husband"] is not None:
-            Person.people[person["name"]].husband = \
-                Person.people[person["husband"]]
+        elif husband_name := person.get("husband"):
+            person_instance.husband = Person.people[husband_name]
 
     return person_list
