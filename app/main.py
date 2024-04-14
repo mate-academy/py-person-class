@@ -9,7 +9,12 @@ class Person:
 
 def create_person_list(people_lst: list) -> list:
 
-    friends = [Person(i["name"], i["age"]) for i in people_lst]
+    friends = [
+        Person(
+            person_dic["name"], person_dic["age"]
+        )
+        for person_dic in people_lst
+    ]
     # filter by woman and husband and his existing
 
     for person in people_lst:
