@@ -10,11 +10,11 @@ class Person:
 def create_person_list(people: list) -> list:
     person_list = [Person(person["name"], person["age"]) for person in people]
 
-    for i, person in enumerate(people):
+    for index, person in enumerate(people):
         spouse = person.get("wife") or person.get("husband")
-        if spouse is not None:
+        if spouse:
             setattr(
-                person_list[i],
+                person_list[index],
                 "wife" if "wife" in person else "husband",
                 Person.people.get(spouse)
             )
