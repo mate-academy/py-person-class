@@ -11,7 +11,7 @@ def create_person_list(people: list) -> list:
     people_instances = []
     for person in people:
         person2 = Person(person["name"], person["age"])
-        people2.append(person2)
+        people_instances.append(person2)
 
     for person in people:
         ap = Person.people[person["name"]]
@@ -22,4 +22,4 @@ def create_person_list(people: list) -> list:
             husband = Person.people[person["husband"]]
             ap.husband = husband
 
-    return people2
+    return people_instances
