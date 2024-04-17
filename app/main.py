@@ -18,15 +18,7 @@ def create_person_list(people: list) -> list[Person]:
             human.husband = person["husband"]
     for index, human in enumerate(humans):
         if hasattr(human, "wife"):
-            for person in humans[index:]:
-                if human.wife == person.name:
-                    human.wife = person
-                    person.husband = human
-                    break
+            human.wife = Person.people[human.wife]
         elif hasattr(human, "husband"):
-            for person in humans[index:]:
-                if human.husband == person.name:
-                    human.husband = person
-                    person.wife = human
-                    break
+            human.husband = Person.people[human.husband]
     return humans
