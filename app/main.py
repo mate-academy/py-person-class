@@ -14,12 +14,12 @@ def create_person_list(people: list) -> list:
         people_instances.append(person2)
 
     for person in people:
-        ap = Person.people[person["name"]]
+        anet = Person.people[person["name"]]
         if person.get("wife"):
             wife = Person.people[person["wife"]]
-            ap.wife = wife
+            anet.wife = wife
         elif person.get("husband"):
             husband = Person.people[person["husband"]]
-            ap.husband = husband
+            anet.husband = husband
 
     return people_instances
