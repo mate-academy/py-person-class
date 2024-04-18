@@ -13,6 +13,7 @@ class Person:
 def create_person_list(people: list) -> list:
     person_list = []
     for person in people:
-        new_person = Person(person["name"], person["age"], person.get["wife"] or p.get("husband"))
+        new_person = Person(person["name"], person["age"],
+                            person.get["wife"] or person.get("husband"))
         person_list.append(new_person)
     return person_list
