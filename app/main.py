@@ -16,23 +16,17 @@ def create_person_list(people: list) -> list:
 
     for person_data in people:
         if "wife" in person_data:
-            current_person = None
-            spouse_person = None
-            for person in person_list:
-                if person_data["name"] == person.name:
-                    current_person = person
-                if person_data["wife"] == person.name:
-                    spouse_person = person
-            if current_person is not None and spouse_person is not None:
-                current_person.wife = spouse_person
+            spouse_key = "wife"
         elif "husband" in person_data:
-            current_person = None
-            spouse_person = None
-            for person in person_list:
-                if person_data["name"] == person.name:
-                    current_person = person
-                if person_data["husband"] == person.name:
-                    spouse_person = person
-            if current_person is not None and spouse_person is not None:
+            spouse_key = "husband"
+
+        current_person = Person.people.get(person_data["name"])
+        spouse_person = Person.people.get(person_data.get(spouse_key))
+
+        if current_person is not None and spouse_person is not None:
+            if spouse_key == "wife":
+                current_person.wife = spouse_person
+            elif spouse_key == "husband":
                 current_person.husband = spouse_person
+
     return person_list
