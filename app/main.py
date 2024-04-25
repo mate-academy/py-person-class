@@ -1,39 +1,20 @@
 class Person:
     people = {}
 
-    def __init__(self, name: str, age: int | None) -> None:
+    def __init__(self, name: str, age: int) -> None:
         self.name = name
         self.age = age
-        self.people[self.name] = self
-
-    @classmethod
-    def create_or_get(cls, name: str, age: int = None) -> "Person":
-        if name in cls.people:
-            person_instance = cls.people[name]
-            person_instance.age = age
-        else:
-            person_instance = cls(name, age)
-        return person_instance
+        Person.people[self.name] = self
 
 
 def create_person_list(people_data: list) -> list:
-    person_list = []
+    person_list = [Person(person_data["name"], person_data["age"]) for person_data in people_data]
+
     for person_data in people_data:
-        person_instance = Person.create_or_get(
-            person_data["name"],
-            person_data.get("age")
-        )
-
+        person_instance = Person.people[person_data["name"]]
         if person_data.get("wife"):
-            person_instance.wife = Person.create_or_get(
-                person_data["wife"]
-            )
-
-        if person_data.get("husband"):
-            person_instance.husband = Person.create_or_get(
-                person_data["husband"]
-            )
-
-        person_list.append(person_instance)
+            person_instance.wife = Person.people[person_data["wife"]]
+        elif person_data.get("husband"):
+            person_instance.husband = Person.people[person_data["husband"]]
 
     return person_list
