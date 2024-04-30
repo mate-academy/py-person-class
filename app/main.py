@@ -24,10 +24,3 @@ def create_person_list(people: list) -> list:
         elif "husband" in person and person.get("husband") is not None:
             object_person.husband = Person.people.get(person["husband"])
     return objects_people
-
-
-people = [
-    {"name": "Ross", "age": 30, "wife": "Rachel"},
-    {"name": "Joey", "age": 29, "wife": None},
-    {"name": "Rachel", "age": 28, "husband": "Ross"}
-]
