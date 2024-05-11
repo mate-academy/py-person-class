@@ -19,6 +19,3 @@ def create_person_list(people: list) -> list[Person]:
             woman.husband = Person.people[person["husband"]]
 
     return result_list
-
-
-
