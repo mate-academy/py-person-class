@@ -8,7 +8,6 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    result = []
 
     result = [Person(person["name"], person["age"]) for person in people]
 
