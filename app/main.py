@@ -9,16 +9,13 @@ class Person:
 
 def create_person_list(people: list) -> list:
     person_list = []
-    for person_dict in people:
-        new_person = Person(person_dict.get("name"), person_dict.get("age"))
-        if "wife" in person_dict and person_dict.get("wife"):
-            new_person.wife = person_dict.get("wife")
-        elif "husband" in person_dict and person_dict.get("husband"):
-            new_person.husband = person_dict.get("husband")
-        person_list.append(new_person)
-    for person in person_list:
-        if hasattr(person, "wife"):
-            person.wife = Person.people.get(person.wife)
-        elif hasattr(person, "husband"):
-            person.husband = Person.people.get(person.husband)
+    for person in people:
+        person_list.append(Person(person.get("name"), person.get("age")))
+    for person in people:
+        if "wife" in person and person.get("wife"):
+            husband = Person.people.get(person.get("name"))
+            husband.wife = Person.people.get(person.get("wife"))
+        elif "husband" in person and person.get("husband"):
+            wife = Person.people.get(person.get("name"))
+            wife.husband = Person.people.get(person.get("husband"))
     return person_list
