@@ -14,14 +14,14 @@ def create_person_list(p_list: list) -> list:
 
     for i, prs in enumerate(p_list):
         return_list.append(Person(prs["name"], prs["age"]))
-        if "wife" in prs and prs["wife"] is not None:
+        if prs.get("wife"):
             return_list[i].wife = prs["wife"]
-        if "husband" in prs and prs["husband"] is not None:
+        if prs.get("husband"):
             return_list[i].husband = prs["husband"]
 
     for prs_name in return_list:
         for maried_prs in return_list:
-            if "wife" in maried_prs.__dict__:
+            if hasattr(maried_prs, "wife"):
                 if maried_prs.wife == prs_name.name:
                     maried_prs.wife = prs_name
                     prs_name.husband = maried_prs
