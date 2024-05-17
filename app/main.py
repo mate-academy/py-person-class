@@ -16,13 +16,13 @@ def create_person_list(people_list: list) -> list:
         person = Person(name, age)
         Person.people[name] = person
 
-        if "wife" in person_data:
+        if person_data.get("wife"):
             wife_name = person_data["wife"]
             if wife_name in Person.people:
                 person.wife = Person.people[wife_name]
                 person.wife.husband = person
 
-        if "husband" in person_data:
+        if person_data.get("husband"):
             husband_name = person_data["husband"]
             if husband_name in Person.people:
                 person.husband = Person.people[husband_name]
