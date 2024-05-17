@@ -12,9 +12,7 @@ def create_person_list(people_list: list) -> list:
     for person_data in people_list:
         name = person_data["name"]
         age = person_data["age"]
-
         person = Person(name, age)
-        Person.people[name] = person
 
         if person_data.get("wife"):
             wife_name = person_data["wife"]
