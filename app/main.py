@@ -7,7 +7,7 @@ class Person:
         self.add_person_to_people(self)
 
     @classmethod
-    def add_person_to_people(cls, person) -> None:
+    def add_person_to_people(cls, person: object) -> None:
         cls.people[person.name] = person
 
 
