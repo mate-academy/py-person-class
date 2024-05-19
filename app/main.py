@@ -9,14 +9,14 @@ class Person:
 
 def create_person_list(people: list) -> list:
     result_list = []
-    for unit in people:
-        result_list.append(Person(unit["name"], unit["age"]))
+    for person in people:
+        result_list.append(Person(person["name"], person["age"]))
 
-    for unit in people:
-        if unit.get("wife") is not None:
-            instance = Person.people[unit["name"]]
-            instance.wife = Person.people[unit["wife"]]
-        elif unit.get("husband") is not None:
-            instance = Person.people[unit["name"]]
-            instance.husband = Person.people[unit["husband"]]
+    for person in people:
+        if person.get("wife") is not None:
+            instance = Person.people[person["name"]]
+            instance.wife = Person.people[person["wife"]]
+        elif person.get("husband") is not None:
+            instance = Person.people[person["name"]]
+            instance.husband = Person.people[person["husband"]]
     return list(Person.people.values())
