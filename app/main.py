@@ -1,23 +1,29 @@
 class Person:
     people = {}
 
-    def __init__(self, name: str, age: str) -> None:
+    def __init__(self, name: str, age: str, *args, **kwargs) -> None:
         self.name = name
         self.age = age
-        self.people.update({name: self})
+        Person.people.update({name: self})
 
 
 def create_person_list(people: list) -> list:
-    people_list = []
-    for person_info in people:
-        person = Person(name=person_info["name"], age=person_info["age"])
-        people_list.append(person)
+    people_list = [
+        Person(
+            name=person["name"],
+            age=person["age"],
+        )
+        for person in people
+    ]
 
-    for i in range(len(people)):
-        if people[i].get("wife"):
-            people_list[i].wife = Person.people.get(people[i].get("wife"))
-        elif people[i].get("husband"):
-            people_list[i].husband = (
-                Person.people.get(people[i].get("husband")))
+    for person in people:
+        if person.get("wife"):
+            Person.people.get(person["name"]).wife = (
+                Person.people.get(person["wife"])
+            )
+        elif person.get("husband"):
+            Person.people.get(person["name"]).husband = (
+                Person.people.get(person["husband"])
+            )
 
     return people_list
