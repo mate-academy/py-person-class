@@ -10,11 +10,11 @@ class Person:
 def create_person_list(people: list) -> list:
     for person in people:
         Person(person["name"], person["age"])
-    add_para_to_person(people)
+    add_partner_to_person(people)
     return list(Person.people.values())
 
 
-def add_para_to_person(people: list) -> None:
+def add_partner_to_person(people: list) -> None:
     for person in people:
         if person.get("wife") is not None:
             single_person = Person.people[person["name"]]
