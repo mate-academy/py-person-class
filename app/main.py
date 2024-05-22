@@ -16,11 +16,10 @@ def create_person_list(people: list) -> list:
 
 def add_partner_to_person(people: list) -> None:
     for person in people:
+        single_person = Person.people[person["name"]]
         if person.get("wife") is not None:
-            single_person = Person.people[person["name"]]
             wife = Person.people[person["wife"]]
             single_person.wife = wife
         if person.get("husband") is not None:
-            single_person = Person.people[person["name"]]
             husband = Person.people[person["husband"]]
             single_person.husband = husband
