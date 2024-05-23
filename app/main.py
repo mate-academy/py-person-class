@@ -15,9 +15,9 @@ def create_person_list(people: list) -> list:
     # Seting the wife/husband attributes
     for person_dict in people:
         person_instance = Person.people[person_dict["name"]]
-        if "wife" in person_dict and person_dict["wife"] is not None:
+        if person_dict.get("wife", None):
             person_instance.wife = Person.people[person_dict["wife"]]
-        elif "husband" in person_dict and person_dict["husband"] is not None:
+        elif person_dict.get("husband", None):
             person_instance.husband = Person.people[person_dict["husband"]]
 
     # Returning the list of Person instances
