@@ -14,9 +14,9 @@ def create_person_list(people: list) -> list[Person]:
 
     for person_dict in people:
         person = Person.people[person_dict["name"]]
-        if person_dict and person_dict.get("wife"):
+        if person_dict.get("wife"):
             person.wife = Person.people[person_dict["wife"]]
-        if person_dict and person_dict.get("husband"):
+        if person_dict.get("husband"):
             person.husband = Person.people[person_dict["husband"]]
 
     return person_list
