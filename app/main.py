@@ -15,15 +15,11 @@ def create_person_list(people: list) -> list:
         name = person_data["name"]
         person = Person.people[name]
 
-        if "wife" in person_data:
+        if person_data.get("wife"):
             wife_name = person_data.get("wife")
-            if wife_name:
-                spouse = Person.people[wife_name]
-                person.wife = spouse
+            person.wife = Person.people[wife_name]
 
-        if "husband" in person_data:
+        if person_data.get("husband"):
             husband_name = person_data.get("husband")
-            if husband_name:
-                spouse = Person.people[husband_name]
-                person.husband = spouse
+            person.husband = Person.people[husband_name]
     return list_of_people
