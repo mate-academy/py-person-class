@@ -16,5 +16,4 @@ def create_person_list(people: list) -> list:
         if person.get("husband"):
             Person.people[person["name"]].husband = (
                 Person.people)[person["husband"]]
-
     return person_list
