@@ -10,19 +10,16 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    person_list = []
-    # Проходимо через список словників,
-    # та створюємо екземпляр классу для кожного словника
-    for person_dict in people:
-        name = person_dict["name"]
-        age = person_dict["age"]
-        person = Person(name, age)
-        person_list.append(person)
-    # Отримуємо відповідний екземпляр Person із словника Person.people
-    # і призначае атрибут подружжя якщо можливо
+
+    person_list = [
+        Person(person_dict["name"], person_dict["age"])
+        for person_dict in people
+    ]
+
     for person_dict in people:
         name = person_dict["name"]
         person = Person.people[name]
+
         spouse_name = person_dict.get("wife") or person_dict.get("husband")
         if spouse_name:
             spouse = Person.people.get(spouse_name)
