@@ -13,16 +13,14 @@ def create_person_list(people_list: list) -> list[Person]:
         for temp_person in people_list
     ]
 
-    for i in range(len(persons)):
-        person = persons[i]
-        value = people_list[i]
+    for people in range(len(persons)):
+        person = persons[people]
+        value = people_list[people]
 
-        wife_name = value.get("wife")
-        if wife_name:
+        if wife_name := value.get("wife"):
             person.wife = Person.people.get(wife_name)
 
-        husband_name = value.get("husband")
-        if husband_name:
+        if husband_name := value.get("husband"):
             person.husband = Person.people.get(husband_name)
 
     return persons
