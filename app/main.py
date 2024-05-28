@@ -13,7 +13,7 @@ def create_person_list(people: list) -> list:
         person["age"])
         for person in people]
 
-    for i, person in enumerate(people):
+    for i in range(len(people)):
         if people[i].get("wife"):
             people_list[i].wife = Person.people[people[i]["wife"]]
         if people[i].get("husband"):
