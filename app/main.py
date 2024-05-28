@@ -14,6 +14,6 @@ def create_person_list(people: dict) -> None:
         person_instance = Person.people[person["name"]]
         if person.get("wife"):
             person_instance.wife = Person.people[person["wife"]]
-        elif person.get("huband")
+        elif person.get("huband"):
             person_instance.husband = Person.people[person["husband"]]
     return person_list
