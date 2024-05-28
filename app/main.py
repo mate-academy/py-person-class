@@ -1,6 +1,7 @@
 class Person:
     people = {}
 
+
     def __init__(self, name: str, age: int) -> None:
         self.name = name
         self.age = age
@@ -12,8 +13,8 @@ def create_person_list(people: dict) -> None:
 
     for person in people:
         person_instance = Person.people[person["name"]]
-        if "wife" in person and person["wife"]:
+        if person.get("wife"):
             person_instance.wife = Person.people[person["wife"]]
-        elif "husband" in person and person["husband"]:
+        elif person.get("husband"):
             person_instance.husband = Person.people[person["husband"]]
     return person_list
