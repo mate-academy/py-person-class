@@ -9,7 +9,7 @@ class Person:
         self.name = name
         self.age = age
 
-    def add_attribute(self, attribute, value):
+    def add_attribute(self, attribute: str, value: object) -> None:
         setattr(self, attribute, value)
 
 
@@ -20,7 +20,8 @@ def create_person_list(people: list) -> list:
             if person["wife"] is not None:
                 for person_inner in people:
                     if person_inner["name"] == person["wife"]:
-                        wife = Person(person_inner["name"], person_inner["age"])
+                        wife = Person(person_inner["name"],
+                                      person_inner["age"])
                         result_person = Person(person["name"], person["age"])
                         result_person.add_attribute("wife", wife)
                         wife.add_attribute("husband", result_person)
@@ -40,8 +41,9 @@ def create_person_list(people: list) -> list:
 
             if person["husband"] is not None:
                 for person_inner in people:
-                    if person_inner["name"] == person["husband"]:
-                        husband = Person(person_inner["name"], person_inner["age"])
+                    if (person_inner["name"] == person["husband"]):
+                        husband = Person(person_inner["name"],
+                                         person_inner["age"])
                         result_person = Person(person["name"], person["age"])
                         result_person.add_attribute("husband", husband)
                         husband.add_attribute("wife", result_person)
