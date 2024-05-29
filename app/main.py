@@ -14,16 +14,13 @@ def create_person_list(people: list) -> list:
         new_person = Person(human["name"], human["age"])
         if human.get("wife"):
             new_person.wife = human.get("wife")
-            person_list.append(new_person)
         elif human.get("husband"):
             new_person.husband = human.get("husband")
-            person_list.append(new_person)
-        else:
-            person_list.append(new_person)
+        person_list.append(new_person)
 
     for person in person_list:
-        wife = person.__dict__.get("wife")
-        husband = person.__dict__.get("husband")
+        wife = getattr(person, "wife", None)
+        husband = getattr(person, "husband", None)
 
         if wife:
             person.wife = Person.people[wife]
