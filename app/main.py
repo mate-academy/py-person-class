@@ -4,17 +4,15 @@ class Person:
     def __init__(self, name: str, age: int) -> None:
         self.name = name
         self.age = age
-        Person.people.update({self.name: self})
+        Person.people[name] = self
 
 
 def create_person_list(people: list) -> list:
-    instances = []
+    instances = [Person(person["name"], person["age"]) for person in people]
     for person in people:
-        instances.append(Person(person["name"], person["age"]))
-    for index_1, person in enumerate(people):
-        for index_2, check in enumerate(people):
-            if person.get("wife") == check["name"]:
-                instances[index_1].wife = instances[index_2]
-            if person.get("husband") == check["name"]:
-                instances[index_1].husband = instances[index_2]
+        current_person = Person.people[person["name"]]
+        if person.get("wife"):
+            current_person.wife = Person.people[person["wife"]]
+        if person.get("husband"):
+            current_person.husband = Person.people[person["husband"]]
     return instances
