@@ -1,5 +1,3 @@
-from typing import Dict, List, Optional
-
 
 class Person:
     people = {}
@@ -18,7 +16,7 @@ class Person:
         return f"Person(name={self.name}, age={self.age}{spouse})"
 
 
-def create_person_list(people: List[Dict[str, Optional[str]]]) -> List[Person]:
+def create_person_list(people: list) -> list:
     person_list = []
     for person_dict in people:
         name = person_dict["name"]
