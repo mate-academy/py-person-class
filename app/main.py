@@ -9,11 +9,12 @@ class Person:
         setattr(self, attribute, value)
 
 
-def create_person_list(people: list):
+def create_person_list(people: list) -> list:
     result_people_list = []
 
     for person_dict in people:
-        Person.people[person_dict["name"]] = Person(person_dict["name"], person_dict["age"])
+        Person.people[person_dict["name"]] = Person(person_dict["name"],
+                                                    person_dict["age"])
 
     for person in people:
         person_obj = Person.people.get(person["name"])
