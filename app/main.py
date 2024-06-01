@@ -1,11 +1,7 @@
 class Person:
-
     people = {}
 
-    def __init__(self,
-                 name: str,
-                 age: int,
-                 ) -> None:
+    def __init__(self, name: str, age: int) -> None:
         self.name = name
         self.age = age
 
@@ -13,41 +9,25 @@ class Person:
         setattr(self, attribute, value)
 
 
-def create_person_list(people: list) -> list:
+def create_person_list(people: list):
     result_people_list = []
+
+    for person_dict in people:
+        Person.people[person_dict["name"]] = Person(person_dict["name"], person_dict["age"])
+
     for person in people:
-        if "wife" in person:
-            if person["wife"] is not None:
-                for person_inner in people:
-                    if person_inner["name"] == person["wife"]:
-                        wife = Person(person_inner["name"],
-                                      person_inner["age"])
-                        result_person = Person(person["name"], person["age"])
-                        result_person.add_attribute("wife", wife)
-                        wife.add_attribute("husband", result_person)
-                        result_people_list.append(result_person)
-                        Person.people[result_person.name] = result_person
+        person_obj = Person.people.get(person["name"])
 
-            if person["wife"] is None:
-                result_person = Person(person["name"], person["age"])
-                result_people_list.append(result_person)
-                Person.people[result_person.name] = result_person
+        wife = person.get("wife")
+        if wife:
+            wife_obj = Person.people.get(wife)
+            person_obj.add_attribute("wife", wife_obj)
 
-        if "husband" in person:
-            if person["husband"] is None:
-                result_person = Person(person["name"], person["age"])
-                result_people_list.append(result_person)
-                Person.people[result_person.name] = result_person
+        husband = person.get("husband")
+        if husband:
+            husband_obj = Person.people.get(husband)
+            person_obj.add_attribute("husband", husband_obj)
 
-            if person["husband"] is not None:
-                for person_inner in people:
-                    if (person_inner["name"] == person["husband"]):
-                        husband = Person(person_inner["name"],
-                                         person_inner["age"])
-                        result_person = Person(person["name"], person["age"])
-                        result_person.add_attribute("husband", husband)
-                        husband.add_attribute("wife", result_person)
-                        result_people_list.append(result_person)
-                        Person.people[result_person.name] = result_person
+        result_people_list.append(person_obj)
 
     return result_people_list
