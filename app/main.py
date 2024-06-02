@@ -1,4 +1,3 @@
-
 class Person:
     people = {}
 
@@ -17,27 +16,20 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    person_list = []
-    for person_dict in people:
-        name = person_dict["name"]
-        age_str = person_dict["age"]
-        if name is None or age_str is None:
-            raise ValueError("Name and age must be provided")
-
-        try:
-            age = int(age_str)
-        except ValueError:
-            raise ValueError(f"Age must be an integer, got {age_str}")
-        person_list.append(Person(name, age))
+    person_list = [
+        Person(person_dict["name"], int(person_dict["age"]))
+        for person_dict in people
+        if person_dict["name"] is not None and person_dict["age"] is not None
+    ]
 
     for person_dict in people:
         name = person_dict["name"]
         person_spouse = Person.people[name]
-        if "wife" in person_dict and person_dict["wife"] is not None:
-            if person_dict["wife"] in Person.people:
-                person_spouse.wife = Person.people[person_dict["wife"]]
-        if "husband" in person_dict and person_dict["husband"] is not None:
-            if person_dict["husband"] in Person.people:
-                person_spouse.husband = Person.people[person_dict["husband"]]
+        wife_name = person_dict.get("wife")
+        if wife_name is not None and wife_name in Person.people:
+            person_spouse.wife = Person.people[wife_name]
+        husband_name = person_dict.get("husband")
+        if husband_name is not None and husband_name in Person.people:
+            person_spouse.husband = Person.people[husband_name]
 
     return person_list
