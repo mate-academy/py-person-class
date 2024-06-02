@@ -23,11 +23,7 @@ def create_person_list(people: list) -> list:
         if wife:
             wife_obj = Person.people.get(wife)
             person_obj.add_attribute("wife", wife_obj)
-
-        husband = person.get("husband")
-        if husband:
-            husband_obj = Person.people.get(husband)
-            person_obj.add_attribute("husband", husband_obj)
+            wife_obj.add_attribute("husband", person_obj)
 
         result_people_list.append(person_obj)
 
