@@ -8,13 +8,13 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    people_specimen = [Person(person["name"],
-                              person["age"]) for person in people]
+    ls_people = [Person(person["name"], person["age"]) for person in people]
     for one_person in people:
-        if "wife" in one_person and one_person["wife"]:
-            Person.people[one_person["name"]].wife =\
-                Person.people[one_person["wife"]]
-        if "husband" in one_person and one_person["husband"]:
-            Person.people[one_person["name"]].husband =\
-                Person.people[one_person["husband"]]
-    return people_specimen
+        name = one_person["name"]
+        if one_person.get("wife"):
+            wife = one_person["wife"]
+            Person.people[name].wife = Person.people[wife]
+        if one_person.get("husband"):
+            husband = one_person["husband"]
+            Person.people[name].husband = Person.people[husband]
+    return ls_people
