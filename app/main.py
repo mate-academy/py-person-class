@@ -7,7 +7,7 @@ class Person:
         Person.people[name] = self
 
 
-def create_person_list(people_list: list) -> list:
+def create_person_list(people_list: list[dict]) -> list:
     add_person(people_list)
     set_spouses(people_list)
     return list(Person.people.values())
