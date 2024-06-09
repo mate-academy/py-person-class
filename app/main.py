@@ -8,15 +8,15 @@ class Person:
 
 
 def create_person_list(people: dict) -> list:
-    for per in people:
-        Person(per["name"], per["age"])
+    for single_person in people:
+        Person(single_person["name"], single_person["age"])
 
-    for per in people:
-        person = Person.people[per["name"]]
-        spouse_name = per.get("wife") or per.get("husband")
+    for single_person in people:
+        person = Person.people[single_person["name"]]
+        spouse_name = single_person.get("wife") or single_person.get("husband")
         if spouse_name:
             spouse = Person.people[spouse_name]
-            if "wife" in per:
+            if "wife" in single_person:
                 person.wife = spouse
             else:
                 person.husband = spouse
