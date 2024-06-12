@@ -14,13 +14,13 @@ def create_person_list(people: list) -> list:
     ]
 
     for index, person in enumerate(people):
-        if person.get("wife", None) is not None:
+        if person.get("wife") is not None:
             setattr(
                 person_list[index],
                 "wife",
                 Person.people[person["wife"]]
             )
-        elif person.get("husband", None) is not None:
+        elif person.get("husband") is not None:
             setattr(
                 person_list[index],
                 "husband",
