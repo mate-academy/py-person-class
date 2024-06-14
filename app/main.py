@@ -1,5 +1,5 @@
 class Person:
-    people = {}  # : Dict[str, "Person"]
+    people = {}
 
     def __init__(
             self,
