@@ -1,7 +1,7 @@
 class Person:
     people = {}
 
-    def __init__(self, name: jsonstr, age: int) -> dict:
+    def __init__(self, name: str, age: int) -> dict:
         self.name = name
         self.age = age
         self.__class__.people[self.name] = self
