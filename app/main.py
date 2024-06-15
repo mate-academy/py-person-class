@@ -9,10 +9,11 @@ class Person:
 
 
 def create_person_list(people: list[dict]) -> list[Person]:
-    person_list = [Person(dict["name"], dict["age"]) for dict in people]
-    for dic in people:
-        if "wife" in dic and dic["wife"]:
-            Person.people[dic["name"]].wife = Person.people[dic["wife"]]
-        if "husband" in dic and dic["husband"]:
-            Person.people[dic["name"]].husband = Person.people[dic["husband"]]
+    person_list = [Person(person["name"], person["age"]) for person in people]
+    for person in people:
+        if "wife" in person and person["wife"]:
+            Person.people[person["name"]].wife = Person.people[person["wife"]]
+        if "husband" in person and person["husband"]:
+            Person.people[person["name"]].husband =\
+                Person.people[person["husband"]]
     return person_list
