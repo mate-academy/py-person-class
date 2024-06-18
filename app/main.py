@@ -6,9 +6,11 @@ class Person:
         self.age = age
         Person.people[name] = self
 
+
 def create_person_list(people: list) -> list:
-    # Використання list comprehension для створення об'єктів Person
-    person_instances = [Person(name=person_dict["name"], age=person_dict["age"]) for person_dict in people]
+    person_instances = [Person(name=person_dict["name"],
+                               age=person_dict["age"])
+                        for person_dict in people]
 
     for person_dict in people:
         name = person_dict["name"]
