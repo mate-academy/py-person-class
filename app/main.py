@@ -17,4 +17,3 @@ def create_person_list(people: list) -> list[Person]:
             Person.people[checked_person["name"]].husband\
                 = Person.people[checked_person["husband"]]
     return people_list
-
