@@ -4,7 +4,7 @@ class Person:
     def __init__(self, name: str, age: int) -> None:
         self.name = name
         self.age = age
-        self.__class__.people[self.name] = self
+        self.people[self.name] = self
 
     def repr(self) -> str:
         return f"Person(name={self.name}, age={self.age})"
@@ -13,7 +13,6 @@ class Person:
 def create_person_list(people: list) -> list:
 
     Person.people = {}
-
     for one_person in people:
         Person(one_person["name"], one_person["age"])
 
