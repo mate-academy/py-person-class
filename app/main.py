@@ -11,7 +11,6 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-
     Person.people = {}
     for one_person in people:
         Person(one_person["name"], one_person["age"])
