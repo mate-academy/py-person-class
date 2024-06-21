@@ -1,17 +1,21 @@
 class Person:
     people = {}
 
-    def __init__(self, name, age):
+    def __init__(self, name: str, age: str) -> None:
         self.name = name
         self.age = age
         self.people[name] = self
 
-    def set_person_partner(self, person: dict):
+    def set_person_partner(self, person: dict) -> None:
         person_partner_type = self.get_person_partner_type(person)
         person_partner_name = person[person_partner_type]
 
         if person_partner_name is not None:
-            setattr(self, person_partner_type, self.people[person_partner_name])
+            setattr(
+                self,
+                person_partner_type,
+                self.people[person_partner_name]
+            )
 
     @staticmethod
     def get_person_partner_type(person: dict) -> str:
@@ -32,4 +36,3 @@ def create_person_list(people: list) -> list:
         person_inst.set_person_partner(people[i])
 
     return people_inst_list
-
