@@ -11,19 +11,15 @@ def create_person_list(people: list) -> list:
     person_list = []
 
     for person_info in people:
-        person_inst = Person(person_info["name"], person_info["age"])
-        person_list.append(person_inst)
+        person_list.append(Person(person_info["name"], person_info["age"]))
 
     for person_info in people:
-        name = person_info["name"]
-        person_inst = Person.people[name]
+        person_inst = Person.people[person_info["name"]]
 
         if person_info.get("wife"):
-            spouse_inst = Person.people[person_info["wife"]]
-            person_inst.wife = spouse_inst
+            person_inst.wife = Person.people[person_info["wife"]]
 
         if person_info.get("husband"):
-            spouse_inst = Person.people[person_info["husband"]]
-            person_inst.husband = spouse_inst
+            person_inst.husband = Person.people[person_info["husband"]]
 
     return person_list
