@@ -6,15 +6,6 @@ class Person:
         self.age = age
         Person.people[name] = self
 
-    def spouse(self, spouse_name: str, spouse_type: str) -> None:
-        spouse = Person.people.get(spouse_name)
-        if spouse_type == "wife":
-            self.wife = spouse
-            spouse.husband = self
-        else:
-            self.husband = spouse
-            spouse.wife = self
-
 
 def create_person_list(people: list) -> list:
     people_list = [Person(person["name"], person["age"]) for person in people]
