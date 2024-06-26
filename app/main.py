@@ -20,12 +20,13 @@ def create_person_list(people: list) -> list:
     people_list = [Person(person["name"], person["age"]) for person in people]
 
     for person in people:
-        person_name = Person.people[person["name"]]
-        spouse_name = person.get("wife") or person.get("husband")
-        if spouse_name:
-            if "wife" in person:
-                person_name.spouse(spouse_name, "wife")
-            else:
-                person_name.spouse(spouse_name, "husband")
+        if person.get("wife"):
+            Person.people[person["name"]].wife = (
+                Person.people[person["wife"]]
+            )
+        elif person.get("husband"):
+            Person.people[person["name"]].husband = (
+                Person.people[person["husband"]]
+            )
 
     return people_list
