@@ -22,4 +22,3 @@ def create_person_list(people_data: list) -> list:
             person.husband = Person.people[person_data["husband"]]
 
     return person_list
-
