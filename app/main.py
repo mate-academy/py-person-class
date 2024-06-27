@@ -15,7 +15,6 @@ def create_person_list(people_list: list) -> list:
         for person_dict in people_list
     ]
 
-
     for person_dict in people_list:
         person = Person.people[person_dict["name"]]
         if "wife" in person_dict and person_dict["wife"]:
