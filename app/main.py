@@ -13,7 +13,7 @@ def create_person_list(people_list: list) -> list:
         for person_dict in people_list
     ]
 
-    # Assign spouses
+
     for person_dict in people_list:
         person = Person.people[person_dict["name"]]
         if spouse_name := person_dict.get("wife"):
