@@ -10,11 +10,11 @@ female. All `names` are different. Key
 `wife`/`husband` can be either `None` or 
 name of another person.
 
-Create class `Person`. It's `__init__` method takes
+Create class `Person`. It's constructor takes
 and store `name`, `age` of a person.
 This class also should have a class attribute
 `people`, it is a dict that stores `Person` 
-instances by their `name`. The `__init__` method should 
+instances by their `name`. Constructor should 
 add elements to this attribute.
 
 Write function `create_person_list`, this function
