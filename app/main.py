@@ -18,15 +18,11 @@ def create_person_list(people: list) -> list:
         persons.append(person)
 
     for person in persons:
-        if hasattr(person, "wife"):
-            for other_person in persons:
-                if other_person.name == person.wife:
-                    person.wife = other_person
-                    break
-
-        if hasattr(person, "husband"):
-            for other_person in persons:
-                if other_person.name == person.husband:
-                    person.husband = other_person
-                    break
+        make_marriage(person, "wife")
+        make_marriage(person, "husband")
     return persons
+
+
+def make_marriage(person: Person, role: str) -> None:
+    if hasattr(person, role):
+        setattr(person, role, Person.people[getattr(person, role)])
