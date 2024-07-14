@@ -14,15 +14,11 @@ def create_person_list(people: list) -> list:
     for person in people:
         prsn = Person.people[person["name"]]
         if "husband" in person and person["husband"] is not None:
-            prsn.husband = find_partner(person["husband"])
+            prsn.husband = Person.people.get(person["husband"])
             if prsn.husband is not None:
                 prsn.husband.wife = prsn
         if "wife" in person and person["wife"] is not None:
-            prsn.wife = find_partner(person["wife"])
+            prsn.wife = Person.people.get(person["wife"])
             if prsn.wife is not None:
                 prsn.wife.husband = prsn
     return list(Person.people.values())
-
-
-def find_partner(name: str) -> Person:
-    return Person.people.get(name)
