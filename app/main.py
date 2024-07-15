@@ -11,7 +11,7 @@ class Person:
 def create_person_list(people: list) -> list:
 
     for person in people:
-        Person(person["name"], p["age"])
+        Person(person["name"], person["age"])
 
     for person in people:
         if "wife" in person and person["wife"] is not None:
