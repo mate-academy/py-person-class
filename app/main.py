@@ -1,6 +1,5 @@
 class Person:
     people = {}
-    pass
 
     def __init__(self, name: str, age: int) -> None:
         self.name = name
