@@ -11,9 +11,9 @@ class Person:
 def create_person_list(people: list) -> list:
     res_list = [Person(person["name"], person["age"]) for person in people]
     for person in people:
-        if wife := person.get("wife"):
-            Person.people[person["name"]].wife = res_list[person].wife
-        elif husband := person.get("husband"):
-            Person.people[person["name"]].husband = res_list[person].husband
+        if wife_name := person.get("wife"):
+            res_list[person].wife = Person.people.get(wife_name)
+        elif husband_name := person.get("husband"):
+            res_list[person].husband = Person.people.get(husband_name)
 
     return res_list
