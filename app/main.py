@@ -12,7 +12,6 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    # people_list = []
 
     for person in people:
         Person(person["name"], person["age"])
