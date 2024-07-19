@@ -15,9 +15,11 @@ def create_person_list(people: dict) -> list:
     # Set spouse attributes
     for person in people:
         instance = Person.people[person["name"]]
-        if "wife" in person and person["wife"]:
-            instance.wife = Person.people[person["wife"]]
-        elif "husband" in person and person["husband"]:
-            instance.husband = Person.people[person["husband"]]
+        wife = person.get("wife")
+        husband = person.get("husband")
+        if wife:
+            instance.wife = Person.people.get(wife)
+        if husband:
+            instance.husband = Person.people.get(husband)
 
     return list(Person.people.values())
