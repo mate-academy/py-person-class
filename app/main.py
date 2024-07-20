@@ -9,20 +9,14 @@ class Person:
 
 def create_person_list(people: list) -> list:
     person_list = [Person(person["name"], person["age"]) for person in people]
-    find_partner("husband", people)
-    find_partner("wife", people)
-    return person_list
 
-
-def find_partner(status: str, people: list) -> None:
     for dict_person in people:
-        if status in dict_person and dict_person[status] is not None:
-            for name, person_link in Person.people.items():
-                if dict_person[status] == name:
-                    if status == "husband":
-                        person_link.wife \
-                            = Person.people[dict_person["name"]]
-                    else:
-                        person_link.husband \
-                            = Person.people[dict_person["name"]]
-                    break
+        if dict_person.get("husband"):
+            Person.people[dict_person["husband"]].wife = (
+                Person.people)[dict_person["name"]]
+        elif dict_person.get("wife"):
+            Person.people[dict_person["wife"]].husband = (
+                Person.people)[dict_person["name"]]
+        continue
+
+    return person_list
