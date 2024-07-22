@@ -14,9 +14,10 @@ def create_person_list(people: list) -> list:
 
     for i, person in enumerate(people):
         persons.append(Person(person["name"], person["age"]))
-        if person.get("wife") and not person["wife"].startswith("None"):
+        if person.get("wife"):
             persons[i].wife = person["wife"]
-        elif person.get("husband") and not person["husband"].startswith("None"):
+        elif (person.get("husband")
+              and not person["husband"].startswith("None")):
             persons[i].husband = person["husband"]
 
     return persons
