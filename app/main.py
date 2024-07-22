@@ -17,6 +17,5 @@ def create_person_list(people: list) -> list:
         elif dict_person.get("wife"):
             Person.people[dict_person["wife"]].husband = (
                 Person.people)[dict_person["name"]]
-        continue
 
     return person_list
