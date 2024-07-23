@@ -1,8 +1,22 @@
 class Person:
-    # write your code here
-    pass
+    people = {}
+
+    def __init__(self, name: str, age: int) -> None:
+        self.name = name
+        self.age = age
+
+        Person.people[self.name] = self
 
 
 def create_person_list(people: list) -> list:
-    # write your code here
-    pass
+    res_arr = []
+    for person in people:
+        res_arr.append(Person(person["name"], person["age"]))
+
+    for i, person in enumerate(people):
+        if person.get("wife"):
+            res_arr[i].wife = Person.people[person["wife"]]
+        if person.get("husband"):
+            res_arr[i].husband = Person.people[person["husband"]]
+
+    return res_arr
