@@ -1,6 +1,3 @@
-# from __future__ import annotations
-
-
 class Person:
 
     people = {}
@@ -13,8 +10,7 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    for person in people:
-        Person(person["name"], person["age"])
+    persons = [Person(person["name"], person["age"]) for person in people]
 
     for person in people:
         new_person = Person.people[person["name"]]
@@ -23,4 +19,4 @@ def create_person_list(people: list) -> list:
         elif person.get("husband"):
             new_person.husband = Person.people[person["husband"]]
 
-    return list(Person.people.values())
+    return persons
