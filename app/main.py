@@ -12,10 +12,10 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    result = []
-    for person in people:
+    result = [
         Person(person["name"], person["age"])
-        result.append(Person.people[person["name"]])
+        for person in people
+    ]
 
     for person in people:
         instance = Person.people[person["name"]]
