@@ -9,9 +9,7 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    res_arr = []
-    for person in people:
-        res_arr.append(Person(person["name"], person["age"]))
+    res_arr = [Person(person["name"], person["age"]) for person in people]
 
     for i, person in enumerate(people):
         if person.get("wife"):
