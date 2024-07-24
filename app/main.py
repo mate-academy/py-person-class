@@ -1,13 +1,13 @@
 class Person:
     people = {}
 
-    def __init__(self, name: str, age: int):
+    def __init__(self, name: str, age: int) -> None:
         self.name = name
         self.age = age
         Person.people[name] = self
 
 
-def create_person_list(people_list):
+def create_person_list(people_list: list) -> list:
     person_instances = []
     for person_dict in people_list:
         person = Person(person_dict["name"], person_dict["age"])
