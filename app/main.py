@@ -14,9 +14,12 @@ def create_person_list(people_list: list) -> list:
     ]
     for person_dict in people_list:
         person_instance = Person.people[person_dict["name"]]
-        if "wife" in person_dict and person_dict["wife"]:
-            person_instance.wife = Person.people.get(person_dict["wife"])
-        if "husband" in person_dict and person_dict["husband"]:
-            person_instance.husband = Person.people.get(person_dict["husband"])
+        wife_name = person_dict.get("wife")
+        husband_name = person_dict.get("husband")
+
+        if wife_name:
+            person_instance.wife = Person.people[wife_name]
+        if husband_name:
+            person_instance.husband = Person.people[husband_name]
 
     return person_instances
