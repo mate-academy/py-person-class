@@ -8,8 +8,12 @@ class Person:
 
 
 def create_person_list(people_list: list) -> list:
-    person_instances = [Person(person_dict["name"], person_dict["age"])
-                        for person_dict in people_list]
+    person_instances = [
+        Person(
+            person_dict["name"], person_dict["age"]
+        )
+        for person_dict in people_list
+    ]
 
     for person_dict in people_list:
         person = Person.people[person_dict["name"]]
