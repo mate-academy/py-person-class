@@ -11,11 +11,8 @@ people = []
 
 
 def create_person_list(people: list) -> list:
-    people_instances = []
-
-    for person_data in people:
-        people_instances.append(Person(person_data.get("name"),
-                                       person_data.get("age")))
+    people_instances = [Person(person_data.get("name"), person_data.get("age"))
+                        for person_data in people]
 
     for person_data in people:
         person = Person.people.get(person_data.get("name"))
