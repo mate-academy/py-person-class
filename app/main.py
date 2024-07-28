@@ -16,7 +16,6 @@ def create_person_list(people: list) -> list:
 
     for person in people:
         instance = Person.people[person["name"]]
-        print(f"instance: {instance}")
 
         if "wife" in person.keys() and person["wife"] is not None:
             wife = Person.people[person["wife"]]
