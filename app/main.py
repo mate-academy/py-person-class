@@ -28,5 +28,5 @@ def create_person_list(people: list) -> list:
 
 # I CANT SOLVE THAT ISSUE
 # FAILED tests/test_main.py::
-# test_person_instance_attribute_wife_and_husband_doesnt_exists - KeyError: 'body'
-
+# test_person_instance_attribute_wife_and_husband_doesnt_exists
+# KeyError: 'body'
