@@ -12,8 +12,6 @@ def create_person_list(people: list) -> list:
 
     for person in people:
         Person(name=person["name"], age=person["age"])
-
-    for person in people:
         name = person["name"]
 
         if pair := person.get("husband"):
