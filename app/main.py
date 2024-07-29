@@ -17,16 +17,12 @@ def create_person_list(people_list: list) -> list:
         wife_name = person_dict.get("wife")
         husband_name = person_dict.get("husband")
 
-        if wife_name:
-            wife_instance = Person.people.get(wife_name)
-            if wife_instance:
-                person_instance.wife = wife_instance
-                wife_instance.husband = person_instance
-
-        if husband_name:
-            husband_instance = Person.people.get(husband_name)
-            if husband_instance:
-                person_instance.husband = husband_instance
-                husband_instance.wife = person_instance
+        if wife_name and Person.people.get(wife_name):
+            person_instance.wife = Person.people[wife_name]
+            Person.people[wife_name].husband = person_instance
+        if husband_name and Person.people.get(husband_name):
+            person_instance.husband = Person.people[husband_name]
+            Person.people[husband_name].wife = person_instance
 
     return person_instances
+
