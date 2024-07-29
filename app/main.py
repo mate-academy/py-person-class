@@ -15,7 +15,7 @@ def create_person_list(people: list) -> list:
         people_list.append(person_object)
         spouse_name = person.get("wife") or person.get("husband")
 
-        if spouse_name and spouse_name in Person.people:
+        if Person.people.get(spouse_name):
             spouse_object = Person.people[spouse_name]
             if "wife" in person:
                 person_object.wife = spouse_object
