@@ -8,11 +8,9 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    # First pass: Create Person objects
     for data in people:
         Person(data["name"], data["age"])
 
-    # Second pass: Set spouse information
     for data in people:
         person = Person.people[data["name"]]
         if "wife" in data and data["wife"]:
