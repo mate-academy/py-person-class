@@ -8,7 +8,6 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-
     for person in people:
         Person(person["name"], person["age"])
 
@@ -19,6 +18,6 @@ def create_person_list(people: list) -> list:
 
         elif "husband" in person and person["husband"] is not None:
             Person.people[person["name"]].husband = (
-            Person.people)[person["husband"]]
+                Person.people)[person["husband"]]
 
     return list(Person.people.values())
