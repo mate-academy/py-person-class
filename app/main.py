@@ -12,16 +12,17 @@ def create_person_list(people: list) -> list:
         Person(person["name"], person["age"])
         for person in people
     ]
+    people_dict = {
+        person.name: person
+        for person in people_list
+    }
     for num, person in enumerate(people_list):
         if people[num].get("wife"):
-            person.wife = people[num]["wife"]
-            for person_wife in people_list:
-                if person_wife.name == person.wife:
-                    person.wife = person_wife
+            person_wife = people[num]["wife"]
+            person.wife = people_dict[person_wife]
+            print(person.wife)
         if people[num].get("husband"):
-            person.husband = people[num]["husband"]
-            for person_husband in people_list:
-                if person_husband.name == person.husband:
-                    person.husband = person_husband
-
+            person_husband = people[num]["husband"]
+            person.husband = people_dict[person_husband]
+            print(person.husband)
     return people_list
