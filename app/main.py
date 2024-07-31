@@ -1,23 +1,26 @@
 class Person:
-    # write your code here
     people = {}
 
     def __init__(self, name: str, age: int) -> None:
         self.name = name
         self.age = age
-        Person.people[name] = self
+        Person.people[self.name] = self
 
 
 def create_person_list(people: list) -> list:
-    for person in people:
+    people_list = [
         Person(person["name"], person["age"])
-
-    # Second pass: set the wife/husband attributes
-    for person in people:
-        current_person = Person.people[person["name"]]
-        if "wife" in person and person["wife"]:
-            current_person.wife = Person.people[person["wife"]]
-        if "husband" in person and person["husband"]:
-            current_person.husband = Person.people[person["husband"]]
-
-    return list(Person.people.values())
+        for person in people
+    ]
+    people_dict = {
+        person.name: person
+        for person in people_list
+    }
+    for num, person in enumerate(people_list):
+        if people[num].get("wife"):
+            person_wife = people[num]["wife"]
+            person.wife = people_dict[person_wife]
+        if people[num].get("husband"):
+            person_husband = people[num]["husband"]
+            person.husband = people_dict[person_husband]
+    return people_list
