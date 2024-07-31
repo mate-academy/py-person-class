@@ -20,9 +20,7 @@ def create_person_list(people: list) -> list:
         if people[num].get("wife"):
             person_wife = people[num]["wife"]
             person.wife = people_dict[person_wife]
-            print(person.wife)
         if people[num].get("husband"):
             person_husband = people[num]["husband"]
             person.husband = people_dict[person_husband]
-            print(person.husband)
     return people_list
