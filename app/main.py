@@ -14,10 +14,10 @@ def create_person_list(people: list) -> list:
         person_list.append(Person(person_dict["name"], person_dict["age"]))
 
     for person_dict in people:
-        if "wife" in person_dict and person_dict["wife"]:
+        if person_dict.get("wife"):
             Person.people[person_dict["name"]].wife\
                 = Person.people[person_dict["wife"]]
-        elif "husband" in person_dict and person_dict["husband"]:
+        if person_dict.get("husband"):
             Person.people[person_dict["name"]].husband\
                 = Person.people[person_dict["husband"]]
 
