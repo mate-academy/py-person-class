@@ -10,18 +10,18 @@ class Person:
 
 def create_person_list(people: list) -> list:
 
-    list_of_people = []
-    for person in people:
-        list_of_people.append(Person(person["name"], person["age"]))
+    list_of_people = [Person(person["name"],
+                             person["age"])
+                      for person in people]
 
     for person in range(len(people)):
 
         if "husband" in people[person] and people[person]["husband"]:
-            list_of_people[person].husband =\
-                Person.people[people[person]["husband"]]
+            list_of_people[person].husband = (
+                Person.people)[people[person]["husband"]]
 
         elif "wife" in people[person] and people[person]["wife"]:
-            list_of_people[person].wife =\
-                Person.people[people[person]["wife"]]
+            list_of_people[person].wife = (
+                Person.people)[people[person]["wife"]]
 
     return list_of_people
