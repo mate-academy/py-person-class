@@ -12,17 +12,17 @@ def create_person_list(people: list) -> list:
 
     person_list = [Person(person["name"], person["age"]) for person in people]
 
-    for person in person_list:
+    for person_data in person_list:
 
-        for human in people:
+        for person_instance in people:
 
-            if person.name == human["name"]:
-                wife = human.get("wife")
-                husband = human.get("husband")
+            if person_data.name == person_instance["name"]:
+                wife = person_instance.get("wife")
+                husband = person_instance.get("husband")
 
                 if wife:
-                    person.wife = Person.people[wife]
+                    person_data.wife = Person.people[wife]
                 elif husband:
-                    person.husband = Person.people[husband]
+                    person_data.husband = Person.people[husband]
 
     return person_list
