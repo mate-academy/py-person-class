@@ -20,7 +20,8 @@ def create_person_list(people: list) -> list:
             husband.wife = wife
         if "husband" in person and person["husband"]:
             wife = Person.people[person["name"]]
-            wife.husband = wife
+            husband = Person.people[person["husband"]]
+            wife.husband = husband
 
     return person_list
 
