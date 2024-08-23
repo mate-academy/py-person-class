@@ -11,13 +11,13 @@ class Person:
         cls.people[person.name] = person
 
     @classmethod
-    def get_person(cls) -> dict:
+    def get_persons(cls) -> dict:
         return cls.people
 
 
 def create_person_list(people: list) -> list:
     person_list = [Person(person["name"], person["age"]) for person in people]
-    persons = Person.get_person()
+    persons = Person.get_persons()
 
     for per in people:
         if per.get("wife"):
