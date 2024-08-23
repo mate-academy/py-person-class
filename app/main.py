@@ -4,20 +4,12 @@ class Person:
     def __init__(self, name: str, age: int) -> None:
         self.name = name
         self.age = age
-        self.add_person(self)
-
-    @classmethod
-    def add_person(cls, person: "Person") -> None:
-        cls.people[person.name] = person
-
-    @classmethod
-    def get_persons(cls) -> dict:
-        return cls.people
+        Person.people[name] = self
 
 
 def create_person_list(people: list) -> list:
     person_list = [Person(person["name"], person["age"]) for person in people]
-    persons = Person.get_persons()
+    persons = Person.people
 
     for per in people:
         if per.get("wife"):
