@@ -10,15 +10,20 @@ class Person:
     def add_person(cls, person: "Person") -> None:
         cls.people[person.name] = person
 
+    @classmethod
+    def get_person(cls) -> dict:
+        return cls.people
+
 
 def create_person_list(people: list) -> list:
     person_list = [Person(person["name"], person["age"]) for person in people]
+    persons = Person.get_person()
 
     for per in people:
         if per.get("wife"):
-            Person.people[per["name"]].wife = Person.people[per["wife"]]
+            persons[per["name"]].wife = persons[per["wife"]]
 
         elif per.get("husband"):
-            Person.people[per["name"]].husband = Person.people[per["husband"]]
+            persons[per["name"]].husband = persons[per["husband"]]
 
     return person_list
