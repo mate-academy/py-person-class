@@ -20,4 +20,3 @@ def create_person_list(people: list) -> list:
             if person_data["husband"] in Person.people:
                 person.husband = Person.people[person_data["husband"]]
     return list(Person.people.values())
-
