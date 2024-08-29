@@ -21,12 +21,3 @@ def create_person_list(people: list) -> list:
                 person.husband = Person.people[person_data["husband"]]
     return list(Person.people.values())
 
-
-# people = [
-#     {"name": "Ross", "age": 30, "wife": "Rachel"},
-#     {"name": "Joey", "age": 29, "wife": None},
-#     {"name": "Rachel", "age": 28, "husband": "Ross"}
-# ]
-#
-# person_list = create_person_list(people)
-# print(person_list[0].wife is person_list[2]) # True, but we have False
