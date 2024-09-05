@@ -8,14 +8,10 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    person_list = []
-
-    # First, create all Person instances without wife/husband attributes
-    for person_dict in people:
-        name = person_dict["name"]
-        age = person_dict["age"]
-        person_instance = Person(name, age)
-        person_list.append(person_instance)
+    person_list = [
+        Person(person_dict["name"], person_dict["age"])
+        for person_dict in people
+    ]
 
     for person_dict in people:
         person_instance = Person.people[person_dict["name"]]
