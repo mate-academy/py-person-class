@@ -15,13 +15,12 @@ def create_person_list(people: list[dict]) -> list:
     result = [Person(person["name"], person["age"]) for person in people]
 
     for person in people:
-        if "wife" in person and person["wife"]:
-            Person.people[person["name"]].wife = Person.people[
-                person["wife"]
-            ]
-        elif "husband" in person and person["husband"]:
-            Person.people[person["name"]].husband = Person.people[
-                person["husband"]
-            ]
+        wife_name = person.get("wife")
+        husband_name = person.get("husband")
+
+        if wife_name:
+            Person.people[person["name"]].wife = Person.people[wife_name]
+        elif husband_name:
+            Person.people[person["name"]].husband = Person.people[husband_name]
 
     return result
