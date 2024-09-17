@@ -9,8 +9,8 @@ class Person:
 
 def create_person_list(people: list) -> list:
     name_to_person = {
-        person_data["name"]: Person(person_data["name"],
-        person_data["age"]) for person_data in people
+        person_data["name"]: Person(person_data["name"], person_data["age"])
+        for person_data in people
     }
     person_list = list(name_to_person.values())
 
