@@ -2,14 +2,14 @@ class Person:
 
     people = {}
 
-    def __init__(self, name, age):
+    def __init__(self, name: str, age: int):
         self.name = name
         self.age = age
 
         Person.people[name] = self
 
 
-def create_person_list(people):
+def create_person_list(people: list):
     for person_dict in people:
         name = person_dict["name"]
         age = person_dict["age"]
