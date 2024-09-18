@@ -1,5 +1,6 @@
 from typing import List, Dict, Union, Optional
 
+
 class Person:
     people: Dict[str, 'Person'] = {}
 
@@ -11,7 +12,10 @@ class Person:
 
         Person.people[name] = self
 
-def create_person_list(people: List[Dict[str, Union[str, Optional[str]]]]) -> List[Person]:
+
+def create_person_list(
+    people: List[Dict[str, Union[str, Optional[str]]]]
+) -> List[Person]:
     for person_dict in people:
         name = person_dict["name"]
         age = person_dict["age"]
