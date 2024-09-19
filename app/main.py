@@ -6,17 +6,20 @@ class Person:
         self.age = age
         Person.people[name] = self
 
+    def __repr__(self) -> str:
+        return str(self.__dict__)
+
 
 def create_person_list(people: list) -> list:
-    people_list = []
-    for person in people:
-        people_list.append(Person(person["name"], person["age"]))
+    people_list = [Person(person["name"], person["age"]) for person in people]
 
-    for i in range(len(people_list)):
-        if people[i].get("wife"):
-            people_list[i].wife = Person.people.get(people[i]["wife"])
+    for person in people:
+        if person.get("wife"):
+            Person.people.get(person.get("name")).wife = (
+                Person.people.get(person.get("wife")))
             continue
-        if people[i].get("husband"):
-            people_list[i].husband = Person.people.get(people[i]["husband"])
+        if person.get("husband"):
+            Person.people.get(person.get("name")).husband = (
+                Person.people.get(person.get("husband")))
 
     return people_list
