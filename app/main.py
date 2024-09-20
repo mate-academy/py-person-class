@@ -13,6 +13,7 @@ def create_person_list(people: list) -> list:
         people_list.append(Person(person["name"], person["age"]))
 
     cls_dict = Person.people
+
     for person in people:
         if "wife" in person and person["wife"] is not None:
             cls_dict[person["name"]].wife = cls_dict[person["wife"]]
