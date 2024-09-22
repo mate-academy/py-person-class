@@ -9,11 +9,8 @@ class Person:
 
 def create_person_list(people: list) -> list[Person]:
     # Creating people without relationship
-    person_list = []
-    for person_dict in people:
-        name = person_dict["name"]
-        age = person_dict["age"]
-        person_list.append(Person(name, age))
+    person_list = [Person(person_dict["name"], person_dict["age"])
+                   for person_dict in people]
 
     # Adding references to wives/husbands
     for person_dict in people:
