@@ -19,6 +19,3 @@ def create_person_list(people: list) -> list:
         elif people[i].get("husband"):
             person.husband = Person.people.get(people[i]["husband"])
     return people_list
-
-
-
