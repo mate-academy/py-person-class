@@ -9,14 +9,16 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    persons = [Person(people[i]["name"], people[i]["age"])
-               for i in range(len(people))]
+    people_list = [Person(people[i]["name"],
+                   people[i]["age"])
+                   for i in range(len(people))]
 
-    names = {p.name: p for p in persons}
+    for i, person in enumerate(people_list):
+        if people[i].get("wife"):
+            person.wife = Person.people.get(people[i]["wife"])
+        elif people[i].get("husband"):
+            person.husband = Person.people.get(people[i]["husband"])
+    return people_list
 
-    for i, someone in enumerate(people):
-        if someone.get("wife") is not None:
-            persons[i].wife = names[someone["wife"]]
-        if someone.get("husband") is not None:
-            persons[i].husband = names[someone["husband"]]
-    return persons
+
+
