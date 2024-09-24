@@ -17,10 +17,10 @@ def create_person_list(people: list) -> list[Person]:
         name = person_dict["name"]
         current_person = Person.people[name]
 
-        if "wife" in person_dict and person_dict["wife"] is not None:
+        if person_dict.get("wife"):
             wife_name = person_dict["wife"]
             current_person.wife = Person.people[wife_name]
-        elif "husband" in person_dict and person_dict["husband"] is not None:
+        if person_dict.get("husband"):
             husband_name = person_dict["husband"]
             current_person.husband = Person.people[husband_name]
 
