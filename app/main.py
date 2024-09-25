@@ -20,16 +20,3 @@ def create_person_list(people: list[dict]) -> list[Person]:
                 = Person.people[person.get("husband")]
 
     return person_list
-
-
-# people = [
-#     {"name": "Ross", "age": 30, "wife": "Rachel"},
-#     {"name": "Joey", "age": 29, "wife": None},
-#     {"name": "Rachel", "age": 28, "husband": "Ross"}
-# ]
-#
-# person_list = create_person_list(people)
-#
-# print(person_list)
-# for person in person_list:
-#     print(person.__dict__)
