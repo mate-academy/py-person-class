@@ -7,13 +7,11 @@ class Person:
         Person.people[name] = self
 
 
-def create_person_list(peopl: list) -> list[Person]:
-    person_list = [Person(person["name"], person["age"]) for person in peopl]
-    for person in peopl:
-        if person.get("husband"):
-            Person.people[person.get("name")].husband \
-                = Person.people[person.get("husband")]
-        if person.get("wife"):
-            Person.people[person.get("name")].wife \
-                = Person.people[person.get("wife")]
+def create_person_list(people: list) -> list[Person]:
+    person_list = [Person(person["name"], person["age"]) for person in people]
+    for person in people:
+        if husband := person.get("husband"):
+            Person.people[person.get("name")].husband = Person.people[husband]
+        if wife := person.get("wife"):
+            Person.people[person.get("name")].wife = Person.people[wife]
     return person_list
