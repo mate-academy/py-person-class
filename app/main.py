@@ -12,9 +12,8 @@ def create_person_list(people: list) -> list:
 
     for name_person in people:
         if wife_name := name_person.get("wife"):
-            Person.people[name_person["name"]].wife \
-                = Person.people[wife_name]
-            Person.people[name_person["name"]].wife.husband \
-                = (Person.people)[name_person["name"]]
+            naming = name_person["name"]
+            Person.people[naming].wife = Person.people[wife_name]
+            Person.people[naming].wife.husband = (Person.people)[naming]
 
     return result
