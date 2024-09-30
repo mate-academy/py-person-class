@@ -1,21 +1,15 @@
 class Person:
     people = {}
 
-    def __init__(self,
-                 name: str,
-                 age: int,
-                 *,
-                 partner: str = None,
-                 partner_type: str = None
-                 ) -> None:
+    def __init__(self, name: str, age: int) -> None:
         self.name = name
         self.age = age
-        self.partner_name = partner
-        self.partner_type = partner_type
+        self.partner_name = None
+        self.partner_type = None
         Person.people[name] = self
 
 
-def create_person_list(people: list[dict]) -> list[Person]:
+def create_person_list(people: list) -> list:
     person_list = []
     for person in people:
         if "wife" in person and person["wife"]:
@@ -27,12 +21,9 @@ def create_person_list(people: list[dict]) -> list[Person]:
         else:
             partner_name = None
             partner_type = None
-        person_instance = Person(
-            person["name"],
-            person["age"],
-            partner=partner_name,
-            partner_type=partner_type
-        )
+        person_instance = Person(person["name"], person["age"])
+        person_instance.partner_name = partner_name
+        person_instance.partner_type = partner_type
         person_list.append(person_instance)
     for person in person_list:
         if person.partner_name:
