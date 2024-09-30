@@ -4,8 +4,6 @@ class Person:
     def __init__(self, name: str, age: int) -> None:
         self.name = name
         self.age = age
-        self.partner_name = None
-        self.partner_type = None
         Person.people[name] = self
 
 
