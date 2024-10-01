@@ -7,7 +7,7 @@ class Person:
         self.age = age
         Person.people[self.name] = self
 
-    def weddings(self, other) -> None:
+    def weddings(self, other: "Person") -> None:
         self.wife = other
         other.husband = self
 
