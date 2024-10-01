@@ -9,27 +9,15 @@ class Person:
 
 def create_person_list(people: list) -> list:
     person_list = []
-    for person in people:
-        if "wife" in person and person["wife"]:
-            partner_name = person["wife"]
-            partner_type = "wife"
-        elif "husband" in person and person["husband"]:
-            partner_name = person["husband"]
-            partner_type = "husband"
-        else:
-            partner_name = None
-            partner_type = None
-        person_instance = Person(person["name"], person["age"])
-        person_instance.partner_name = partner_name
-        person_instance.partner_type = partner_type
-        person_list.append(person_instance)
-    for person in person_list:
-        if person.partner_name:
-            partner = Person.people[person.partner_name]
-            if person.partner_type == "wife":
-                person.wife = partner
-                partner.husband = person
-            elif person.partner_type == "husband":
-                person.husband = partner
-                partner.wife = person
+    for person_dict in people:
+        person = Person(person_dict["name"], person_dict["age"])
+        person_list.append(person)
+    for person_dict in people:
+        person = Person.people[person_dict["name"]]
+        if "wife" in person_dict and person_dict["wife"] is not None:
+            person.wife = Person.people[person_dict["wife"]]
+            person.wife.husband = person
+        if "husband" in person_dict and person_dict["husband"] is not None:
+            person.husband = Person.people[person_dict["husband"]]
+            person.husband.wife = person
     return person_list
