@@ -17,9 +17,8 @@ def create_person_list(people_list: list) -> list:
         for original_person in people_list:
             if original_person["name"] == person.name:
                 if spouse_name := (
-                        original_person.get("wife"
-                                            if "wife"
-                                               in original_person
+                        original_person.get("wife" if "wife"
+                                                      in original_person
                                             else "husband")):
                     if "wife" in original_person:
                         person.wife = Person.people[spouse_name]
