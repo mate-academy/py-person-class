@@ -17,7 +17,7 @@ def create_person_list(people: list) -> list[Person]:
 def update_partners(people: list) -> None:
     for human in people:
         person = Person.people.get(human.get("name"))
-        if "wife" in human and human["wife"]:
+        if human.get("wife"):
             person.wife = Person.people.get(human["wife"])
-        elif "husband" in human and human["husband"]:
+        elif human.get("husband"):
             person.husband = Person.people.get(human["husband"])
