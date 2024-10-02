@@ -22,8 +22,10 @@ def create_person_list(people: list) -> list:
         if name_of_character:
             married = Person.people.get(name_of_character)
             if married:
-                if (name_of_character in Person.people
-                        and "wife" in Person.people[name_of_character].__dict__):
+                if (name_of_character
+                        in Person.people
+                        and "wife"
+                        in Person.people[name_of_character].__dict__):
                     Person.people[name].husband = married
                 else:
                     Person.people[name].wife = married
