@@ -7,10 +7,7 @@ class Person:
         Person.people[name] = self
 
 
-def create_person_list(people: list[dict[str, any]]) -> list[Person]:
-    # The following annotations may have issues.
-    # Please note that they should be written in capitalized words,
-    # and the typing module is imported. ;)
+def create_person_list(people: list[dict[str | int | None]]) -> list[Person]:
     if not people:
         raise ValueError("The people list is empty")
 
