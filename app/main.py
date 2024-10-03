@@ -7,7 +7,7 @@ class Person:
         Person.people[name] = self
 
 
-def create_person_list(people: list) -> list:
+def create_person_list(people: list[dict]) -> list["Person"]:
     person_list = []
 
     for person in people:
@@ -24,4 +24,4 @@ def create_person_list(people: list) -> list:
         elif "husband" in person and person["husband"]:
             person_instance.husband = Person.people[person["husband"]]
 
-    return list(Person.people.values())
+    return person_list
