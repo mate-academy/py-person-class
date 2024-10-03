@@ -15,17 +15,17 @@ def create_person_list(people: list[dict]) -> list["Person"]:
         for person_data in people
     }
 
-    for person_data in people:
-        name = person_data["name"]
-        partner_key = "wife" if "wife" in person_data else "husband"
-        partner_name = person_data.get(partner_key)
+    for person in people:
+        partner_key = "wife" if "wife" in person else "husband"
+        partner_name = person.get(partner_key)
         if partner_name:
+            person_instance = person_instances[person["name"]]
             partner_instance = person_instances[partner_name]
-            setattr(person_instances[name], partner_key, partner_instance)
+            setattr(person_instance, partner_key, partner_instance)
             setattr(
                 partner_instance,
                 "husband" if partner_key == "wife" else "wife",
-                person_instances[name]
+                person_instance
             )
 
     return list(person_instances.values())
