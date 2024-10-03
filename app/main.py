@@ -8,17 +8,19 @@ class Person:
 
 
 def create_person_list(people_list: list) -> list:
-    person_instances = []
+    person_instances = [
+        Person(
+            person.get("name"),
+            person.get("age")
+        ) for person in people_list
+    ]
 
-    person_instances = [Person(person["name"],
-                               person["age"]) for person in people_list]
-
-    people_dict = {p["name"]: p for p in people_list}
+    people_dict = {person.get("name"): person for person in people_list}
 
     for person in person_instances:
         if original_person := people_dict.get(person.name):
             spouse_key = "wife" if "wife" in original_person else "husband"
             if spouse_name := original_person.get(spouse_key):
-                setattr(person, spouse_key, Person.people[spouse_name])
+                setattr(person, spouse_key, Person.people.get(spouse_name))
 
     return person_instances
