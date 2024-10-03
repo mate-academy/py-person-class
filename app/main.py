@@ -1,5 +1,5 @@
 class Person:
-    people = {}
+    people: {str, "Person"} = {}
 
     def __init__(self, name: str = None, age: int = None) -> None:
         self.name = name
@@ -8,10 +8,12 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    out = [Person(person.get("name"), person.get("age")) for person in people]
+    person_list = [Person(person.get("name"),
+                          person.get("age")) for person in people]
     for i in range(len(people)):
         if people[i].get("wife"):
-            out[i].wife = Person.people.get(people[i].get("wife"))
+            person_list[i].wife = Person.people.get(people[i].get("wife"))
         if people[i].get("husband"):
-            out[i].husband = Person.people.get(people[i].get("husband"))
-    return out
+            person_list[i].husband = Person.people.get(
+                people[i].get("husband"))
+    return person_list
