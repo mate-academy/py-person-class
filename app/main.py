@@ -8,11 +8,11 @@ class Person:
         Person.people[self.name] = self
 
 
-def create_person_list(people: list) -> list:
-    person_list = []
-    for person_data in people:
-        person = Person(person_data["name"], person_data["age"])
-        person_list.append(person)
+def create_person_list(people: list[dict[str | int | None]]) -> list[Person]:
+    person_list = [
+        Person(person.get("name"), person.get("age"))
+        for person in people
+    ]
 
     for person_data in people:
         person = Person.people[person_data["name"]]
