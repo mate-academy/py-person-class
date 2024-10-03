@@ -22,10 +22,5 @@ def create_person_list(people: list[dict]) -> list["Person"]:
             person_instance = person_instances[person["name"]]
             partner_instance = person_instances[partner_name]
             setattr(person_instance, partner_key, partner_instance)
-            setattr(
-                partner_instance,
-                "husband" if partner_key == "wife" else "wife",
-                person_instance
-            )
 
     return list(person_instances.values())
