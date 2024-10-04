@@ -7,7 +7,7 @@ class Person:
         Person.people.update({name: self})
 
 
-def create_person_list(people: list) -> list:
+def create_person_list(people: list[dict]) -> list:
     person_list = [Person(person.get("name"),
                           person.get("age")) for person in people]
     for i in range(len(people)):
