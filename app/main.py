@@ -7,14 +7,14 @@ class Person:
         Person.people.update({name: self})
 
 
-def create_person_list(people: list[dict]) -> list:
+def create_person_list(people: list[dict]) -> list[Person]:
     person_list = [Person(person.get("name"),
                           person.get("age")) for person in people]
-    for num_person in range(len(people)):
-        if people[num_person].get("wife"):
-            person_list[num_person].wife = Person.people.get(
-                people[num_person].get("wife"))
-        if people[num_person].get("husband"):
-            person_list[num_person].husband = Person.people.get(
-                people[num_person].get("husband"))
+    for person in people:
+        if person.get("wife"):
+            Person.people.get(person.get("name")).wife = Person.people.get(
+                person.get("wife"))
+        if person.get("husband"):
+            Person.people.get(person.get("name")).husband = Person.people.get(
+                person.get("husband"))
     return person_list
