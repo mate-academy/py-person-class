@@ -11,9 +11,7 @@ def create_person_list(people: list[dict]) -> list[Person]:
     person_list = []
 
     for person_data in people:
-        name = person_data["name"]
-        age = person_data["age"]
-        person = Person(name, age)
+        person = Person(person_data["name"], person_data["age"])
         person_list.append(person)
 
     for person_data in people:
