@@ -14,7 +14,6 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-
     person_list = []
 
     for person_data in people:
@@ -22,10 +21,11 @@ def create_person_list(people: list) -> list:
         person_list.append(person)
 
     for person_data in people:
-        person = Person.people[person_data["name"]]
+        person = Person.people.get(person_data["name"])
+
         if person_data.get("wife"):
             person.set_spouse(person_data["wife"], "wife")
-        elif "husband" in person_data and person_data["husband"] is not None:
+        elif person_data.get("husband"):
             person.set_spouse(person_data["husband"], "husband")
 
     return person_list
