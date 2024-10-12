@@ -4,7 +4,8 @@ class Person:
     def __init__(
             self,
             name: str,
-            age: int
+            age: int,
+
     ) -> None:
         self.name = name
         self.age = age
@@ -12,16 +13,30 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    persons = [
-        Person(person["name"], person["age"])
-        for person in people
-    ]
+    list_of_humans = []
     for person in people:
-        if "wife" in person and person["wife"]:
-            wife = Person.people[person["wife"]]
-            Person.people[person["name"]].wife = wife
-        elif "husband" in person and person["husband"]:
-            husband = Person.people[person["husband"]]
-            Person.people[person["name"]].husband = husband
+        wife = None
+        husband = None
+        if "wife" in person:
+            wife = person["wife"]
+        elif "husband" in person:
+            husband = person["husband"]
+        mate = Person(person["name"], person["age"])
+        mate.wife = wife
+        mate.husband = husband
+        list_of_humans.append(mate)
 
-    return persons
+    for person in Person.people:
+        if Person.people[person].wife:
+            partner_name = Person.people[person].wife
+            Person.people[person].wife = Person.people[partner_name]
+            del Person.people[person].husband
+        elif Person.people[person].husband:
+            partner_name = Person.people[person].husband
+            Person.people[person].husband = Person.people[partner_name]
+            del Person.people[person].wife
+        else:
+            del Person.people[person].wife
+            del Person.people[person].husband
+
+    return list_of_humans
