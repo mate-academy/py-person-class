@@ -9,6 +9,7 @@ class Person:
         Person.people[name] = self
 
     def set_spouse(self, spouse_name: str) -> None:
+
         spouse = Person.people.get(spouse_name)
         if spouse:
             self.spouse = spouse
