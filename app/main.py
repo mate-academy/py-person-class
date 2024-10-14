@@ -9,6 +9,8 @@ class Person:
     ) -> None:
         self.name = name
         self.age = age
+        self.wife = None
+        self.husband = None
         Person.people[self.name] = self
 
 
