@@ -1,13 +1,16 @@
-class Person:
-    people = {}
+from typing import Optional
 
-    def __init__(self, name, age):
+
+class Person:
+    people: dict[str, 'Person'] = {}
+
+    def __init__(self, name: str,  age: str) -> None:
         self.name = name
         self.age = age
         Person.people[name] = self
 
 
-def create_person_list(people_list):
+def create_person_list(people_list: list[dict[str, Optional[str]]]) -> list[Person]:
     persons = []
     for person in people_list:
         new_person = Person(person["name"], person["age"])
