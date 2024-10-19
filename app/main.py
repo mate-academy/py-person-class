@@ -1,6 +1,5 @@
 from typing import List, Dict, Union, Optional
 
-
 class Person:
     # Class-level dictionary to store all Person instances by name
     people: Dict[str, "Person"] = {}
@@ -17,24 +16,23 @@ class Person:
 
     def __setattr__(self, key: str, value: Optional["Person"]) -> None:
         """
-        Override __setattr__ to dynamically add wife/husband attributes
-        only if they are set outside the constructor.
+        Override __setattr__ to dynamically add "wife"/"husband" attributes.
         """
-        if key in {"wife", "husband"} and value is not None:
-            super().__setattr__(key, value)
-        else:
+        # Set the attribute only if key is not "wife"/"husband" or value is not None
+        if key not in {"wife", "husband"} or value is not None:
             super().__setattr__(key, value)
 
-
-def create_person_list(people: List[Dict[str, Union[(
-        str, int, None)]]]) -> List[Person]:
+def create_person_list(
+    people: List[Dict[str, Union[str, int, None]]]
+) -> List[Person]:
     """
     Convert a list of dictionaries into a list of Person instances.
-    Link 'wife' or 'husband' attributes where applicable.
+    Link "wife" or "husband" attributes where applicable.
     """
     # Step 1: Create all Person instances first
-    person_list: List[Person] = [Person(person["name"], person[(
-        "age")]) for person in people]
+    person_list: List[Person] = [
+        Person(person["name"], person["age"]) for person in people
+    ]
 
     # Step 2: Set relationships after all Person instances are created
     for person in people:
