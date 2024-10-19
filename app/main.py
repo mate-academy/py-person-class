@@ -1,5 +1,6 @@
 from typing import List, Dict, Union, Optional
 
+
 class Person:
     # Class-level dictionary to store all Person instances by name
     people: Dict[str, "Person"] = {}
@@ -18,9 +19,10 @@ class Person:
         """
         Override __setattr__ to dynamically add "wife"/"husband" attributes.
         """
-        # Set the attribute only if key is not "wife"/"husband" or value is not None
+        # Set the attrib. only if key isnt "wife""husband" or value is not None
         if key not in {"wife", "husband"} or value is not None:
             super().__setattr__(key, value)
+
 
 def create_person_list(
     people: List[Dict[str, Union[str, int, None]]]
