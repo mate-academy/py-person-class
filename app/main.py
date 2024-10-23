@@ -16,8 +16,16 @@ def create_person_list(people_list) -> list:
 
     for person in people_list:
         if "wife" in person and person["wife"]:
-            Person.people[person["name"]].wife = Person.people[person["wife"]]
+            wife_name = person["wife"]
+            if wife_name in Person.people:
+                Person.people[person["name"]].wife = Person.people[wife_name]
+            else:
+                print(f"Warning: Wife {wife_name} not found for {person["name"]}")
         elif "husband" in person and person["husband"]:
-            Person.people[person["name"]].husband = Person.people[person["husband"]]
+            husband_name = person["husband"]
+            if husband_name in Person.people:
+                Person.people[person["name"]].husband = Person.people[husband_name]
+            else:
+                print(f"Warning: Husband {husband_name} not found for {person["name"]}")
 
     return person_instances
