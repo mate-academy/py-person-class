@@ -28,3 +28,4 @@ def create_person_list(people):
                 del person_instance.husband
 
     return person_list
+
