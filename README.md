@@ -9,13 +9,19 @@ a **person**, it has keys: `name`, `age`,
 female. All `names` are different. Key 
 `wife`/`husband` can be either `None` or 
 name of another person.
+1. **Define a Class `Person`**  
+   
+2. **The `__init__` method should take two parameters**
+     - `name`: A string representing the name of the person.
+     - `age`: An integer representing the age of the person.
 
-Create class `Person`. It's constructor takes
-and store `name`, `age` of a person.
-This class also should have a class attribute
-`people`, it is a dict that stores `Person` 
-instances by their `name`. Constructor should 
-add elements to this attribute.
+
+3. **Define a **class attribute** `people` in the `Person` class to store instances by their `name`.**
+     - The keys are the `name` values of instances.
+     - The values are references to the `Person` instances themselves.
+     - Within the `__init__` method, add each new `Person` instance to the `people` dictionary.
+     
+    
 
 Write function `create_person_list`, this function
 takes list `people` and return list with
