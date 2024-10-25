@@ -20,9 +20,7 @@ name of another person.
      - The keys are the `name` values of instances.
      - The values are references to the `Person` instances themselves.
      - Within the `__init__` method, add each new `Person` instance to the `people` dictionary.
-     
     
-
 Write function `create_person_list`, this function
 takes list `people` and return list with
 `Person` instances instead of dicts.
