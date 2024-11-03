@@ -1,12 +1,12 @@
 class Person:
     people = {}
 
-    def __init__(self, name: str, age: int):
+    def __init__(self, name: str, age: int) -> None:
         self.name = name
         self.age = age
         Person.people[self.name] = self
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return f"Person(name={self.name}, age={self.age})"
 
 
