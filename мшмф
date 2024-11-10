@@ -1,4 +1,5 @@
 class Person:
+    # Class-level attribute to store all instances of Person
     people = {}
 
     def __init__(self, name: str, age: int) -> None:
@@ -6,19 +7,19 @@ class Person:
         self.age = age
         self.wife = None
         self.husband = None
-        # Add the current person instance to the people dictionary
+        # Add the current person instance to the class-level dictionary
         Person.people[name] = self
 
     def __repr__(self):
         return f"Person(name={self.name}, age={self.age})"
 
-def create_person_list(people_data):
-    person_instances = []
-    # First create all Person instances
-    for person_data in people_data:
-        person = Person(person_data["name"], person_data["age"])
 
-    # Now link the wife/husband attributes for each person
+def create_person_list(people_data):
+    # First, create all Person instances and add them to the people dictionary
+    for person_data in people_data:
+        Person(person_data["name"], person_data["age"])
+
+    # Now, link the wife/husband attributes for each person
     for person_data in people_data:
         person = Person.people[person_data["name"]]
         if "wife" in person_data and person_data["wife"]:
@@ -59,3 +60,4 @@ assert Person.people == {
     "Joey": person_list[1],
     "Rachel": person_list[2]
 }
+
