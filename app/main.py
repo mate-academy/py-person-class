@@ -1,24 +1,22 @@
 class Person:
-    people = {}  # Атрибут класса для хранения экземпляров по их имени
+    people = {}
 
-    def __init__(self, name: str, age: int):
+    def __init__(self, name: str, age: int) -> None:
         self.name = name
         self.age = age
-        Person.people[name] = self  # Добавление экземпляра в словарь people
+        Person.people[name] = self
 
 
 def create_person_list(people_data: list) -> list:
 
     person_list = []
 
-    # Первый проход: Создание экземпляров Person
     for person_dict in people_data:
         name = person_dict["name"]
         age = person_dict["age"]
         person = Person(name, age)
         person_list.append(person)
 
-    # Второй проход: Назначение ссылок на супругов
     for person_dict, person in zip(people_data, person_list):
         spouse_name = person_dict.get("wife") or person_dict.get("husband")
         if spouse_name:
