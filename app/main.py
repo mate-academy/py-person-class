@@ -21,6 +21,7 @@ def create_person_list(people: list) -> list:
             spouse = Person.people[person_dict["wife"]]
             person.wife = spouse
             spouse.husband = person
+
         elif "husband" in person_dict and person_dict["husband"]:
             person = Person.people[name]
             spouse = Person.people[person_dict["husband"]]
