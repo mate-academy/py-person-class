@@ -26,5 +26,4 @@ def create_person_list(people: list) -> list:
             spouse = Person.people[person_dict["husband"]]
             person.husband = spouse
             spouse.wife = person
-
         return person_list
