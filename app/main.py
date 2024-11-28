@@ -1,36 +1,44 @@
-from typing import List, Dict
-
-
 class Person:
+    people = {}
 
     def __init__(self, name: str, age: int) -> None:
         self.name = name
         self.age = age
-    people = {}
 
-    def add_to_people(self) -> None:
-        Person.people[self.name] = self
+        if name not in Person.people:
+            Person.people[name] = self
+
+    def __repr__(self):
+        return f"Person(name={self.name}, age={self.age})"
 
 
-def create_person_list(people: List[Dict]) -> List[Person]:
+def create_person_list(people: list) -> list:
     person_list = []
 
     for person_dict in people:
         name = person_dict["name"]
         age = person_dict["age"]
-        person = Person(name, age)
-        person.add_to_people()
+
+        if name not in Person.people:
+            person = Person(name, age)
+        else:
+            person = Person.people[name]
+
         person_list.append(person)
 
     for person_dict in people:
         person = Person.people[person_dict["name"]]
-        if "wife" in person_dict and person_dict["wife"] is not None:
+
+        if "wife" in person_dict and person_dict["wife"]:
             spouse_name = person_dict["wife"]
-            spouse = Person.people[spouse_name]
-            person.wife = spouse
-        if "husband" in person_dict and person_dict["husband"] is not None:
+            if spouse_name in Person.people:
+                person.wife = Person.people[spouse_name]
+
+        if "husband" in person_dict and person_dict["husband"]:
             spouse_name = person_dict["husband"]
-            spouse = Person.people[spouse_name]
-            person.husband = spouse
+            if spouse_name in Person.people:
+                person.husband = Person.people[spouse_name]
 
     return person_list
+
+
