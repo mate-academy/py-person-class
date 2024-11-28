@@ -8,7 +8,7 @@ class Person:
         if name not in Person.people:
             Person.people[name] = self
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return f"Person(name={self.name}, age={self.age})"
 
 
@@ -40,5 +40,3 @@ def create_person_list(people: list) -> list:
                 person.husband = Person.people[spouse_name]
 
     return person_list
-
-
