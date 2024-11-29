@@ -8,7 +8,7 @@ a **person**, it has keys: `name`, `age`,
 `wife`/`husband` - depends on person is male or 
 female. All `names` are different. Key 
 `wife`/`husband` can be either `None` or 
-name of another person.
+name of another person. 
 1. **Define a Class `Person`**  
    
 2. **The `__init__` method should take two parameters**
