@@ -1,14 +1,14 @@
 class Person:
     people = {}
 
-    def __init__(self, name, age):
+    def __init__(self, name: str, age: int) -> None:
         self.name = name
         self.age = age
         self.wife = None
         self.husband = None
         Person.people[name] = self
 
-    def set_spouse(self, spouse_name):
+    def set_spouse(self, spouse_name: str) -> None:
         if spouse_name in Person.people:
             spouse = Person.people[spouse_name]
             if spouse.age < self.age:
@@ -18,12 +18,13 @@ class Person:
                 self.husband = spouse
                 spouse.wife = self
 
-def create_person_list(people):
+
+def create_person_list(people: list) -> None:
     person_list = []
     for person in people:
-        p = Person(person["name"], person["age"])
+        per = Person(person["name"], person["age"])
         spouse_key = "wife" if "wife" in person else "husband"
         if spouse_key in person:
-            p.set_spouse(person[spouse_key])
-        person_list.append(p)
+            per.set_spouse(person[spouse_key])
+        person_list.append(per)
     return person_list
