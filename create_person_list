@@ -1,0 +1,138 @@
+class Person:
+    # Class attribute to store Person instances by their name
+    people = {}
+
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+        # Add the instance to the class attribute dictionary
+        Person.people[name] = self
+
+
+def create_person_list(people_list):
+    """Create a list of Person instances from a list of dictionaries."""
+    # Step 1: Create Person instances and store them in the class attribute
+    person_instances = []
+    for person_dict in people_list:
+        person = Person(person_dict["name"], person_dict["age"])
+        person_instances.append(person)
+
+    # Step 2: Establish relationships (wife/husband)
+    for person_dict in people_list:
+        person = Person.people[person_dict["name"]]
+        if "wife" in person_dict and person_dict["wife"]:
+            person.wife = Person.people[person_dict["wife"]]
+        elif "husband" in person_dict and person_dict["husband"]:
+            person.husband = Person.people[person_dict["husband"]]
+
+    return person_instances
+
+
+# Example usage
+if __name__ == "__main__":
+    people = [
+        {"name": "Ross", "age": 30, "wife": "Rachel"},
+        {"name": "Joey", "age": 29, "wife": None},
+        {"name": "Rachel", "age": 28, "husband": "Ross"}class Person:
+    # Class attribute to store Person instances by their name
+    people = {}
+
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+        # Add the instance to the class attribute dictionary
+        Person.people[name] = self
+
+
+def create_person_list(people_list):
+    """Create a list of Person instances from a list of dictionaries."""
+    # Step 1: Create Person instances and store them in the class attribute
+    person_instances = []
+    for person_dict in people_list:
+        person = Person(person_dict["name"], person_dict["age"])
+        person_instances.append(person)
+
+    # Step 2: Establish relationships (wife/husband)
+    for person_dict in people_list:
+        person = Person.people[person_dict["name"]]
+        if "wife" in person_dict and person_dict["wife"]:
+            person.wife = Person.people[person_dict["wife"]]
+        elif "husband" in person_dict and person_dict["husband"]:
+            person.husband = Person.people[person_dict["husband"]]
+
+    return person_instances
+
+
+# Example usage
+if __name__ == "__main__":
+    people = [
+        {"name": "Ross", "age": 30, "wife": "Rachel"},
+        {"name": "Joey", "age": 29, "wife": None},
+        {"name": "Rachel", "age": 28, "husband": "Ross"}class Person:
+    # Class attribute to store Person instances by their name
+    people = {}
+
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+        # Add the instance to the class attribute dictionary
+        Person.people[name] = self
+
+
+def create_person_list(people_list):
+    """Create a list of Person instances from a list of dictionaries."""
+    # Step 1: Create Person instances and store them in the class attribute
+    person_instances = []
+    for person_dict in people_list:
+        person = Person(person_dict["name"], person_dict["age"])
+        person_instances.append(person)
+
+    # Step 2: Establish relationships (wife/husband)
+    for person_dict in people_list:
+        person = Person.people[person_dict["name"]]
+        if "wife" in person_dict and person_dict["wife"]:
+            person.wife = Person.people[person_dict["wife"]]
+        elif "husband" in person_dict and person_dict["husband"]:
+            person.husband = Person.people[person_dict["husband"]]
+
+    return person_instances
+
+
+# Example usage
+if __name__ == "__main__":
+    people = [
+        {"name": "Ross", "age": 30, "wife": "Rachel"},
+        {"name": "Joey", "age": 29, "wife": None},
+        {"name": "Rachel", "age": 28, "husband": "Ross"}
+    ]
+
+    person_list = create_person_list(people)
+
+    # Verification
+    print(person_list[0].name)  # Ross
+    print(person_list[0].wife.name)  # Rachel
+    print(person_list[2].husband.name)  # Ross
+    print(person_list[2].husband.wife is person_list[2])  # True
+    print(Person.people)  # Dictionary of Person instances by name
+
+    ]
+
+    person_list = create_person_list(people)
+
+    # Verification
+    print(person_list[0].name)  # Ross
+    print(person_list[0].wife.name)  # Rachel
+    print(person_list[2].husband.name)  # Ross
+    print(person_list[2].husband.wife is person_list[2])  # True
+    print(Person.people)  # Dictionary of Person instances by name
+
+    ]
+
+    person_list = create_person_list(people)
+
+    # Verification
+    print(person_list[0].name)  # Ross
+    print(person_list[0].wife.name)  # Rachel
+    print(person_list[2].husband.name)  # Ross
+    print(person_list[2].husband.wife is person_list[2])  # True
+    print(Person.people)  # Dictionary of Person instances by name
