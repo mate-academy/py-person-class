@@ -6,24 +6,25 @@ class Person:
         self.age = age
         Person.people[name] = self
 
-def create_person_list(people) -> list:
+
+def create_person_list(people: list) -> list:
     person_list = []
 
     for person in people:
-        p = Person(person["name"], person["age"])
+        pers = Person(person["name"], person["age"])
 
         if "wife" in person and person["wife"] is not None:
             wife_name = person["wife"]
             if wife_name in Person.people:
-                p.wife = Person.people[wife_name]
-                p.wife.husband = p
+                pers.wife = Person.people[wife_name]
+                pers.wife.husband = pers
 
         if "husband" in person and person["husband"] is not None:
             husband_name = person["husband"]
             if husband_name in Person.people:
-                p.husband = Person.people[husband_name]
-                p.husband.wife = p
+                pers.husband = Person.people[husband_name]
+                pers.husband.wife = pers
 
-        person_list.append(p)
+        person_list.append(pers)
 
     return person_list
