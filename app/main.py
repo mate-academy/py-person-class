@@ -1,23 +1,10 @@
 class Person:
-
     people = {}
 
     def __init__(self, name: str, age: int) -> None:
         self.name = name
         self.age = age
-        self.wife = None
-        self.husband = None
         Person.people[name] = self
-
-    def set_spouse(self) -> None:
-        if self.wife and isinstance(self.wife, str):
-            self.wife = Person.people.get(self.wife)
-            if self.wife:
-                self.wife.husband = self
-        elif self.husband and isinstance(self.husband, str):
-            self.husband = Person.people.get(self.husband)
-            if self.husband:
-                self.husband.wife = self
 
 def create_person_list(people) -> list:
     person_list = []
@@ -26,11 +13,16 @@ def create_person_list(people) -> list:
         p = Person(person["name"], person["age"])
 
         if "wife" in person and person["wife"] is not None:
-            p.wife = person["wife"]
-        elif "husband" in person and person["husband"] is not None:
-            p.husband = person["husband"]
+            wife_name = person["wife"]
+            if wife_name in Person.people:
+                p.wife = Person.people[wife_name]
+                p.wife.husband = p
 
-        p.set_spouse()
+        if "husband" in person and person["husband"] is not None:
+            husband_name = person["husband"]
+            if husband_name in Person.people:
+                p.husband = Person.people[husband_name]
+                p.husband.wife = p
 
         person_list.append(p)
 
