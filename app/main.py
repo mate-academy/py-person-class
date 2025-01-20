@@ -8,24 +8,27 @@ class Person:
 
 
 def create_person_list(people_data: list) -> list:
-    person_instances = []
     name_to_person = {}
 
-    for person in people_data:
-        name = person["name"]
-        age = person["age"]
-        person_instance = Person(name, age)
-        name_to_person[name] = person_instance
-        person_instances.append(person_instance)
+    # Using list comprehension to create person_instances
+    person_instances = [
+        Person(person["name"], person["age"]) for person in people_data
+    ]
+
+    for person_instance in person_instances:
+        name_to_person[person_instance.name] = person_instance
 
     for person in people_data:
-        name = person["name"]
-        person_instance = name_to_person[name]
+        person_instance = name_to_person[person["name"]]
 
-        if "wife" in person and person["wife"] is not None:
-            person_instance.wife = name_to_person[person["wife"]]
+        # Using dict.get() to simplify the checks for wife and husband
+        wife_name = person.get("wife")
+        husband_name = person.get("husband")
 
-        if "husband" in person and person["husband"] is not None:
-            person_instance.husband = name_to_person[person["husband"]]
+        if wife_name is not None:
+            person_instance.wife = name_to_person[wife_name]
+
+        if husband_name is not None:
+            person_instance.husband = name_to_person[husband_name]
 
     return person_instances
