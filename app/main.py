@@ -10,7 +10,6 @@ class Person:
 def create_person_list(people_data: list) -> list:
     name_to_person = {}
 
-    # Using list comprehension to create person_instances
     person_instances = [
         Person(person["name"], person["age"]) for person in people_data
     ]
