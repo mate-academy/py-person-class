@@ -19,5 +19,3 @@ def create_person_list(people: list) -> list:
             person_obj.husband = temp_list[person["husband"]]
         Person.people[person_obj.name] = person_obj
     return list(temp_list.values())
-
-
