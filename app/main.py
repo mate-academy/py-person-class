@@ -13,6 +13,7 @@ def create_person_list(people: list) -> list:
         person["name"]: Person(person["name"], person["age"])
         for person in people
     }
+
     for person in people:
         person_obj = temp_list[person["name"]]
         if temp_list.get(person.get("wife")):
