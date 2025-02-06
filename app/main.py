@@ -23,10 +23,10 @@ def create_person_list(people: list) -> list:
         wife = getattr(person, "wife", None)
         husband = getattr(person, "husband", None)
 
-        if wife:
+        if wife in Person.people:
             person.wife = Person.people[wife]
 
-        if husband:
+        if husband in Person.people:
             person.husband = Person.people[husband]
 
     return person_list
