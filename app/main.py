@@ -19,6 +19,7 @@ def create_person_list(people: list) -> list:
             wife = Person.people[human["wife"]]
             human_instance.wife = wife
         if human.get("husband"):
+
             husband = Person.people[human["husband"]]
             human_instance.husband = husband
     return person_list
