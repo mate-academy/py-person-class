@@ -1,10 +1,12 @@
 class Person:
+
     people = {}
 
     def __init__(self, name: str, age: int) -> None:
         self.name = name
         self.age = age
-        self.people[name] = self
+        Person.people[name] = self
+
 
 
 def create_person_list(people: list) -> list:
