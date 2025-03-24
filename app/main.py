@@ -10,16 +10,11 @@ class Person:
 def create_person_list(people: list) -> list:
     Person.people.clear()
 
-    for person_data in people:
-        Person(person_data["name"], person_data["age"])
+    [Person(p["name"], p["age"]) for p in people]
+    [setattr(Person.people[p["name"]], "wife",
+             Person.people[p["wife"]]) for p in people if p.get("wife")]
 
-    for person_data in people:
-        current_person = Person.people[person_data["name"]]
+    [setattr(Person.people[p["name"]], "husband",
+             Person.people[p["husband"]]) for p in people if p.get("husband")]
 
-        if person_data.get("wife"):
-            current_person.wife = Person.people[person_data["wife"]]
-
-        if person_data.get("husband"):
-            current_person.husband = Person.people[person_data["husband"]]
-
-    return [Person.people[p["name"]] for p in people]
+    return list(Person.people.values())
