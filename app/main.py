@@ -12,14 +12,14 @@ def create_person_list(people: list) -> list:
     for person in people:
         obj_person = Person(person["name"], person["age"])
         lista_of_people.append(obj_person)
-        if "wife" in person.keys():
+        if person.get('wife'):
             obj_person.wife = person["wife"]
         else:
             obj_person.husband = person["husband"]
 
     for index, people in enumerate(lista_of_people):
-        if "wife" in people.keys() and people["wife"] is not None:
+        if people.get("wife") and people["wife"] is not None:
             lista_of_people[index] = people.wife = Person.people[people.wife]
-        if "husband" in people.keys() and people["husband"] is not None:
+        if people.get("husband") and people["husband"] is not None:
             lista_of_people[index] = people.husband = Person.people[people.husband]
     return lista_of_people
