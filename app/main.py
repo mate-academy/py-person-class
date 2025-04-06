@@ -9,14 +9,12 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    friends = []
-    for friend in people:
-        friends.append(Person(friend["name"], friend["age"]))
+    friends = [Person(friend["name"], friend["age"]) for friend in people]
 
     for i in people:
         isinstance_person = Person.people[i["name"]]
-        if "wife" in i and i["wife"]:
+        if i.get("wife"):
             isinstance_person.wife = Person.people[i["wife"]]
-        if "husband" in i and i["husband"]:
+        if i.get("husband"):
             isinstance_person.husband = Person.people[i["husband"]]
     return friends
