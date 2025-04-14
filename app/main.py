@@ -13,8 +13,11 @@ def create_person_list(people: list) -> list:
     for person in people:
         person_list.append(Person(person["name"], person["age"]))
 
-        if "wife" in person and person["wife"] is not None:
-            person.wife = Person.people[person["wife"]]
-        elif "husband" in person and person["husband"] is not None:
-            person.husband = Person.people[person["husband"]]
+        wife_name = person.get("wife")
+        husband_name = person.get("husband")
+
+        if wife_name:
+            person_list.wife = Person.people.get(wife_name)
+        if husband_name:
+            person_list.husband = Person.people.get(husband_name)
     return person_list
