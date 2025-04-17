@@ -12,6 +12,9 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
+    # Clear the Person.people dictionary to avoid memory leaks and incorrect references
+    Person.people.clear()
+
     # Create Person instances first
     person_list = []
     for person_dict in people:
@@ -37,4 +40,3 @@ def create_person_list(people: list) -> list:
             setattr(person, "husband", Person.people[husband_name])
 
     return person_list
-
