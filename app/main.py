@@ -8,10 +8,7 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    result = []
-
-    for person in people:
-        result.append(Person(person["name"], person["age"]))
+    result = [(Person(person["name"], person["age"])) for person in people]
 
     for person_dict, person_obj in zip(people, result):
         wife_name = person_dict.get("wife")
