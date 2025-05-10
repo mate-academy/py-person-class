@@ -9,7 +9,6 @@ class Person:
         Person.people[name] = self
 
 
-
 def create_person_list(people_data: list[dict]) -> list[Person]:
     person_list = []
 
