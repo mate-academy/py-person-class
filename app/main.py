@@ -24,18 +24,28 @@ def create_person_list(people: list) -> list:
     for person in people:
         Person(name=person["name"], age=person["age"])
 
-    for person in people:
-        current_person = Person.people[person["name"]]
+    for person_data in people:
+        person = Person.people[person_data["name"]]
 
-        if "wife" in person and person["wife"] in Person.people:
-            wife = Person.people[person["wife"]]
-            current_person.wife = wife
-            wife.husband = current_person
+        if "wife" in person_data and person_data["wife"] in Person.people:
+            person.wife = Person.people[person_data["wife"]]
 
-        elif "husband" in person and person["husband"] in Person.people:
-            husband = Person.people[person["husband"]]
-            current_person.husband = husband
-            husband.wife = current_person
+        elif ("husband" in person_data and
+              person_data["husband"] in Person.people):
+            person.husband = Person.people[person_data["husband"]]
+
+    # for person in people:
+    #     current_person = Person.people[person["name"]]
+    #
+    #     if "wife" in person and person["wife"] in Person.people:
+    #         wife = Person.people[person["wife"]]
+    #         current_person.wife = wife
+    #         wife.husband = current_person
+    #
+    #     elif "husband" in person and person["husband"] in Person.people:
+    #         husband = Person.people[person["husband"]]
+    #         current_person.husband = husband
+    #         husband.wife = current_person
 
     return list(Person.people.values())
 
