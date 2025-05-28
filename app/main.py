@@ -30,8 +30,8 @@ def create_person_list(people: list) -> list:
         if "wife" in person_data and person_data["wife"] in Person.people:
             person.wife = Person.people[person_data["wife"]]
 
-        elif ("husband" in person_data and
-              person_data["husband"] in Person.people):
+        elif ("husband" in person_data
+              and person_data["husband"] in Person.people):
             person.husband = Person.people[person_data["husband"]]
 
     # for person in people:
