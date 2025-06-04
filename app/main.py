@@ -9,8 +9,8 @@ class Person:
 
 def create_person_list(people_data: list) -> list:
 
-    [Person(person_dict["name"], person_dict["age"])
-     for person_dict in people_data]
+    for person_dict in people_data:
+        Person(person_dict["name"], person_dict["age"])
 
     for person_dict in people_data:
         person_instance = Person.people[person_dict["name"]]
