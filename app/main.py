@@ -18,6 +18,4 @@ def create_person_list(people: list[dict]) -> list:
                 if people[index].get("wife") == wife.name:
                     wife.husband = husband
                     husband.wife = wife
-                    wife.husband = husband
-
     return person_list
