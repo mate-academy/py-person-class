@@ -24,13 +24,13 @@ class Person:
         return False
 
     def cancel_marriage(self) -> bool:
-        if "wife" in self.__dict__:
+        if self.__dict__.get("wife"):
             temp = self.wife
             del self.wife
             temp.cancel_marriage()
             return True
 
-        if "husband" in self.__dict__:
+        if self.__dict__.get("husband"):
             temp = self.husband
             del self.husband
             temp.cancel_marriage()
@@ -43,9 +43,9 @@ def create_person_list(people: list) -> list[Person]:
     ans = []
     for person in people:
         ans.append(Person(person["name"], person["age"]))
-        if "wife" in person:
+        if person.get("wife"):
             ans[-1].get_married(person["wife"], "wife")
-        elif "husband" in person:
+        elif person.get("husband"):
             ans[-1].get_married(person["husband"], "husband")
 
     return ans
