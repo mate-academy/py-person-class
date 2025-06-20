@@ -11,6 +11,7 @@ class Person:
             return False
 
         self.cancel_marriage()
+        Person.people[partner_name].cancel_marriage()
 
         if partner_type == "husband":
             self.husband = Person.people[partner_name]
@@ -25,15 +26,13 @@ class Person:
 
     def cancel_marriage(self) -> bool:
         if self.__dict__.get("wife"):
-            temp = self.wife
+            del self.wife.husband
             del self.wife
-            temp.cancel_marriage()
             return True
 
         if self.__dict__.get("husband"):
-            temp = self.husband
+            del self.husband.wife
             del self.husband
-            temp.cancel_marriage()
             return True
 
         return False
