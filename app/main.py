@@ -1,31 +1,62 @@
-class Person:
-    people = {}
-
-    def __init__(self, name: str, age: int) -> None:
-        self.name = name
-        self.age = age
-        # wife/husband attributes will be added dynamically later
-        Person.people[name] = self
+import math
 
 
-def create_person_list(people_data: list[dict]) -> list[Person]:
-    # Limpa o dicionário para evitar dados persistentes entre chamadas
-    Person.people.clear()
+class Vector:
+    def __init__(self, x: float, y: float) -> None:
+        self.x = round(x, 2)
+        self.y = round(y, 2)
 
-    # Fase 1: Criação das instâncias
-    person_list = []
-    for person_dict in people_data:
-        person = Person(person_dict["name"], person_dict["age"])
-        person_list.append(person)
+    def __add__(self, other: 'Vector') -> 'Vector':
+        return Vector(self.x + other.x, self.y + other.y)
 
-    # Fase 2: Atribuição de relacionamentos
-    for person_dict in people_data:
-        current = Person.people[person_dict["name"]]
+    def __sub__(self, other: 'Vector') -> 'Vector':
+        return Vector(self.x - other.x, self.y - other.y)
 
-        if "wife" in person_dict and person_dict["wife"] is not None:
-            current.wife = Person.people[person_dict["wife"]]
+    def __mul__(self, other) -> float | 'Vector':
+        if isinstance(other, (int, float)):
+            return Vector(round(self.x * other, 2), round(self.y * other, 2))
+        if isinstance(other, Vector):
+            return round(self.x * other.x + self.y * other.y, 4)
+        raise TypeError("Unsupported operand type for *")
 
-        if "husband" in person_dict and person_dict["husband"] is not None:
-            current.husband = Person.people[person_dict["husband"]]
+    @classmethod
+    def create_vector_by_two_points(
+        cls, start_point: tuple[float, float], end_point: tuple[float, float]
+    ) -> 'Vector':
+        x_diff = end_point[0] - start_point[0]
+        y_diff = end_point[1] - start_point[1]
+        return cls(x_diff, y_diff)
 
-    return person_list
+    def get_length(self) -> float:
+        return math.hypot(self.x, self.y)
+
+    def get_normalized(self) -> 'Vector':
+        length = self.get_length()
+        if length == 0:
+            return Vector(0, 0)
+        return Vector(self.x / length, self.y / length)
+
+    def angle_between(self, other: 'Vector') -> int:
+        dot_product = self * other
+        len_self = self.get_length()
+        len_other = other.get_length()
+
+        if len_self == 0 or len_other == 0:
+            return 0
+
+        cos_angle = dot_product / (len_self * len_other)
+        cos_angle = max(-1.0, min(1.0, cos_angle))  # Clamp
+        angle = math.degrees(math.acos(cos_angle))
+        return round(angle)
+
+    def get_angle(self) -> int:
+        angle_radians = math.atan2(self.x, self.y)
+        angle_degrees = math.degrees(angle_radians)
+        return round(angle_degrees)
+
+    def rotate(self, degrees: int) -> 'Vector':
+        radians = math.radians(degrees)
+        new_x = self.x * math.cos(radians) - self.y * math.sin(radians)
+        new_y = self.x * math.sin(radians) + self.y * math.cos(radians)
+        return Vector(new_x, new_y)
+
