@@ -13,11 +13,11 @@ def create_person_list(people: list) -> list[Person]:
     for person_dict in people:
         person = Person.people[person_dict["name"]]
 
-        partner_husband = person_dict.get("husband", None)
-        partner_wife = person_dict.get("wife", None)
+        partner_husband = person_dict.get("husband")
+        partner_wife = person_dict.get("wife")
 
-        if partner_husband is not None:
+        if partner_husband:
             person.husband = Person.people[partner_husband]
-        if partner_wife is not None:
+        if partner_wife:
             person.wife = Person.people[partner_wife]
     return persons
