@@ -13,11 +13,11 @@ def create_person_list(people: list) -> list:
         Person(sdf["name"], sdf["age"])
 
     for data in people:
-        person = Person.people[data["name"]]
+        persons = Person.people[data["name"]]
 
         if "wife" in data and data["wife"]:
-            person.wife = Person.people[data["wife"]]
+            persons.wife = Person.people[data["wife"]]
         if "husband" in data and data["husband"]:
-            person.husband = Person.people[data["husband"]]
+            persons.husband = Person.people[data["husband"]]
 
     return list(Person.people.values())
