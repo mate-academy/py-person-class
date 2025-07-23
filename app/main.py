@@ -1,8 +1,23 @@
 class Person:
-    # write your code here
-    pass
+    people = {}
+
+    def __init__(self, name: str, age: int) -> None:
+        self.name = name
+        self.age = age
+
+        Person.people[name] = self
 
 
 def create_person_list(people: list) -> list:
-    # write your code here
-    pass
+    for sdf in people:
+        Person(sdf["name"], sdf["age"])
+
+    for data in people:
+        persons = Person.people[data["name"]]
+
+        if "wife" in data and data["wife"]:
+            persons.wife = Person.people[data["wife"]]
+        if "husband" in data and data["husband"]:
+            persons.husband = Person.people[data["husband"]]
+
+    return list(Person.people.values())
