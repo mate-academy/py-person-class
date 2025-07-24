@@ -9,6 +9,9 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
+
+    Person.people.clear()
+
     for sdf in people:
         Person(sdf["name"], sdf["age"])
 
