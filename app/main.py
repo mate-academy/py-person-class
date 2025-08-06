@@ -8,6 +8,8 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
+    Person.people.clear()  # <-- Clear previous Person instances here
+
     # First, create all Person instances without wife/husband links
     for person_data in people:
         Person(person_data["name"], person_data["age"])
