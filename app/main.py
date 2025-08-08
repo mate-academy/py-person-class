@@ -12,11 +12,11 @@ def create_person_list(people: list) -> list:
 
     for person_data in people:
         name = person_data["name"]
-        if person_data .get("wife"):
-            wife_name = person_data ["wife"]
+        if person_data.get("wife"):
+            wife_name = person_data["wife"]
             Person.people[name].wife = Person.people[wife_name]
-        if person_data .get("husband"):
-            husband_name = person_data ["husband"]
+        if person_data.get("husband"):
+            husband_name = person_data["husband"]
             Person.people[name].husband = Person.people[husband_name]
 
     return new_list
