@@ -8,19 +8,15 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    new_list = []
-    for person in people:
-        obj = Person(person["name"], person["age"])
-        new_list.append(obj)
+    new_list = [Person(person["name"], person["age"]) for person in people]
 
-    for status in people:
-        if status.get("wife"):
-            name = status["name"]
-            wife_name = status["wife"]
+    for person_data  in people:
+        name = person_data["name"]
+        if person_data .get("wife"):
+            wife_name = person_data ["wife"]
             Person.people[name].wife = Person.people[wife_name]
-        if status.get("husband"):
-            name = status["name"]
-            husband_name = status["husband"]
+        if person_data .get("husband"):
+            husband_name = person_data ["husband"]
             Person.people[name].husband = Person.people[husband_name]
 
     return new_list
