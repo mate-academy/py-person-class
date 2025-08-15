@@ -7,29 +7,17 @@ class Person:
         Person.people[self.name] = self
 
 
-def _set_relationship(
-    person1: "Person", person2: "Person", relationship_type: str
-) -> None:
-    if relationship_type == "wife":
-        person1.wife = person2
-        person2.husband = person1
-    elif relationship_type == "husband":
-        person1.husband = person2
-        person2.wife = person1
-
-
 def create_person_list(people: list) -> list:
-    result = []
-    for person in people:
-        new_person = Person(person["name"], person["age"])
-        result.append(new_person)
+    result = [Person(person["name"], person["age"]) for person in people]
 
-    for i, person in enumerate(people):
+    for person in people:
         if person.get("wife") is not None:
-            wife_person = next(
-                (p for p in result if p.name == person["wife"]), None
-            )
-            if wife_person:
-                _set_relationship(result[i], wife_person, "wife")
+            Person.people[person["name"]].wife = Person.people[
+                person["wife"]
+            ]
+        if person.get("husband") is not None:
+            Person.people[person["name"]].husband = Person.people[
+                person["husband"]
+            ]
 
     return result
