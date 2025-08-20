@@ -5,23 +5,18 @@ class Person:
         self.name = name
         self.age = age
         Person.people[name] = self
-    pass
 
 
 def create_person_list(people: list) -> list:
-    person_list = []
+    person_list = [Person(p["name"], p["age"]) for p in people]
 
-    for entry in people:
-        person = Person(entry["name"], entry["age"])
-        person_list.append(person)
+    for person_data in people:
+        person_inst = Person.people[person_data["name"]]
 
-    for entry in people:
-        person = Person.people[entry["name"]]
+        if "wife" in person_data and person_data["wife"] is not None:
+            person_inst.wife = Person.people[person_data["wife"]]
 
-        if entry.get("wife") is not None:
-            person.wife = Person.people[entry["wife"]]
-
-        if entry.get("husband") is not None:
-            person.husband = Person.people[entry["husband"]]
+        if "husband" in person_data and person_data["husband"] is not None:
+            person_inst.husband = Person.people[person_data["husband"]]
 
     return person_list
