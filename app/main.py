@@ -17,4 +17,3 @@ def create_person_list(people_data: list) -> list:
             person.husband = Person.people[data["husband"]]
 
     return list(Person.people.values())
-
