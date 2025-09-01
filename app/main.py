@@ -9,17 +9,17 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    result_list = []
-    for person in people:
-        result_list.append(Person(person["name"], person["age"]))
-    for person in people:
-        if "wife" in person.keys() and person["wife"]:
-            Person.people[person["name"]].wife = Person.people[person["wife"]]
-        elif "husband" in person.keys() and person["husband"]:
-            Person.people[
-                person["name"]
-            ].husband = Person.people[
-                person["husband"]
-            ]
+    person_list = [Person(human["name"], human["age"]) for human in people]
 
-    return result_list
+    for person_dict in people:
+        wife_name = person_dict.get("wife")
+        if wife_name:
+            Person.people[person_dict["name"]].wife = Person.people[
+                person_dict["wife"]]
+
+        husband_name = person_dict.get("husband")
+        if husband_name:
+            Person.people[person_dict["name"]].husband = Person.people[
+                person_dict["husband"]]
+
+    return person_list
