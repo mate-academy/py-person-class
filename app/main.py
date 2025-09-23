@@ -13,18 +13,17 @@ def create_person_list(people_data: list) -> list:
     - name: str
     - age: int
     - wife/husband: str або None
-    Повертає список об'єктів Person
+    Повертає список обєктів Person
     """
-    person_list = []
-    for pdata in people_data:
-        person = Person(pdata["name"], pdata["age"])
-        person_list.append(person)
+    person_list = [Person(pdata["name"], pdata["age"])for pdata in people_data]
 
     for pdata in people_data:
         person = Person.people[pdata["name"]]
-        if "wife" in pdata and pdata["wife"]:
-            setattr(person, "wife", Person.people[pdata["wife"]])
-        if "husband" in pdata and pdata["husband"]:
-            setattr(person, "husband", Person.people[pdata["husband"]])
+        wife_name = pdata.get("wife")
+        husband_name = pdata.get("husband")
+        if wife_name:
+            setattr(person, "wife", Person.people[wife_name])
+        if husband_name:
+            setattr(person, "husband", Person.people[husband_name])
 
     return person_list
