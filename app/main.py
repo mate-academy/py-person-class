@@ -7,19 +7,13 @@ class Person:
         Person.people[name] = self
 
 
-def create_person_list(people: list) -> list:
-    # First pass: create all Person instances
-    person_list = []
+def create_person_list(people: list[dict]) -> list[Person]:
+    person_list = [Person(entry.get("name"), 
+                          entry.get("age")) for entry in people]
     for entry in people:
-        person = Person(entry["name"], entry["age"])
-        person_list.append(person)
-
-    # Second pass: link spouses
-    for entry in people:
-        person = Person.people[entry["name"]]
-        if "wife" in entry and entry["wife"] is not None:
-            person.wife = Person.people[entry["wife"]]
-        elif "husband" in entry and entry["husband"] is not None:
-            person.husband = Person.people[entry["husband"]]
-
+        person = Person.people.get(entry.get("name"))
+        spouse_name = entry.get("wife") or entry.get("husband")
+        if spouse_name:
+            setattr(person, "wife" if entry.get("wife") else "husband", 
+                    Person.people.get(spouse_name))
     return person_list
