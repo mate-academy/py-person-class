@@ -16,4 +16,4 @@ def create_person_list(people: list) -> list:
             person_obj.wife = Person.people[name["wife"]]
         elif "husband" in name and not name["husband"] is None:
             person_obj.husband = Person.people[name["husband"]]
-    return person_list
+    return person_lis
