@@ -26,7 +26,7 @@ class Person:
         """
         Returns a developer-friendly string representation of the Person object.
         """
-        return f"Person(name=\"{self.name}\", age={self.age})"
+        return f'Person(name="{self.name}", age={self.age})'
 
 
 def create_person_list(people_data: List[Dict[str, Any]]) -> List[Person]:
@@ -71,4 +71,3 @@ def create_person_list(people_data: List[Dict[str, Any]]) -> List[Person]:
             current_person.husband = Person.people[husband_name]
 
     return person_instances
-    
