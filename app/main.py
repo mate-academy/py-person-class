@@ -5,17 +5,13 @@ class Person:
         self.age = age
         Person.people[self.name] = self
 
-def create_person_list(people: list) -> list:
-    Person_people = []
-    for man in people:
-        unit = Person(man["name"], man["age"])
-        Person_people.append(unit)
-    for man1 in people:
-        if man1.get("wife") != None:
-            Person.people[man1["name"]].wife = Person.people[man1["wife"]]
+def create_person_list(people: list[dict]) -> list[Person]:
+    person_list = [Person(p.get("name"), p.get("age")) for p in people]
+    for p1 in people:
+        if p1.get("wife") != None:
+            Person.people[p1.get("name")].wife = Person.people[p1.get("wife")]
+        elif p1.get("husband") != None:
+            Person.people[p1.get("name")].husband = Person.people[p1.get("husband")]
         else:
-            if man1.get("husband") != None:
-                Person.people[man1["name"]].husband = Person.people[man1["husband"]]
-            else:
-                pass
-    return Person_people
+            pass
+    return person_list
