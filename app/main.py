@@ -24,7 +24,8 @@ class Person:
 
     def __repr__(self) -> str:
         """
-        Returns a developer-friendly string representation of the Person object.
+        Returns a developer-friendly string representation
+        of the Person object.
         """
         return f'Person(name="{self.name}", age={self.age})'
 
