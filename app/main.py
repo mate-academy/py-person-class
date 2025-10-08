@@ -6,12 +6,12 @@ class Person:
         Person.people[self.name] = self
 
 def create_person_list(people: list[dict]) -> list[Person]:
-    person_list = [Person(p.get("name"), p.get("age")) for p in people]
-    for p1 in people:
-        if p1.get("wife") != None:
-            Person.people[p1.get("name")].wife = Person.people[p1.get("wife")]
-        elif p1.get("husband") != None:
-            Person.people[p1.get("name")].husband = Person.people[p1.get("husband")]
+    person_list = [Person(person_dict.get("name"), person_dict.get("age")) for person_dict in people]
+    for person_dict2 in people:
+        if person_dict2.get("wife") != None:
+            Person.people[person_dict2.get("name")].wife = Person.people[person_dict2.get("wife")]
+        elif person_dict2.get("husband") != None:
+            Person.people[person_dict2.get("name")].husband = Person.people[person_dict2.get("husband")]
         else:
             pass
     return person_list
