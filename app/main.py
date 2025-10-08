@@ -41,7 +41,8 @@ def create_person_list(people_data: List[Dict[str, Any]]) -> List[Person]:
     Returns:
         A list of fully configured Person instances.
     """
-    # Clear the class attribute to ensure no data from previous runs interferes.
+    # Clear the class attribute to ensure no data from previous
+    # runs interferes.
     Person.people.clear()
     person_instances = []
 
@@ -52,7 +53,8 @@ def create_person_list(people_data: List[Dict[str, Any]]) -> List[Person]:
             Person(name=person_info["name"], age=person_info["age"])
         )
 
-    # Second pass: Link spouses using the now-complete Person.people registry.
+    # Second pass: Link spouses using the now-complete Person.people
+    # registry.
     for i, person_info in enumerate(people_data):
         current_person = person_instances[i]
         if "wife" in person_info and person_info["wife"]:
