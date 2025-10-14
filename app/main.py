@@ -16,13 +16,14 @@ def create_person_list(people: list) -> list:
 
     for index, person in enumerate(people):
         if person.get("wife"):
-            person_list[index].wife = [human
-                                  for human in person_list
-                                  if human.name == person.get("wife")][0]
+            for human in person_list:
+                if human.name == person.get("wife"):
+                    person_list[index].wife = human
 
         if person.get("husband"):
-            person_list[index].husband = [human
-                                     for human in person_list
-                                     if human.name == person.get("husband")][0]
+
+            for human in person_list:
+                if human.name == person.get("husband"):
+                    person_list[index].husband = human
 
     return person_list
