@@ -8,22 +8,21 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    print("My print", people)
-    answer = []
+    person_list = []
     for person in people:
         human = Person(person["name"], person["age"])
 
-        answer.append(human)
+        person_list.append(human)
 
     for index, person in enumerate(people):
         if person.get("wife"):
-            answer[index].wife = [human
-                                  for human in answer
+            person_list[index].wife = [human
+                                  for human in person_list
                                   if human.name == person.get("wife")][0]
 
         if person.get("husband"):
-            answer[index].husband = [human
-                                     for human in answer
+            person_list[index].husband = [human
+                                     for human in person_list
                                      if human.name == person.get("husband")][0]
 
-    return answer
+    return person_list
