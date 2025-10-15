@@ -7,7 +7,7 @@ class Person:
         Person.people[self.name] = self
 
 
-def create_person_list(people: list) -> list:
+def create_person_list(people: list[dict]) -> list[Person]:
     Person.people = {}
     person_instances = [
         Person(person_data.get("name"), person_data.get("age"))
