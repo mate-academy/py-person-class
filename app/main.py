@@ -1,5 +1,4 @@
 class Person:
-
     people = {}
 
     def __init__(self, name: str, age: int) -> None:
@@ -9,16 +8,13 @@ class Person:
 
 
 def create_person_list(people: list[Person]) -> list:
-    result = []
-    for human in people:
-        person = Person(human["name"], human["age"])
-        result.append(person)
+    result = [Person(human["name"], human["age"]) for human in people]
 
     for human in people:
         person = Person.people[human["name"]]
-        if "wife" in human and human["wife"] is not None:
+        if human.get("wife"):
             person.wife = Person.people[human["wife"]]
-        if "husband" in human and human["husband"] is not None:
+        if human.get("husband"):
             person.husband = Person.people[human["husband"]]
 
     return result
