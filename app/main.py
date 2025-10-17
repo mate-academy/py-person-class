@@ -9,15 +9,15 @@ class Person:
 
 def create_person_list(people: list) -> list:
     Person.people.clear()
-
     result_list = [Person(people_it["name"],
                           people_it["age"])
                    for people_it in people]
-
-    for item in people:
-        person = Person.people[item["name"]]
-        if "wife" in item and item["wife"] is not None:
-            person.wife = Person.people[item["wife"]]
-        if "husband" in item and item["husband"] is not None:
-            person.husband = Person.people[item["husband"]]
+    for person_dict in people:
+        person = Person.people[person_dict["name"]]
+        spouse_name = person_dict.get("wife")
+        if spouse_name:
+            person.wife = Person.people[person_dict["wife"]]
+        spouse_name = person_dict.get("husband")
+        if spouse_name:
+            person.husband = Person.people[person_dict["husband"]]
     return result_list
