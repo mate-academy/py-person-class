@@ -17,8 +17,9 @@ def create_person_list(people: list) -> list:
                     if list_person[i].wife == list_person[jot].name:
                         list_person[i].wife = list_person[jot]
         elif "husband" in people[i]:
-            list_person[i].husband = people[i]["husband"]
-            for jot in range(len(people)):
-                if list_person[i].husband == list_person[jot].name:
-                    list_person[i].husband = list_person[jot]
+            if people[i]["husband"]:
+                list_person[i].husband = people[i]["husband"]
+                for jot in range(len(people)):
+                    if list_person[i].husband == list_person[jot].name:
+                        list_person[i].husband = list_person[jot]
     return list_person
