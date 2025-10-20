@@ -4,8 +4,7 @@ class Person:
     def __init__(self, name: str, age: int) -> None:
         self.name = name
         self.age = age
-        # self.wife = None
-        # self.husband = None
+        Person.people[self.name] = self
 
 
 def create_person_list(people: list) -> list:
@@ -14,13 +13,12 @@ def create_person_list(people: list) -> list:
     for person in people:
         pers = Person(person["name"], person["age"])
 
-        if "wife" in person and person["wife"] is not None:
+        if person.get("wife"):
             pers.wife = person["wife"]
-        if "husband" in person and person["husband"] is not None:
+        if person.get("husband"):
             pers.husband = person["husband"]
 
         person_list.append(pers)
-        Person.people[person["name"]] = pers
 
     for person in person_list:
 
@@ -49,11 +47,11 @@ person_list = create_person_list(people)
 
 for i in range(len(people)):
 
-    if hasattr(person_list[i] ,"husband"):
+    if hasattr(person_list[i], "husband"):
         wh_name = person_list[i].husband.name
     elif hasattr(person_list[i], "wife"):
         wh_name = person_list[i].wife.name
-    else: wh_name = None
+    else: wh_name = "No wife or husband"
 
     print("-" * 20)
     print(person_list[i].name, person_list[i].age, "husband/wife: ", wh_name)
