@@ -8,25 +8,16 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    person_list = []
+
+    person_list = [Person(person["name"], person["age"]) for person in people]
 
     for person in people:
-        pers = Person(person["name"], person["age"])
-
         if person.get("wife"):
-            pers.wife = person["wife"]
+            wife = Person.people[person["wife"]]
+            Person.people[person["name"]].wife = wife
         if person.get("husband"):
-            pers.husband = person["husband"]
-
-        person_list.append(pers)
-
-    for person in person_list:
-
-        if hasattr(person, "wife") and person.wife is not None:
-            person.wife = Person.people[person.wife]
-
-        if hasattr(person, "husband") and person.husband is not None:
-            person.husband = Person.people[person.husband]
+            husband = Person.people[person["husband"]]
+            Person.people[person["name"]].husband = husband
 
     return person_list
 
@@ -49,13 +40,21 @@ for i in range(len(people)):
 
     if hasattr(person_list[i], "husband"):
         wh_name = person_list[i].husband.name
+        wh_type = type(person_list[i].husband)
+        wh_instance = person_list[i].husband
     elif hasattr(person_list[i], "wife"):
         wh_name = person_list[i].wife.name
-    else: wh_name = "No wife or husband"
+        wh_type = type(person_list[i].wife)
+        wh_instance = person_list[i].wife
+    else:
+        wh_name = "No wife or husband"
+        wh_type = "No type"
+        wh_instance = "No instance"
 
     print("-" * 20)
     print(person_list[i].name, person_list[i].age, "husband/wife: ", wh_name)
+    print(f"Instance: {wh_instance} of type: {wh_type}")
 
 print("-" * 80)
-print(Person.people)
+# print(Person.people)
 """
