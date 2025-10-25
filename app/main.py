@@ -17,3 +17,4 @@ def create_person_list(people: list) -> list:
         if "husband" in person_data and person_data["husband"] is not None:
             person.husband = Person.people.get(person_data["husband"])
     return list(Person.people.values())
+
