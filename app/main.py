@@ -8,24 +8,17 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    person_list = []
-    for person in people:
-        new_person = Person(person["name"], person["age"])
-        wife_name = person.get("wife")
-        husband_name = person.get("husband")
-        if wife_name is not None:
-            # Search a wife for husband to make the pair
-            wife = Person.people.get(wife_name)
-            if wife:
-                new_person.wife = wife
-                wife.husband = new_person
-        elif husband_name is not None:
-            # Search a husband for wife to make the pair
-            husband = Person.people.get(husband_name)
-            if husband:
-                new_person.husband = husband
-                husband.wife = new_person
+    Person.people = {}
+    person_list = [Person(person["name"], person["age"]) for person in people]
 
-        person_list.append(new_person)
+    for person in people:
+        if "wife" in person and person["wife"] is not None:
+            # Search a wife for husband to make the pair
+            wife = Person.people[person["wife"]]
+            Person.people[person["name"]].wife = wife
+        elif "husband" in person and person["husband"] is not None:
+            # Search a husband for wife to make the pair
+            husband = Person.people[person["husband"]]
+            Person.people[person["name"]].husband = husband
 
     return person_list
