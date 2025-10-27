@@ -12,12 +12,10 @@ def create_person_list(people: list) -> list:
     person_list = [Person(person["name"], person["age"]) for person in people]
 
     for person in people:
-        if "wife" in person and person["wife"] is not None:
-            # Search a wife for husband to make the pair
+        if person.get("wife"):
             wife = Person.people[person["wife"]]
             Person.people[person["name"]].wife = wife
-        elif "husband" in person and person["husband"] is not None:
-            # Search a husband for wife to make the pair
+        elif person.get("husband"):
             husband = Person.people[person["husband"]]
             Person.people[person["name"]].husband = husband
 
