@@ -9,6 +9,8 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
+    Person.people.clear()
+
     person_instances = [
         Person(person["name"], person["age"]) for person in people
     ]
@@ -28,9 +30,10 @@ def create_person_list(people: list) -> list:
             relationship_key = "husband"
             spouse_name = person_data["husband"]
 
-        if spouse_name and spouse_name in Person.people:
-            spouse_instance = Person.people[spouse_name]
+        if spouse_name and relationship_key:
+            spouse_instance = Person.people.get(spouse_name)
 
-            setattr(instance, relationship_key, spouse_instance)
+            if spouse_instance:
+                setattr(instance, relationship_key, spouse_instance)
 
     return person_instances
