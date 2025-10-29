@@ -4,32 +4,29 @@ class Person:
     def __init__(self, name: str, age: int) -> None:
         self.name = name
         self.age = age
-        self.spouse = None
 
         Person.people[self.name] = self
 
 
 def create_person_list(people: list) -> list:
-    person_instances = []
+    person_instances = [
+        Person(person["name"], person["age"]) for person in people
+    ]
 
-    for person in people:
-        instance = Person(person["name"], person["age"])
-        person_instances.append(instance)
-
-    for person in people:
-        name = person["name"]
+    for person_data in people:
+        name = person_data["name"]
         instance = Person.people[name]
 
         relationship_key = None
         spouse_name = None
 
-        if "wife" in person and person["wife"] is not None:
+        if person_data.get("wife"):
             relationship_key = "wife"
-            spouse_name = person["wife"]
+            spouse_name = person_data["wife"]
 
-        elif "husband" in person and person["husband"] is not None:
+        elif person_data.get("husband"):
             relationship_key = "husband"
-            spouse_name = person["husband"]
+            spouse_name = person_data["husband"]
 
         if spouse_name and spouse_name in Person.people:
             spouse_instance = Person.people[spouse_name]
