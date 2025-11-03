@@ -8,6 +8,8 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
+    Person.people.clear()
+
     result = [
         Person(
             person_data.get("name"),
