@@ -13,7 +13,7 @@ class Person:
 def create_person_list(people: list) -> list:
     Person.people.clear()
 
-    people_object = [
+    _ = [
         Person(person["name"], person["age"])
         for person in people
     ]
