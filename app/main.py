@@ -9,8 +9,11 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    for person in people:
-        Person(person["name"], person["age"])
+    Person.people.clear()  # clear Person.people dict from previous items
+
+    [Person(person["name"], person["age"])
+     for person in people]  # creating Persons
+
     for person in people:
         if person.get("wife") is not None:
             Person.people[person["name"]].wife\
