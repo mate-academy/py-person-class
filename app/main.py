@@ -18,11 +18,8 @@ def create_person_list(people: list) -> list:
     for person_data in people:
         current_person = Person.people[person_data["name"]]
 
-        spouse_key = None
-        if "wife" in person_data:
-            spouse_key = "wife"
-        elif "husband" in person_data:
-            spouse_key = "husband"
+        spouse_key = "wife" if "wife" in person_data\
+            else ("husband" if "husband" in person_data else None)
 
         spouse_name = person_data.get(spouse_key)
 
