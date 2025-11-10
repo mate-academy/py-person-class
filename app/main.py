@@ -10,14 +10,10 @@ class Person:
 def create_person_list(people: list) -> list:
     Person.people = {}
 
-    person_list = []
-
-    for person_data in people:
-        person = Person(
-            name=person_data["name"],
-            age=person_data["age"]
-        )
-        person_list.append(person)
+    person_list = [
+        Person(name=person_data["name"], age=person_data["age"])
+        for person_data in people
+    ]
 
     for person_data in people:
         current_person = Person.people[person_data["name"]]
@@ -28,11 +24,10 @@ def create_person_list(people: list) -> list:
         elif "husband" in person_data:
             spouse_key = "husband"
 
-        if spouse_key:
-            spouse_name = person_data.get(spouse_key)
+        spouse_name = person_data.get(spouse_key)
 
-            if spouse_name is not None:
-                spouse_instance = Person.people.get(spouse_name)
-                current_person.__dict__[spouse_key] = spouse_instance
+        if spouse_key and spouse_name is not None:
+            spouse_instance = Person.people.get(spouse_name)
+            current_person.__dict__[spouse_key] = spouse_instance
 
     return person_list
