@@ -5,14 +5,14 @@ class Person:
     def __init__(self, name: str, age: int) -> None:
         self.name = name
         self.age = age
+        Person.people[self.name] = self
 
 
 def create_person_list(people_list: list) -> list:
-    person_list = []
-    for person in people_list:
-        new_person = Person(person["name"], person["age"])
-        Person.people[person["name"]] = new_person
-        person_list.append(new_person)
+    Person.people.clear()
+    person_list = [
+        Person(person["name"], person["age"]) for person in people_list
+    ]
 
     for pos, person in enumerate(person_list):
         if people_list[pos].get("wife"):
