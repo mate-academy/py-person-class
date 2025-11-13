@@ -7,7 +7,7 @@ class Person:
         Person.people[name] = self
 
 def create_person_list(people_data: list[dict]) -> list[Person]:
-    person_list = [Person(p["name"], p["age"]) for p in people_data]
+    person_list = [Person(i["name"], i["age"]) for i in people_data]
 
     for i in people_data:
         person = Person.people[i["name"]]
