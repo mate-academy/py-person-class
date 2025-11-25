@@ -9,7 +9,9 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    result = [Person(d["name"], d["age"]) for d in people]
+    Person.people.clear()
+    result = [Person(person_dict["name"], person_dict["age"])
+              for person_dict in people]
 
     for person_dict in people:
         name = person_dict["name"]
