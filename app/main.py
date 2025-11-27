@@ -20,3 +20,4 @@ def create_person_list(people: list) -> list:
             person_instance.wife = Person.person[i["wife"]]
 
     return list(Person.person.values())
+print()
