@@ -8,15 +8,15 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    for p in people:
-        Person(p["name"], p["age"])
-    for p in people:
-        person_instance = Person.person[p["name"]]
+    for i in people:
+        Person(i["name"], i["age"])
+    for i in people:
+        person_instance = Person.person[i["name"]]
 
-        if p.get("husband"):
-            person_instance.husband = Person.person[p["husband"]]
+        if i.get("husband"):
+            person_instance.husband = Person.person[i["husband"]]
 
-        if p.get("wife"):
-            person_instance.wife = Person.person[p["wife"]]
+        if i.get("wife"):
+            person_instance.wife = Person.person[i["wife"]]
 
     return list(Person.person.values())
