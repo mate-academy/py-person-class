@@ -5,10 +5,7 @@ class Person:
         self.age = age
         Person.people[self.name] = self
 def create_person_list(people: list) -> list:
-    result = []
-    for person_dict in people:
-        person_obj = Person(person_dict["name"], person_dict["age"])
-        result.append(person_obj)
+    result = [Person(person_dict["name"], person_dict["age"]) for person_dict in people]
     for person_dict, person_obj in zip(people, result):
         wife_name = person_dict.get("wife")
         if wife_name != "":
