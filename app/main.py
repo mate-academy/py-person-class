@@ -10,6 +10,7 @@ class Person:
 
 def create_person_list(people: list) -> list:
     person_objects  = [Person(p["name"], p["age"]) for p in people]
+    Person.people.clear()
 
     for person_dict , person_object in zip(people, person_objects ):
         partner_wife = person_dict.get("wife")
