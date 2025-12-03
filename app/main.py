@@ -32,6 +32,7 @@ def create_person_list(people: list) -> list:
     return person_objects
 
 
+
 people = [
     {"name": "Ross", "age": 30, "wife": "Rachel"},
     {"name": "Joey", "age": 29, "wife": None},
