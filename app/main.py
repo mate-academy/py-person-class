@@ -8,6 +8,7 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
+    Person.people.clear()
     person_list = [Person(person["name"], person["age"]) for person in people]
     for idx, person in enumerate(people):
         field = next((f for f in ("wife", "husband")
