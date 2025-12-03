@@ -15,6 +15,7 @@ def create_person_list(people: list) -> list:
         partner_wife = person_dict.get("wife")
         partner_husband = person_dict.get("husband")
 
+
         if partner_wife:
             if partner_wife in Person.people:
                 person_object.wife = Person.people[partner_wife]
@@ -25,6 +26,7 @@ def create_person_list(people: list) -> list:
                 person_object.husband = Person.people[partner_husband]
             else:
                 raise ValueError(f"Person with name '{partner_husband}' not found")
+
 
     return person_objects
 
