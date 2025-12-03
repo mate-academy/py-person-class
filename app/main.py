@@ -11,20 +11,20 @@ class Person:
 def create_person_list(people: list) -> list:
     person_objects  = [Person(p["name"], p["age"]) for p in people]
 
-    for key , value in zip(people, person_objects ):
-        partner_wife = key.get("wife")
-        partner_husband = key.get("husband")
+    for person_dict , person_object in zip(people, person_objects ):
+        partner_wife = person_dict.get("wife")
+        partner_husband = person_dict.get("husband")
 
-        if partner_wife is not None and partner_wife != "":
+        if partner_wife:
             if partner_wife in Person.people:
-                value.wife = Person.people[partner_wife]
+                person_object.wife = Person.people[partner_wife]
             else:
-                raise AttributeError(KeyError)
-        if partner_husband is not None and partner_husband != "":
+                raise ValueError(f"Person with name '{partner_wife}' not found")
+        if partner_husband:
             if partner_husband in Person.people:
-                value.husband = Person.people[partner_husband]
+                person_object.husband = Person.people[partner_husband]
             else:
-                raise AttributeError(KeyError)
+                raise ValueError(f"Person with name '{partner_husband}' not found")
 
     return person_objects
 
