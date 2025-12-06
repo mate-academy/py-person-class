@@ -46,5 +46,5 @@ class CarWashStation:
         self.count_of_ratings += 1
         self.average_rating = round(total_score / self.count_of_ratings, 1)
 
-    def create_person_list(people: list[dict]) -> list[Car]:
+    def create_person_list(self, people: list[dict]) -> list[Car]:
         return []
