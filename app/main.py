@@ -15,8 +15,8 @@ def create_person_list(people: list[dict]) -> list[Person]:
 
     # 1️⃣ Сначала создаём всех людей
     for entry in people:
-        p = Person(entry["name"], entry["age"])
-        result.append(p)
+        person = Person(entry["name"], entry["age"])
+        result.append(person)
 
     # 2️⃣ Теперь создаём связи супругов
     for entry in people:
