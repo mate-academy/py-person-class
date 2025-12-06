@@ -1,50 +1,32 @@
-class Car:
-    def __init__(self, comfort_class: int,
-                 clean_mark: float,
-                 brand: str) -> None:
-        self.comfort_class = comfort_class
-        self.clean_mark = clean_mark
-        self.brand = brand
+class Person:
+    people: dict[str, "Person"] = {}
+
+    def __init__(self, name: str, age: int) -> None:
+        self.name = name
+        self.age = age
+        self.wife: Person | None = None
+        self.husband: Person | None = None
+
+        Person.people[name] = self
 
 
-class CarWashStation:
-    def __init__(
-        self,
-        distance_from_city_center: float,
-        clean_power: float,
-        average_rating: float,
-        count_of_ratings: int,
-    ) -> None:
-        self.distance_from_city_center = distance_from_city_center
-        self.clean_power = clean_power
-        self.average_rating = round(average_rating, 1)
-        self.count_of_ratings = count_of_ratings
+def create_person_list(people: list[dict]) -> list[Person]:
+    result: list[Person] = []
 
-    def serve_cars(self, cars: list[Car]) -> float:
-        income = 0.0
-        for car in cars:
-            if car.clean_mark < self.clean_power:
-                income += self.calculate_washing_price(car)
-                self.wash_single_car(car)
-        return round(income, 1)
+    for entry in people:
+        p = Person(entry["name"], entry["age"])
+        result.append(p)
 
-    def calculate_washing_price(self, car: Car) -> float:
-        price = (
-            car.comfort_class
-            * (self.clean_power - car.clean_mark)
-            * self.average_rating
-            / self.distance_from_city_center
-        )
-        return round(price, 1)
+    for entry in people:
+        person_name = entry["name"]
+        current_person = Person.people[person_name]
 
-    def wash_single_car(self, car: Car) -> None:
-        if self.clean_power > car.clean_mark:
-            car.clean_mark = self.clean_power
+        if entry.get("wife") is not None:
+            wife_obj = Person.people[entry["wife"]]
+            current_person.wife = wife_obj
 
-    def rate_service(self, rate: float) -> None:
-        total_score = self.average_rating * self.count_of_ratings + rate
-        self.count_of_ratings += 1
-        self.average_rating = round(total_score / self.count_of_ratings, 1)
+        if entry.get("husband") is not None:
+            husband_obj = Person.people[entry["husband"]]
+            current_person.husband = husband_obj
 
-    def create_person_list(self, people: list[dict]) -> list[Car]:
-        return []
+    return result
