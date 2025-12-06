@@ -13,22 +13,32 @@ class Person:
 def create_person_list(people: list[dict]) -> list[Person]:
     result: list[Person] = []
 
+    # 1️⃣ Сначала создаём всех людей
     for entry in people:
-        person_name = entry["name"]
-        current_person = Person.people[person_name]
+        p = Person(entry["name"], entry["age"])
+        result.append(p)
 
-        if "wife" in entry and entry["wife"] is not None:
-            wife_obj = Person.people[entry["wife"]]
-            current_person.wife = wife_obj
-        elif "wife" in entry and entry["wife"] is None:
-            if hasattr(current_person, "wife"):
-                del current_person.wife
+    # 2️⃣ Теперь создаём связи супругов
+    for entry in people:
+        name = entry["name"]
+        current = Person.people[name]
 
-        if "husband" in entry and entry["husband"] is not None:
-            husband_obj = Person.people[entry["husband"]]
-            current_person.husband = husband_obj
-        elif "husband" in entry and entry["husband"] is None:
-            if hasattr(current_person, "husband"):
-                del current_person.husband
+        # wife
+        if "wife" in entry:
+            wife_name = entry["wife"]
+            if wife_name is None:
+                if hasattr(current, "wife"):
+                    del current.wife
+            else:
+                current.wife = Person.people[wife_name]
+
+        # husband
+        if "husband" in entry:
+            husband_name = entry["husband"]
+            if husband_name is None:
+                if hasattr(current, "husband"):
+                    del current.husband
+            else:
+                current.husband = Person.people[husband_name]
 
     return result
