@@ -1,5 +1,5 @@
 class Person:
-    people: dict[str, "Person"] = {}
+    people = {}
 
     def __init__(self, name: str, age: int) -> None:
         self.name = name
@@ -16,8 +16,10 @@ def create_person_list(people: list[dict]) -> list[Person]:
             continue
 
         for spouse in ["wife", "husband"]:
-            if name := entry.get(spouse):
-                if spouse_obj := Person.people.get(name):
-                    setattr(person, spouse, spouse_obj)
+            if (
+                (name := entry.get(spouse))
+                and (spouse_obj := Person.people.get(name))
+            ):
+                setattr(person, spouse, spouse_obj)
 
     return persons
