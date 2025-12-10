@@ -5,7 +5,7 @@ class Person:
         self.name = name
         self.age = age
         Person.people[name] = self
-        def create_person_list(people: list[dict[str, object]]) -> list[Person]:
+        def create_person_list (people: list[dict[str, object]]) -> list[Person]:
     person_list = [Person(p["name"], p["age"]) for p in people]
     for p in people:
         person_instance = Person.people[p["name"]]
