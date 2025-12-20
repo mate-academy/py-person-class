@@ -10,18 +10,13 @@ class Person:
 def create_person_list(people: list) -> list:
     person_list = [Person(person["name"], person["age"]) for person in people]
     for person in person_list:
-        spouse = None
         person_key = next(person_in_list for person_in_list in people
                           if person_in_list["name"] == person.name)
         if person_key.get("wife") or person_key.get("husband"):
-            spouse = (person_key.get("wife") if "wife" in person_key
-                      else person_key.get("husband"))
-            spouse_key = "wife" if "wife" in person_key else "husband"
-        if spouse:
-            spouse_info = next(
-                (partner for partner in person_list if partner.name == spouse),
-                None)
-            if spouse_key == "wife":
+            spouse = (person_key["wife"] if person_key.get("wife")
+                      else person_key["husband"])
+            spouse_info = person.people.get(spouse)
+            if person_key.get("wife"):
                 person.wife = spouse_info
                 person.wife.husband = person
             else:
