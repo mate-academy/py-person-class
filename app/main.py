@@ -10,12 +10,21 @@ class Person:
 def create_person_list(people: list) -> list:
     person_list = []
     for person in people:
-        new_person = Person(person['name'], person['age'])
-        if person['wife']:
-            wife_info = person['wife']
-            new_person.wife = Person(wife_info['name'], wife_info['age'])
-        elif person['husband']:
-            husband_info = person['husband']
-            new_person.husband = Person(husband_info['name'], husband_info['age'])
+        new_person = Person(person["name"], person["age"])
+        spouse = None
+        if "wife" in person:
+            spouse = person["wife"]
+            spouse_key = "wife"
+        if "husband" in person:
+            spouse = person["husband"]
+            spouse_key = "husband"
+        if spouse:
+            spouse_info = next((partner for partner in people if partner["name"] == spouse), None)
+            if spouse_key == "wife":
+                new_person.wife = Person(spouse_info["name"], spouse_info["age"])
+                new_person.wife.husband = new_person
+            else:
+                new_person.husband = Person(spouse_info["name"], spouse_info["age"])
+                new_person.husband.wife = new_person
         person_list.append(new_person)
     return person_list
