@@ -11,7 +11,8 @@ def create_person_list(people: list) -> list:
     person_list = [Person(person["name"], person["age"]) for person in people]
     for person in person_list:
         spouse = None
-        person_key = next(p for p in people if p["name"] == person.name)
+        person_key = next(person_in_list for person_in_list in people
+                          if person_in_list["name"] == person.name)
         if person_key.get("wife") or person_key.get("husband"):
             spouse = (person_key.get("wife") if "wife" in person_key
                       else person_key.get("husband"))
