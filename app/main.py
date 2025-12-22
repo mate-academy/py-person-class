@@ -28,23 +28,21 @@ class Person:
 
 
 def create_person_list(people: list[dict]) -> list[Person]:
-    people_list = []
-    for human_dict in people:
-        name = human_dict.get("name")
-        age = human_dict.get("age")
+    person_list = [
+        Person(name=person_dict.get("name"),
+               age=person_dict.get("age"))
+        for person_dict in people
+    ]
 
-        person = Person(name, age)
-        people_list.append(person)
-    for person in people:
-        name = person.get("name")
-        wife = person.get("wife")
-        husband = person.get("husband")
-        if wife or husband:
-            if wife:
-                Person.people.get(name).wife = Person.people.get(wife)
-            else:
-                Person.people.get(name).husband = Person.people.get(husband)
-    return people_list
+    for individual in people:
+        name = individual.get("name")
+        wife = individual.get("wife")
+        husband = individual.get("husband")
+        if wife and Person.people.get(wife):
+            Person.people.get(name).wife = Person.people.get(wife)
+        elif husband and Person.people.get(husband):
+            Person.people.get(name).husband = Person.people.get(husband)
+    return person_list
 
 
 def get_married_couples(person_list: list[Person]) -> list[tuple]:
