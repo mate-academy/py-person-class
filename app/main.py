@@ -12,18 +12,12 @@ def create_person_list(people: list) -> list:
         Person(person["name"], person["age"])
         for person in people
     ]
-    for i in range(len(people)):
-        if people[i].get("wife") is not None:
-            list_of_people[i].wife = people[i].get("wife")
-        elif people[i].get("husband") is not None:
-            list_of_people[i].husband = people[i].get("husband")
 
-    for person in list_of_people:
-        if (hasattr(person, "wife")
-                and Person.people.get(person.wife) is not None):
-            person.wife = Person.people[person.wife]
-        if (hasattr(person, "husband")
-                and Person.people.get(person.husband) is not None):
-            person.husband = Person.people[person.husband]
+    for i in range(len(people)):
+        if Person.people.get(people[i].get("wife")) is not None:
+            list_of_people[i].wife = Person.people.get(people[i].get("wife"))
+        elif Person.people.get(people[i].get("husband")) is not None:
+            list_of_people[i].husband = (
+                Person.people.get(people[i].get("husband")))
 
     return list_of_people
