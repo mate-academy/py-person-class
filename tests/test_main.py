@@ -36,7 +36,7 @@ def test_person_class_attribute_people_exists():
         Person, "people"
     ), "Class Person should have class attribute 'people'"
     assert (
-        len(Person.people) == 0
+            len(Person.people) == 0
     ), "Initial length of 'Person.people' should equal to 0"
 
 
