@@ -14,12 +14,14 @@ def create_person_list(people: list) -> list:
     ]
     for current_person in people:
         if current_person.get("wife") is not None:
-            Person.people[current_person["name"]].wife = Person.people.get(
+            Person.people.get(
+                current_person.get("name")).wife = Person.people.get(
                 current_person["wife"]
             )
 
         elif current_person.get("husband") is not None:
-            Person.people[current_person["name"]].husband = Person.people.get(
+            Person.people.get(
+                current_person.get("name")).husband = Person.people.get(
                 current_person["husband"]
             )
 
