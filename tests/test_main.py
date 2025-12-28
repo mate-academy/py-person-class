@@ -115,17 +115,22 @@ def test_create_person_list_returns_only_entering_people(
 
 def test_person_instance_attribute_wife_and_husband_doesnt_exists():
     with open(path_to_main()) as file:
-        tree = ast.parse(file.read())
+        source = file.read()
+    tree = ast.parse(source)
 
-    assert (
-        len(
-            tree.__dict__["body"][0]
-            .__dict__["body"][1]
-            .__dict__["args"]
-            .__dict__["args"]
-        )
-        == 3
-    ), "'__init__' should takes only two arguments 'name' and 'age'!"
+    # Procura por um método chamado __init__
+    for node in ast.walk(tree):
+        if isinstance(node, ast.FunctionDef) and node.name == "__init__":
+            # Conta os argumentos (espera-se: self, name, age)
+            num_args = len(node.args.args)
+            arg_names = [arg.arg for arg in node.args.args]
+            assert num_args == 3 and arg_names == ["self", "name", "age"], (
+                "'__init__' should take exactly two arguments besides self: 'name' and 'age'!"
+            )
+            return
+
+    assert False, "'__init__' method not found in Person class."
+
 
 
 def test_removed_comment():
