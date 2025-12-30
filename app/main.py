@@ -12,9 +12,9 @@ def create_person_list(people: list) -> list:
         Person(person_data["name"], person_data["age"])
         for person_data in people
     ]
-    for i in range(len(people)):
-        if people[i].get("wife"):
-            result[i].wife = Person.people.get(people[i].get("wife"))
-        if people[i].get("husband"):
-            result[i].husband = Person.people.get(people[i].get("husband"))
+    for person_data, person in zip(people, result):
+        if person_data.get("wife"):
+            person.wife = Person.people.get(person_data["wife"])
+        if person_data.get("husband"):
+            person.husband = Person.people.get(person_data["husband"])
     return result
