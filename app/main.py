@@ -8,10 +8,9 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    print(people)
-    list_of_persons = []
-    for person in people:
-        list_of_persons.append(Person(person["name"], person["age"]))
+    list_of_persons = [
+        Person(person["name"], person["age"]) for person in people
+    ]
     for link_to_people, link_to_persons in zip(people, list_of_persons):
         partner_name_wife = link_to_people.get("wife")
         partner_name_husband = link_to_people.get("husband")
