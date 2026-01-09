@@ -10,16 +10,16 @@ class Person:
 def create_person_list(people: list) -> list:
     Person.people.clear()
 
-    for i in people:
-        name = i["name"]
-        age = i["age"]
+    for person_data in people:
+        name = person_data["name"]
+        age = person_data["age"]
         Person(name, age)
 
-    for i in people:
-        glob = Person.people[i["name"]]
-        if i.get("wife"):
-            glob.wife = Person.people[i["wife"]]
-        if i.get("husband"):
-            glob.husband = Person.people[i["husband"]]
+    for person_data in people:
+        person_instance = Person.people[person_data["name"]]
+        if person_data.get("wife"):
+            person_instance.wife = Person.people[person_data["wife"]]
+        if person_data.get("husband"):
+            person_instance.husband = Person.people[person_data["husband"]]
 
     return list(Person.people.values())
