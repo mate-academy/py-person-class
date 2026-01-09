@@ -14,7 +14,6 @@ def create_person_list(people: list) -> list:
         name = i["name"]
         age = i["age"]
         Person(name, age)
-        persone = Person.people[name]
 
     for i in people:
         glob = Person.people[i["name"]]
