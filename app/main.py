@@ -8,21 +8,18 @@ class Person:
 
 
 def create_person_list(people: list[dict]) -> list[Person]:
-    # reset registry for clean test runs
     Person.people = {}
 
-    # first pass: create all persons
-    for data in people:
-        Person(data["name"], data["age"])
+    # create all Person instances using list comprehension
+    person_list = [Person(data["name"], data["age"]) for data in people]
 
-    # second pass: link spouses
     for data in people:
         person = Person.people[data["name"]]
+        wife_name = data.get("wife")
+        if wife_name is not None:
+            person.wife = Person.people[wife_name]
+        husband_name = data.get("husband")
+        if husband_name is not None:
+            person.husband = Person.people[husband_name]
 
-        if "wife" in data and data["wife"] is not None:
-            person.wife = Person.people[data["wife"]]
-
-        if "husband" in data and data["husband"] is not None:
-            person.husband = Person.people[data["husband"]]
-
-    return list(Person.people.values())
+    return person_list
