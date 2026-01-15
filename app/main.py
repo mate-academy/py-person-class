@@ -6,8 +6,8 @@ class Person:
         self.age = age
         Person.people[self.name] = self
 
-def create_person_list(people: list) -> list:
 
+def create_person_list(people: list) -> list:
     for person in people:
         new_person = Person(person["name"], person["age"])
         Person.people[new_person.name] = new_person
