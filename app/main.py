@@ -13,6 +13,7 @@ def create_person_list(people: list[dict]) -> list[Person]:
     # create all Person instances using list comprehension
     person_list = [Person(data["name"], data["age"]) for data in people]
 
+    # link spouses
     for data in people:
         person = Person.people[data["name"]]
         wife_name = data.get("wife")
