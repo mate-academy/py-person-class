@@ -10,16 +10,15 @@ class Person:
 def create_person_list(people_data: list) -> list:
     Person.people.clear()
 
-    for data in people_data:
-        Person(data["name"], data["age"])
+    person_list = [Person(data["name"], data["age"]) for data in people_data]
 
-    person_list = []
     for data in people_data:
         person = Person.people[data["name"]]
-        if "wife" in data and data["wife"]:
+
+        if data.get("wife"):
             person.wife = Person.people[data["wife"]]
-        if "husband" in data and data["husband"]:
+
+        if data.get("husband"):
             person.husband = Person.people[data["husband"]]
-        person_list.append(person)
 
     return person_list
