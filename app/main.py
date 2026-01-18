@@ -11,11 +11,12 @@ class Person:
 def create_person_list(people: list) -> list:
     person_list = [Person(person["name"], person["age"]) for person in people]
 
-    for i in people:
-        spouse_name = i.get("wife") or i.get("husband")
+    for person_dict in people:
+        spouse_name = person_dict.get("wife") or person_dict.get("husband")
         if spouse_name:
-            person = Person.people[i["name"]]
+            person = Person.people[person_dict["name"]]
             spouse = Person.people[spouse_name]
-            setattr(person, "wife" if i.get("wife") else "husband", spouse)
+            setattr(person, "wife"
+                    if person_dict.get("wife") else "husband", spouse)
 
     return person_list
