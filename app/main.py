@@ -9,10 +9,10 @@ class Person:
 
 def create_person_list(people: list) -> list:
     people_list = [Person(p["name"], p["age"]) for p in people]
-    
+
     for i, person_dict in enumerate(people):
         person_instance = people_list[i]
-        
+
         wife_name = person_dict.get("wife")
         if wife_name is not None:
             person_instance.wife = Person.people.get(wife_name)
