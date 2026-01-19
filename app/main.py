@@ -8,17 +8,16 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    result = []
-    for person in people:
-        new_person = Person(person["name"], person["age"])
-        result.append(new_person)
+    result = [Person(p["name"], p["age"]) for p in people]
 
     for i in range(len(people)):
         data = people[i]
         obj = result[i]
 
         for key in ["wife", "husband"]:
-            if key in data and data[key] is not None:
-                partner_name = data[key]
-                setattr(obj, key, Person.people[partner_name])
+            partner_name = data.get(key)
+            if partner_name:
+                partner_obj = Person.people[partner_name]
+                setattr(obj, key, partner_obj)
+
     return result
