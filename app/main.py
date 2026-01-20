@@ -16,8 +16,15 @@ def create_person_list(people_list: list[dict]) -> list[Person]:
         persons.append(person)
 
     for data, person in zip(people_list, persons):
-        spouse_key = "wife" if "wife" in data else "husband" if "husband" in data else None
+        spouse_key = None
+
+        if "wife" in data:
+            spouse_key = "wife"
+        elif "husband" in data:
+            spouse_key = "husband"
+
         if spouse_key and data[spouse_key] is not None:
-            setattr(person, spouse_key, Person.people[data[spouse_key]])
+            spouse_name = data[spouse_key]
+            setattr(person, spouse_key, Person.people[spouse_name])
 
     return persons
