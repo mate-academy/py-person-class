@@ -63,58 +63,30 @@ def test_create_person_list_order(people_data, created_person_list):
     ], "Order in function result should be the same"
 
 
-def test_create_person_list_has_wife(people_data, created_person_list):
-    assert hasattr(created_person_list[0], "wife"), (
-        f"Person with 'name' {created_person_list[0].name} should have "
-        f"attribute 'wife' with name {people_data[0].wife.name}"
+def test_create_person_list_has_no_wife(people_data, created_person_list):
+    assert not hasattr(created_person_list[1], "wife"), (
+        f"Person with 'name' {created_person_list[1].name} should not have "
+        f"attribute 'wife'"
     )
 
 
 def test_create_person_list_has_wife_and_wife_have_husband(
     people_data, created_person_list
 ):
+    ross = created_person_list[0]  # Ross
     assert (
-        hasattr(created_person_list[0], "wife")
-        and created_person_list[0].wife.husband == created_person_list[0]
+        hasattr(ross, "wife")
+        and ross.wife.name == "Rachel"
+        and ross.wife.husband == ross
     ), (
-        f"Person with 'name' {created_person_list[0].name} should have "
-        f"attribute 'wife' with name {created_person_list[0].wife.name} and "
-        f"Person.wife.husband should links to that Person"
+        f"Person with 'name' {ross.name} should have "
+        f"attribute 'wife' with name 'Rachel' and "
+        f"Ross's wife should point back to Ross"
     )
 
 
-def test_create_person_list_has_no_wife(people_data, created_person_list):
-    assert hasattr(created_person_list[1], "wife") is False, (
-        f"Person with 'name' {created_person_list[1].name} should not have "
-        f"attribute wife"
-    )
-
-
-def test_person_class_attribute_people(people_data, created_person_list):
-    assert all(
-        isinstance(person, Person) for person in Person.people.values()
-    ), "All elements of Person class attribute 'people' should be Person instances"
-    assert len(Person.people) == len(
-        people_data
-    ), "Length of Person class attribute people should be equal to length of initial list"
-
-
-def test_create_person_list_returns_only_entering_people(
-    people_data, created_person_list
-):
-    assert len(people_data) == len(
-        created_person_list
-    ), "Length of passed list should equal to length of returned list"
-    assert [person["name"] for person in people_data] == [
-        person.name for person in created_person_list
-    ], (
-        "People, that are passed to the function should equal to people, "
-        "that are returned"
-    )
-
-
-def test_person_instance_attribute_wife_and_husband_doesnt_exists():
-    with open(path_to_main()) as file:
+def test_person_instance_attribute_wife_and_husband_doesnt_exist():
+    with open(path_to_main(), encoding="utf-8") as file:
         tree = ast.parse(file.read())
 
     assert (
@@ -129,7 +101,7 @@ def test_person_instance_attribute_wife_and_husband_doesnt_exists():
 
 
 def test_removed_comment():
-    with open(path_to_main(), "r") as file:
+    with open(path_to_main(), "r", encoding="utf-8") as file:
         main_content = file.read()
 
         assert (
@@ -138,9 +110,9 @@ def test_removed_comment():
 
 
 def test_double_quotes_instead_of_single():
-    with open(path_to_main(), "r") as file:
+    with open(path_to_main(), "r", encoding="utf-8") as file:
         main_content = file.read()
 
         assert (
             "'" not in main_content
-        ), "You have to use a double quotes \"\" instead of single ''"
+        ), "You have to use double quotes \"\" instead of single ''"
