@@ -32,6 +32,7 @@ def created_person_list(people_data):
 
 
 def test_person_class_attribute_people_exists():
+    Person.reset_people()
     assert hasattr(
         Person, "people"
     ), "Class Person should have class attribute 'people'"
