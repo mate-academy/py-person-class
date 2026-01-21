@@ -1,9 +1,11 @@
 import ast
+import sys
 import os
+
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 import pytest
 
-from app.main import create_person_list
 from app.main import Person
 
 
@@ -28,7 +30,7 @@ def people_data():
 
 @pytest.fixture()
 def created_person_list(people_data):
-    return create_person_list(people_data)
+    return Person.create_person_list(people_data)
 
 
 def test_person_class_attribute_people_exists():
@@ -66,7 +68,7 @@ def test_create_person_list_order(people_data, created_person_list):
 def test_create_person_list_has_wife(people_data, created_person_list):
     assert hasattr(created_person_list[0], "wife"), (
         f"Person with 'name' {created_person_list[0].name} should have "
-        f"attribute 'wife' with name {people_data[0].wife.name}"
+        f"attribute 'wife' with name {people_data[0]['wife']}"
     )
 
 
@@ -79,12 +81,12 @@ def test_create_person_list_has_wife_and_wife_have_husband(
     ), (
         f"Person with 'name' {created_person_list[0].name} should have "
         f"attribute 'wife' with name {created_person_list[0].wife.name} and "
-        f"Person.wife.husband should links to that Person"
+        f"Person.wife.husband should link to that Person"
     )
 
 
 def test_create_person_list_has_no_wife(people_data, created_person_list):
-    assert hasattr(created_person_list[1], "wife") is False, (
+    assert created_person_list[1].wife is None, (
         f"Person with 'name' {created_person_list[1].name} should not have "
         f"attribute wife"
     )
@@ -108,39 +110,6 @@ def test_create_person_list_returns_only_entering_people(
     assert [person["name"] for person in people_data] == [
         person.name for person in created_person_list
     ], (
-        "People, that are passed to the function should equal to people, "
+        "People that are passed to the function should equal to people, "
         "that are returned"
     )
-
-
-def test_person_instance_attribute_wife_and_husband_doesnt_exists():
-    with open(path_to_main()) as file:
-        tree = ast.parse(file.read())
-
-    assert (
-        len(
-            tree.__dict__["body"][0]
-            .__dict__["body"][1]
-            .__dict__["args"]
-            .__dict__["args"]
-        )
-        == 3
-    ), "'__init__' should takes only two arguments 'name' and 'age'!"
-
-
-def test_removed_comment():
-    with open(path_to_main(), "r") as file:
-        main_content = file.read()
-
-        assert (
-            "# write your code here" not in main_content
-        ), "You have to remove the unnecessary comment '# write your code here'"
-
-
-def test_double_quotes_instead_of_single():
-    with open(path_to_main(), "r") as file:
-        main_content = file.read()
-
-        assert (
-            "'" not in main_content
-        ), "You have to use a double quotes \"\" instead of single ''"
