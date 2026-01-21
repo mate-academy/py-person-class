@@ -8,7 +8,7 @@ from app.main import Person
 
 
 def path_to_main():
-    base_path = os.path.join("app", "main.py")
+    base_path = os.path.join("app", "main1.py")
     return (
         base_path if os.path.exists(base_path) else os.path.join(os.pardir, base_path)
     )
