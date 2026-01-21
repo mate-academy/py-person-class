@@ -1,8 +1,27 @@
 class Person:
-    # write your code here
-    pass
+    people: dict[str, "Person"] = {}
+
+    def __init__(self, name: str, age: int) -> None:
+        self.name = name
+        self.age = age
+
+        Person.people[name] = self
 
 
-def create_person_list(people: list) -> list:
-    # write your code here
-    pass
+def create_person_list(people: list[dict]) -> list[Person]:
+    persons = []
+
+    persons = [Person(human["name"], human["age"]) for human in people]
+
+    for human in people:
+        person = Person.people[human["name"]]
+
+        wife_name = human.get("wife")
+        if wife_name is not None:
+            person.wife = Person.people[wife_name]
+
+        husband_name = human.get("husband")
+        if husband_name is not None:
+            person.husband = Person.people[husband_name]
+
+    return persons
