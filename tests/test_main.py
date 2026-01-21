@@ -10,7 +10,9 @@ from app.main import Person
 def path_to_main():
     base_path = os.path.join("app", "main.py")
     return (
-        base_path if os.path.exists(base_path) else os.path.join(os.pardir, base_path)
+        base_path
+        if os.path.exists(base_path)
+        else os.path.join(os.pardir, base_path)
     )
 
 
@@ -43,8 +45,12 @@ def test_person_class_attribute_people_exists():
 @pytest.mark.parametrize("name,age", [("Ross", 30), ("Joey", 29)])
 def test_person_class_name_age(name, age):
     person_inst = Person(name, age)
-    assert person_inst.name == name, "Person instance should have attribute 'name'"
-    assert person_inst.age == age, "Person instance should have attribute 'age'"
+    assert (
+        person_inst.name == name
+    ), "Person instance should have attribute 'name'"
+    assert (
+        person_inst.age == age
+    ), "Person instance should have attribute 'age'"
 
 
 def test_create_person_list_all_persons(people_data, created_person_list):
