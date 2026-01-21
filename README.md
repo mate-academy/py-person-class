@@ -22,7 +22,7 @@ name of another person.
      - Within the `__init__` method, add each new `Person` instance to the `people` dictionary.
     
 Write function `create_person_list`, this function
-takes list `people` and return list with
+takes list `people` and return list with    
 `Person` instances instead of dicts.
 
 **Note:**
