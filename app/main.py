@@ -1,8 +1,19 @@
 class Person:
-    # write your code here
-    pass
+    people = {}
+
+    def __init__(self, name: str, age: str) -> None:
+        self.name = name
+        self.age = age
+        Person.people.update({self.name: self})
 
 
 def create_person_list(people: list) -> list:
-    # write your code here
-    pass
+    result = [Person(person["name"], person["age"]) for person in people]
+
+    for name_person in people:
+        if wife_name := name_person.get("wife"):
+            naming = name_person["name"]
+            Person.people[naming].wife = Person.people[wife_name]
+            Person.people[naming].wife.husband = Person.people[naming]
+
+    return result
