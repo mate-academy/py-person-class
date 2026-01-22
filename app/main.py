@@ -12,14 +12,14 @@ def create_person_list(people_data: list[dict]) -> list[Person]:
     # Pass 1: Create all Person instances
     # This fills Person.people so we can look up spouses in Pass 2
     instances = [
-        Person(data["name"], data["age"]) 
+        Person(data["name"], data["age"])
         for data in people_data
     ]
 
     # Pass 2: Establish spouse references
     for data in people_data:
         person_instance = Person.people[data["name"]]
-        
+
         # Check for husband or wife keys
         husband_name = data.get("husband")
         wife_name = data.get("wife")
