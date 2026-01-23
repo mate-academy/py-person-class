@@ -1,4 +1,4 @@
-class Person:
+class Person:#rrrr
     people = {}
 
     def __init__(self, name: str, age: int) -> None:
