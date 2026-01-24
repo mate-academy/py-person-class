@@ -22,5 +22,4 @@ def create_person_list(people: list) -> list:
                 person.wife = marriage
             elif "husband" in data:
                 person.husband = marriage
-
     return list(Person.people.values())
