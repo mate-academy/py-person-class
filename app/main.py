@@ -22,3 +22,4 @@ def create_person_list(people: list) -> list:
             person.husband = Person.people[data["husband"]]
 
     return person_list
+
