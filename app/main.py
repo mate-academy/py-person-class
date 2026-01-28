@@ -1,16 +1,21 @@
-class Person:
-    people = [] 
-    def __init__(self, name, age):
+class People:
+    def __init__(self, person, name, age, gender, spouse):
+        self.person = person
         self.name = name
         self.age = age
-        Person.people[name] = self   
-def create_person_list(people):
-    result = []
-    for p in people:
-        person = Person(p["name"], p["age"])
-        result.append(person)
-    for p in people:
-        if p.get("wife") != None:
-            person.wife = Person.people[p["wife"]]  
-        if p.get("husband") is not None:
-            person.husband = Person.people[p["husband"]] 
+        self.gender = gender
+        self.spouse = spouse
+        person = {
+        "name": None,
+        "age": None,
+        "gender": None,
+        "spouse": None
+        }
+class Person:
+    people = {}
+    def __init__(self,name: str, age: int):
+        self.name: str = name
+        self.age: int = age        
+        Person.people[name] = self
+    def create_list_person():
+        return [People(name), People(age) for name in names if name:str = name,age:int = age in class Person)
