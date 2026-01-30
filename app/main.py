@@ -8,22 +8,17 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    for person in people:
-        Person(**person)
-    person_class_list = [person for person in Person.people.values()]
-    for person in people:
-        if person.get("wife") or person.get("husband"):
-            spouse_key = "wife"
-            if person.get("husband"):
-                spouse_key = "husband"
+    Person.people.clear()
 
-            person_instance = next(person_class_inst
-                                   for person_class_inst in person_class_list
-                                   if person_class_inst.name == person["name"])
-            person_spouse = next(person_class_inst
-                                 for person_class_inst in person_class_list
-                                 if person_class_inst.name
-                                 == person[spouse_key])
+    person_class_list = [Person(**person) for person in people]
+
+    for person in people:
+        spouse_key = "husband" if person.get("husband") else "wife" \
+            if person.get("wife") else None
+
+        if spouse_key:
+            person_instance = Person.people[person["name"]]
+            person_spouse = Person.people[person[spouse_key]]
 
             setattr(person_instance, spouse_key, person_spouse)
     return person_class_list
