@@ -1,31 +1,26 @@
 class Person:
     people = {}
 
-
-    def __init__(self, name: str, age: int):
+    def __init__(self, name: str, age: int) -> None:
         self.name = name
         self.age = age
         Person.people[name] = self
 
-    # def __repr__(self) -> str:
-    #     return f"<Person object, {self.__dict__}>"
-
 
 def create_person_list(people: list) -> list:
-    name_list = []
-    final_list = []
+    result_list = []
     for person in people:
-        final_list.append(Person(
+        result_list.append(Person(
             name=person.get("name"),
             age=person.get("age")
         ))
-        name_list.append(person.get("name"))
+    for person in people:
+        if "wife" in person and person.get("wife") is not None:
+            husband_name = person.get("name")
+            husband = Person.people.get(husband_name)
+            wife_name = person.get("wife")
+            wife = Person.people.get(wife_name)
+            husband.wife = wife
+            wife.husband = husband
 
-    for human in people:
-        fiance = list(human.keys())[-1]
-        if human.get(fiance) is not None:
-            if fiance == "wife":
-                final_list[name_list.index(human.get("name"))].wife = final_list[name_list.index(human.get(fiance))]
-            elif fiance == "husband":
-                final_list[name_list.index(human.get("name"))].husband = final_list[name_list.index(human.get(fiance))]
-    return final_list
+    return result_list
