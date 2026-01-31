@@ -33,4 +33,3 @@ def create_person_list(people: list) -> list:
             person_object.husband = husband
 
     return result_list
-
