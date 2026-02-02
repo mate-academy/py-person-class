@@ -16,8 +16,8 @@ def create_person_list(people: list) -> list:
 
     for person_dict in people:
         if "wife" in person_dict and person_dict["wife"] is not None:
-            current_person.wife = Person.people[person_dict["wife"]]
+            Person.people[person_dict["name"]].wife = Person.people[person_dict["wife"]]
         elif "husband" in person_dict and person_dict["husband"] is not None:
-            current_person.husband = Person.people[person_dict["husband"]]
+            Person.people[person_dict["name"]].husband = Person.people[person_dict["husband"]]
 
     return final_people_list
