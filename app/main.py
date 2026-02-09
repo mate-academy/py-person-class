@@ -8,14 +8,11 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    res = []
-    for human in people:
-        h_1 = Person(human["name"], human["age"])
-        res.append(h_1)
+    person_instance = [Person(human["name"], human["age"]) for human in people]
     for person in people:
         instance = Person.people[person["name"]]
-        if "wife" in person and person["wife"]:
+        if person.get("wife"):
             instance.wife = Person.people[person["wife"]]
-        if "husband" in person and person["husband"]:
+        if person.get("husband"):
             instance.husband = Person.people[person["husband"]]
-    return res
+    return person_instance
