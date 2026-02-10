@@ -1,6 +1,6 @@
 # Check Your Code Against the Following Points
 
-## Code Style
+## Code Styletoo many blank lines (3)
 
 1. Use descriptive and correct variable names.
 
