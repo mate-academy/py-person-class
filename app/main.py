@@ -19,11 +19,11 @@ def create_person_list(people_data: list) -> list:
         person_obj = Person.people[person_data["name"]]
 
         wife_name = person_data.get("wife")
-        if wife_name is not None:
+        if wife_name:
             person_obj.wife = Person.people[wife_name]
 
         husband_name = person_data.get("husband")
-        if husband_name is not None:
+        if husband_name:
             person_obj.husband = Person.people[husband_name]
 
     return result
