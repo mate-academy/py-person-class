@@ -10,9 +10,9 @@ class Person:
 def create_person_list(people: list) -> list:
     list_person = [Person(person["name"], person["age"]) for person in people]
     for person in people:
-        current_dude = Person.people[person["name"]]
+        current_person = Person.people[person["name"]]
         for relation in ("wife", "husband"):
             if person.get(relation):
-                related_dude = Person.people.get(person[relation])
-                setattr(current_dude, relation, related_dude)
+                related_person = Person.people.get(person[relation])
+                setattr(current_person, relation, related_person)
     return list_person
