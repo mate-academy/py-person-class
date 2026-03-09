@@ -5,22 +5,20 @@ class Person:
         self.name = name
         self.age = age
         Person.people[name] = self
-        self.wife = None
-        self.husband = None
 
 
 def create_person_list(people: list) -> list:
-    result = []
-    for person_dict in people:
-        person = Person(**person_dict)
-        result.append(person)
+    result = [
+        Person(person["name"], person["age"])
+        for person in people
+    ]
 
     for person_dict in people:
         current_person = Person.people[person_dict["name"]]
-        if "wife" in person_dict:
+        if person_dict.get("wife") :
             wife_person = Person.people[person_dict["wife"]]
             current_person.wife = wife_person
-        if "husband" in person_dict:
+        if person_dict.get("husband") :
             husband_person = Person.people[person_dict["husband"]]
             current_person.husband = husband_person
     return result
