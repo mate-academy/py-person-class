@@ -8,8 +8,6 @@ class Person:
 
 
 def create_person_list(people_data: list) -> list:
-    # Очистка словаря перед созданием новых объектов (опционально,
-    # зависит от того, должны ли данные накапливаться)
     Person.people = {}
 
     for p_dict in people_data:
