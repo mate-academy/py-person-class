@@ -12,7 +12,7 @@ class Person:
 
 def create_person_list(people_dicts: List[Dict[str, Any]]) -> List[Person]:
 
-    Person.people = {}
+    Person.people.clear()
 
     instances = [
         Person(p["name"], p["age"]) for p in people_dicts
