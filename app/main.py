@@ -10,13 +10,11 @@ class Person:
 def create_person_list(people: list) -> list:
     person_list = []
 
-# Create Person instances
     for person in people:
         name = person["name"]
         age = person["age"]
         person_list.append(Person(name, age))
 
-# Link partners
     for person in people:
         person_instance = Person.people[person["name"]]
 
