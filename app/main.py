@@ -1,23 +1,19 @@
 class Person:
     people = {}
 
-    def __init__(self, name: str, age: int):
+    def __init__(self, name: str, age: int) -> None:
         self.name = name
         self.age = age
         Person.people[name] = self
 
 
 def create_person_list(people: list) -> list:
-    # First pass: create all Person instances
-    instances = []
-    for p in people:
-        instances.append(Person(p["name"], p["age"]))
+    instances = [Person(person["name"], person["age"]) for person in people]
 
-    # Second pass: link spouses
-    for p, instance in zip(people, instances):
-        if "wife" in p and p["wife"] is not None:
-            instance.wife = Person.people[p["wife"]]
-        elif "husband" in p and p["husband"] is not None:
-            instance.husband = Person.people[p["husband"]]
+    for person, instance in zip(people, instances):
+        if "wife" in person and person["wife"] is not None:
+            instance.wife = Person.people[person["wife"]]
+        elif "husband" in person and person["husband"] is not None:
+            instance.husband = Person.people[person["husband"]]
 
     return instances
