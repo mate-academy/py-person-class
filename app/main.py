@@ -9,15 +9,16 @@ class Person:
 
 def create_person_list(people: list) -> list:
     Person.people = {}
-    for p_dict in people:
-        Person(p_dict["name"], p_dict["age"])
-    result = []
-    for p_dict in people:
-        current_person = Person.people[p_dict["name"]]
-        spouse_key = "wife" if "wife" in p_dict else "husband"
-        spouse_name = p_dict.get(spouse_key)
-        if spouse_name:
-            setattr(current_person, spouse_key, Person.people[spouse_name])
+    for person_data in people:
+        Person(person_data["name"], person_data["age"])
 
-        result.append(current_person)
-    return result
+    for person_data in people:
+        current_person = Person.people[person_data["name"]]
+        wife = person_data.get("wife")
+        husband = person_data.get("husband")
+
+        if wife:
+            setattr(current_person, "wife", Person.people[wife])
+        elif husband:
+            setattr(current_person, "husband", Person.people[husband])
+    return [Person.people[person_data["name"]] for person_data in people]
