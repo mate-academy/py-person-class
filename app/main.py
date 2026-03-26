@@ -8,11 +8,11 @@ class Person:
 
 
 def create_person_list(people: list[dict]) -> list[Person]:
-    person_list = []
-
-    for person in people:
-        person_obj = Person(person["name"], person["age"])
-        person_list.append(person_obj)
+    Person.people = {}
+    person_list = [
+        Person(person["name"], person["age"])
+        for person in people
+    ]
 
     for person in people:
         person_obj = Person.people.get(person["name"])
