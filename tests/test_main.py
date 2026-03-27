@@ -1,10 +1,7 @@
 import ast
 import os
-
 import pytest
-
-from app.main import create_person_list
-from app.main import Person
+from app.main import Person, create_person_list
 
 
 def path_to_main():
