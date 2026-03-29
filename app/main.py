@@ -6,7 +6,6 @@ class Person:
         self.age = age
         Person.people[self.name] = self
 
-
 def create_person_list(people_list: list) -> list:
     Person.people.clear()
     out_list = [
