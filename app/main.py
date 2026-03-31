@@ -11,8 +11,7 @@ class Person:
 def create_person_list(people_data: list) -> list:
     Person.people = {}
 
-    for data in people_data:
-        Person(data["name"], data["age"])
+    _ = [Person(data["name"], data["age"]) for data in people_data]
 
     for data in people_data:
         person = Person.people[data["name"]]
