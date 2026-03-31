@@ -9,7 +9,6 @@ class Person:
 
 
 def create_person_list(people_data: list) -> list:
-    # Cleanup global property before operation
     Person.people = {}
 
     for data in people_data:
