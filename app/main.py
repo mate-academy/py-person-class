@@ -1,4 +1,5 @@
 class Person:
+
     people = {}
 
     def __init__(self, name: str, age: int) -> None:
@@ -18,10 +19,12 @@ def create_person_list(people: list[dict]) -> list:
     for person_data in people:
         current_instance = Person.people[person_data["name"]]
 
-        if person_data.get("wife"):
-            current_instance.wife = Person.people[person_data.get("wife")]
+        wife_name = person_data.get("wife")
+        if wife_name:
+            current_instance.wife = Person.people[wife_name]
 
-        if person_data.get("husband"):
-            current_instance.husband = Person.people[person_data.get("husband")]
+        husband_name = person_data.get("husband")
+        if husband_name:
+            current_instance.husband = Person.people[husband_name]
 
     return instances
