@@ -9,9 +9,11 @@ class Person:
 
 def create_person_list(people: list) -> list[Person]:
     Person.people.clear()
-    person_list = [Person(person["name"], person["age"]) for person in people]
+    person_list = [
+        Person(person.get("name"), person.get("age")) for person in people
+    ]
     for person in people:
-        current_person = Person.people[person["name"]]
+        current_person = Person.people.get(person["name"])
         if person.get("wife"):
             current_person.wife = Person.people.get(person["wife"])
         elif person.get("husband"):
