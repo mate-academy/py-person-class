@@ -1,4 +1,5 @@
-class Person: people = {}
+class Person:
+    people = {}
 
     def __init__(self, name: str, age: int) -> None:
         self.name = name
@@ -11,7 +12,6 @@ def create_person_list(people: list) -> list:
         Person(name=person["name"], age=person["age"])
         for person in people
     ]
-
 
     for person_dict, person_obj in zip(people, person_instances):
         for key in ("wife", "husband"):
