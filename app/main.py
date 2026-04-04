@@ -18,8 +18,6 @@ def create_person_list(people: list) -> list:
         this_inst = Person.people[person_dict["name"]]
         if person_dict.get("wife"):
             this_inst.wife = Person.people[person_dict["wife"]]
-            this_inst.wife.husband = Person.people[person_dict["name"]]
         if person_dict.get("husband"):
             this_inst.husband = Person.people[person_dict["husband"]]
-            this_inst.husband.wife = Person.people[person_dict["name"]]
     return person_list
