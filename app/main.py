@@ -4,13 +4,17 @@ class Person:
     def __init__(self, name: str, age: int) -> None:
         self.name = name
         self.age = age
+        Person.people[name] = self
 
 
 def create_person_list(people: list) -> list:
-    reference = Person.people
+    Person.people = {}
 
-    for person in people:
-        reference[person["name"]] = Person(person["name"], person["age"])
+    people_list = [
+        Person(person["name"], person["age"])
+        for person in people
+    ]
+    ref = Person.people
 
     for person in people:
         possible_relations = ["wife", "husband"]
@@ -18,6 +22,6 @@ def create_person_list(people: list) -> list:
         for relation in possible_relations:
             if person.get(relation):
                 partner_name = person[relation]
-                reference[person["name"]].__dict__[relation] = reference[partner_name]
+                ref[person["name"]].__dict__[relation] = ref[partner_name]
 
-    return [person for person in reference.values()]
+    return people_list
