@@ -1,7 +1,7 @@
 class Person:
     people = {}
 
-    def __init__(self, name: str, age: int):
+    def __init__(self, name: str, age: int) -> None:
         self.name = name
         self.age = age
         Person.people[self.name] = self
@@ -9,16 +9,15 @@ class Person:
 
 def create_person_list(people: list) -> list:
 
-    for p in people:
-        Person(p["name"], p["age"])
+    result = [Person(person.get("name"), person.get("age")) for person in people]
 
-    for p in people:
-        inst = Person.people[p["name"]]
-        w = p.get("wife")
-        if w is not None:
-            inst.wife = Person.people.get(w)
-        h = p.get("husband")
-        if h is not None:
-            inst.husband = Person.people.get(h)
+    for person in people:
+        inst = Person.people[person["name"]]
+        wife = person.get("wife")
+        if wife is not None:
+            inst.wife = Person.people.get(wife)
+        husband = person.get("husband")
+        if husband is not None:
+            inst.husband = Person.people.get(husband)
 
-    return [Person.people[p["name"]] for p in people]
+    return result
