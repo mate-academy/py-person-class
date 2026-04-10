@@ -13,12 +13,13 @@ def create_person_list(people: list) -> list:
               for person in people]
 
     for person in people:
-        instance = Person.people.get("name")
+        name = person.get("name")
+        person_instance = Person.people.get(name)
         wife = person.get("wife")
         if wife is not None:
-            instance.wife = Person.people.get(wife)
+            person_instance.wife = Person.people.get(wife)
         husband = person.get("husband")
         if husband is not None:
-            instance.husband = Person.people.get(husband)
+            person_instance.husband = Person.people.get(husband)
 
     return result
