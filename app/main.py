@@ -1,8 +1,23 @@
 class Person:
-    # write your code here
-    pass
+    people = {}
+
+    def __init__(self, name: str, age: int) -> None:
+        self.name = name
+        self.age = age
+        Person.people[self.name] = self
 
 
-def create_person_list(people: list) -> list:
-    # write your code here
-    pass
+def create_person_list(persons: list) -> list:
+    result_list = []
+
+    for per in persons:
+        Person(per["name"], per["age"])
+
+    for per in persons:
+        person = Person.people[per["name"]]
+        if per.get("wife"):
+            person.wife = Person.people[per["wife"]]
+        elif per.get("husband"):
+            person.husband = Person.people[per["husband"]]
+        result_list.append(person)
+    return result_list
