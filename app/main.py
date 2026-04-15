@@ -15,8 +15,8 @@ def create_person_list(people: list) -> list:
         person = Person(p["name"], p["age"])
         result.append(person)
 
-    for p in person:
-        person = Person.people(p["name"])
+    for p in people:
+        person = Person.people
 
         if "wife" in p and p["wife"] is not None:
             person.wife = Person.people[p["wife"]]
