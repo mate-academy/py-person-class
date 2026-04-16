@@ -8,7 +8,8 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    persons_list = [(Person(person["name"], person["age"]))
+    Person.people.clear()
+    persons_list = [(Person(person.get("name"), person.get("age")))
                     for person in people]
 
     for index, person in enumerate(people):
