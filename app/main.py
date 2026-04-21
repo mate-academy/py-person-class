@@ -1,6 +1,3 @@
-from typing import List
-
-
 class Person:
     people = {}
 
@@ -10,16 +7,11 @@ class Person:
         Person.people[name] = self
 
 
-def create_person_list(people: List[dict]) -> List[Person]:
-    Person.people = {}
-
-    people_list = [Person(person["name"], person["age"]) for person in people]
-
-    for person in people:
-        instance = Person.people[person["name"]]
-        if person.get("wife") is not None:
-            instance.wife = Person.people[person["wife"]]
-        elif person.get("husband") is not None:
-            instance.husband = Person.people[person["husband"]]
-
-    return [Person.people[person["name"]] for person in people]
+def create_person_list(people: list) -> list:
+    person_list = [Person(per["name"], per["age"]) for per in people]
+    for index, per in enumerate(people):
+        if per.get("wife"):
+            person_list[index].wife = Person.people[per["wife"]]
+        if per.get("husband"):
+            person_list[index].husband = Person.people[per["husband"]]
+    return person_list
