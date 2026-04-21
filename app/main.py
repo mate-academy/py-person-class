@@ -13,8 +13,7 @@ class Person:
 def create_person_list(people: List[dict]) -> List[Person]:
     Person.people = {}
 
-    for person in people:
-        Person(person["name"], person["age"])
+    people_list = [Person(person["name"], person["age"]) for person in people]
 
     for person in people:
         instance = Person.people[person["name"]]
@@ -23,4 +22,4 @@ def create_person_list(people: List[dict]) -> List[Person]:
         elif person.get("husband") is not None:
             instance.husband = Person.people[person["husband"]]
 
-    return list(Person.people.values())
+    return [Person.people[person["name"]] for person in people]
