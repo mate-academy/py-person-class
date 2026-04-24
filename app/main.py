@@ -9,7 +9,9 @@ class Person:
 
 
 def create_person_list(people: list[dict]) -> list[Person]:
-    user_list = [Person(name=user.get("name"), age=user.get("age")) for user in people]
+    user_list = [Person(name=user.get("name"),
+                        age=user.get("age"))
+                 for user in people]
     for user in people:
         person_name = user.get("name")
         current = Person.people[person_name]
