@@ -12,13 +12,11 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    instances = []
-    for person in people:
-        instances.append(Person(person["name"], person["age"]))
+    instances = [Person(person["name"], person["age"]) for person in people]
 
     for person_dict, instance in zip(people, instances):
         for key in ("wife", "husband"):
-            if key in person_dict and person_dict[key] is not None:
+            if person_dict.get(key):
                 setattr(instance, key, Person.people[person_dict[key]])
 
     return instances
