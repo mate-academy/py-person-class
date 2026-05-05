@@ -1,0 +1,23 @@
+from __future__ import annotations
+
+
+class Person:
+    people: dict[str, "Person"] = {}
+
+    def __init__(self, name: str, age: int) -> None:
+        self.name = name
+        self.age = age
+        Person.people[name] = self
+
+
+def create_person_list(people: list[dict]) -> list[Person]:
+    persons = [Person(p["name"], p["age"]) for p in people]
+
+    for p in people:
+        obj = Person.people[p["name"]]
+        if "wife" in p and p["wife"]:
+            obj.wife = Person.people[p["wife"]]
+        if "husband" in p and p["husband"]:
+            obj.husband = Person.people[p["husband"]]
+
+    return persons
