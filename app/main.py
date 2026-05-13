@@ -1,15 +1,15 @@
 class Person:
     people = {}  # class attribute to store all instances by name
 
-    def __init__(self, name: str, age: int):
+    def __init__(self, name: str, age: int) -> None:
         self.name = name
         self.age = age
         Person.people[name] = self  # register instance on creation
 
-    def set_wife(self, wife: "Person"):
+    def set_wife(self, wife: "Person") -> None:
         self.wife = wife
 
-    def set_husband(self, husband: "Person"):
+    def set_husband(self, husband: "Person") -> None:
         self.husband = husband
 
 
