@@ -1,9 +1,9 @@
 from __future__ import annotations
-from typing import List, Dict, Optional, Any
+from typing import List, Dict, Any, Optional
 
 
 class Person:
-    people: Dict[str, Person] = {}
+    people = {}
 
     def __init__(self, name: str, age: int) -> None:
         self.name = name
