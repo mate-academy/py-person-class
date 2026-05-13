@@ -1,31 +1,32 @@
-from __future__ import annotations
-from typing import List, Dict, Any, Optional
-
-
 class Person:
-    people = {}
+    people = {}  # class attribute to store all instances by name
 
-    def __init__(self, name: str, age: int) -> None:
+    def __init__(self, name: str, age: int):
         self.name = name
         self.age = age
-        Person.people[name] = self
+        Person.people[name] = self  # register instance on creation
+
+    def set_wife(self, wife: "Person"):
+        self.wife = wife
+
+    def set_husband(self, husband: "Person"):
+        self.husband = husband
 
 
-def create_person_list(people_data: List[Dict[str, Any]]) -> List[Person]:
-    person_instances = [
-        Person(p["name"], p["age"]) for p in people_data
-    ]
+def create_person_list(people_data: list) -> list:
+    # First pass: create all Person instances (populates Person.people)
+    persons = []
+    for data in people_data:
+        persons.append(Person(data["name"], data["age"]))
 
-    for person_dict in people_data:
-        name = person_dict["name"]
-        current_instance = Person.people[name]
+    # Second pass: link wife/husband as actual Person objects
+    for data, person in zip(people_data, persons):
+        if data.get("wife"):
+            wife_person = Person.people[data["wife"]]
+            person.set_wife(wife_person)
 
-        spouse_name: Optional[str] = (
-            person_dict.get("wife") or person_dict.get("husband")
-        )
+        if data.get("husband"):
+            husband_person = Person.people[data["husband"]]
+            person.set_husband(husband_person)
 
-        if spouse_name:
-            spouse_attr = "wife" if "wife" in person_dict else "husband"
-            setattr(current_instance, spouse_attr, Person.people[spouse_name])
-
-    return person_instances
+    return persons
