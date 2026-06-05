@@ -11,7 +11,7 @@ class Person:
 
 def create_person_list(people: list) -> list:
 
-    result = [Person(p['name'], p['age']) for p in people]
+    result = [Person(p["name"], p["age"]) for p in people]
 
     for persona in people:
         person = Person.people[persona["name"]]
