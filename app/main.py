@@ -1,7 +1,7 @@
 class Person:
     people = {}
 
-    def __init__(self, name, age):
+    def __init__(self, name: str, age: int) -> None:
         self.name = name
         self.age = age
 
@@ -9,19 +9,21 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    person_list = []
+    Person.people.clear()
 
-    for person_data in people:
-        person = Person(person_data["name"], person_data["age"])
-        person_list.append(person)
+    # list comprehension
+    person_list = [
+        Person(person_data["name"], person_data["age"])
+        for person_data in people
+    ]
 
     for person_data in people:
         current_person = Person.people[person_data["name"]]
 
-        if "wife" in person_data and person_data["wife"] is not None:
+        if person_data.get("wife") is not None:
             current_person.wife = Person.people[person_data["wife"]]
 
-        if "husband" in person_data and person_data["husband"] is not None:
+        if person_data.get("husband") is not None:
             current_person.husband = Person.people[person_data["husband"]]
 
     return person_list
