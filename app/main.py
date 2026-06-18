@@ -1,15 +1,19 @@
 class Person:
     people = {}
 
-    def __init__(self, name: str, age: int):
+    def __init__(self, name: str, age: int) -> None:
         self.name = name
         self.age = age
         Person.people[self.name] = self
 
 
 def create_person_list(people: list) -> list:
-    for person in people:
+    Person.people = {}
+
+    person_list = [
         Person(person["name"], person["age"])
+        for person in people
+    ]
 
     for person in people:
         current = Person.people[person["name"]]
@@ -20,4 +24,4 @@ def create_person_list(people: list) -> list:
         if person.get("husband") is not None:
             current.husband = Person.people[person["husband"]]
 
-    return list(Person.people.values())
+    return person_list
