@@ -10,8 +10,8 @@ class Person:
 def create_person_list(people: list[dict]) -> list[Person]:
     person_instances = []
     
-    for p in people:
-        person = Person(p["name"], p["age"])
+    for individual in people:
+        person = Person(individual["name"], individual["age"])
         person_instances.append(person)
         
     for p_dict, person in zip(people, person_instances):
