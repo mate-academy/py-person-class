@@ -1,25 +1,20 @@
 class Person:
     people = {}
 
-
-def __init__(self, name: str, age: int) -> None:
-    self.name = name
-    self.age = age
-    Person.people[name] = self
+    def __init__(self, name: str, age: int) -> None:
+        self.name = name
+        self.age = age
+        Person.people[name] = self
 
 
 def create_person_list(people: list) -> list:
 
-    persons = []
     Person.people = {}
-    for person in people:
-        name = person["name"]
-        age = person["age"]
-        persons.append(Person(name, age))
+    persons = [Person(person["name"], person["age"]) for person in people]
 
     for person, data in zip(persons, people):
-        if "wife" in data and data["wife"] is not None:
+        if data.get("wife"):
             person.wife = Person.people[data["wife"]]
-        elif "husband" in data and data["husband"] is not None:
+        elif data.get("husband"):
             person.husband = Person.people[data["husband"]]
     return persons
