@@ -13,5 +13,6 @@ def create_person_list(people: list) -> list:
         if friend.get("wife"):
             Person.people[friend["name"]].wife = Person.people[friend["wife"]]
         if friend.get("husband"):
-            Person.people[friend["name"]].husband = Person.people[friend["husband"]]
+            Person.people[friend["name"]].husband = (
+                Person.people)[friend["husband"]]
     return person_list
