@@ -8,6 +8,7 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
+    Person.people = {}
     person_list = [Person(friend["name"], friend["age"]) for friend in people]
     for friend in people:
         if friend.get("wife"):
