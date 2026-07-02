@@ -18,14 +18,14 @@ def create_person_list(people: list) -> list:
             current_person = Person.people[subject["name"]]
             current_person.husband = Person.people[subject["husband"]]
 
-    return [result]
+    return result
 
 
-people = [
-    {"name": "Ross", "age": 30, "wife": "Rachel"},
-    {"name": "Joey", "age": 29, "wife": None},
-    {"name": "Rachel", "age": 28, "husband": "Ross"}
-]
+if __name__ == "__main__":
+    people = [
+        {"name": "Ross", "age": 30, "wife": "Rachel"},
+        {"name": "Joey", "age": 29, "wife": None},
+        {"name": "Rachel", "age": 28, "husband": "Ross"}
+    ]
 
-person_list = create_person_list(people)
-print(Person.people)
+    person_list = create_person_list(people)
