@@ -7,9 +7,7 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    result = []
-    for person in people:
-        result.append(Person(**person))
+    result = [Person(**person) for person in people]
 
     for person in people:
         if person.get("wife"):
