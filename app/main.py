@@ -7,13 +7,14 @@ class Person:
         self.name = name
 
 
-def create_person_list(people: list) -> list:
+# Переименовали "people" в "people_data"
+def create_person_list(people_data: list) -> list:
     result = []
-    for person_dict in people:
+    for person_dict in people_data:
         person = Person(person_dict["name"], person_dict["age"])
         result.append(person)
 
-    for person_dict in people:
+    for person_dict in people_data:
         person = Person.people[person_dict["name"]]
         wife_name = person_dict.get("wife")
         if wife_name:
