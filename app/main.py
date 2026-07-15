@@ -9,13 +9,16 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    for person in people:
+    person_instances = [
         Person(person["name"], person["age"])
+        for person in people
+    ]
 
     for person in people:
-        current_person = Person.people[person["name"]]
+        name = person["name"]
+        current_person = Person.people[name]
         if person.get("wife") is not None:
             current_person.wife = Person.people[person["wife"]]
         if person.get("husband") is not None:
             current_person.husband = Person.people[person["husband"]]
-    return list(Person.people.values())
+    return person_instances
