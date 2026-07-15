@@ -15,7 +15,6 @@ name of another person.
      - `name`: A string representing the name of the person.
      - `age`: An integer representing the age of the person.
 
-
 3. **Define a **class attribute** `people` in the `Person` class to store instances by their `name`.**
      - The keys are the `name` values of instances.
      - The values are references to the `Person` instances themselves.
