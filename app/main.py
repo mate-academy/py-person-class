@@ -2,13 +2,14 @@ class Person:
 
     people = {}
 
-    def __init__(self, name, age, **kwargs):
+    def __init__(self, name: str, age: int, **kwargs) -> None:
         self.name = name
         self.age = age
         for key, value in kwargs.items():
             if value is not None:
                 setattr(self, key, value)
         Person.people[name] = self
+
 
 def create_person_list(people: list) -> list:
 
@@ -22,5 +23,10 @@ def create_person_list(people: list) -> list:
             if wife:
                 person.wife = wife
                 wife.husband = person
+        elif hasattr(person, "husband") and isinstance(person.husband, str):
+            husband = Person.people.get(person.husband)
+            if husband:
+                person.husband = husband
+                husband.wife = person
 
     return people_ex
