@@ -6,22 +6,24 @@ class Person:
         self.age = age
         Person.people[name] = self
 
+    def set_spouse(self, p_dict: dict) -> None:
+        if p_dict.get("wife"):
+            self.wife = Person.people[p_dict["wife"]]
+        elif p_dict.get("husband"):
+            self.husband = Person.people[p_dict["husband"]]
+
 
 def create_person_list(people_data: list) -> list:
     Person.people = {}
 
-    for p_dict in people_data:
+    person_list = [
         Person(p_dict["name"], p_dict["age"])
+        for p_dict in people_data
+    ]
 
-    result_list = []
-    for p_dict in people_data:
-        instance = Person.people[p_dict["name"]]
+    [
+        Person.people[p_dict["name"]].set_spouse(p_dict)
+        for p_dict in people_data
+    ]
 
-        if p_dict.get("wife"):
-            instance.wife = Person.people[p_dict["wife"]]
-        elif p_dict.get("husband"):
-            instance.husband = Person.people[p_dict["husband"]]
-
-        result_list.append(instance)
-
-    return result_list
+    return person_list
