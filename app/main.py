@@ -1,19 +1,20 @@
 class Person:
     people = {}
 
-    def __init__(self, name: str, age: int):
+    def __init__(self, name: str, age: int) -> None:
         self.name = name
         self.age = age
         Person.people[name] = self
 
 
 def create_person_list(people: list) -> list:
-    person_list = []
+    # Fix 1: Use a list comprehension to instantiate Person objects
+    person_list = [
+        Person(person_dict["name"], person_dict["age"])
+        for person_dict in people
+    ]
 
-    for person_dict in people:
-        person = Person(person_dict["name"], person_dict["age"])
-        person_list.append(person)
-
+    # Second pass: Link spouse relationships
     for person_dict in people:
         current_person = Person.people[person_dict["name"]]
 
