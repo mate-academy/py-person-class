@@ -8,6 +8,7 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
+    Person.people = {}
     lists = []
     for el in people:
         objects = Person(el["name"], el["age"])
