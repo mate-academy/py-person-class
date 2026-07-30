@@ -1,15 +1,14 @@
 class Person:
     people = {}
 
-    def __init__(self, name: str, age: str) -> None:
+    def __init__(self, name: str, age: int) -> None:
         self.name = name
         self.age = age
         Person.people[name] = self
 
 
 def create_person_list(people_data: list) -> list:
-    for person_data in people_data:
-        Person(person_data["name"], person_data["age"])
+    [Person(data["name"], data["age"]) for data in people_data]
 
     for person_data in people_data:
         person = Person.people[person_data["name"]]
