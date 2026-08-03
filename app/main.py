@@ -19,4 +19,9 @@ def create_person_list(people: list) -> list:
             person_dict[person["name"]].wife = person_dict[wife]
             person_dict[wife].husband = person_dict[person["name"]]
 
+        husband = person.get("husband")
+        if husband and husband in person_dict:
+            person_dict[person["name"]].husband = person_dict[husband]
+            person_dict[husband].wife = person_dict[person["name"]]
+
     return list(person_dict.values())
