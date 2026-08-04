@@ -8,19 +8,15 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    result = []
+    result = [Person(person["name"], person["age"]) for person in people]
 
-    for person1 in people:
-        person_obj = Person(person1["name"], person1["age"])
-        result.append(person_obj)
+    for person in people:
+        person_obj = Person.people[person["name"]]
 
-    for person2 in people:
-        person_obj = Person.people[person2["name"]]
+        if person.get("wife"):
+            person_obj.wife = Person.people[person["wife"]]
 
-        if "wife" in person2 and person2["wife"] is not None:
-            person_obj.wife = Person.people[person2["wife"]]
-
-        if "husband" in person2 and person2["husband"] is not None:
-            person_obj.husband = Person.people[person2["husband"]]
+        if person.get("husband"):
+            person_obj.husband = Person.people[person["husband"]]
 
     return result
