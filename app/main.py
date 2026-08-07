@@ -12,7 +12,7 @@ def create_person_list(people: list) -> list:
 
     for person_dict in people:
         person_instance = Person(
-            name=person_dict["name"], 
+            name=person_dict["name"],
             age=person_dict["age"]
         )
         person_list.append(person_instance)
@@ -21,7 +21,7 @@ def create_person_list(people: list) -> list:
         if "wife" in person_dict and person_dict["wife"] is not None:
             wife_name = person_dict["wife"]
             person_instance.wife = Person.people[wife_name]
-        
+
         if "husband" in person_dict and person_dict["husband"] is not None:
             husband_name = person_dict["husband"]
             person_instance.husband = Person.people[husband_name]
