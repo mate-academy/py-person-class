@@ -13,10 +13,10 @@ def create_person_list(people: list) -> list:
                    for person in people if person]
 
     for person in people:
-        if "wife" in person and person["wife"] is not None:
+        if dict.get(person, "wife"):
             Person.people[person["name"]].wife \
                 = Person.people[person["wife"]]
-        if "husband" in person and person["husband"] is not None:
+        if dict.get(person, "husband"):
             Person.people[person["name"]].husband \
                 = Person.people[person["husband"]]
 
