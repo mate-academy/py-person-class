@@ -8,17 +8,7 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    people_list = []
-    for person in people:
-        if "wife" in person:
-            new_person = Person(name=person["name"], age=person["age"])
-            people_list.append(new_person)
-        else:
-            new_person = Person(
-                name=person["name"],
-                age=person["age"]
-            )
-            people_list.append(new_person)
+    people_list = [Person(p["name"], p["age"]) for p in people]
 
     for person in people:
         current = Person.people[person["name"]]
