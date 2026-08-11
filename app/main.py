@@ -9,12 +9,14 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    result = []
-    for human in people:
-        name = human["name"]
-        age = human["age"]
-        person = Person(name, age)
-        result.append(person)
+    result = [Person(human["name"], human["age"]) for human in people]
+
+    for person, res in zip(people, result):
+        for attr, value in person.items():
+            if attr in ("name", "age"):
+                continue
+            if value is not None:
+                setattr(res, attr, Person.people[value])
 
     for i in range(len(people)):
         for attr, value in people[i].items():
