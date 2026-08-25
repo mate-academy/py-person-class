@@ -1,6 +1,7 @@
 
 class Person:
     people: dict[str, "Person"] = {}
+
     def __init__(self, name: str, age: int) -> None:
         self.name = name
         self.age = age
@@ -14,7 +15,7 @@ def create_person_list(humans: list[dict]) -> list[Person]:
     for person in humans:
         result.append(
             Person(person["name"], person["age"])
-                           )
+        )
     # Connect wife/husband
     for person in humans:
         current_person = Person.people[person["name"]]
@@ -23,7 +24,7 @@ def create_person_list(humans: list[dict]) -> list[Person]:
 
         if person.get("husband") is not None:
             current_person.husband = Person.people[person["husband"]]
-    return  result
+    return result
 
 
 people = []
