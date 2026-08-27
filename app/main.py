@@ -12,7 +12,7 @@ def create_person_list(people: list) -> list:
 
     for p_dict in people:
         person_instance = Person.people[p_dict["name"]]
-        spouse_key = "wife" if "wife" in p_dict else "husband"
+        spouse_key = "wife" if p_dict.get("wife") is not None else "husband"
         spouse_name = p_dict.get(spouse_key)
 
         if spouse_name is not None:
