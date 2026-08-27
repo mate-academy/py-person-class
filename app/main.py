@@ -8,12 +8,19 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    person_list = [Person(p["name"], p["age"]) for p in people]
+    Person.people.clear()
 
-    for p_dict in people:
-        person_instance = Person.people[p_dict["name"]]
-        spouse_key = "wife" if p_dict.get("wife") is not None else "husband"
-        spouse_name = p_dict.get(spouse_key)
+    person_list = [
+        Person(person_data["name"], person_data["age"])
+        for person_data in people
+    ]
+
+    for person_data in people:
+        person_instance = Person.people[person_data["name"]]
+        spouse_key = (
+            "wife" if person_data.get("wife") is not None else "husband"
+        )
+        spouse_name = person_data.get(spouse_key)
 
         if spouse_name is not None:
             setattr(person_instance, spouse_key, Person.people[spouse_name])
