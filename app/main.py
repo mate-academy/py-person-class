@@ -1,27 +1,27 @@
 class Person:
-    people = [
-        {"name": "Ross", "age": 30, "wife": "Rachel"},
-        {"name": "Joey", "age": 29, "wife": None},
-        {"name": "Rachel", "age": 28, "husband": "Ross"}
-    ]
+    people = {}
 
     def __init__(self, name: str, age: int) -> None:
         self.name = name
         self.age = age
+        Person.people[name] = self
 
 
-def create_person_list(people: list) -> list:
-    result = []
+def create_person_list(people: list[dict]) -> list[Person]:
+    person_list = []
 
+    # First create all Person instances
     for person in people:
-        new_person = Person(person["name"], person["age"])
+        person_list.append(Person(person["name"], person["age"]))
 
-        if "wife" in person:
-            new_person.wife = person["wife"]
+    # Then add wife/husband references
+    for person_dict in people:
+        person = Person.people[person_dict["name"]]
 
-        if "husband" in person:
-            new_person.husband = person["husband"]
+        if "wife" in person_dict and person_dict["wife"] is not None:
+            person.wife = Person.people[person_dict["wife"]]
 
-        result.append(new_person)
+        if "husband" in person_dict and person_dict["husband"] is not None:
+            person.husband = Person.people[person_dict["husband"]]
 
-    return result
+    return person_list
