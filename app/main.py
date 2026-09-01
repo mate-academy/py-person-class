@@ -12,7 +12,7 @@ def create_person_list(people: list) -> list:
 
     for item, person in zip(people, person_list):
         spouse_name = item.get("wife") or item.get("husband")
-        spouse_key = "wife" if item.get("wife") is not None else "husband"
+        spouse_key = "wife" if item.get("wife") else "husband"
         if spouse_name is not None:
             setattr(person, spouse_key, Person.people[spouse_name])
 
