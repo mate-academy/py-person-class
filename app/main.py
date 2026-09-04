@@ -11,23 +11,18 @@ class Person:
                 elif (key == "wife"):
                     self.define_couple(key, value, "husband")
                 else:
-                    self.__dict__[key] = value
+                    setattr(self, key, value)
         Person.people[name] = self
 
     def define_couple(self, key: str, name: str, other: str) -> None:
-        self.__dict__[key] = self.get_person_by_name(name)
+        setattr(self, key, self.get_person_by_name(name))
         if isinstance(self.__dict__[key], Person):
-            self.__dict__[key].__dict__[other] = self
+            setattr(self.__dict__[key], other, self)
 
     def get_person_by_name(self, name: str) -> Person | str:
-        for person_name_key in Person.people:
-            if person_name_key == name:
-                return Person.people[person_name_key]
-        return name
+        return Person.people.get(name, name)
+
 
 
 def create_person_list(people: list) -> list:
-    person_list = []
-    for person in people:
-        person_list.append(Person(**person))
-    return person_list
+    return [Person(**person) for person in people]
