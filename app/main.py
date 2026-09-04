@@ -23,6 +23,5 @@ class Person:
         return Person.people.get(name, name)
 
 
-
 def create_person_list(people: list) -> list:
     return [Person(**person) for person in people]
