@@ -5,12 +5,12 @@ class Person:
         self.name = name
         self.age = age
         for key, value in kwargs.items():
-            if value is not None:
-                if (key == "husband"):
-                    self.define_couple(key, value, "wife")
-                elif (key == "wife"):
-                    self.define_couple(key, value, "husband")
-                else:
+            if (key == "husband" and value is not None):
+                self.define_couple(key, value, "wife")
+            elif (key == "wife" and value is not None):
+                self.define_couple(key, value, "husband")
+            else:
+                if value is not None:
                     setattr(self, key, value)
         Person.people[name] = self
 
