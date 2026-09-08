@@ -35,8 +35,8 @@ be a link to a `Person` instance with `name` the
 same as `wife`/`husband` key in person's dict.
 
 
-Example:
-```python
+Exemplo:
+```
 people = [
     {"name": "Ross", "age": 30, "wife": "Rachel"},
     {"name": "Joey", "age": 29, "wife": None},
@@ -66,6 +66,50 @@ Person.people == {
     "Rachel": <__main__.Person object at 0x10c1804f0>
 }
 ```
-`Hint` - use `pytest` for testing
+class Person:
+    people = {}
+
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+        Person.people[name] = self
+
+
+def create_person_list(people):
+    result = []
+    for person in people:
+        result.append(Person(person['name'], person['age']))
+
+    for person, obj in zip(people, result):
+        if person.get('wife') is not None:
+            obj.wife = Person.people[person['wife']]
+        elif person.get('husband') is not None:
+            obj.husband = Person.people[person['husband']]
+
+    return result
+
+
+# exemplo de uso
+people = [
+    {"name": "Ross", "age": 30, "wife": "Rachel"},
+    {"name": "Joey", "age": 29, "wife": None},
+    {"name": "Rachel", "age": 28, "husband": "Ross"}
+]
+
+person_list = create_person_list(people)
+
+# teste
+print(isinstance(person_list[0], Person))
+print(person_list[0].name == "Ross")
+print(person_list[0].wife is person_list[2])
+print(person_list[0].wife.name == "Rachel")
+print(person_list[1].name == "Joey")
+    person_list[1].wife
+    print("Erro")
+except AttributeError:
+    print("AttributeError OK")
+print(person_list[2].husband is person_list[0])
+print(person_list[2].husband.name == "Ross")
+print(person_list[2].husband.wife is person_list[2])
 
 ### Note: Check your code using this [checklist](checklist.md) before pushing your solution.
