@@ -89,7 +89,6 @@ def create_person_list(people):
     return result
 
 
-# exemplo de uso
 people = [
     {"name": "Ross", "age": 30, "wife": "Rachel"},
     {"name": "Joey", "age": 29, "wife": None},
