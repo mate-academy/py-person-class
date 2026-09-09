@@ -8,15 +8,12 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    mas = []
+    people_list = [Person(i["name"], i["age"]) for i in people]
     for i in people:
-        mass = Person(i["name"], i["age"])
-        mas.append(mass)
-    for i in people:
-        memi = i.get("wife")
-        if memi is not None:
-            Person.people[i["name"]].wife = Person.people[memi]
-        mem = i.get("husband")
-        if mem is not None:
-            Person.people[i["name"]].husband = Person.people[mem]
-    return mas
+        wife_name = i.get("wife")
+        if wife_name is not None:
+            Person.people[i["name"]].wife = Person.people[wife_name]
+        husband_name = i.get("husband")
+        if husband_name is not None:
+            Person.people[i["name"]].husband = Person.people[husband_name]
+    return people_list
