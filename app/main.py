@@ -10,9 +10,7 @@ class Person:
 
 def create_person_list(people: list) -> list:
 
-    person_list = []
-    for person in people:
-        person_list.append(Person(person["name"], person["age"]))
+    person_list = [Person(p["name"], p["age"]) for p in people]
 
     for person_dic in people:
         current_person = Person.people[person_dic["name"]]
