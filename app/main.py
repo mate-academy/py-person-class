@@ -20,15 +20,11 @@ def create_person_list(people: list[dict]) -> list[Person]:
     for p_dict in people:
         person = Person.people[p_dict["name"]]
 
-        # Link wife if present and not None
-        if "wife" in p_dict and p_dict["wife"] is not None:
-            wife_name = p_dict["wife"]
+        wife_name = p_dict.get("wife")
+        if wife_name is not None:
             setattr(person, "wife", Person.people[wife_name])
 
-        # Link husband if present and not None
-        if "husband" in p_dict and p_dict["husband"] is not None:
-            husband_name = p_dict["husband"]
+        husband_name = p_dict.get("husband")
+        if husband_name is not None:
             setattr(person, "husband", Person.people[husband_name])
-
-    # MUST return the list of Person instances
     return person_list
