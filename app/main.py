@@ -10,10 +10,7 @@ Person.people = {}
 
 
 def create_person_list(people: list) -> list:
-    person_list = []
-    for person in people:
-        obj = Person(person["name"], person["age"])
-        person_list.append(obj)
+    person_list = [Person(person["name"], person["age"]) for person in people]
     for people_dict, person_obj in zip(people, person_list):
         if people_dict.get("wife"):
             person_obj.wife = Person.people[people_dict["wife"]]
