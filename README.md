@@ -12,7 +12,7 @@ name of another person.
 1. **Define a Class `Person`**  
    
 2. **The `__init__` method should take two parameters**
-     - `name`: A string representing the name of the person.
+     - `name`: A string representing the name of the persons
      - `age`: An integer representing the age of the person.
 
 
