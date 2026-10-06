@@ -8,12 +8,13 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    slov = {}
+    slov = {
+        i["name"]: Person(i["name"], i["age"])
+        for i in people
+    }
     for i in people:
-        slov[i["name"]] = Person(i["name"], i["age"])
-    for i in people:
-        if "wife" in i and i["wife"] is not None:
+        if i.get("wife"):
             slov[i["name"]].wife = Person.people[i["wife"]]
-        elif "husband" in i and i["husband"] is not None:
+        elif i.get("husband"):
             slov[i["name"]].husband = Person.people[i["husband"]]
     return list(slov.values())
