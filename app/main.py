@@ -1,25 +1,28 @@
 class Person:
     people = {}
 
-    def __init__(self, name: str, age: int) -> None:
+    def __init__(self, name, age):
         self.name = name
         self.age = age
         Person.people[name] = self
 
 
-def create_person_list(people: list[dict]) -> list[Person]:
+def create_person_list(people_data):
     person_list = []
-    for person_data in people:
-        person = Person(name=person_data["name"], age=person_data["age"])
+    
+    # Primeira passada: cria todas as instâncias e as adiciona à lista
+    for data in people_data:
+        person = Person(data["name"], data["age"])
         person_list.append(person)
-
-    for person_data in people:
-        person = Person.people[person_data["name"]]
         
-        if person_data.get("wife") is not None:
-            person.wife = Person.people[person_data["wife"]]
+    # Segunda passada: vincula os cônjuges (wife ou husband) usando o dicionário de classe
+    for data in people_data:
+        person = Person.people[data["name"]]
+        
+        if "wife" in data and data["wife"] is not None:
+            person.wife = Person.people[data["wife"]]
             
-        if person_data.get("husband") is not None:
-            person.husband = Person.people[person_data["husband"]]
-
+        if "husband" in data and data["husband"] is not None:
+            person.husband = Person.people[data["husband"]]
+            
     return person_list
