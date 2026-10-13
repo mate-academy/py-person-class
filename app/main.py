@@ -12,7 +12,7 @@ def create_person_list(people: list) -> list:
         Person(person["name"], person["age"])
 
     for person in people:
-        name = Person.people[person]["name"]
+        name = Person.people[person["name"]]
         if person.get("wife") is not None:
             name.wife = Person.people[person["wife"]]
         elif person.get("husband") is not None:
