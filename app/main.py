@@ -6,12 +6,9 @@ class Person:
         self.age = age
         Person.people[name] = self
 
-    pass
-
 
 def create_person_list(people: list) -> list:
-    for person_dict in people:
-        Person(person_dict["name"], person_dict["age"])
+    [Person(p["name"], p["age"]) for p in people]
 
     for person_dict in people:
         name = person_dict["name"]
