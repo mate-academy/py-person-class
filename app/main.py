@@ -7,19 +7,22 @@ class Person:
         Person.people[name] = self
 
 
-def create_person_list(people: list[dict]) -> list[Person]:
-    person_list = [
-        Person(name=person_data["name"], age=person_data["age"])
-        for person_data in people
-    ]
+def create_person_list(people_data: list[dict]) -> list[Person]:
+    person_list = []
 
-    for person_data in people:
-        person = Person.people[person_data["name"]]
+    for data in people_data:
+        person = Person(data["name"], data["age"])
+        person_list.append(person)
 
-        if person_data.get("wife") is not None:
-            person.wife = Person.people[person_data["wife"]]
+    for data in people_data:
+        person = Person.people[data["name"]]
 
-        if person_data.get("husband") is not None:
-            person.husband = Person.people[person_data["husband"]]
+        wife_name = data.get("wife")
+        if wife_name is not None:
+            person.wife = Person.people[wife_name]
+
+        husband_name = data.get("husband")
+        if husband_name is not None:
+            person.husband = Person.people[husband_name]
 
     return person_list
