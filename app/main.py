@@ -1,12 +1,17 @@
 class Person:
     people = {}
 
+<<<<<<< HEAD
     def __init__(self, name, age):
+=======
+    def __init__(self, name: str, age: int) -> None:
+>>>>>>> f5e8933 (Corrigir estilo com list comprehension e W293)
         self.name = name
         self.age = age
         Person.people[name] = self
 
 
+<<<<<<< HEAD
 def create_person_list(people_data):
     person_list = []
     
@@ -25,4 +30,21 @@ def create_person_list(people_data):
         if "husband" in data and data["husband"] is not None:
             person.husband = Person.people[data["husband"]]
             
+=======
+def create_person_list(people: list[dict]) -> list[Person]:
+    person_list = [
+        Person(name=person_data["name"], age=person_data["age"])
+        for person_data in people
+    ]
+
+    for person_data in people:
+        person = Person.people[person_data["name"]]
+
+        if person_data.get("wife") is not None:
+            person.wife = Person.people[person_data["wife"]]
+
+        if person_data.get("husband") is not None:
+            person.husband = Person.people[person_data["husband"]]
+
+>>>>>>> f5e8933 (Corrigir estilo com list comprehension e W293)
     return person_list
