@@ -9,16 +9,16 @@ class Person:
 
 def create_person_list(people_data: list) -> list:
     for person_dict in people_data:
-        if person_dict["name"] not in Person.people:
-            Person(person_dict["name"], person_dict["age"])
+        if person_dict.get("name") not in Person.people:
+            Person(person_dict.get("name"), person_dict.get("age"))
 
     for person_dict in people_data:
-        current_person = Person.people[person_dict["name"]]
-        
-        if "wife" in person_dict and person_dict["wife"] is not None:
-            current_person.wife = Person.people[person_dict["wife"]]
-            
-        if "husband" in person_dict and person_dict["husband"] is not None:
-            current_person.husband = Person.people[person_dict["husband"]]
+        current_person = Person.people.get(person_dict.get("name"))
 
-    return [Person.people[person_dict["name"]] for person_dict in people_data]
+        if person_dict.get("wife") is not None:
+            current_person.wife = Person.people.get(person_dict.get("wife"))
+
+        if person_dict.get("husband") is not None:
+            current_person.husband = Person.people.get(person_dict.get("husband"))
+
+    return [Person.people.get(p.get("name")) for p in people_data]
