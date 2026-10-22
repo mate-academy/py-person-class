@@ -8,18 +8,12 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    list_person = []
-    for index, person in enumerate(people):
-        person_obj = Person(person["name"], person["age"])
+    list_person = [Person(person["name"], person["age"]) for person in people]
+    for person in people:
         if person.get("wife"):
-            person_obj.wife = person["wife"]
+            Person.people[person["name"]].wife =\
+                Person.people[person.get("wife")]
         if person.get("husband"):
-            person_obj.husband = person["husband"]
-        list_person.append(person_obj)
-    for person in list_person:
-        if hasattr(person, "wife"):
-            person.wife = Person.people.get(person.wife)
-        if hasattr(person, "husband"):
-            person.husband = Person.people.get(person.husband)
-
+            Person.people[person["name"]].husband =\
+                Person.people[person.get("husband")]
     return list_person
