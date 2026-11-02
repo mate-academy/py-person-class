@@ -12,7 +12,7 @@ def create_person_list(people: list) -> list:
     Person.people.clear()
 
     for person in people:
-        Person(name=person["name"], age=person["age"])
+        [Person(name=person["name"], age=person["age"]) for person in people]
 
     for person in people:
         current_person = Person.people[person["name"]]
