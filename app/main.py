@@ -8,11 +8,10 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    person_list = []
-
-    for person in people:
-        new_person = Person(person["name"], person["age"])
-        person_list.append(new_person)
+    person_list = [
+        Person(person.get("name"), person.get("age"))
+        for person in people
+    ]
 
     for person in people:
         current_person = Person.people[person["name"]]
@@ -22,7 +21,7 @@ def create_person_list(people: list) -> list:
                 setattr(
                     current_person,
                     relation,
-                    Person.people[person[relation]]
+                    Person.people[person.get(relation)]
                 )
 
     return person_list
