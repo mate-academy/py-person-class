@@ -4,24 +4,21 @@ class Person:
     def __init__(self, name: str, age: int) -> None:
         self.name = name
         self.age = age
-        self.wife = None
-        self.husband = None
         Person.people[self.name] = self
 
 
 def create_person_list(people: list) -> list:
 
-    for creature in people:
-        Person(creature["name"], creature["age"])
+    person_list = [Person(person.get("name"), person.get("age"))
+                   for person in people]
 
-    for creature in people:
-        if creature.get("wife"):
-            Person.people[creature["name"]].wife\
-                = Person.people[creature["wife"]]
+    for person in people:
+        if person.get("wife"):
+            Person.people[person.get("name")].wife\
+                = Person.people[person.get("wife")]
 
-            Person.people[creature["wife"]].husband\
-                = Person.people[creature["name"]]
-        else:
-            del Person.people[creature["name"]].wife
+        if person.get("husband"):
+            Person.people[person.get("name")].husband\
+                = Person.people[person.get("husband")]
 
-    return list(Person.people.values())
+    return person_list
