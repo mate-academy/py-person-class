@@ -29,3 +29,4 @@ def create_person_list(people: list) -> list:
                 )
 
     return person_list
+
