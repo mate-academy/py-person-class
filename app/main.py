@@ -1,13 +1,13 @@
 class Person:
     people = dict()
-    def __init__(self, name: str, age: int):
+
+    def __init__(self, name: str, age: int) -> None:
         self.name = name
         self.age = age
         # self.wife = None
         # self.husband = None
         Person.people[name] = self
 
-# Person.__dict__
 
 def create_person_list(people: list) -> list:
     character_list = []
@@ -24,8 +24,6 @@ def create_person_list(people: list) -> list:
     for character in character_list:
         if character.__dict__.get("wife") is not None:
             character.wife = Person.people[character.__dict__.get("wife")]
-            #print(character.name, character.age, character.wife, type(character.wife), character.wife.name)
         elif character.__dict__.get("husband") is not None:
             character.husband = Person.people[character.__dict__.get("husband")]
-            #print(character.name, character.age, character.husband, type(character.husband), character.husband.name)
     return character_list
