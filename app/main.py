@@ -25,5 +25,6 @@ def create_person_list(people: list) -> list:
         if character.__dict__.get("wife") is not None:
             character.wife = Person.people[character.__dict__.get("wife")]
         elif character.__dict__.get("husband") is not None:
-            character.husband = Person.people[character.__dict__.get("husband")]
+            character.husband \
+                = Person.people[character.__dict__.get("husband")]
     return character_list
