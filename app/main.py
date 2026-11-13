@@ -17,8 +17,8 @@ def create_person_list(people_data: list) -> list:
         person = Person.people[person_dict["name"]]
 
         if "wife" in person_dict and person_dict["wife"]:
-            person.wife = Person.people[person_dict["wife"]]
+            person.wife = Person.people[person_dict.get(["wife"])]
 
-        if "husband" in person_dict and person_dict["husband"]:
+        if "husband" in person_dict and person_dict.get(["husband"]):
             person.husband = Person.people[person_dict["husband"]]
     return result
