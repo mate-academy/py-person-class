@@ -8,8 +8,6 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    # Clear the registry to avoid side effects if called multiple times
-    Person.people.clear()
 
     person_list = []
     for person in people:
