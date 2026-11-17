@@ -1,8 +1,26 @@
 class Person:
-    # write your code here
-    pass
+    people = {}
+
+    def __init__(self, name: str, age: int) -> None:
+        self.name = name
+        self.age = age
+        Person.people[name] = self
 
 
 def create_person_list(people: list) -> list:
-    # write your code here
-    pass
+    # Clear the registry to avoid side effects if called multiple times
+    Person.people.clear()
+
+    person_list = []
+    for person in people:
+        new_person = Person(person["name"], person["age"])
+        person_list.append(new_person)
+
+    for person, instance in zip(people, person_list):
+        if person.get("wife") is not None:
+            instance.wife = Person.people[person["wife"]]
+
+        if person.get("husband") is not None:
+            instance.husband = Person.people[person["husband"]]
+
+    return person_list
