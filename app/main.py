@@ -21,14 +21,14 @@ def create_person_list(people: list) -> list:
         for human_dict in people:
             if human_first_instance.name == human_dict["name"]:
                 human_dict_element = human_dict
-                break        
-        if ("wife" in human_dict_element 
-                and human_dict_element.get("wife") != None):
+                break
+        if ("wife" in human_dict_element
+                and human_dict_element.get("wife") is not None):
             human_first_instance.wife = Person.people[
                 human_dict_element.get("wife")
             ]
-        elif ("husband" in human_dict_element 
-                and human_dict_element.get("husband") != None):
+        elif ("husband" in human_dict_element
+                and human_dict_element.get("husband") is not None):
             human_first_instance.husband = Person.people[
                 human_dict_element.get("husband")
             ]
