@@ -11,8 +11,8 @@ def create_person_list(people: list) -> list:
     person_list = [Person(person["name"], person["age"]) for person in people]
     for person in people:
         instance = Person.people[person["name"]]
-        if person.get("wife"):
+        if person.get("wife") is not None:
             instance.wife = Person.people[person["wife"]]
-        if person.get("husband"):
+        if person.get("husband") is not None:
             instance.husband = Person.people[person["husband"]]
     return person_list
