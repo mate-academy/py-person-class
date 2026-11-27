@@ -8,8 +8,6 @@ class Person:
 
 
 def create_person_list(people: list) -> list:
-    Person.people = {}
-
     person_list = []
 
     for person in people:
@@ -29,4 +27,3 @@ def create_person_list(people: list) -> list:
                 )
 
     return person_list
-
